@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ExampleController {
+//
+//    @RequestMapping("/")
+//    @ResponseBody
+//    public String home() {
+//        return "Ich will nach Hause!";
+//    }
 
-    @RequestMapping("/")
-    @ResponseBody
-    public String home() {
-        return "Ich will nach Hause!";
-    }
-
-    @RequestMapping("/{number}")
-    @ResponseBody
-    public String testPathVariable(@PathVariable("number") int number) {
-        return "Hello du bist nummer: " + number;
-    }
+//    @RequestMapping("/{number}")
+//    @ResponseBody
+//    public String testPathVariable(@PathVariable("number") int number) {
+//        return "Hello du bist nummer: " + number;
+//    }
 }
