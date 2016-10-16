@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "system",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "removeComments" : true,
+
+    "sourceMap": true,
+    "sourceRoot": "/",
+    "inlineSources": true,
+    "rootDir" : "node_modules",
+    "outDir": "target/classes/static/transpiled-ts/",
+    "outFile" : "target/classes/static/transpiled-ts/vendor.js",
+
+    "allowJs" : true,
+    "declaration": false,
+    "allowUnreachableCode": true
+  },
+  "files" : [
+    "node_modules/core-js/client/shim.min.js",
+    "node_modules/zone.js/dist/zone.js",
+    "node_modules/reflect-metadata/Reflect.js",
+    "node_modules/systemjs/dist/system.src.js",
+
+    "node_modules/@angular/core/bundles/core.umd.js",
+    "node_modules/@angular/common/bundles/common.umd.js",
+    "node_modules/@angular/compiler/bundles/compiler.umd.js",
+    "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+    "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
+    "node_modules/@angular/http/bundles/http.umd.js",
+    "node_modules/@angular/router/bundles/router.umd.js",
+    "node_modules/@angular/forms/bundles/forms.umd.js",
+    "node_modules/rxjs/bundles/Rx.js",
+  ]
+}
