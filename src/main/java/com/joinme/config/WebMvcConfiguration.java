@@ -12,9 +12,11 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registerResourceHandler(registry, "/js/**", "classpath:/static/javascript/", "classpath:/static/transpiled-ts/");
-        registerResourceHandler(registry, "/css/**", "classpath:/static/css/");
-        registerResourceHandler(registry, "/*.html", "classpath:/static/html/");
+        registerResourceHandler(registry, "/**", "classpath:/static/webpack/");
+        registerResourceHandler(registry, "/assets/**", "classpath:/static/assets/");
+//        registerResourceHandler(registry, "/js/**", "classpath:/static/javascript/", "classpath:/static/transpiled-ts/");
+//        registerResourceHandler(registry, "/css/**", "classpath:/static/css/");
+//        registerResourceHandler(registry, "/*.html", "classpath:/static/html/");
     }
 
     private void registerResourceHandler(ResourceHandlerRegistry registry, String pathPattern, String... resourceLocations) {

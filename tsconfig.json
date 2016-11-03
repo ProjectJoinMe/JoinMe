@@ -9,7 +9,10 @@
     "sourceMap": true,
     "noEmitHelpers": true,
     "strictNullChecks": false,
-    "baseUrl": "./src",
+
+    "baseUrl": "./src/main/typescript",
+    "outDir": "target/ide-tmp/typescript",
+
     "paths": {
     },
     "lib": [
@@ -29,11 +32,11 @@
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "target"
   ],
   "include": [
-    "node_modules",
-    "dist"
+    "src/main/typescript/**/*.*"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
