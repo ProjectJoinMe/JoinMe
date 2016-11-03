@@ -24,7 +24,7 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
+  title: 'JoinMe',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer()
 };
@@ -55,9 +55,9 @@ module.exports = function (options) {
      */
     entry: {
 
-      'polyfills': './src/polyfills.browser.ts',
-      'vendor': './src/vendor.browser.ts',
-      'main': './src/main.browser.ts'
+      'polyfills': './src/main/typescript/polyfills.browser.ts',
+      'vendor': './src/main/typescript/vendor.browser.ts',
+      'main': './src/main/typescript/main.browser.ts'
 
     },
 
@@ -134,7 +134,7 @@ module.exports = function (options) {
         {
           test: /\.html$/,
           loader: 'raw-loader',
-          exclude: [helpers.root('src/index.html')]
+          exclude: [helpers.root('src/main/typescript/index.html')]
         },
 
         /* File loader for supporting images, for example, in CSS files.
@@ -155,7 +155,7 @@ module.exports = function (options) {
      */
     plugins: [
       new AssetsPlugin({
-        path: helpers.root('dist'),
+        path: helpers.root('target/classes/static/webpack'),
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
@@ -186,26 +186,27 @@ module.exports = function (options) {
        * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
        * See: https://github.com/angular/angular/issues/11580
        */
-      new ContextReplacementPlugin(
+      new ContextReplacementPlugin( // TODO nicole fix src path in regex to src/main/typescript
         // The (\\|\/) piece accounts for path separators in *nix and Windows
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-        helpers.root('src') // location of your src
+        helpers.root('src/main/typescript') // location of your src
       ),
 
-      /*
-       * Plugin: CopyWebpackPlugin
-       * Description: Copy files and directories in webpack.
-       *
-       * Copies project static assets.
-       *
-       * See: https://www.npmjs.com/package/copy-webpack-plugin
-       */
-      new CopyWebpackPlugin([{
-        from: 'src/assets',
-        to: 'assets',
-      }, {
-        from: 'src/meta',
-      }, ]),
+      // from angular2-webpack-starter - not necessary
+      // /*
+      //  * Plugin: CopyWebpackPlugin
+      //  * Description: Copy files and directories in webpack.
+      //  *
+      //  * Copies project static assets.
+      //  *
+      //  * See: https://www.npmjs.com/package/copy-webpack-plugin
+      //  */
+      // new CopyWebpackPlugin([{
+      //   from: 'src/assets',
+      //   to: 'assets',
+      // }, {
+      //   from: 'src/meta',
+      // }, ]),
 
 
       /*
@@ -216,12 +217,12 @@ module.exports = function (options) {
        *
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
-      new HtmlWebpackPlugin({
-        template: 'src/index.html',
+      new HtmlWebpackPlugin({ // TODO nicole this does not work
+        template: 'src/main/typescript/index.html',
         title: METADATA.title,
         chunksSortMode: 'dependency',
         metadata: METADATA,
-        inject: 'head'
+        inject: 'head',
       }),
 
       /*
@@ -286,4 +287,5 @@ module.exports = function (options) {
     }
 
   };
-}
+};
+
