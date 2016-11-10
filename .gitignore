@@ -1,5 +1,4 @@
 target
-.idea/
 *.iml
 
 # Node install
@@ -67,5 +66,7 @@ npm-debug.log
 /doc/
 
 # IDE #
-.idea/
+.idea/*
 *.swp
+
+!.idea/runConfigurations
