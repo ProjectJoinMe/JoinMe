@@ -3,7 +3,7 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { AppState } from './app.service';
+import { AppState } from './AppService';
 
 /*
  * App Component
@@ -13,9 +13,9 @@ import { AppState } from './app.service';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './app.component.css'
+    './AppComponent.css'
   ],
-  templateUrl: "./app.component.html"
+  templateUrl: "./AppComponent.html"
 })
 export class AppComponent {
   name = 'JoinMe';
