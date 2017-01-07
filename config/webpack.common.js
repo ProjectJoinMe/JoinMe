@@ -55,9 +55,9 @@ module.exports = function (options) {
      */
     entry: {
 
-      'polyfills': './src/main/typescript/polyfills.browser.ts',
-      'vendor': './src/main/typescript/vendor.browser.ts',
-      'main': './src/main/typescript/main.browser.ts'
+      'polyfills': './src/main/frontend-application/polyfills.browser.ts',
+      'vendor': './src/main/frontend-application/vendor.browser.ts',
+      'main': './src/main/frontend-application/main.browser.ts'
 
     },
 
@@ -134,7 +134,7 @@ module.exports = function (options) {
         {
           test: /\.html$/,
           loader: 'raw-loader',
-          exclude: [helpers.root('src/main/typescript/index.html')]
+          exclude: [helpers.root('src/main/frontend-application/index.html')]
         },
 
         /* File loader for supporting images, for example, in CSS files.
@@ -186,10 +186,10 @@ module.exports = function (options) {
        * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
        * See: https://github.com/angular/angular/issues/11580
        */
-      new ContextReplacementPlugin( // TODO nicole fix src path in regex to src/main/typescript
+      new ContextReplacementPlugin( // TODO nicole fix src path in regex to src/main/frontend-application
         // The (\\|\/) piece accounts for path separators in *nix and Windows
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-        helpers.root('src/main/typescript') // location of your src
+        helpers.root('src/main/frontend-application') // location of your src
       ),
 
       // from angular2-webpack-starter - not necessary
@@ -218,7 +218,7 @@ module.exports = function (options) {
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
       new HtmlWebpackPlugin({ // TODO nicole this does not work
-        template: 'src/main/typescript/index.html',
+        template: 'src/main/frontend-application/index.html',
         title: METADATA.title,
         chunksSortMode: 'dependency',
         metadata: METADATA,

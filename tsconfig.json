@@ -10,7 +10,7 @@
     "noEmitHelpers": true,
     "strictNullChecks": false,
 
-    "baseUrl": "./src/main/typescript",
+    "baseUrl": "./src/main/frontend-application",
     "outDir": "target/ide-tmp/typescript",
 
     "paths": {
@@ -37,7 +37,7 @@
     "target"
   ],
   "include": [
-    "src/main/typescript/**/*.*"
+    "src/main/frontend-application/**/*.*"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
