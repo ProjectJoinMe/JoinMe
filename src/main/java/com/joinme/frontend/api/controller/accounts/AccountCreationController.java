@@ -17,7 +17,7 @@ public class AccountCreationController {
     @Autowired
     private UserAccountCreation userAccountCreation;
 
-    @RequestMapping(value = "/api/accounts", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/accounts/register", method = RequestMethod.POST)
     @ResponseBody
     public void createAccount(@Valid @RequestBody AccountRegistrationData accountRegistrationData) {
         userAccountCreation.createUser(accountRegistrationData);

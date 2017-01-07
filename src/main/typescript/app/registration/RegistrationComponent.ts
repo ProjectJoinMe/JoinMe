@@ -33,7 +33,7 @@ export class RegistrationComponent {
             email: <string> this.registrationForm.get("email").value,
             password: <string> this.registrationForm.get("password").value,
         };
-        this.http.post("api/accounts", registrationData)
+        this.http.post("api/accounts/register", registrationData)
             .subscribe(
                 data => {
                     // TODO success -> show confirmation message and move to login screen
