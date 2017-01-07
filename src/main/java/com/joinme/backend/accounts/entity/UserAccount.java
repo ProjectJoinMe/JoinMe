@@ -15,6 +15,9 @@ public class UserAccount {
     @Column(unique = true)
     private String email;
 
+    /**
+     * encrypted password
+     */
     private String password;
 
     public Long getId() {
