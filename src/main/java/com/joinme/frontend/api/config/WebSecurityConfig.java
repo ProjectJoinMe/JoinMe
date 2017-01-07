@@ -16,12 +16,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/assets/**", "/",
-                            "/index.html", "/polyfills.bundle.js", "/vendor.bundle.js", "/main.bundle.js").permitAll()
+                            "/index.html",
+                            "/polyfills.bundle.js", "/vendor.bundle.js", "/main.bundle.js",
+                            "/polyfills.map", "/vendor.map", "/main.map"
+                    ).permitAll()
                     .antMatchers("/api/accounts/register").anonymous()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/#/login")
                     .permitAll()
                     .and()
                 .logout()
