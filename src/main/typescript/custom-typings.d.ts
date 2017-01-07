@@ -49,38 +49,12 @@ declare module '*';
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare var ENV: string;
 declare var HMR: boolean;
-declare var System: SystemJS;
 
-interface SystemJS {
-  import: (path?: string) => Promise<any>;
-}
 
 interface GlobalEnvironment {
   ENV: string;
   HMR: boolean;
-  SystemJS: SystemJS;
-  System: SystemJS;
 }
-
-interface Es6PromiseLoader {
-  (id: string): (exportName?: string) => Promise<any>;
-}
-
-type FactoryEs6PromiseLoader = () => Es6PromiseLoader;
-type FactoryPromise = () => Promise<any>;
-
-type AsyncRoutes = {
-  [component: string]: Es6PromiseLoader |
-                               Function |
-                FactoryEs6PromiseLoader |
-                         FactoryPromise
-};
-
-
-type IdleCallbacks = Es6PromiseLoader |
-                             Function |
-              FactoryEs6PromiseLoader |
-                       FactoryPromise ;
 
 interface WebpackModule {
   hot: {
@@ -118,6 +92,5 @@ interface ErrorStackTraceLimit {
 // Extend typings
 interface NodeRequire extends WebpackRequire {}
 interface ErrorConstructor extends ErrorStackTraceLimit {}
-interface NodeRequireFunction extends Es6PromiseLoader  {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
