@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {RegistrationData} from "./RegistrationData";
 import cloneWith = require("lodash/cloneWith");
 import {Validators, FormControl, FormGroup, ReactiveFormsModule, FormBuilder} from "@angular/forms";
@@ -26,7 +26,7 @@ export class RegistrationComponent {
                 private http: Http) {
     }
 
-    public doRegister() {
+    public register() {
         console.log("hallo!");
         let registrationData: RegistrationData = {
             username: <string> this.registrationForm.get("username").value,

@@ -18,8 +18,6 @@ public class UserAccountCreationBean implements UserAccountCreation {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // TODO encrypt password using salt and so on -> see Spring security example
-
     @Override
     public void createUser(AccountRegistrationData accountRegistrationData) {
         UserAccount userAccount = convertRegistrationDataToAccount(accountRegistrationData);

@@ -18,6 +18,7 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import {RegistrationComponent} from "./registration/RegistrationComponent";
+import {LoginComponent} from "./login/LoginComponent";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -41,6 +42,7 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     RegistrationComponent,
+    LoginComponent,
     NoContentComponent,
   ],
   imports: [
