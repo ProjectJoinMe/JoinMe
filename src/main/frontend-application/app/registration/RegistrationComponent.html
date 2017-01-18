@@ -1,22 +1,22 @@
 <div>
   <h1>Registrieren</h1>
   <br />
-  <form [formGroup]="registrationForm" (ngSubmit)="doRegister()">
-    <!-- TODO labels -->
+  <form [formGroup]="registrationForm" (ngSubmit)="register()">
+
     <label>Nutzername:</label>
-    <input formControlName="username" type="text" placeholder="Dein Nutzername">
+    <input formControlName="username" type="text">
     <br />
 
     <label>E-Mail:</label>
-    <input formControlName="email" type="email" placeholder="Deine E-Mail-Adresse">
+    <input formControlName="email" type="email">
     <br />
 
     <label>Passwort:</label>
-    <input formControlName="password" type="password" placeholder="Dein Passwort">
+    <input formControlName="password" type="password">
     <br />
 
     <label>Passwort wiederholen:</label>
-    <input formControlName="passwordCheck" type="password" placeholder="Dein Passwort - Wiederholung">
+    <input formControlName="passwordCheck" type="password">
     <br />
 
     <button type="submit">Registrieren</button>
