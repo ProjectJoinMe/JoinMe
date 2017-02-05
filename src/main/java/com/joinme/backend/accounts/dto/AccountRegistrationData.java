@@ -3,8 +3,10 @@ package com.joinme.backend.accounts.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 public class AccountRegistrationData {
+
     @NotNull
     @Size(min = 1, max = 40)
     private String username;
@@ -17,6 +19,12 @@ public class AccountRegistrationData {
     @NotNull
     @Size(min = 1, max = 50)
     private String password;
+
+    @NotNull
+    private Gender gender;
+
+    @NotNull
+    private Date dateOfBirth;
 
     public String getUsername() {
         return username;
@@ -40,5 +48,21 @@ public class AccountRegistrationData {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

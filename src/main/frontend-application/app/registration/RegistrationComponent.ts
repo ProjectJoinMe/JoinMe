@@ -1,8 +1,10 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {RegistrationData} from "./RegistrationData";
+import {Validators, FormGroup, FormBuilder, FormControl, AbstractControl} from "@angular/forms";
+import {Http, URLSearchParams} from "@angular/http";
+import {MailValidator} from "../../validators/MailValidator";
 import cloneWith = require("lodash/cloneWith");
-import {Validators, FormControl, FormGroup, ReactiveFormsModule, FormBuilder} from "@angular/forms";
-import {Http, Response} from "@angular/http";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'registration',
@@ -10,37 +12,64 @@ import {Http, Response} from "@angular/http";
     styleUrls: ['./RegistrationComponent.css'],
     templateUrl: './RegistrationComponent.html'
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
 
-    public registrationForm = this.formBuilder.group({
-        username: ["", Validators.required],
-        email: ["", Validators.required],
-        password: ["", Validators.required],
-        passwordCheck: ["", Validators.required],
-    });
+    public registrationForm: FormGroup;
+    public submitted: boolean = false;
+    public maxDateOfBirth: Date = new Date();
+    public submitDisabled: boolean = false;
 
-    // TODO validate username does not exist by validating asynchronously in custom validator
-    // TODO validate
-
-    constructor(public formBuilder: FormBuilder,
+    constructor(private router: Router,
+                private formBuilder: FormBuilder,
                 private http: Http) {
     }
 
     public register() {
-        console.log("hallo!");
-        let registrationData: RegistrationData = {
-            username: <string> this.registrationForm.get("username").value,
-            email: <string> this.registrationForm.get("email").value,
-            password: <string> this.registrationForm.get("password").value,
-        };
-        this.http.post("api/accounts/register", registrationData)
-            .subscribe(
-                data => {
-                    // TODO success -> show confirmation message and move to login screen
-                },
-                error => {
-                    console.error("failed to register account, TODO")
-                });
-        // .catch(this.handleError) // TODO handle all unhandled errors generally by showing some message bar
+        this.submitted = true;
+        if (this.registrationForm.valid) {
+            this.submitDisabled = true;
+            let registrationData: RegistrationData = {
+                username: <string> this.registrationForm.get("username").value,
+                email: <string> this.registrationForm.get("email").value,
+                dateOfBirth: new Date(this.registrationForm.get("dateOfBirth").value),
+                gender: <string> this.registrationForm.get("gender").value,
+                password: <string> this.registrationForm.get("password").value
+            };
+            this.http.post("api/accounts/register", registrationData)
+                .subscribe(
+                    data => {
+                        this.submitDisabled = false;
+                        this.router.navigate(['/login']);
+                        // TODO success -> show confirmation message and move to login screen
+                    },
+                    error => {
+                        this.submitDisabled = false;
+                        console.error("failed to register account, TODO");
+                    });
+            // .catch(this.handleError) // TODO handle all unhandled errors generally by showing some message bar
+        }
     }
+
+    ngOnInit() {
+        this.registrationForm = this.formBuilder.group({
+            username: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
+            email: ["", [Validators.required, MailValidator.mailValidator()]],
+            dateOfBirth: ["", [Validators.required]],
+            gender: ["", Validators.required],
+            password: ["", [Validators.required, Validators.minLength(6)]],
+            passwordCheck: ["", [Validators.required, this.passwordsMatchValidator]],
+        });
+    }
+
+    private passwordsMatchValidator(control: AbstractControl): any {
+        // partially from https://scotch.io/tutorials/how-to-implement-a-custom-validator-directive-confirm-password-in-angular-2
+        var passwordControl = control.root.get("password");
+        return passwordControl && (passwordControl.value === control.value)
+            ? null : {
+            passwordsMatch: {
+                valid: false
+            }
+        };
+    }
+
 }

@@ -5,20 +5,47 @@
 
     <label>Nutzername:</label>
     <input formControlName="username" type="text">
+    <small class="error-message" [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
+      Benutzername ungültig (zwischen 5 und 20 Zeichen)
+    </small>
     <br />
 
     <label>E-Mail:</label>
-    <input formControlName="email" type="email">
+    <input formControlName="email" type="text">
+    <small class="error-message" [hidden]="registrationForm.controls.email.valid || (registrationForm.controls.email.pristine && !submitted)">
+      ungültige Email
+    </small>
+    <br />
+
+    <label>Geburtsdatum</label>
+    <input formControlName="dateOfBirth" type="date" max="{{maxDateOfBirth | date:'yyyy-MM-dd'}}">
+    <small class="error-message" [hidden]="registrationForm.controls.dateOfBirth.valid || (registrationForm.controls.dateOfBirth.pristine && !submitted)">
+      ungültiges Geburtsdatum
+    </small>
+    <br />
+
+    <label>Geschlecht</label>
+    <input type="radio" formControlName="gender" value="FEMALE"><label>Weiblich</label>
+    <input type="radio" formControlName="gender" value="MALE"><label>Männlich</label>
+    <small class="error-message" [hidden]="registrationForm.controls.gender.valid || (registrationForm.controls.gender.pristine && !submitted)">
+      bitte auswählen
+    </small>
     <br />
 
     <label>Passwort:</label>
     <input formControlName="password" type="password">
+    <small class="error-message" [hidden]="registrationForm.controls.password.valid || (registrationForm.controls.password.pristine && !submitted)">
+      ungültiges Passwort (mindestens 6 Zeichen)
+    </small>
     <br />
 
     <label>Passwort wiederholen:</label>
     <input formControlName="passwordCheck" type="password">
+    <small class="error-message" [hidden]="registrationForm.controls.passwordCheck.valid || (registrationForm.controls.passwordCheck.pristine && !submitted)">
+      Passwörter stimmen nicht überein
+    </small>
     <br />
 
-    <button type="submit">Registrieren</button>
+    <button type="submit" [disabled]="submitDisabled">Registrieren</button>
   </form>
 </div>

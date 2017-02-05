@@ -1,6 +1,9 @@
 package com.joinme.backend.accounts.entity;
 
+import com.joinme.backend.accounts.dto.Gender;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class UserAccount {
@@ -15,9 +18,17 @@ public class UserAccount {
     @Column(unique = true)
     private String email;
 
+    @Column
+    private Date dateOfBirth;
+
+    @Enumerated(EnumType.STRING)
+    @Column
+    private Gender gender;
+
     /**
      * encrypted password
      */
+    @Column(length = 1024)
     private String password;
 
     public Long getId() {
@@ -52,4 +63,19 @@ public class UserAccount {
         this.password = password;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 }
