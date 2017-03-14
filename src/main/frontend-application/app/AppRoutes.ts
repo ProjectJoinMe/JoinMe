@@ -1,5 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home';
+import { CreateRideComponent } from './rides/create_ride';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 
@@ -13,6 +14,7 @@ export const ROUTES: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'register',  component: RegistrationComponent },
   { path: 'login',  component: LoginComponent },
+  { path: 'createRide',  component: CreateRideComponent },
   { path: 'about', component: AboutComponent },
   { path: '**',    component: NoContentComponent },
 ];
