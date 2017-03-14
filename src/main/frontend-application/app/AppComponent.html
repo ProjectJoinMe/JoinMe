@@ -1,38 +1,13 @@
-<nav>
-      <span>
-        <a [routerLink]=" ['./'] ">
-          Index
-        </a>
-      </span>
-    |
-    <span>
-        <a [routerLink]=" ['./home'] ">
-          Home
-        </a>
-      </span>
-    |
-    <span>
-        <a [routerLink]=" ['./register'] ">
-          Register
-        </a>
-      </span>
-    |
-    <span>
-        <a [routerLink]=" ['./detail'] ">
-          Detail
-        </a>
-      </span>
-    |
-    <span>
-        <a [routerLink]=" ['./about'] ">
-          About
-        </a>
-      </span>
-</nav>
-
-<main>
-    <router-outlet></router-outlet>
-</main>
+<div class="container">
+    <header-menu></header-menu>
+    <header class="codrops-header">
+        <br/><br/><br/>
+        <h1 style="font-size:500%">JoinMe</h1>
+    </header>
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+</div>
 
 
 <!--<footer>-->
