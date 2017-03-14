@@ -1,7 +1,27 @@
-html, body{
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+/*
+  !! NOTICE !!
+  The CSS in this file can be used in each component because of the "encapsulation: ViewEncapsulation.None" in the component definition.
+  All other components CSS without this definition can only be used within this one component.
+  !!
+*/
+
+*,
+*:after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
+/*Alte Farbe: #2980b9, lime*/
+body  {
+  background: #A0D751;
+}
+
+.container {
+  padding: 80px;
+}
+
+
 
 span.active {
   background-color: gray;
