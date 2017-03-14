@@ -5,6 +5,7 @@ import com.joinme.backend.accounts.dto.AccountRegistrationData;
 import com.joinme.backend.accounts.entity.UserAccount;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,8 @@ public class AccountCreationController {
     @ResponseBody
     public boolean isAccountWithUsernameExisting(@PathVariable("username") String username) {
         UserAccount account = userAccountRepository.findByUsername(username);
+        String bla = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        userAccountRepository.findByUsername(bla);
         return account != null;
     }
 

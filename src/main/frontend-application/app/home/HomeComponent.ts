@@ -21,4 +21,8 @@ export class HomeComponent {
   goToLogin() {
     this.router.navigate(['/login']);
   }
+
+  goToCreateRide(){
+  this.router.navigate(['/createRide']);
+}
 }

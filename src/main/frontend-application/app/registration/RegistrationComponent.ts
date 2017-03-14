@@ -5,6 +5,7 @@ import {Http, URLSearchParams} from "@angular/http";
 import {MailValidator} from "../../validators/MailValidator";
 import cloneWith = require("lodash/cloneWith");
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'registration',
@@ -54,6 +55,7 @@ export class RegistrationComponent implements OnInit {
         this.registrationForm = this.formBuilder.group({
             username: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
             email: ["", [Validators.required, MailValidator.mailValidator()]],
+            // email: ["", [Validators.required, MailValidator.mailValidator()], this.validateUniqueEmailPromise],
             dateOfBirth: ["", [Validators.required]],
             gender: ["", Validators.required],
             password: ["", [Validators.required, Validators.minLength(6)]],
@@ -70,6 +72,35 @@ export class RegistrationComponent implements OnInit {
                 valid: false
             }
         };
+    }
+
+    private validateUniqueEmailPromise(email: string) { // TODO make work
+        return new Observable(observer => {
+            var params = new URLSearchParams();
+            // from https://angular.io/docs/ts/latest/guide/server-communication.html
+            this.http.get("api/accounts/exists/byUsername/")
+                .subscribe(
+                    data => {
+                        this.submitDisabled = false;
+                        this.router.navigate(['/login']);
+                        // TODO success -> show confirmation message and move to login screen
+                    },
+                    error => {
+                        this.submitDisabled = false;
+                        console.error("failed to register account, TODO");
+                    });
+            setTimeout(() => {
+                if (email === "alreadyExistsEmail@gmail.com") {
+                    observer.next({
+                        mailUnique: {
+                            valid: false
+                        }
+                    })
+                } else {
+                    observer.next(null);
+                }
+            }, 2000);
+        })
     }
 
 }

@@ -19,6 +19,8 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import {RegistrationComponent} from "./registration/RegistrationComponent";
 import {LoginComponent} from "./login/LoginComponent";
+import {CreateRideComponent} from "./rides/create_ride/CreateRideComponent";
+import {HeaderMenuComponent} from "./headermenu/HeaderMenuComponent";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -39,10 +41,12 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
+    HeaderMenuComponent,
     AboutComponent,
     HomeComponent,
     RegistrationComponent,
     LoginComponent,
+    CreateRideComponent,
     NoContentComponent,
   ],
   imports: [

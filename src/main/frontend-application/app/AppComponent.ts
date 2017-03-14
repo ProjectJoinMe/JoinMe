@@ -1,34 +1,37 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {AppState} from './AppService';
 
-import { AppState } from './AppService';
+require('./externalscripts/modernizr.custom.js');
 
 /*
  * App Component
  * Top Level Component
  */
 @Component({
-  selector: 'app',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './AppComponent.css'
-  ],
-  templateUrl: "./AppComponent.html"
+    selector: 'app',
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: [
+        './generalcss/normalize.css',
+        './generalcss/demo.css',
+        './generalcss/icons.css',
+        './AppComponent.css'
+    ],
+    templateUrl: "./AppComponent.html"
 })
-export class AppComponent {
-  name = 'JoinMe';
-  url = 'https://joinme.io';
+export class AppComponent implements OnInit {
+    name = 'JoinMe';
+    url = 'https://joinme.io';
 
-  constructor(
-    public appState: AppState) {
+    constructor(public appState: AppState) {
 
-  }
+    }
 
-  ngOnInit() {
-    console.log('Initializing');
-  }
+    ngOnInit() {
+        console.log('Initializing');
+    }
 
 }
 
