@@ -30,3 +30,35 @@ span.active {
 .error-message {
   color: red;
 }
+
+
+/*
+  Button-Design
+  http://css3buttongenerator.com/
+*/
+.btn {
+  background: #fafafa;
+  background-image: -webkit-linear-gradient(top, #fafafa, #fafafa);
+  background-image: -moz-linear-gradient(top, #fafafa, #fafafa);
+  background-image: -ms-linear-gradient(top, #fafafa, #fafafa);
+  background-image: -o-linear-gradient(top, #fafafa, #fafafa);
+  background-image: linear-gradient(to bottom, #fafafa, #fafafa);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 16px;
+  padding: 4px 12px 4px 12px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #ebebeb;
+  background-image: -webkit-linear-gradient(top, #ebebeb, #ebebeb);
+  background-image: -moz-linear-gradient(top, #ebebeb, #ebebeb);
+  background-image: -ms-linear-gradient(top, #ebebeb, #ebebeb);
+  background-image: -o-linear-gradient(top, #ebebeb, #ebebeb);
+  background-image: linear-gradient(to bottom, #ebebeb, #ebebeb);
+  text-decoration: none;
+}
