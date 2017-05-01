@@ -1,7 +1,10 @@
-<div>
-  <h1>Login</h1>
+<div class="main">
+  <h1 class="component">Login</h1>
   <br />
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+  <div class="inner">
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()" style="text-align: center">
 
     <label>Nutzername:</label>
     <input formControlName="username" type="text">
@@ -13,4 +16,5 @@
 
     <button type="submit" class="btn" >Anmelden</button>
   </form>
+  </div>
 </div>

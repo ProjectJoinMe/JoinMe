@@ -1,7 +1,10 @@
-<div id="content">
-  <h1>Create Ride</h1>
+<div id="content" class="main" style="text-align: center;">
+  <h1 class="component">Create Ride</h1>
   <br />
-  <form [formGroup]="createRideForm" (ngSubmit)="createRide()">
+
+  <div class="inner">
+
+  <form [formGroup]="createRideForm" (ngSubmit)="createRide()" style="text-align: center">
     <table>
       <tr>
         <td><label>Abfahrtsort:</label></td>
@@ -55,4 +58,6 @@
         </tr>
     </table>
   </form>
+  </div>
+
 </div>
