@@ -17,6 +17,7 @@ export class CreateRideComponent implements OnInit {
 
     public createRideForm: FormGroup;
     public submitted: boolean = false;
+    public submitDisabled: boolean = false;
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,

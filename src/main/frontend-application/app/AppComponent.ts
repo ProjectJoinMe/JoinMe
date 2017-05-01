@@ -3,6 +3,7 @@
  */
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {AppState} from './AppService';
+import {SecurityService} from "./security/SecurityService";
 
 require('./externalscripts/modernizr.custom.js');
 
@@ -25,12 +26,14 @@ export class AppComponent implements OnInit {
     name = 'JoinMe';
     url = 'https://joinme.io';
 
-    constructor(public appState: AppState) {
+    constructor(public appState: AppState,
+                private securityService: SecurityService) {
 
     }
 
     ngOnInit() {
         console.log('Initializing');
+        this.securityService.initialize();
     }
 
 }
