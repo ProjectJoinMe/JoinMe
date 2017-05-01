@@ -5,6 +5,7 @@ import com.joinme.backend.accounts.dto.AccountRegistrationData;
 import com.joinme.backend.accounts.entity.UserAccount;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class AccountCreationController {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
+    @PreAuthorize("anonymous")
     @RequestMapping(value = "/api/accounts/register", method = RequestMethod.POST)
     @ResponseBody
     public void createAccount(@Valid @RequestBody AccountRegistrationData accountRegistrationData) {
@@ -27,15 +29,15 @@ public class AccountCreationController {
     }
 
     @RequestMapping(value = "/api/accounts/exists/byUsername/{username}", method = RequestMethod.GET)
+    @PreAuthorize("anonymous")
     @ResponseBody
     public boolean isAccountWithUsernameExisting(@PathVariable("username") String username) {
         UserAccount account = userAccountRepository.findByUsername(username);
-        String bla = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-        userAccountRepository.findByUsername(bla);
         return account != null;
     }
 
     @RequestMapping(value = "/api/accounts/exists/byEmail/{email}", method = RequestMethod.GET)
+    @PreAuthorize("anonymous")
     @ResponseBody
     public boolean isAccountWithEmailExisting(@PathVariable("email") String email) {
         UserAccount account = userAccountRepository.findByEmail(email);

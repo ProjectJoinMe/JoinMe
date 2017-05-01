@@ -141,11 +141,11 @@
     transform: translate3d(0,-100%,0);
 }
 
-.bt-menu ul li:nth-child(3) {
+.bt-menu ul li:nth-child(2) {
     margin-right: 70px;
 }
 
-.bt-menu ul li:nth-child(4) {
+.bt-menu ul li:nth-child(3) {
     margin-left: 70px;
 }
 

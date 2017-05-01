@@ -3,11 +3,6 @@
         <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
         <ul>
             <li>
-                <a [routerLink]=" ['./'] ">
-                    Index
-                </a>
-            </li>
-            <li>
                 <a [routerLink]=" ['./home'] ">
                     Home
                 </a>
@@ -17,19 +12,29 @@
                     Über JoinMe
                 </a>
             </li>
-            <li>
+            <li *ngIf="securityStatus.loggedIn">
                 <a [routerLink]=" ['./createRide'] ">
                     Fahrt erstellen
                 </a>
             </li>
-            <li>
+            <li *ngIf="!securityStatus.loggedIn">
                 <a [routerLink]=" ['./register'] ">
                     Registrieren
                 </a>
             </li>
-            <li>
+            <li *ngIf="!securityStatus.loggedIn">
                 <a [routerLink]=" ['./login'] ">
                     Login
+                </a>
+            </li>
+            <li *ngIf="securityStatus.loggedIn">
+                <a [routerLink]=" ['./profile'] ">
+                    Mein Profil
+                </a>
+            </li>
+            <li *ngIf="securityStatus.loggedIn">
+                <a (click)="logout()" [routerLink]=" ['./home']">
+                    Logout
                 </a>
             </li>
         </ul>

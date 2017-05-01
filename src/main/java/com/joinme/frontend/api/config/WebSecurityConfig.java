@@ -33,8 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/polyfills.bundle.js", "/vendor.bundle.js", "/main.bundle.js",
                             "/polyfills.map", "/vendor.map", "/main.map"
                     ).permitAll()
-                    .antMatchers("/api/accounts/register").anonymous()
-                    .anyRequest().authenticated()
                     .and()
                 .formLogin()
                     .successHandler(authenticationSuccessHandler())

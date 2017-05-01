@@ -22,7 +22,7 @@
       </tr>
       <tr>
         <td><h2>Hinfahrt</h2></td>
-        <td><input type="checkbox" id="toAndReturnCheckBox" checked> Hin- und Rückfahrt</td>
+        <td><input type="checkbox" id="toAndReturnCheckBox" [(ngModel)]="showhide" [ngModelOptions]="{standalone: true}"> Hin- und Rückfahrt</td>
       </tr>
       <tr>
         <td><label>Abfahrtsdatum:</label></td>
@@ -36,27 +36,35 @@
           </table>
         </td>
 
-        <td><small class="error-message" [hidden]="createRideForm.controls.departureDateTo.valid || (createRideForm.controls.departureDateTo.pristine && !submitted)">
+        <td><small class="error-message" [hidden]="createRideForm.controls.departureDateTo.valid || (createRideForm.controls.departureDateTo.pristine && !submitted)
+                                                   && createRideForm.controls.departureTimeHourTo.valid || (createRideForm.controls.departureTimeHourTo.pristine && !submitted)
+                                                   && createRideForm.controls.departureTimeMinuteTo.valid || (createRideForm.controls.departureTimeMinuteTo.pristine && !submitted)">
           ungültiges Abfahrtsdatum
         </small></td>
       </tr>
-        <tr class="returnFormRow"><h2>Rückfahrt</h2></tr>
-        <tr class="returnFormRow">
-          <td><label>Abfahrtsdatum:</label></td>
-          <td>
-            <table>
-              <tr>
-                <td><input formControlName="departureDateReturn" type="date" min=""></td>
-                <td><input formControlName="departureTimeHourReturn" type="number" min="0" max="23" step="1"></td>
-                <td><input formControlName="departureTimeMinuteReturn" type="number" min="0" max="59" step="1"></td>
-              </tr>
-            </table>
-          </td>
-          <td><small class="error-message" [hidden]="createRideForm.controls.departureDateReturn.valid || (createRideForm.controls.departureDateReturn.pristine && !submitted)">
-            ungültiges Abfahrtsdatum
-          </small></td>
-        </tr>
     </table>
+    <div *ngIf="showhide">
+        <table >
+          <tr class="returnFormRow"><h2>Rückfahrt</h2></tr>
+          <tr class="returnFormRow">
+            <td><label>Abfahrtsdatum:</label></td>
+            <td>
+              <table>
+                <tr>
+                  <td><input formControlName="departureDateReturn" type="date" min=""></td>
+                  <td><input formControlName="departureTimeHourReturn" type="number" min="0" max="23" step="1"></td>
+                  <td><input formControlName="departureTimeMinuteReturn" type="number" min="0" max="59" step="1"></td>
+                </tr>
+              </table>
+            </td>
+            <td><small class="error-message" [hidden]="createRideForm.controls.departureDateReturn.valid || (createRideForm.controls.departureDateReturn.pristine && !submitted)">
+              ungültiges Abfahrtsdatum
+            </small></td>
+          </tr>
+      </table>
+    </div>
+    <br />
+    <button type="submit" class="btn" [disabled]="submitDisabled">Fahrt erstellen</button>
   </form>
   </div>
 

@@ -3,6 +3,8 @@ import cloneWith = require("lodash/cloneWith");
 import {Validators, FormControl, FormGroup, ReactiveFormsModule, FormBuilder} from "@angular/forms";
 import {Http, Response, Headers, URLSearchParams} from "@angular/http";
 import {LoginData} from "./LoginData";
+import {SecurityService} from "../security/SecurityService";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'login',
@@ -18,7 +20,9 @@ export class LoginComponent {
     });
 
     constructor(public formBuilder: FormBuilder,
-                private http: Http) {
+                private http: Http,
+                private securityService: SecurityService,
+                private router: Router) {
     }
 
     public login() {
@@ -34,6 +38,8 @@ export class LoginComponent {
             .subscribe(
                 data => {
                     console.info("logged in successfully!");
+                    this.securityService.updateSecurityStatus();
+                    this.router.navigate(['/home']);
                     // TODO success -> show confirmation message and move to home screen
                 },
                 error => {
