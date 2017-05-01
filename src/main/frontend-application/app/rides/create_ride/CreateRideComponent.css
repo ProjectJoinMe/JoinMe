@@ -8,3 +8,27 @@
 .strechtInputField{
     width: 100%;
 }
+div.main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color:white;
+    top: auto;
+    left: 0;
+    right: 0;
+    height: 100%;
+    position: fixed;
+}
+div.inner {
+    background-color: #A0D751;
+    width: 35%;
+    border: none;
+    border-radius: 30px;
+    margin: auto;
+    padding: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+label {
+    color: white;
+}

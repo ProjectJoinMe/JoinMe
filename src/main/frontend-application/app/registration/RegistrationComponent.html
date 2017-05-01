@@ -1,6 +1,7 @@
-<div>
-  <h1>Registrieren</h1>
+<div class="main">
+  <h1 class="component">Registrieren</h1>
   <br />
+  <div class="inner">
   <form [formGroup]="registrationForm" (ngSubmit)="register()">
   <table>
     <tr>
@@ -54,4 +55,5 @@
   </table>
     <button type="submit" class="btn" [disabled]="submitDisabled">Registrieren</button>
   </form>
+  </div>
 </div>

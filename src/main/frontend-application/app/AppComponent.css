@@ -15,13 +15,20 @@
 /*Alte Farbe: #2980b9, lime*/
 body  {
   background: #A0D751;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: absolute;
 }
 
 .container {
   padding: 80px;
 }
 
-
+h1.component {
+  color: #A0D751;
+  text-align: center;
+}
 
 span.active {
   background-color: gray;
@@ -35,7 +42,7 @@ span.active {
 /*
   Button-Design
   http://css3buttongenerator.com/
-  made by Steffi
+  made by Steffi~
 */
 .btn {
   background: #fafafa;
