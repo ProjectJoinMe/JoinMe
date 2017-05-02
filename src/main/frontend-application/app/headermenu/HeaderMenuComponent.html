@@ -13,11 +13,16 @@
                 </a>
             </li>
             <li *ngIf="securityStatus.loggedIn">
+                <a [routerLink]=" ['./home'] ">
+                    Fahrt suchen
+                </a>
+            </li>
+            <li *ngIf="securityStatus.loggedIn">
                 <a [routerLink]=" ['./createRide'] ">
                     Fahrt erstellen
                 </a>
             </li>
-            <li *ngIf="!securityStatus.loggedIn">
+            <li *ngIf="!securityStatus.loggedIn" style="margin-left: 200px;">
                 <a [routerLink]=" ['./register'] ">
                     Registrieren
                 </a>
