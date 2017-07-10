@@ -12,7 +12,6 @@
 /*global define: false */
 
 ( function( window ) {
-
 'use strict';
 
 // class helper functions from bonzo https://github.com/ded/bonzo
@@ -51,6 +50,7 @@ else {
 }
 
 function toggleClass( elem, c ) {
+  alert('hi');
   var fn = hasClass( elem, c ) ? removeClass : addClass;
   fn( elem, c );
 }

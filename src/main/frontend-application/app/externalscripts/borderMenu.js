@@ -18,7 +18,6 @@
 	}
 
 	function init() {
-
 		var menu = document.getElementById( 'bt-menu' ),
 			trigger = menu.querySelector( 'a.bt-menu-trigger' ),
 			// triggerPlay only for demo 6

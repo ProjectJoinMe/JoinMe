@@ -17,7 +17,7 @@ div.main {
     left: 0;
     right: 0;
     height: 100%;
-    position: fixed;
+    /*position: fixed; funktioniert mit dem Menu nicht*/
 }
 div.inner {
     background-color: #A0D751;

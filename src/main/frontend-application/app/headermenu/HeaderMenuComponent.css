@@ -1,3 +1,12 @@
+
+/*
+
+VORÜBERGEHEND DEAKTIVIERT
+
+BITTE NICHT BENUTZEN
+
+
+
 .bt-menu {
     position: fixed;
     top: 0;
@@ -60,7 +69,7 @@
     -ms-user-select: none;
     user-select: none;
 }
-/*alte Farbe  #2980b9*/
+/*alte Farbe  #2980b9*//*
 .bt-menu-open .bt-menu-trigger span {
     background-color: green;
 }
@@ -237,3 +246,5 @@
         font-size: 24px;
     }
 }
+
+*/

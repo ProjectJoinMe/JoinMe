@@ -4,6 +4,7 @@
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {AppState} from './AppService';
 import {SecurityService} from "./security/SecurityService";
+import {SecurityStatus} from "./security/SecurityStatus";
 
 require('./externalscripts/modernizr.custom.js');
 
@@ -27,16 +28,26 @@ export class AppComponent implements OnInit {
     url = 'https://joinme.io';
 
     constructor(public appState: AppState,
-                private securityService: SecurityService) {
+                private securityService: SecurityService,
+                public securityStatus: SecurityStatus) {
 
     }
 
     ngOnInit() {
         console.log('Initializing');
         this.securityService.initialize();
+        require('./externalscripts/classie.js');
+        require('./externalscripts/borderMenu.js');
     }
 
+
+  myFunction()
+  {
+    document.getElementById("demo").innerHTML = "1st button";
+  }
 }
+
+
 
 /*
  * Please review the https://github.com/AngularClass/angular2-examples/ repo for
