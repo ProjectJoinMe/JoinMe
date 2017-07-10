@@ -8,37 +8,37 @@
     <table>
       <tr>
         <td><label>Abfahrtsort:</label></td>
-        <td><input class="strechtInputField" formControlName="departurePlace" type="text"></td>
-        <td><small class="error-message" [hidden]="createRideForm.controls.departurePlace.valid || (createRideForm.controls.departurePlace.pristine && !submitted)">
+        <td><input class="strechtInputField" formControlName="start" type="text"></td>
+        <td><small class="error-message" [hidden]="createRideForm.controls.start.valid || (createRideForm.controls.start.pristine && !submitted)">
           Bitte einen Abfahrtsort angeben.
         </small></td>
       </tr>
       <tr>
         <td><label>Ankunftsort:</label></td>
-        <td><input class="strechtInputField" formControlName="arrivalPlace" type="text"></td>
-        <td><small class="error-message" [hidden]="createRideForm.controls.arrivalPlace.valid || (createRideForm.controls.arrivalPlace.pristine && !submitted)">
+        <td><input class="strechtInputField" formControlName="destination" type="text"></td>
+        <td><small class="error-message" [hidden]="createRideForm.controls.destination.valid || (createRideForm.controls.destination.pristine && !submitted)">
           Bitte einen Ankunftsort angeben.
         </small></td>
       </tr>
       <tr>
         <td><h2>Hinfahrt</h2></td>
-        <td><input type="checkbox" id="toAndReturnCheckBox" [(ngModel)]="showhide" [ngModelOptions]="{standalone: true}"> Hin- und Rückfahrt</td>
+        <td><input type="checkbox" id="toAndReturnCheckBox" formContolName="returnRide" [(ngModel)]="showhide" [ngModelOptions]="{standalone: true}"> Hin- und Rückfahrt</td>
       </tr>
       <tr>
         <td><label>Abfahrtsdatum:</label></td>
         <td>
           <table>
             <tr>
-              <td><input formControlName="departureDateTo" type="date" min=""></td>
-              <td><input formControlName="departureTimeHourTo" type="number" min="0" max="23" step="1"></td>
-              <td><input formControlName="departureTimeMinuteTo" type="number" min="0" max="59" step="1"></td>
+              <td><input formControlName="departureDate" type="date" min=""></td>
+              <td><input formControlName="departureHour" type="number" min="0" max="23" step="1"></td>
+              <td><input formControlName="departureMinute" type="number" min="0" max="59" step="1"></td>
             </tr>
           </table>
         </td>
 
-        <td><small class="error-message" [hidden]="createRideForm.controls.departureDateTo.valid || (createRideForm.controls.departureDateTo.pristine && !submitted)
-                                                   && createRideForm.controls.departureTimeHourTo.valid || (createRideForm.controls.departureTimeHourTo.pristine && !submitted)
-                                                   && createRideForm.controls.departureTimeMinuteTo.valid || (createRideForm.controls.departureTimeMinuteTo.pristine && !submitted)">
+        <td><small class="error-message" [hidden]="createRideForm.controls.departureDate.valid || (createRideForm.controls.departureDate.pristine && !submitted)
+                                                   && createRideForm.controls.departureHour.valid || (createRideForm.controls.departureHour.pristine && !submitted)
+                                                   && createRideForm.controls.departureMinute.valid || (createRideForm.controls.departureMinute.pristine && !submitted)">
           ungültiges Abfahrtsdatum
         </small></td>
       </tr>
@@ -51,13 +51,13 @@
             <td>
               <table>
                 <tr>
-                  <td><input formControlName="departureDateReturn" type="date" min=""></td>
-                  <td><input formControlName="departureTimeHourReturn" type="number" min="0" max="23" step="1"></td>
-                  <td><input formControlName="departureTimeMinuteReturn" type="number" min="0" max="59" step="1"></td>
+                  <td><input formControlName="returnDepartureDate" type="date" min=""></td>
+                  <td><input formControlName="returnDepartureHour" type="number" min="0" max="23" step="1"></td>
+                  <td><input formControlName="returnDepartureMinute" type="number" min="0" max="59" step="1"></td>
                 </tr>
               </table>
             </td>
-            <td><small class="error-message" [hidden]="createRideForm.controls.departureDateReturn.valid || (createRideForm.controls.departureDateReturn.pristine && !submitted)">
+            <td><small class="error-message" [hidden]="createRideForm.controls.returnDepartureDate.valid || (createRideForm.controls.returnDepartureDate.pristine && !submitted)">
               ungültiges Abfahrtsdatum
             </small></td>
           </tr>
@@ -73,7 +73,7 @@
       </table>
     </div>
     <br />
-    <input type="checkbox" id="periodicRideCheckBox" [(ngModel)]="showhidePeriodicFrom" [ngModelOptions]="{standalone: true}"> regelmäßige Fahrt
+    <input type="checkbox" id="periodicRideCheckBox" formContolName="periodic" [(ngModel)]="showhidePeriodicFrom" [ngModelOptions]="{standalone: true}"> regelmäßige Fahrt
     <br />
     <br />
     <!-- TODO: automatically select the departure day  -->
