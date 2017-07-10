@@ -40,7 +40,8 @@ export class CreateRideComponent implements OnInit {
                 returnDepartureMinute: <number> this.createRideForm.get("returnDepartureMinute").value,
                 periodic: <boolean> this.createRideForm.get("periodic").value,
                 freeSeats: <number> this.createRideForm.get("freeSeats").value,
-                periodicDays: null
+                periodicDays: null,
+                remark: this.createRideForm.get("remark").value
             };
             console.info(rideData.toString());
         }
@@ -59,6 +60,7 @@ export class CreateRideComponent implements OnInit {
             returnDepartureMinute: [""],
             periodic: ["", Validators.required],
             freeSeats: ["" , Validators.required],
+            remark: [""]
         });
     }
 
