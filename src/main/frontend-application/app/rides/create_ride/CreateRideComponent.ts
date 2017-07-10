@@ -41,6 +41,7 @@ export class CreateRideComponent implements OnInit {
             departureDateReturn: [""],
             departureTimeHourReturn: [""],
             departureTimeMinuteReturn: [""],
+            freeSeats: [""],
         });
     }
 
