@@ -64,6 +64,36 @@
       </table>
     </div>
     <br />
+    <div>
+      <table>
+        <tr>
+          <td>Freie Plätze</td>
+          <td><input formControlName="freeSeats" type="number" min="1" max="10" step="1"></td>
+        </tr>
+      </table>
+    </div>
+    <br />
+    <input type="checkbox" id="periodicRideCheckBox" [(ngModel)]="showhidePeriodicFrom" [ngModelOptions]="{standalone: true}"> regelmäßige Fahrt
+    <br />
+    <br />
+    <!-- TODO: automatically select the departure day  -->
+    <div *ngIf="showhidePeriodicFrom">
+      <input type="checkbox" id="monCheckBox"> Montag
+      <br />
+      <input type="checkbox" id="tueCheckBox"> Dienstag
+      <br />
+      <input type="checkbox" id="wedCheckBox"> Mittwoch
+      <br />
+      <input type="checkbox" id="thuCheckBox"> Donnerstag
+      <br />
+      <input type="checkbox" id="friCheckBox"> Freitag
+      <br />
+      <input type="checkbox" id="satCheckBox"> Samstag
+      <br />
+      <input type="checkbox" id="sunCheckBox"> Sonntag
+      <br />
+      <br />
+    </div>
     <button type="submit" class="btn" [disabled]="submitDisabled">Fahrt erstellen</button>
   </form>
   </div>

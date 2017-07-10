@@ -1,6 +1,15 @@
 
 export class RideData {
-    public username: string;
-    public email: string;
-    public dateOfBirth: Date;
+    public start: string;
+    public destination: string;
+    public departureDay: Date;
+    public departureHour: number;
+    public departureMinute: number;
+    public returnRide: boolean;
+    public returnDay: Date;
+    public returnHour: number;
+    public returnMinute: number;
+    public periodic: boolean;
+
+
 }
