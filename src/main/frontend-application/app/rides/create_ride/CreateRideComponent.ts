@@ -27,21 +27,23 @@ export class CreateRideComponent implements OnInit {
     public createRide() {
         this.submitted = true;
         if (this.createRideForm.valid) {
-
+            // let rideData: RideData = {
+            //     start: <string> this.createRideForm.get("").value,
+            // };
         }
     }
 
-    ngOnInit() {
+    ngOnInit(){
         this.createRideForm = this.formBuilder.group({
-            departurePlace: ["", [Validators.required]],
-            arrivalPlace: ["", [Validators.required]],
-            departureDateTo: ["", [Validators.required]],
-            departureTimeHourTo: ["", Validators.required],
-            departureTimeMinuteTo: ["", Validators.required],
-            departureDateReturn: [""],
-            departureTimeHourReturn: [""],
-            departureTimeMinuteReturn: [""],
-            freeSeats: [""],
+            start: ["", [Validators.required]],
+            destination: ["", [Validators.required]],
+            departureDate: ["", [Validators.required]],
+            departureHour: ["", Validators.required],
+            departureMinute: ["", Validators.required],
+            returnDepartureDate: [""],
+            returnDepartureHour: [""],
+            returnDepartureMinute: [""],
+            freeSeats: ["" , Validators.required],
         });
     }
 

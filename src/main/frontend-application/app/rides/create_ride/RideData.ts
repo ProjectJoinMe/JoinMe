@@ -1,4 +1,5 @@
 
+import {Day} from "../DayEnum";
 export class RideData {
     public start: string;
     public destination: string;
@@ -9,7 +10,7 @@ export class RideData {
     public returnDay: Date;
     public returnHour: number;
     public returnMinute: number;
+    public freeSeats: number;
     public periodic: boolean;
-
-
+    public periodicDays: Day[];
 }
