@@ -22,7 +22,7 @@
       </tr>
       <tr>
         <td><h2>Hinfahrt</h2></td>
-        <td><input type="checkbox" id="toAndReturnCheckBox" [(ngModel)]="showhide" [ngModelOptions]="{standalone: true}"> Hin- und Rückfahrt</td>
+        <td><input type="checkbox" id="toAndReturnCheckBox" formContolName="returnRide" [(ngModel)]="showhide" [ngModelOptions]="{standalone: true}"> Hin- und Rückfahrt</td>
       </tr>
       <tr>
         <td><label>Abfahrtsdatum:</label></td>
@@ -73,7 +73,7 @@
       </table>
     </div>
     <br />
-    <input type="checkbox" id="periodicRideCheckBox" [(ngModel)]="showhidePeriodicFrom" [ngModelOptions]="{standalone: true}"> regelmäßige Fahrt
+    <input type="checkbox" id="periodicRideCheckBox" formContolName="periodic" [(ngModel)]="showhidePeriodicFrom" [ngModelOptions]="{standalone: true}"> regelmäßige Fahrt
     <br />
     <br />
     <!-- TODO: automatically select the departure day  -->
