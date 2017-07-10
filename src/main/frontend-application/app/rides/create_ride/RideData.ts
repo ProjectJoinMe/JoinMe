@@ -13,4 +13,5 @@ export class RideData {
     public freeSeats: number;
     public periodic: boolean;
     public periodicDays: Day[];
+    public remark: string;
 }

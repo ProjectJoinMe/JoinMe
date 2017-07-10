@@ -94,7 +94,11 @@
         <tr><td><input type="checkbox" id="sunCheckBox"> Sonntag </td></tr>
       </table>
     </div>
-    <br>
+    <div>
+      Bemerkung (max 400 Zeichen)
+      <textarea formControlName="remark" rows="6" cols="50" maxlength="400" ></textarea>
+    </div>
+    <br />
     <button type="submit" class="btn" [disabled]="submitDisabled">Fahrt erstellen</button>
   </form>
   </div>
