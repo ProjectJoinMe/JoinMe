@@ -1,13 +1,67 @@
 <div class="container">
-    <header-menu></header-menu>
-    <header class="codrops-header">
-        <br/><br/><br/>
-        <h1 style="font-size:500%">JoinMe</h1>
-    </header>
+    <!--<header-menu></header-menu>
+    <div>-->
+        <header class="codrops-header">
+            <br/><br/><br/>
+            <h1 style="font-size:500%">JoinMe</h1>
+        </header>
+        <nav id="bt-menu" class="bt-menu">
+            <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+            <ul>
+                <li *ngIf="!securityStatus.loggedIn">
+                    &nbsp;
+                </li>
+                <li>
+                    <a [routerLink]=" ['./home'] ">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]=" ['./about'] ">
+                        Über JoinMe
+                    </a>
+                </li>
+                <li *ngIf="securityStatus.loggedIn">
+                    <a [routerLink]=" ['./home'] ">
+                        Fahrt suchen
+                    </a>
+                </li>
+                <li *ngIf="securityStatus.loggedIn">
+                    <a [routerLink]=" ['./createRide'] ">
+                        Fahrt erstellen
+                    </a>
+                </li>
+                <li *ngIf="!securityStatus.loggedIn" style="margin-left: 200px;">
+                    <a [routerLink]=" ['./register'] ">
+                        Registrieren
+                    </a>
+                </li>
+                <li *ngIf="!securityStatus.loggedIn">
+                    <a [routerLink]=" ['./login'] ">
+                        Login
+                    </a>
+                </li>
+                <li *ngIf="!securityStatus.loggedIn">
+                    &nbsp;
+                </li>
+                <li *ngIf="securityStatus.loggedIn">
+                    <a [routerLink]=" ['./profile'] ">
+                        Mein Profil
+                    </a>
+                </li>
+                <li *ngIf="securityStatus.loggedIn">
+                    <a (click)="logout()" [routerLink]=" ['./home']">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    <!--</div>-->
     <main>
         <router-outlet></router-outlet>
     </main>
 </div>
+
 
 
 <!--<footer>-->
