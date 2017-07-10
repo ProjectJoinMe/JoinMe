@@ -42,7 +42,7 @@ export class CreateRideComponent implements OnInit {
                 freeSeats: <number> this.createRideForm.get("freeSeats").value,
                 periodicDays: null
             };
-
+            console.info(rideData.toString());
         }
     }
 
