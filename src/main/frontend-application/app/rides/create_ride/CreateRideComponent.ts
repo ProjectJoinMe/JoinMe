@@ -25,11 +25,24 @@ export class CreateRideComponent implements OnInit {
     }
 
     public createRide() {
+        console.info("creating ride");
         this.submitted = true;
         if (this.createRideForm.valid) {
-            // let rideData: RideData = {
-            //     start: <string> this.createRideForm.get("").value,
-            // };
+            let rideData: RideData = {
+                start: <string> this.createRideForm.get("start").value,
+                destination: <string> this.createRideForm.get("destination").value,
+                departureDate: new Date(this.createRideForm.get("departureDay").value),
+                departureHour: <number> this.createRideForm.get("departureHour").value,
+                departureMinute: <number> this.createRideForm.get("departureMinute").value,
+                returnRide: <boolean> this.createRideForm.get("returnRide").value,
+                returnDepartureDate: new Date(this.createRideForm.get("returnDepartureDate").value),
+                returnDepartureHour: <number> this.createRideForm.get("returnDepartureHour").value,
+                returnDepartureMinute: <number> this.createRideForm.get("returnDepartureMinute").value,
+                periodic: <boolean> this.createRideForm.get("periodic").value,
+                freeSeats: <number> this.createRideForm.get("freeSeats").value,
+                periodicDays: null
+            };
+
         }
     }
 
@@ -40,9 +53,11 @@ export class CreateRideComponent implements OnInit {
             departureDate: ["", [Validators.required]],
             departureHour: ["", Validators.required],
             departureMinute: ["", Validators.required],
+            returnRide: ["", Validators.required],
             returnDepartureDate: [""],
             returnDepartureHour: [""],
             returnDepartureMinute: [""],
+            periodic: ["", Validators.required],
             freeSeats: ["" , Validators.required],
         });
     }
