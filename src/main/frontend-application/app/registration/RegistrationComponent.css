@@ -13,7 +13,7 @@ div.inner {
     background-color: #A0D751;
     width: 35%;
     border: none;
-    /*border-radius: 30px;*/
+    border-radius: 15px;
     margin: auto;
     padding: 3%;
     padding-left: 5%;
