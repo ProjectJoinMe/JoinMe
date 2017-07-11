@@ -109,6 +109,7 @@ span.active {
 }
 
 .bt-menu-trigger {
+
   position: fixed;
   top: 22px;
   left: 50%;
@@ -314,4 +315,27 @@ span.active {
   .bt-menu ul li a:before {
     font-size: 24px;
   }
+}
+
+/* Checkbox */
+input[type=checkbox]:checked {
+  background-color: green;
+}
+
+input[type=checkbox]:hover {
+  background-color: #6C9137;
+}
+
+input[type=checkbox]{
+  width: 15px;
+  height: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance:none;
+  border: 0.25px solid #1B240D;
+  box-shadow: #1B240D;
+  font-size: 2em;
+  border-radius: 3px;
+  background-color: white;
 }
