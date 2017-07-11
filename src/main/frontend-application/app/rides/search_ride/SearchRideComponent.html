@@ -1,0 +1,33 @@
+<div id="content" class="main" style="text-align: center;">
+    <h1 class="component">Fahrt suchen</h1>
+    <br />
+
+    <div class="inner">
+        <table style="width:auto; border: 3px;">
+            <tr>
+                <th>Zielort</th>
+                <th>Datum/Zeit</th>
+                <th colspan="2" style="width: auto; padding-left: 3%; padding-right: 3% ">Häufigkeit</th>
+            </tr>
+            <tr>
+                <td>
+                    <input formControlName="placeFilter" type="text">
+                </td>
+                <td>
+                    <input formControlName="dateTimeFilter" type="date" max="{{maxDateOfFilter | date:'yyyy-MM-dd'}}" >
+                </td>
+                <td>
+                    <input type="radio" name="period" value="onetime"> Einmal
+                </td>
+                <td>
+                    <input type="radio" name="period" value="periodic"> Regelmäßig
+                </td>
+                <td  style="padding: 3%">
+                    <input type="button" value="Suchen" class="btn">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>

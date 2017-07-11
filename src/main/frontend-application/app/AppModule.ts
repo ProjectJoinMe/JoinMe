@@ -24,6 +24,7 @@ import {HeaderMenuComponent} from "./headermenu/HeaderMenuComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
+import {SearchRideComponent} from "./rides/search_ride/SearchRideComponent";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -52,6 +53,7 @@ type StoreType = {
         RegistrationComponent,
         LoginComponent,
         CreateRideComponent,
+        SearchRideComponent,
         ProfileComponent,
         NoContentComponent
     ],

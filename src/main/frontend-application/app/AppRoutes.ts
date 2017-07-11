@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home';
 import { CreateRideComponent } from './rides/create_ride';
+import { SearchRideComponent } from './rides/search_ride';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 
@@ -16,6 +17,7 @@ export const ROUTES: Routes = [
   { path: 'register',  component: RegistrationComponent },
   { path: 'login',  component: LoginComponent },
   { path: 'createRide',  component: CreateRideComponent },
+  { path: 'searchRide',  component: SearchRideComponent },
   { path: 'profile',  component: ProfileComponent },
   { path: 'about', component: AboutComponent },
   { path: '**',    component: NoContentComponent },
