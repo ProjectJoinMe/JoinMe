@@ -8,10 +8,11 @@
 .strechtInputField{
     width: 100%;
 }
+
 div.main {
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding-bottom: 20px;
     background-color:white;
     top: auto;
     left: 0;
@@ -21,7 +22,7 @@ div.main {
 }
 div.inner {
     background-color: #A0D751;
-    width: 35%;
+    width: 50%;
     border: none;
     border-radius: 15px;
     margin: auto;
@@ -32,3 +33,35 @@ div.inner {
 label {
     color: white;
 }
+
+table {
+    width: 100%;
+}
+
+td {
+    text-align: left;
+}
+
+td.first {
+    width: 30%;
+}
+
+td.second {
+    width: 40%;
+}
+
+td.third {
+    width: 30%;
+    padding-left: 2%;
+}
+
+div.days {
+    padding: 10px;
+    align: center;
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    color: #A0D751;
+    margin: 0 auto;
+}
+
