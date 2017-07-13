@@ -10,18 +10,27 @@ div.main {
     left: 0;
     right: 0;
     height: 100%;
-    position: fixed;
+    /*position: fixed;*/
 }
 div.inner {
     background-color: #A0D751;
-    width: 45%;
+    width: 80%;
     border: none;
     border-radius: 15px;
     padding: 1%;
     padding-left: 2%;
-    padding-right: 2%;
+    /*padding-right: 2%;-*/
     margin: auto;
 }
-label {
+h2{
     color: white;
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+}
+th {
+    width: 30%;
+}
+td {
+    width: 17.5%;
 }

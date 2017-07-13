@@ -1,0 +1,46 @@
+<div id="content" class="main" style="text-align: center;">
+    <h1 class="component">Meine Fahrten</h1>
+    <br />
+
+    <div class="inner">
+        <table style="width:auto; border: 3px;">
+            <tr>
+                <th colspan="2"><h2>Suchen</h2></th>
+                <th><h2>Sortieren</h2></th>
+                <th colspan="2"><h2>Filtern</h2></th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" name="searchCriteria" value="place" checked> Zielort <br>
+                    <input formControlName="placeFilter" type="text">
+                </td>
+                <td>
+                    <input type="radio" name="searchCriteria" value="dateTime"> Datum/Zeit <br>
+                    <input formControlName="dateTimeFilter" type="date" max="{{maxDateOfFilter | date:'yyyy-MM-dd'}}" >
+                </td>
+                <td><br>
+                    <select id="sortingCroteria" name="sortingCriteria" class="btn">
+                        <option value="ratingDown">Bewertungen absteigend</option>
+                        <option value="ratingUp">Bewertungen aufsteigend</option>
+                        <option value="newFirst">neueste Fahrten zuerst</option>
+                        <option value="oldFirst">älterste Fahrten zuerst</option>
+                    </select>
+                <td><br>
+                    <input type="checkbox" name="filerCriteria" value="upcomingRides"> Kommende Fahrten
+                </td>
+                <td ><br>
+                    <input type="checkbox" name="filerCriteria" value="executedRides"> Vergangene Fahrten
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <input type="button" value="Suchen" class="btn">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+
+</div>
