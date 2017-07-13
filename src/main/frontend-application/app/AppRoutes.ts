@@ -9,6 +9,7 @@ import { DataResolver } from './AppResolver';
 import {RegistrationComponent} from "./registration/RegistrationComponent";
 import {LoginComponent} from "./login/LoginComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
+import {MyRidesComponent} from "./profile/myrides_section/MyRidesComponent";
 
 
 export const ROUTES: Routes = [
@@ -19,6 +20,7 @@ export const ROUTES: Routes = [
   { path: 'createRide',  component: CreateRideComponent },
   { path: 'searchRide',  component: SearchRideComponent },
   { path: 'profile',  component: ProfileComponent },
+  { path: 'profile/myRides',  component: MyRidesComponent },
   { path: 'about', component: AboutComponent },
   { path: '**',    component: NoContentComponent },
 ];

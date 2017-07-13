@@ -17,7 +17,7 @@ div.main {
     left: 0;
     right: 0;
     height: 100%;
-    position: fixed;
+    /* position: fixed; */
 }
 div.inner {
     background-color: #A0D751;
