@@ -5,6 +5,7 @@ import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {AppState} from './AppService';
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
+import {Router} from "@angular/router";
 
 require('./externalscripts/modernizr.custom.js');
 
@@ -29,22 +30,20 @@ export class AppComponent implements OnInit {
 
     constructor(public appState: AppState,
                 private securityService: SecurityService,
+                private router: Router,
                 public securityStatus: SecurityStatus) {
 
     }
 
+    logout(){
+        this.securityService.logout();
+    }
+
     ngOnInit() {
-        console.log('Initializing');
         this.securityService.initialize();
         require('./externalscripts/classie.js');
         require('./externalscripts/borderMenu.js');
     }
-
-
-  myFunction()
-  {
-    document.getElementById("demo").innerHTML = "1st button";
-  }
 }
 
 
