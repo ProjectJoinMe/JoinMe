@@ -1,4 +1,5 @@
 <div class="main">
+  <br>
   <h1 class="component">Login</h1>
   <br />
 
@@ -6,15 +7,21 @@
 
   <form [formGroup]="loginForm" (ngSubmit)="login()" style="text-align: center">
 
-    <label>Nutzername:</label>
-    <input formControlName="username" type="text">
-    <br />
+    <table>
+      <tr>
+        <td><label>Nutzername:</label></td>
+        <td><input formControlName="username" type="text"></td>
+      </tr>
+      <tr>
+        <td style="text-align: right"><label>Passwort:</label></td>
+        <td><input formControlName="password" type="password"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit" class="btn" >Anmelden</button></td>
+      </tr>
+    </table>
 
-    <label>Passwort:</label>
-    <input formControlName="password" type="password">
-    <br />
-
-    <button type="submit" class="btn" >Anmelden</button>
   </form>
   </div>
+  <br>
 </div>

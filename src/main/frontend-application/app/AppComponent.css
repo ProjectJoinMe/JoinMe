@@ -22,7 +22,11 @@ body  {
 }
 
 .container {
-  padding: 80px;
+  /*padding: 80px;*/
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 h1.component {
