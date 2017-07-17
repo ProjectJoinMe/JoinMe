@@ -17,6 +17,7 @@ div.inner {
     padding: 3%;
     padding-left: 2%;
     padding-right: 1.5%;
+    min-width: 400px;
 }
 label {
     color: white;
