@@ -345,3 +345,14 @@ input[type=checkbox]{
   border-radius: 3px;
   background-color: white;
 }
+
+footer {
+  right: 10px;
+  bottom: 10px;
+  position: fixed;
+}
+
+img.flogo {
+  border-radius: 30%;
+
+}

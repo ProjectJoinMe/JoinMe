@@ -21,13 +21,14 @@ div.main {
 }
 div.inner {
     background-color: #A0D751;
-    width: 45%;
+    width: 50%;
     border: none;
     border-radius: 15px;
     padding: 1%;
     padding-left: 2%;
     padding-right: 2%;
     margin: auto;
+    min-width: 670px;
 }
 label {
     color: white;

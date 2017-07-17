@@ -18,6 +18,7 @@ div.main {
     left: 0;
     right: 0;
     height: 100%;
+
    /* position: fixed; /*funktioniert mit dem Menu nicht*/
 }
 div.inner {
@@ -29,6 +30,7 @@ div.inner {
     padding: 3%;
     padding-left: 5%;
     padding-right: 5%;
+    min-width: 350px;
 }
 label {
     color: white;
