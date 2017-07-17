@@ -65,3 +65,6 @@ div.days {
     margin: 0 auto;
 }
 
+.days input {
+    margin-right: 3px;
+}

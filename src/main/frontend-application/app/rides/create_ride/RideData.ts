@@ -1,16 +1,17 @@
 
-import {Day} from "../DayEnum";
-export class RideData {
-    public start: string;
-    public destination: string;
-    public departureDate: Date;
-    public departureHour: number;
-    public departureMinute: number;
-    public returnRide: boolean;
-    public returnDepartureDate: Date;
-    public returnDepartureHour: number;
-    public returnDepartureMinute: number;
-    public freeSeats: number;
-    public periodic: boolean;
-    public periodicDays: Day[];
+import {WeekDay} from "../WeekDay";
+
+export interface RideData {
+    start: string;
+    destination: string;
+    departureDate: Date;
+    departureHour: number;
+    departureMinute: number;
+    returnRide: boolean;
+    returnDepartureDate: Date;
+    returnDepartureHour: number;
+    returnDepartureMinute: number;
+    freeSeats: number;
+    periodicDays: WeekDay[];
+    remark: string;
 }

@@ -1,8 +1,7 @@
 /**
  * Created by Nicole on 10.07.2017.
  */
-export enum Day
-{
+export enum WeekDay {
     Monday = 1,
     Tuesday = 2,
     Wednesday = 3,

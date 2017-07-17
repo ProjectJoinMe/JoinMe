@@ -41,7 +41,7 @@ public class Ride {
     private LocalDateTime returnDepartureDateTime; //check if possible
 
     @Column
-    private String remarks;
+    private String remark;
 
 
 

@@ -1,10 +1,8 @@
 
-export class RegistrationData {
-
-  public username: string;
-  public email: string;
-  public dateOfBirth: Date;
-  public gender: string;
-  public password: string;
-
+export interface RegistrationData {
+  username: string;
+  email: string;
+  dateOfBirth: Date;
+  gender: string;
+  password: string;
 }
