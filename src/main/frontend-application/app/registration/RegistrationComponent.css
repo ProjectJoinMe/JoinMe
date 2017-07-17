@@ -7,18 +7,25 @@ div.main {
     left: 0;
     right: 0;
     height: 100%;
-    position: fixed;
 }
 div.inner {
     background-color: #A0D751;
-    width: 35%;
+    width: 45%;
     border: none;
     border-radius: 15px;
     margin: auto;
     padding: 3%;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 2%;
+    padding-right: 1.5%;
 }
 label {
     color: white;
+    padding: 1%;
+}
+td.first {
+    text-align: right;
+}
+small{
+    font-size: x-small;
+    width: auto;
 }

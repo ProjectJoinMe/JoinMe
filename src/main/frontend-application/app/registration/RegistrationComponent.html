@@ -1,59 +1,75 @@
 <div class="main">
+  <br>
   <h1 class="component">Registrieren</h1>
   <br />
+
   <div class="inner">
   <form [formGroup]="registrationForm" (ngSubmit)="register()">
   <table>
     <tr>
-      <td><label>Nutzername:</label></td>
+      <td class="first"><label>Nutzername: </label></td>
       <td><input formControlName="username" type="text"></td>
-      <td><small class="error-message" [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
-      Benutzername ungültig (zwischen 5 und 20 Zeichen)
-    </small></td>
+      <td>
+        <small class="error-message" [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
+          Benutzername ungültig (zwischen 5 und 20 Zeichen)</small>
+      </td>
     </tr>
 
     <tr>
-      <td><label>E-Mail:</label></td>
+      <td class="first"><label>E-Mail: </label></td>
       <td><input formControlName="email" type="text"></td>
-      <td><small class="error-message" [hidden]="registrationForm.controls.email.valid || (registrationForm.controls.email.pristine && !submitted)">
-      ungültige Email
-    </small></td>
+      <td>
+        <small class="error-message" [hidden]="registrationForm.controls.email.valid || (registrationForm.controls.email.pristine && !submitted)">
+          ungültige Email</small>
+      </td>
     </tr>
 
     <tr>
-      <td><label>Geburtsdatum</label></td>
+      <td class="first"><label>Geburtsdatum: </label></td>
       <td><input formControlName="dateOfBirth" type="date" max="{{maxDateOfBirth | date:'yyyy-MM-dd'}}"></td>
-      <td><small class="error-message" [hidden]="registrationForm.controls.dateOfBirth.valid || (registrationForm.controls.dateOfBirth.pristine && !submitted)">
-      ungültiges Geburtsdatum
-    </small></td>
+      <td>
+        <small class="error-message" [hidden]="registrationForm.controls.dateOfBirth.valid || (registrationForm.controls.dateOfBirth.pristine && !submitted)">
+          ungültiges Geburtsdatum</small>
+      </td>
     </tr>
 
     <tr>
-      <td><label>Geschlecht</label></td>
-      <td><input type="radio" formControlName="gender" value="FEMALE"><label>Weiblich</label>
-    <input type="radio" formControlName="gender" value="MALE"><label>Männlich</label></td>
-      <td><small class="error-message" [hidden]="registrationForm.controls.gender.valid || (registrationForm.controls.gender.pristine && !submitted)">
-      bitte auswählen
-    </small></td>
+      <td class="first"><label>Geschlecht: </label></td>
+      <td>
+        <input type="radio" formControlName="gender" value="FEMALE"><label>Weiblich</label>
+        <input type="radio" formControlName="gender" value="MALE"><label>Männlich</label></td>
+      <td>
+        <small class="error-message" [hidden]="registrationForm.controls.gender.valid || (registrationForm.controls.gender.pristine && !submitted)">
+          bitte auswählen</small>
+      </td>
     </tr>
 
     <tr>
-      <td><label>Passwort:</label></td>
+      <td class="first"><label>Passwort: </label></td>
       <td><input formControlName="password" type="password"></td>
-      <td><small class="error-message" [hidden]="registrationForm.controls.password.valid || (registrationForm.controls.password.pristine && !submitted)">
-      ungültiges Passwort (mindestens 6 Zeichen)
-    </small></td>
+      <td>
+        <small class="error-message" [hidden]="registrationForm.controls.password.valid || (registrationForm.controls.password.pristine && !submitted)">
+          ungültiges Passwort (mindestens 6 Zeichen)</small>
+      </td>
     </tr>
 
     <tr>
-      <td><label>Passwort wiederholen:</label></td>
+      <td class="first"><label>Passwort wiederholen: </label></td>
       <td><input formControlName="passwordCheck" type="password"></td>
-      <td><small class="error-message" [hidden]="registrationForm.controls.passwordCheck.valid || (registrationForm.controls.passwordCheck.pristine && !submitted)">
-      Passwörter stimmen nicht überein
-    </small></td>
+      <td>
+        <small class="error-message" [hidden]="registrationForm.controls.passwordCheck.valid || (registrationForm.controls.passwordCheck.pristine && !submitted)">
+          Passwörter stimmen nicht überein</small>
+      </td>
     </tr>
+    <tr>
+      <td colspan="2" style="text-align: right">
+        <button type="submit" class="btn" [disabled]="submitDisabled">Registrieren </button>
+      </td>
+    </tr>
+
   </table>
-    <button type="submit" class="btn" [disabled]="submitDisabled">Registrieren</button>
+
   </form>
   </div>
+  <br>
 </div>
