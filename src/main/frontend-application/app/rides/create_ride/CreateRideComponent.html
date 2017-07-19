@@ -5,63 +5,82 @@
 
     <div class="inner">
 
-  <form [formGroup]="createRideForm" (ngSubmit)="createRide()" style="text-align: center">
-    <table>
-      <tr>
-        <td class="first"><label>Abfahrtsort:</label></td>
-        <td class="second"><input class="strechtInputField" formControlName="start" type="text"></td>
-        <td class="third"><small class="error-message" [hidden]="createRideForm.controls.start.valid || (createRideForm.controls.start.pristine && !submitted)">
-          Bitte einen Abfahrtsort angeben.
-        </small></td>
-      </tr>
-      <tr>
-        <td class="first"><label>Ankunftsort:</label></td>
-        <td class="second"><input class="strechtInputField" formControlName="destination" type="text"></td>
-        <td class="third"><small class="error-message" [hidden]="createRideForm.controls.destination.valid || (createRideForm.controls.destination.pristine && !submitted)">
-          Bitte einen Ankunftsort angeben.
-        </small></td>
-      </tr>
-      </table>
-
-      <table>
-      <tr>
-        <td><h2>Hinfahrt</h2></td>
-        <td><input type="checkbox" formControlName="returnRide" > Hin- und Rückfahrt</td>
-      </tr>
-      <tr>
-        <td class="first"><label>Abfahrtsdatum:</label></td>
-        <td class="second"><input formControlName="departureDate" type="date" min=""></td>
-        <td class="third"><small class="error-message" [hidden]="createRideForm.controls.departureDate.valid || (createRideForm.controls.departureDate.pristine && !submitted)">
-          ungültiges Abfahrtsdatum
-        </small></td>
-      </tr>
-      <tr>
-        <td class="first"><label>Uhrzeit:</label></td>
-        <td class="second"><input formControlName="departureHour" type="number" min="0" max="23" step="1">&nbsp;:
-        <input formControlName="departureMinute" type="number" min="0" max="59" step="1"></td>
-        <td class="third"><small class="error-message" [hidden]="createRideForm.controls.departureHour.valid || (createRideForm.controls.departureHour.pristine && !submitted)
+        <form [formGroup]="createRideForm" (ngSubmit)="createRide()" style="text-align: center">
+            <table>
+                <tr>
+                    <td class="first"><label>Abfahrtsort:</label></td>
+                    <td class="second"><input class="strechtInputField" formControlName="start" type="text"></td>
+                    <td class="third">
+                        <small class="error-message"
+                               [hidden]="createRideForm.controls.start.valid || (createRideForm.controls.start.pristine && !submitted)">
+                            Bitte einen Abfahrtsort angeben.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first"><label>Ankunftsort:</label></td>
+                    <td class="second"><input class="strechtInputField" formControlName="destination" type="text"></td>
+                    <td class="third">
+                        <small class="error-message"
+                               [hidden]="createRideForm.controls.destination.valid || (createRideForm.controls.destination.pristine && !submitted)">
+                            Bitte einen Ankunftsort angeben.
+                        </small>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <tr>
+                    <td><h2>Hinfahrt</h2></td>
+                    <td><input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first"><label>Abfahrtsdatum:</label></td>
+                    <td class="second"><input formControlName="departureDate" type="date" min=""></td>
+                    <td class="third">
+                        <small class="error-message"
+                               [hidden]="createRideForm.controls.departureDate.valid || (createRideForm.controls.departureDate.pristine && !submitted)">
+                            ungültiges Abfahrtsdatum
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first"><label>Uhrzeit:</label></td>
+                    <td class="second"><input formControlName="departureHour" type="number" min="0" max="23" step="1">&nbsp;:
+                        <input formControlName="departureMinute" type="number" min="0" max="59" step="1"></td>
+                    <td class="third">
+                        <small class="error-message" [hidden]="createRideForm.controls.departureHour.valid || (createRideForm.controls.departureHour.pristine && !submitted)
                                                    && createRideForm.controls.departureMinute.valid || (createRideForm.controls.departureMinute.pristine && !submitted)">
-          ungültige Uhrzeit
-        </small></td>
-      </tr>
-    </table>
-
-    <div *ngIf="getReturnRide()">
-        <table>
-          <tr class="returnFormRow"><td><h2>Rückfahrt</h2></td></tr>
-          <tr class="returnFormRow">
-            <td class="first"><label>Abfahrtsdatum:</label></td>
-            <td class="second"><input formControlName="departureDate" type="date" min=""></td>
-            <td class="third"><small class="error-message" [hidden]="createRideForm.controls.departureDate.valid || (createRideForm.controls.departureDate.pristine && !submitted)">
-              ungültiges Abfahrtsdatum
-            </small></td>
-          </tr>
-          <tr>
-            <td class="first"><label>Uhrzeit:</label></td>
-            <td class="second"><input formControlName="departureHour" type="number" min="0" max="23" step="1">&nbsp;:
-              <input formControlName="departureMinute" type="number" min="0" max="59" step="1"></td>
-            <td class="third"><small class="error-message" [hidden]="createRideForm.controls.departureHour.valid || (createRideForm.controls.departureHour.pristine && !submitted)
-                                                   && createRideForm.controls.departureMinute.valid || (createRideForm.controls.departureMinute.pristine && !submitted)">
+                            ungültige Uhrzeit
+                        </small>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <div *ngIf="getReturnRide()">
+                <table>
+                    <tr class="returnFormRow">
+                        <td><h2>Rückfahrt</h2></td>
+                    </tr>
+                    <tr class="returnFormRow">
+                        <td class="first"><label>Abfahrtsdatum:</label></td>
+                        <td class="second"><input formControlName="returnDepartureDate" type="date" min=""></td>
+                        <td class="third">
+                            <small class="error-message"
+                                   [hidden]="createRideForm.controls.returnDepartureDate.valid || (createRideForm.controls.returnDepartureDate.pristine && !submitted)">
+                                ungültiges Abfahrtsdatum
+                            </small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="first"><label>Uhrzeit:</label></td>
+                        <td class="second"><input formControlName="returnDepartureHour" type="number" min="0" max="23"
+                                                  step="1">&nbsp;:
+                            <input formControlName="returnDepartureMinute" type="number" min="0" max="59" step="1"></td>
+                        <td class="third">
+                            <small class="error-message" [hidden]="createRideForm.controls.returnDepartureHour.valid || (createRideForm.controls.returnDepartureHour.pristine && !submitted)
+                                                   && createRideForm.controls.returnDepartureMinute.valid || (createRideForm.controls.returnDepartureMinute.pristine && !submitted)">
                                 ungültige Uhrzeit
                             </small>
                         </td>
@@ -89,31 +108,38 @@
             <div *ngIf="getPeriodic()" class="days">
                 <table>
                     <tr>
-                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[0]">Montag</td>
+                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[0]">Montag
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[1]">Dienstag</td>
+                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[1]">Dienstag
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[2]">Mittwoch</td>
+                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[2]">Mittwoch
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[3]">Donnerstag</td>
+                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[3]">Donnerstag
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[4]">Freitag</td>
+                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[4]">Freitag
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[5]">Samstag</td>
+                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[5]">Samstag
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[6]">Sonntag</td>
+                        <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[6]">Sonntag
+                        </td>
                     </tr>
                 </table>
             </div>
             <div>
                 Bemerkung (max 400 Zeichen)
-                <textarea formControlName="remark" rows="6" cols="50" maxlength="400"></textarea>
+                <textarea formControlName="notes" rows="6" cols="50" maxlength="400"></textarea>
             </div>
             <br/>
             <button type="submit" class="btn" [disabled]="submitDisabled">Fahrt erstellen</button>

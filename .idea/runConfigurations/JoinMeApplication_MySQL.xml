@@ -9,7 +9,7 @@
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.joinme.JoinMeApplication" />
     <option name="ACTIVE_PROFILES" value="mysql-local-dev" />
     <option name="ALTERNATIVE_JRE_PATH" />
-    <module name="JoinMe" />
+    <module name="joinme" />
     <envs />
     <method />
   </configuration>
