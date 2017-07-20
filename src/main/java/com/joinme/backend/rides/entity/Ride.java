@@ -1,5 +1,6 @@
 package com.joinme.backend.rides.entity;
 
+import com.joinme.backend.accounts.entity.UserAccount;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -18,6 +19,11 @@ public class Ride {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "provider_user_id")
+    @NotNull
+    private UserAccount provider;
+
     @Column(length = 4000)
     @NotNull
     @Size(min = 1, max = 4000)
@@ -31,10 +37,6 @@ public class Ride {
     @Column
     @NotNull
     private Instant departureDateTime;
-
-    @Column
-    @NotNull
-    private long userId;
 
     @Column
     @NotNull
@@ -78,14 +80,6 @@ public class Ride {
         this.departureDateTime = departureDateTime;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
     public int getMaxPassengers() {
         return maxPassengers;
     }
@@ -108,5 +102,13 @@ public class Ride {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public UserAccount getProvider() {
+        return provider;
+    }
+
+    public void setProvider(UserAccount provider) {
+        this.provider = provider;
     }
 }
