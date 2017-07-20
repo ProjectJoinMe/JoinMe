@@ -54,7 +54,7 @@ export class CreateRideComponent implements OnInit {
                 departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getMinutes(), departureHour, departureMinute, 0, 0),
                 returnRide: <boolean> this.createRideForm.get("returnRide").value,
                 returnDepartureDateTime: new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getMinutes(), returnDepartureHour, returnDepartureMinute, 0, 0),
-                freeSeats: <number> this.createRideForm.get("freeSeats").value,
+                maxPassengers: <number> this.createRideForm.get("maxPassengers").value,
                 notes: this.createRideForm.get("notes").value
             };
             console.info(rideData);
@@ -62,7 +62,7 @@ export class CreateRideComponent implements OnInit {
                 .subscribe(
                     data => {
                         this.submitDisabled = false;
-                        this.router.navigate(['/profile/myRides']);
+                        this.router.navigate(['/profile']);
                         // TODO success -> show confirmation message and move to login screen
                     },
                     error => {
@@ -92,7 +92,7 @@ export class CreateRideComponent implements OnInit {
             returnDepartureHour: [""],
             returnDepartureMinute: [""],
             periodic: [""],
-            freeSeats: ["", Validators.required],
+            maxPassengers: ["", Validators.required],
             notes: [""],
             periodicDays: this.formBuilder.array([false, false, false, false, false, false, false])
         });

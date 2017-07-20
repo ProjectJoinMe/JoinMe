@@ -1,11 +1,15 @@
 package com.joinme.backend.accounts.entity;
 
 import com.joinme.backend.accounts.dto.Gender;
+import com.joinme.backend.rides.entity.Ride;
 
 import javax.persistence.*;
+import java.awt.print.Book;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
+@Table(name = "UserAccount")
 public class UserAccount {
 
     @Id
@@ -24,6 +28,9 @@ public class UserAccount {
     @Enumerated(EnumType.STRING)
     @Column
     private Gender gender;
+
+    @OneToMany(mappedBy = "provider")
+    private Set<Ride> simpleRides;
 
     /**
      * encrypted password
@@ -77,5 +84,13 @@ public class UserAccount {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Set<Ride> getSimpleRides() {
+        return simpleRides;
+    }
+
+    public void setSimpleRides(Set<Ride> simpleRides) {
+        this.simpleRides = simpleRides;
     }
 }
