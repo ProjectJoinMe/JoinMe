@@ -4,14 +4,9 @@ import {WeekDay} from "../WeekDay";
 export interface RideData {
     start: string;
     destination: string;
-    departureDate: Date;
-    departureHour: number;
-    departureMinute: number;
+    departureDateTime: Date;
     returnRide: boolean;
-    returnDepartureDate: Date;
-    returnDepartureHour: number;
-    returnDepartureMinute: number;
+    returnDepartureDateTime: Date;
     freeSeats: number;
-    periodicDays: WeekDay[];
-    remark: string;
+    notes: string;
 }

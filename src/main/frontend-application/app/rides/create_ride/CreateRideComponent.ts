@@ -5,6 +5,7 @@ import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {WeekDay} from "../WeekDay";
 import cloneWith = require("lodash/cloneWith");
+import {debugOutputAstAsTypeScript} from "@angular/compiler";
 
 @Component({
     selector: 'createRide',
@@ -41,31 +42,32 @@ export class CreateRideComponent implements OnInit {
                     }
                 }).filter((index) => index !== null);
             }
+            let departureDate = new Date(this.createRideForm.get("departureDate").value);
+            let departureHour = <number> this.createRideForm.get("departureHour").value;
+            let departureMinute = <number> this.createRideForm.get("departureMinute").value;
+            let returnDepartureDate = new Date(this.createRideForm.get("returnDepartureDate").value);
+            let returnDepartureHour = <number> this.createRideForm.get("returnDepartureHour").value;
+            let returnDepartureMinute = <number> this.createRideForm.get("returnDepartureMinute").value;
             let rideData: RideData = {
                 start: <string> this.createRideForm.get("start").value,
                 destination: <string> this.createRideForm.get("destination").value,
-                departureDate: new Date(this.createRideForm.get("departureDate").value),
-                departureHour: <number> this.createRideForm.get("departureHour").value,
-                departureMinute: <number> this.createRideForm.get("departureMinute").value,
+                departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getMinutes(), departureHour, departureMinute, 0, 0),
                 returnRide: <boolean> this.createRideForm.get("returnRide").value,
-                returnDepartureDate: new Date(this.createRideForm.get("returnDepartureDate").value),
-                returnDepartureHour: <number> this.createRideForm.get("returnDepartureHour").value,
-                returnDepartureMinute: <number> this.createRideForm.get("returnDepartureMinute").value,
-                periodicDays: periodicWeekDays,
+                returnDepartureDateTime: new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getMinutes(), returnDepartureHour, returnDepartureMinute, 0, 0),
                 freeSeats: <number> this.createRideForm.get("freeSeats").value,
-                remark: this.createRideForm.get("remark").value
+                notes: this.createRideForm.get("notes").value
             };
             console.info(rideData);
             this.http.post("api/rides/createRide", rideData)
                 .subscribe(
                     data => {
                         this.submitDisabled = false;
-                        this.router.navigate(['/login']);
+                        this.router.navigate(['/profile/myRides']);
                         // TODO success -> show confirmation message and move to login screen
                     },
                     error => {
                         this.submitDisabled = false;
-                        console.error("failed to register account, TODO");
+                        console.error("failed to create ride, TODO");
                     });
         }
     }
@@ -91,7 +93,7 @@ export class CreateRideComponent implements OnInit {
             returnDepartureMinute: [""],
             periodic: [""],
             freeSeats: ["", Validators.required],
-            remark: [""],
+            notes: [""],
             periodicDays: this.formBuilder.array([false, false, false, false, false, false, false])
         });
     }
