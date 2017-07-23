@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -34,7 +36,7 @@ public class UserAccountCreationBean implements UserAccountCreation {
         userAccount.setEmail(accountRegistrationData.getEmail());
         userAccount.setUsername(accountRegistrationData.getUsername());
         userAccount.setGender(accountRegistrationData.getGender());
-        userAccount.setDateOfBirth(LocalDate.from(accountRegistrationData.getDateOfBirth().toInstant()));
+        userAccount.setDateOfBirth(LocalDate.from(LocalDateTime.ofInstant(accountRegistrationData.getDateOfBirth().toInstant(), ZoneId.systemDefault())));
 
         String rawPassword = accountRegistrationData.getPassword();
         String encodedPassword = passwordEncoder.encode(rawPassword);

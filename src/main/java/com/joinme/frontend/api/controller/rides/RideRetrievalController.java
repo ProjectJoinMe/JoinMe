@@ -1,6 +1,7 @@
 package com.joinme.frontend.api.controller.rides;
 
 import com.joinme.backend.rides.RideRetrieval;
+import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.entity.Ride;
 import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,8 @@ public class RideRetrievalController {
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/rides/myRides", method = RequestMethod.GET)
     @ResponseBody
-    public List<Ride> getMyRides() {
-        return rideRetrieval.getRidesOf(SecurityUtil.getCurrentUsername());
+    public List<RideDto> getMyRides() {
+        List<RideDto> rides = rideRetrieval.getRidesOf(SecurityUtil.getCurrentUsername());
+        return rides;
     }
 }
