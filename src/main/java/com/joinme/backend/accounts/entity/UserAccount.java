@@ -13,13 +13,10 @@ public class UserAccount implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(unique = true)
+    @Column
     private String username;
 
-    @Column(unique = true)
+    @Column(unique = true, length = 4000)
     private String email;
 
     @Column
@@ -34,14 +31,6 @@ public class UserAccount implements Serializable {
      */
     @Column(length = 1024)
     private String password;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

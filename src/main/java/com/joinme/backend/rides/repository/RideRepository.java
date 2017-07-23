@@ -11,6 +11,5 @@ import java.util.List;
 @Repository
 public interface RideRepository extends CrudRepository<Ride, Long> {
 
-
     List<Ride> findByProviderOrderByCreationDateTimeDesc(UserAccount provider);
 }

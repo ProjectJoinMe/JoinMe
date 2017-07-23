@@ -1,7 +1,7 @@
 package com.joinme.backend.rides;
 
-import com.joinme.backend.rides.entity.Ride;
+import com.joinme.backend.rides.dto.RideDto;
 
 public interface RideCreation {
-    void createRide(Ride ride, String username);
+    void createRide(RideDto ride);
 }

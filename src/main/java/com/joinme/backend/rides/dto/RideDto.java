@@ -1,4 +1,4 @@
-package com.joinme.backend.rides.entity;
+package com.joinme.backend.rides.dto;
 
 import com.joinme.backend.accounts.entity.UserAccount;
 
@@ -9,45 +9,34 @@ import java.io.Serializable;
 import java.time.Instant;
 
 /**
- * Created by Nicole on 10.07.2017.
+ * Created by Nicole on 23.07.2017.
  */
-@Entity
-public class Ride implements Serializable {
+public class RideDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(optional = false)
-    private UserAccount provider;
+    private String providerUsername;
 
-    @Column(length = 4000)
     @NotNull
     @Size(min = 1, max = 4000)
     private String start;
 
-    @Column(length = 4000)
     @NotNull
     @Size(min = 1, max = 4000)
     private String destination;
 
-    @Column(nullable = false)
     private Instant creationDateTime;
 
-    @Column
     @NotNull
     private Instant departureDateTime;
 
-    @Column
     @NotNull
     private int maxPassengers;
 
-    @Column
     private Instant returnDepartureDateTime;
 
-    @Column
     private String notes;
 
     public Long getId() {
@@ -106,19 +95,19 @@ public class Ride implements Serializable {
         this.notes = notes;
     }
 
-    public UserAccount getProvider() {
-        return provider;
-    }
-
-    public void setProvider(UserAccount provider) {
-        this.provider = provider;
-    }
-
     public Instant getCreationDateTime() {
         return creationDateTime;
     }
 
     public void setCreationDateTime(Instant creationDateTime) {
         this.creationDateTime = creationDateTime;
+    }
+
+    public String getProviderUsername() {
+        return providerUsername;
+    }
+
+    public void setProviderUsername(String providerUsername) {
+        this.providerUsername = providerUsername;
     }
 }
