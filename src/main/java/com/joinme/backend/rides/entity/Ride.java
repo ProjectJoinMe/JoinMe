@@ -1,27 +1,27 @@
 package com.joinme.backend.rides.entity;
 
 import com.joinme.backend.accounts.entity.UserAccount;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 /**
  * Created by Nicole on 10.07.2017.
  */
 @Entity
-public class Ride {
+public class Ride implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "provider_user_id")
-    @NotNull
+//    @JoinColumn(name = "provider_user_id")
     private UserAccount provider;
 
     @Column(length = 4000)
@@ -34,6 +34,9 @@ public class Ride {
     @Size(min = 1, max = 4000)
     private String destination;
 
+    @Column(nullable = false)
+    private Instant creationDateTime;
+
     @Column
     @NotNull
     private Instant departureDateTime;
@@ -43,7 +46,7 @@ public class Ride {
     private int maxPassengers;
 
     @Column
-    private LocalDateTime returnDepartureDateTime;
+    private Instant returnDepartureDateTime;
 
     @Column
     private String notes;
@@ -88,11 +91,11 @@ public class Ride {
         this.maxPassengers = maxPassengers;
     }
 
-    public LocalDateTime getReturnDepartureDateTime() {
+    public Instant getReturnDepartureDateTime() {
         return returnDepartureDateTime;
     }
 
-    public void setReturnDepartureDateTime(LocalDateTime returnDepartureDateTime) {
+    public void setReturnDepartureDateTime(Instant returnDepartureDateTime) {
         this.returnDepartureDateTime = returnDepartureDateTime;
     }
 
@@ -110,5 +113,13 @@ public class Ride {
 
     public void setProvider(UserAccount provider) {
         this.provider = provider;
+    }
+
+    public Instant getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(Instant creationDateTime) {
+        this.creationDateTime = creationDateTime;
     }
 }

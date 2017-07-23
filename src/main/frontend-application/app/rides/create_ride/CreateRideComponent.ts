@@ -1,11 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {RideData} from "./RideData";
+import {Ride} from "./Ride";
 import {Validators, FormGroup, FormBuilder, FormControl, FormArray} from "@angular/forms";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {WeekDay} from "../WeekDay";
 import cloneWith = require("lodash/cloneWith");
-import {debugOutputAstAsTypeScript} from "@angular/compiler";
 
 @Component({
     selector: 'createRide',
@@ -48,7 +47,7 @@ export class CreateRideComponent implements OnInit {
             let returnDepartureDate = new Date(this.createRideForm.get("returnDepartureDate").value);
             let returnDepartureHour = <number> this.createRideForm.get("returnDepartureHour").value;
             let returnDepartureMinute = <number> this.createRideForm.get("returnDepartureMinute").value;
-            let rideData: RideData = {
+            let rideData: Ride = {
                 start: <string> this.createRideForm.get("start").value,
                 destination: <string> this.createRideForm.get("destination").value,
                 departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getMinutes(), departureHour, departureMinute, 0, 0),

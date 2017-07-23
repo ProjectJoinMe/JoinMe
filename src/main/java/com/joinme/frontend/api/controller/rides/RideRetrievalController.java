@@ -1,28 +1,27 @@
 package com.joinme.frontend.api.controller.rides;
 
-import com.joinme.backend.rides.RideCreation;
+import com.joinme.backend.rides.RideRetrieval;
 import com.joinme.backend.rides.entity.Ride;
 import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-public class RideCreationController {
+public class RideRetrievalController {
 
     @Autowired
-    private RideCreation rideCreation;
+    private RideRetrieval rideRetrieval;
 
     @PreAuthorize("fullyAuthenticated")
-    @RequestMapping(value = "/api/rides/createRide", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/rides/myRides", method = RequestMethod.GET)
     @ResponseBody
-    public void createRide(@Valid @RequestBody Ride ride) {
-        rideCreation.createRide(ride, SecurityUtil.getCurrentUsername());
+    public List<Ride> getMyRides() {
+        return rideRetrieval.getRidesOf(SecurityUtil.getCurrentUsername());
     }
 }

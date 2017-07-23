@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Ride} from "../../rides/create_ride/Ride";
 
 @Component({
   selector: 'myRides',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   templateUrl: './MyRidesComponent.html'
 })
 export class MyRidesComponent {
+
+  rides: Ride[];
+
+
 
 }

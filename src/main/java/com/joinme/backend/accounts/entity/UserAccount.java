@@ -1,16 +1,16 @@
 package com.joinme.backend.accounts.entity;
 
 import com.joinme.backend.accounts.dto.Gender;
-import com.joinme.backend.rides.entity.Ride;
 
 import javax.persistence.*;
-import java.awt.print.Book;
-import java.util.Date;
-import java.util.Set;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "UserAccount")
-public class UserAccount {
+public class UserAccount implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,14 +23,11 @@ public class UserAccount {
     private String email;
 
     @Column
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
     @Column
     private Gender gender;
-
-    @OneToMany(mappedBy = "provider")
-    private Set<Ride> simpleRides;
 
     /**
      * encrypted password
@@ -70,11 +67,11 @@ public class UserAccount {
         this.password = password;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -84,13 +81,5 @@ public class UserAccount {
 
     public void setGender(Gender gender) {
         this.gender = gender;
-    }
-
-    public Set<Ride> getSimpleRides() {
-        return simpleRides;
-    }
-
-    public void setSimpleRides(Set<Ride> simpleRides) {
-        this.simpleRides = simpleRides;
     }
 }
