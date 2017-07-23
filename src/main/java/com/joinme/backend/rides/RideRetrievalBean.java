@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.util.Objects;
+import java.util.List;
 
 @Component
 @Transactional
-public class RideCreationBean implements RideCreation {
+public class RideRetrievalBean implements RideRetrieval {
 
     @Autowired
     private RideRepository rideRepository;
@@ -22,11 +21,8 @@ public class RideCreationBean implements RideCreation {
     private UserAccountRepository userAccountRepository;
 
     @Override
-    public void createRide(Ride ride, String username) {
-        UserAccount provider = userAccountRepository.findByUsername(username);
-        Objects.requireNonNull(provider);
-        ride.setProvider(provider);
-        ride.setCreationDateTime(Instant.now());
-        rideRepository.save(ride);
+    public List<Ride> getRidesOf(String username) {
+        UserAccount userAccount = userAccountRepository.findByUsername(username);
+        return rideRepository.findByProviderOrderByCreationDateTimeDesc(userAccount);
     }
 }

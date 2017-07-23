@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -33,7 +34,7 @@ public class UserAccountCreationBean implements UserAccountCreation {
         userAccount.setEmail(accountRegistrationData.getEmail());
         userAccount.setUsername(accountRegistrationData.getUsername());
         userAccount.setGender(accountRegistrationData.getGender());
-        userAccount.setDateOfBirth(truncateTime(accountRegistrationData.getDateOfBirth()));
+        userAccount.setDateOfBirth(LocalDate.from(accountRegistrationData.getDateOfBirth().toInstant()));
 
         String rawPassword = accountRegistrationData.getPassword();
         String encodedPassword = passwordEncoder.encode(rawPassword);
