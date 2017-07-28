@@ -3,7 +3,6 @@ export interface Ride {
     destination: string;
     departureDateTime: Date;
     creationDate?: Date;
-    returnRide: boolean;
     returnDepartureDateTime: Date;
     maxPassengers: number;
     notes: string;

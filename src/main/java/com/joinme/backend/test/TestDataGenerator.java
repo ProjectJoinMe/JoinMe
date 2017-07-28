@@ -1,5 +1,5 @@
 package com.joinme.backend.test;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import com.joinme.backend.accounts.UserAccountCreation;
 import com.joinme.backend.accounts.dto.AccountRegistrationData;
@@ -49,7 +49,7 @@ public class TestDataGenerator {
             AccountRegistrationData accountRegistrationData = new AccountRegistrationData();
             accountRegistrationData.setUsername(USERNAME);
             accountRegistrationData.setEmail("test@testmail.com");
-            accountRegistrationData.setPassword("feedtheguh");
+            accountRegistrationData.setPassword("123456");
             accountRegistrationData.setGender(Gender.MALE);
             accountRegistrationData.setDateOfBirth(new Date());
 
@@ -59,11 +59,11 @@ public class TestDataGenerator {
             ride.setProviderUsername(USERNAME);
             ride.setStart("Groß Sankt Florian");
             ride.setDestination("HTBLA Kaindorf");
-            ride.setDepartureDateTime(Instant.now().plus(3, ChronoUnit.DAYS));
+            ride.setDepartureDateTime(LocalDateTime.now().plus(3, ChronoUnit.DAYS));
             ride.setMaxPassengers(4);
             ride.setReturnDepartureDateTime(null);
             ride.setNotes("");
-            ride.setCreationDateTime(Instant.now());
+            ride.setCreationDateTime(LocalDateTime.now());
 
             rideCreation.createRide(ride);
         } else {

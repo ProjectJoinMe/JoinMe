@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 /**
  * Created by Nicole on 10.07.2017.
@@ -34,18 +34,18 @@ public class Ride implements Serializable {
     private String destination;
 
     @Column(nullable = false)
-    private Instant creationDateTime;
+    private LocalDateTime creationDateTime;
 
     @Column
     @NotNull
-    private Instant departureDateTime;
+    private LocalDateTime departureDateTime;
 
     @Column
     @NotNull
     private int maxPassengers;
 
     @Column
-    private Instant returnDepartureDateTime;
+    private LocalDateTime returnDepartureDateTime;
 
     @Column
     private String notes;
@@ -74,11 +74,11 @@ public class Ride implements Serializable {
         this.destination = destination;
     }
 
-    public Instant getDepartureDateTime() {
+    public LocalDateTime getDepartureDateTime() {
         return departureDateTime;
     }
 
-    public void setDepartureDateTime(Instant departureDateTime) {
+    public void setDepartureDateTime(LocalDateTime departureDateTime) {
         this.departureDateTime = departureDateTime;
     }
 
@@ -90,11 +90,11 @@ public class Ride implements Serializable {
         this.maxPassengers = maxPassengers;
     }
 
-    public Instant getReturnDepartureDateTime() {
+    public LocalDateTime getReturnDepartureDateTime() {
         return returnDepartureDateTime;
     }
 
-    public void setReturnDepartureDateTime(Instant returnDepartureDateTime) {
+    public void setReturnDepartureDateTime(LocalDateTime returnDepartureDateTime) {
         this.returnDepartureDateTime = returnDepartureDateTime;
     }
 
@@ -114,11 +114,11 @@ public class Ride implements Serializable {
         this.provider = provider;
     }
 
-    public Instant getCreationDateTime() {
+    public LocalDateTime getCreationDateTime() {
         return creationDateTime;
     }
 
-    public void setCreationDateTime(Instant creationDateTime) {
+    public void setCreationDateTime(LocalDateTime creationDateTime) {
         this.creationDateTime = creationDateTime;
     }
 }

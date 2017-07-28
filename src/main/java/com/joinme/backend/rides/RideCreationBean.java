@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static com.joinme.backend.rides.entity.Ride_.provider;
@@ -27,7 +27,7 @@ public class RideCreationBean implements RideCreation {
 
     @Override
     public void createRide(RideDto ride) {
-        ride.setCreationDateTime(Instant.now());
+        ride.setCreationDateTime(LocalDateTime.now());
         Ride rideEntity = rideConverter.toEntity(ride);
         rideRepository.save(rideEntity);
     }
