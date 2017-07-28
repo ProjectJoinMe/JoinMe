@@ -1,39 +1,13 @@
-/*#content{*/
-    /*padding: 20px;*/
-    /*display: inline-block;*/
-    /*background-color: white;*/
-    /*color: #333333;*/
-/*}*/
 
-.strechtInputField{
-    width: 100%;
-}
 
 div.main {
-    width: 100%;
-    margin: 0;
     padding-bottom: 20px;
-    background-color:white;
-    top: auto;
-    left: 0;
-    right: 0;
-    height: 100%;
-
-   /* position: fixed; /*funktioniert mit dem Menu nicht*/
 }
 div.inner {
-    background-color: #A0D751;
     width: 50%;
-    border: none;
-    border-radius: 15px;
-    margin: auto;
-    padding: 3%;
-    padding-left: 5%;
-    padding-right: 5%;
     min-width: 350px;
-}
-label {
-    color: white;
+    padding: 1%;
+    padding-left: 2%;
 }
 
 table {

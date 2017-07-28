@@ -20,7 +20,8 @@ require('./externalscripts/modernizr.custom.js');
         './generalcss/normalize.css',
         './generalcss/demo.css',
         './generalcss/icons.css',
-        './AppComponent.css'
+        './AppComponent.css',
+        './AppComponentMenu.css'
     ],
     templateUrl: "./AppComponent.html"
 })

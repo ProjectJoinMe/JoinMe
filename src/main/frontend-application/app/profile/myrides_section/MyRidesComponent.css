@@ -1,44 +1,12 @@
-.strechtInputField {
-    width: 100%;
-}
 
-div.main {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    top: auto;
-    left: 0;
-    right: 0;
-    height: 100%;
-    /*position: fixed;*/
-}
+/*th {*/
+    /*width: 30%;*/
+/*}*/
 
-div.inner {
-    background-color: #A0D751;
-    width: 80%;
-    border: none;
-    border-radius: 15px;
-    padding: 1%;
-    padding-left: 2%;
-    /*padding-right: 2%;-*/
-    margin: auto;
-}
+/*td {*/
+    /*width: 17.5%;*/
+/*}*/
 
-h2 {
-    color: white;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-}
-
-th {
-    width: 30%;
-}
-
-td {
-    width: 17.5%;
-}
 
 .ride {
     margin-bottom: 8px;
