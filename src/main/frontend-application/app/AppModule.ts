@@ -27,6 +27,8 @@ import {MyRidesUpdateComponent} from "./profile/myrides_section/myrides_update/M
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
 import {SearchRideComponent} from "./rides/search_ride/SearchRideComponent";
+import {DetailComponent} from "./+detail/detail.component";
+import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -57,6 +59,7 @@ type StoreType = {
         CreateRideComponent,
         SearchRideComponent,
         ProfileComponent,
+        RideDetailsComponent,
         MyRidesComponent,
         MyRidesUpdateComponent,
         NoContentComponent
