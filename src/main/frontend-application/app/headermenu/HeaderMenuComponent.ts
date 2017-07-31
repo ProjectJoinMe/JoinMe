@@ -22,7 +22,7 @@ export class HeaderMenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        require('../externalscripts/classie.js');
-        require('../externalscripts/borderMenu.js');
+        //require('../externalscripts/classie.js');
+        //require('../externalscripts/borderMenu.js');
     }
 }
