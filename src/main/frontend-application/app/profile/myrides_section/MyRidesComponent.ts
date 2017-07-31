@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {Ride} from "../../rides/create_ride/Ride";
 import {Http} from "@angular/http";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'myRides',
@@ -12,7 +13,8 @@ export class MyRidesComponent {
 
     rides: Ride[];
 
-    constructor(private http: Http) {
+    constructor(private http: Http,
+                private router: Router) {
         this.getRides();
     }
 
@@ -25,6 +27,10 @@ export class MyRidesComponent {
                 error => {
                     // TODO error handling
                 });
+    }
+
+    goToDetails(ride: Ride) {
+        this.router.navigate(['/profile/myRides', ride.id]);
     }
 
 }

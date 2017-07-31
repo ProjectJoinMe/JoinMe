@@ -31,4 +31,10 @@ public class RideRetrievalBean implements RideRetrieval {
         List<Ride> rides = rideRepository.findByProviderOrderByCreationDateTimeDesc(userAccount);
         return rideConverter.toDto(rides);
     }
+
+    @Override
+    public RideDto getRideById(long id) {
+        Ride ride = rideRepository.findById(id);
+        return rideConverter.toDto(ride);
+    }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface RideRetrieval {
     List<RideDto> getRidesOf(String username);
+
+    RideDto getRideById(long id);
 }
