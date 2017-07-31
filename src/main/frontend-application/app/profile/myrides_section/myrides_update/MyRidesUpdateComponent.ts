@@ -1,6 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Ride} from "../../../rides/create_ride/Ride";
 import {Http} from "@angular/http";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
     selector: 'myRidesUpdate',
@@ -8,19 +9,27 @@ import {Http} from "@angular/http";
     styleUrls: ['./MyRidesUpdateComponent.css'],
     templateUrl: './MyRidesUpdateComponent.html'
 })
-export class MyRidesUpdateComponent {
+export class MyRidesUpdateComponent implements OnInit {
 
-    rides: Ride[];
+    ride: Ride;
 
-    constructor(private http: Http) {
-        this.getRides();
+    constructor(private http: Http,
+                private route: ActivatedRoute,) {
     }
 
-    getRides(): void {
-        this.http.get("/api/rides/myRides")
+    ngOnInit(): void {
+        // TODO change after angular upgrade according to routing tutorial
+        this.route.params
+            .subscribe((params: Params) => {
+                this.getRide(parseInt(params['id']));
+            });
+    }
+
+    getRide(id: number): void {
+        this.http.get("/api/rides/" + id)
             .subscribe(
                 data => {
-                    this.rides = data.json();
+                    this.ride = data.json();
                 },
                 error => {
                     // TODO error handling

@@ -4,7 +4,54 @@
     <br/>
 
     <div class="inner">
+        <div *ngIf="ride">
+            <table>
+                <tr>
+                    <td style="text-align: right"><label>Abfahrtsort:</label></td>
+                    <td><label>{{ ride.start }}</label></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right"> Zielort:</td>
+                    <td><label> {{ ride.destination }}</label></td>
+                </tr>
+                <tr *ngIf="ride.returnDepartureDateTime">
+                    <h3>Hinfahrt</h3>
+                </tr>
+                <tr>
+                    <td style="text-align: right"> Abfahrt:</td>
+                    <td><label>{{ ride.departureDateTime | date:'dd.MM.yyyy' }}</label></td>
+                    <td><label>{{ ride.departureDateTime | date:'HH:mm' }}</label></td>
+                </tr>
+            </table>
+            <div *ngIf="ride.returnDepartureDateTime">
+                <table>
+                    <tr>
+                        <h3>Rückfahrt</h3>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right"> Abfahrt:</td>
+                        <td><label>{{ ride.returnDepartureDateTime | date:'dd.MM.yyyy' }}</label></td>
+                        <td><label>{{ ride.returnDepartureDateTime | date:'HH:mm' }}</label></td>
+                    </tr>
+                </table>
+            </div>
+            <table>
+                <tr>
+                    <td style="text-align: right"> Freie Plätze:</td>
+                    <td><label>{{ ride.maxPassengers }}</label></td>
+                </tr>
+                <tr>
+                    <!-- TODO make something else when there are no notes-->
+                    <td>Bemerkungen:</td>
+                    <td>
+                        <div *ngIf="ride.notes">{{ ride.notes }}</div>
+                    </td>
+
+                </tr>
+            </table>
 
 
+            <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate(ride)">
+        </div>
     </div>
 </div>

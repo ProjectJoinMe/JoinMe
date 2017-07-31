@@ -24,7 +24,7 @@ export const ROUTES: Routes = [
   { path: 'profile',  component: ProfileComponent },
   { path: 'profile/myRides',  component: MyRidesComponent },
   { path: 'profile/myRides/:id',  component: RideDetailsComponent },
-  { path: 'profile/myRides/myRidesUpdate',  component: MyRidesUpdateComponent },
+  { path: 'profile/myRides/myRidesUpdate/:id',  component: MyRidesUpdateComponent },
   { path: 'about', component: AboutComponent },
   { path: '**',    component: NoContentComponent },
 ];

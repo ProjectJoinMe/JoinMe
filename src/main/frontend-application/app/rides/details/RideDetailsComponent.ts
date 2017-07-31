@@ -3,6 +3,7 @@ import {Ride} from "../../rides/create_ride/Ride";
 import {Http} from "@angular/http";
 import {Input} from "@angular/core/src/metadata/directives";
 import {ActivatedRoute, Params} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'ride-details',
@@ -15,7 +16,8 @@ export class RideDetailsComponent implements OnInit {
     ride: Ride;
 
     constructor(private http: Http,
-                private route: ActivatedRoute,) {
+                private route: ActivatedRoute,
+                private router: Router,) {
     }
 
     ngOnInit(): void {
@@ -35,6 +37,10 @@ export class RideDetailsComponent implements OnInit {
                 error => {
                     // TODO error handling
                 });
+    }
+
+    goToUpdate(ride: Ride) {
+        this.router.navigate(['/profile/myRides/myRidesUpdate', ride.id]);
     }
 
 }

@@ -7,15 +7,6 @@
     /*width: 17.5%;*/
 /*}*/
 
-
-.ride {
-    margin-bottom: 8px;
-    border: black 1px solid;
-    background-color: white;
-    color: black;
-    padding: 1%;
-    cursor: pointer;
-}
 .ridetitle {
     color: #A0D751;
     font-size: 20px;

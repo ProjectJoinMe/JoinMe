@@ -44,18 +44,17 @@
             <div class="ride" *ngFor="let ride of rides" (click)="goToDetails(ride)">
                 <div>
                     <!-- TODO display year when it's not the current year -->
-                    <span class="ridetitle">{{ ride.departureDateTime | date:'EEEE - d. MMMM' }} </span> <span
-                        class="ridetitle">{{ ride.departureDateTime | date:'HH:mm' }}</span>
+                    <span>{{ ride.departureDateTime | date:'EEEE - d. MMMM' }} </span>
+                    <span class="ridetitle">{{ ride.departureDateTime | date:'HH:mm' }}</span>
                 </div>
                 <div>
-                    <span>{{ ride.start }}</span> - <span>{{ ride.destination }}</span><span
-                        *ngIf="ride.returnDepartureDateTime"> und zurück</span>
+                    <span>{{ ride.start }}</span> - <span>{{ ride.destination }}</span>
+                    <span *ngIf="ride.returnDepartureDateTime"> und zurück</span>
                 </div>
                 <div>
                     <span>Freie Plätze: </span><span>{{ ride.maxPassengers }}</span>
                 </div>
                 <br>
-                <input type="button" class="btn" value="Bearbeiten" [routerLink]=" ['myRidesUpdate']">
             </div>
         </div>
         <br>
