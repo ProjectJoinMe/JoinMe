@@ -2,3 +2,6 @@
 td{
     width: auto;
 }
+div.inner{
+    width: 50%;
+}

@@ -9,3 +9,6 @@ small{
     font-size: x-small;
     width: auto;
 }
+div.inner{
+    width: 50%;
+}

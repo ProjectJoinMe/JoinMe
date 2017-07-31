@@ -23,6 +23,7 @@ import {CreateRideComponent} from "./rides/create_ride/CreateRideComponent";
 import {HeaderMenuComponent} from "./headermenu/HeaderMenuComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
 import {MyRidesComponent} from "./profile/myrides_section/MyRidesComponent";
+import {MyRidesUpdateComponent} from "./profile/myrides_section/myrides_update/MyRidesUpdateComponent";
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
 import {SearchRideComponent} from "./rides/search_ride/SearchRideComponent";
@@ -57,6 +58,7 @@ type StoreType = {
         SearchRideComponent,
         ProfileComponent,
         MyRidesComponent,
+        MyRidesUpdateComponent,
         NoContentComponent
     ],
     imports: [

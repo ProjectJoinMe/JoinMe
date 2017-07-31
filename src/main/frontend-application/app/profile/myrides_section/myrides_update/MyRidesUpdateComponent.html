@@ -1,0 +1,38 @@
+<div id="content" class="main" style="text-align: center;">
+    <br>
+    <h1 class="component">Fahrt bearbeiten</h1>
+    <br/>
+
+    <div class="inner" *ngFor="let ride of rides">
+        <table>
+            <tr>
+                <td style="text-align: right" ><label>Abfahrtsort:</label></td>
+                <td><input type="text" value="{{ ride.start }}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right" > Zielort: </td>
+                <td><input type="text" value="{{ ride.destination }}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right" > Freie Plätze: </td>
+                <td><input type="number" value="{{ ride.maxPassengers }}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right" > Abfahrt: Datum / Zeit : </td>
+                <td><input type="date" value="{{ ride.departureDateTime | date:'dd.MM.yyyy' }}"></td>
+                <td><input type="time" value="{{ ride.departureDateTime | date:'HH:mm' }}"></td>
+            </tr>
+
+
+        </table>
+
+        <input type="button" class="btn" value="Speichern">
+        <!-- <input type="button" class="btn" value="Fahrt löschen"> -->
+
+
+
+    </div>
+
+
+    <br>
+</div>
