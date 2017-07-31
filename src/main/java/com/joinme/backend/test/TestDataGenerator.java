@@ -62,10 +62,23 @@ public class TestDataGenerator {
             ride.setDepartureDateTime(LocalDateTime.now().plus(3, ChronoUnit.DAYS));
             ride.setMaxPassengers(4);
             ride.setReturnDepartureDateTime(null);
-            ride.setNotes("");
+            ride.setNotes("Das ist eine testfahrt");
             ride.setCreationDateTime(LocalDateTime.now());
 
+            RideDto ride2 = new RideDto();
+            ride2.setProviderUsername(USERNAME);
+            ride2.setStart("Graz");
+            ride2.setDestination("Wien");
+            ride2.setDepartureDateTime(LocalDateTime.now().plus(3, ChronoUnit.DAYS));
+            ride2.setMaxPassengers(3);
+            ride2.setReturnDepartureDateTime(LocalDateTime.now().plus(5, ChronoUnit.DAYS));
+                ride2.setNotes("Das ist eine Testfahrt mit Rückfahrt und einer möglichst langen Beschreibung, damit man sieht wie das aussehen könnte." +
+                        "\nIch habe sogar einen Zeilenbruch eingefügt und schön langsam fällt mir nichts mehr ein" +
+                        "\n \nLG, Nicki");
+            ride2.setCreationDateTime(LocalDateTime.now());
+
             rideCreation.createRide(ride);
+            rideCreation.createRide(ride2);
         } else {
             logger.info("Skipping generation of test data as user \"" + USERNAME + "\" already exists");
         }

@@ -47,7 +47,7 @@ public class Ride implements Serializable {
     @Column
     private LocalDateTime returnDepartureDateTime;
 
-    @Column
+    @Column(length = 4000)
     private String notes;
 
     public Long getId() {
