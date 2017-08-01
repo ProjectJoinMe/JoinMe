@@ -76,7 +76,7 @@
                         <td class="first"><label>Uhrzeit:</label></td>
                         <td class="second"><input formControlName="returnDepartureHour" type="number" min="0" max="23"
                                                   step="1">&nbsp;:
-                            <input formControlName="returnDepartureMinute" type="number" min="0" max="59" step="1"></td>
+                            <input formControlName="returnDepartureMinute" type="number" min="0" max="55" step="5"></td>
                         <td class="third">
                             <small class="error-message" [hidden]="createRideForm.controls.returnDepartureHour.valid || (createRideForm.controls.returnDepartureHour.pristine && !submitted)
                                                    && createRideForm.controls.returnDepartureMinute.valid || (createRideForm.controls.returnDepartureMinute.pristine && !submitted)">
