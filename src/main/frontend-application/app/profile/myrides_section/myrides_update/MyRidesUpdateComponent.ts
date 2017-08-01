@@ -32,8 +32,8 @@ export class MyRidesUpdateComponent implements OnInit {
             });
 
         this.updateRideForm = this.formBuilder.group({
-            start: ["disabled: true",  [Validators.required]],
-            destination: ["disabled: true", [Validators.required]],
+            start: ["", [Validators.required]],
+            destination: ["", [Validators.required]],
             departureDate: ["", [Validators.required]],
             departureHour: ["", Validators.required],
             departureMinute: ["", Validators.required],
