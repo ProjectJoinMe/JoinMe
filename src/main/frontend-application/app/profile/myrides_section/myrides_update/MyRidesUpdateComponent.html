@@ -37,17 +37,17 @@
                 <tr>
                     <td class="first"><label>Ankunftsort:</label></td>
                     <td class="second">
-                        <input class="strechtInputField" formControlName="destination" value="{{ ride.destination }}"
-                               type="text">
+                        <input class="strechtInputField" formControlName="destination" type="text">
                     </td>
-
                 </tr>
             </table>
             <br>
             <table>
                 <tr>
                     <td><h2>Hinfahrt</h2></td>
-                    <td><input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
+                    <td>
+                        <input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"
+                               value="{{ride.returnDepartureDate}}"> Hin- und Rückfahrt
                     </td>
                 </tr>
                 <tr>
@@ -146,7 +146,7 @@
             <br/>
             <button type="submit" class="btn" [disabled]="submitDisabled">Speichern</button>
         </form>
-        <input type="button" class="btn" value="Abbrechen">
+        <input type="button" class="btn" value="Abbrechen" (click)="goToDetails(ride)">
     </div>
     <br>
 </div>

@@ -3,6 +3,7 @@ import {Ride} from "../../../rides/create_ride/Ride";
 import {Http} from "@angular/http";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Validators, FormGroup, FormBuilder, FormControl, FormArray} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'myRidesUpdate',
@@ -19,7 +20,8 @@ export class MyRidesUpdateComponent implements OnInit {
 
     constructor(private http: Http,
                 private formBuilder: FormBuilder,
-                private route: ActivatedRoute,) {
+                private route: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -93,6 +95,10 @@ export class MyRidesUpdateComponent implements OnInit {
                 error => {
                     // TODO error handling
                 });
+    }
+
+    goToDetails(ride: Ride) {
+        this.router.navigate(['/profile/myRides', ride.id]);
     }
 
 }
