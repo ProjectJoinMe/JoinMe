@@ -7,50 +7,57 @@
         <div *ngIf="ride">
             <table>
                 <tr>
-                    <td style="text-align: right"><label>Abfahrtsort:</label></td>
+                    <td style="text-align: right"><label style="width: auto">Abfahrtsort:</label></td>
                     <td><label>{{ ride.start }}</label></td>
                 </tr>
                 <tr>
-                    <td style="text-align: right"> Zielort:</td>
-                    <td><label> {{ ride.destination }}</label></td>
-                </tr>
-                <tr *ngIf="ride.returnDepartureDateTime">
-                    <h3>Hinfahrt</h3>
+                    <td style="text-align: right">Zielort:</td>
+                    <td><label style="width: auto"> {{ ride.destination }}</label></td>
                 </tr>
                 <tr>
-                    <td style="text-align: right"> Abfahrt:</td>
+                    <td style="text-align: right">Freie Plätze:</td>
+                    <td><label>{{ ride.maxPassengers }}</label></td>
+                </tr>
+                <tr *ngIf="ride.returnDepartureDateTime" >
+                    <td><h3>Hinfahrt</h3></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">Abfahrt:</td>
                     <td><label>{{ ride.departureDateTime | date:'dd.MM.yyyy' }}</label></td>
-                    <td><label>{{ ride.departureDateTime | date:'HH:mm' }}</label></td>
+                    <td style="padding-left: 5%"><label>{{ ride.departureDateTime | date:'HH:mm' }}</label></td>
                 </tr>
             </table>
+
             <div *ngIf="ride.returnDepartureDateTime">
                 <table>
                     <tr>
-                        <h3>Rückfahrt</h3>
+                        <td><h3>Rückfahrt</h3></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right"> Abfahrt:</td>
+                        <td style="text-align: right">Abfahrt:</td>
                         <td><label>{{ ride.returnDepartureDateTime | date:'dd.MM.yyyy' }}</label></td>
-                        <td><label>{{ ride.returnDepartureDateTime | date:'HH:mm' }}</label></td>
+                        <td style="padding-left: 5%"><label>{{ ride.returnDepartureDateTime | date:'HH:mm' }}</label></td>
                     </tr>
                 </table>
+                <br>
             </div>
-            <table>
-                <tr>
-                    <td style="text-align: right"> Freie Plätze:</td>
-                    <td><label>{{ ride.maxPassengers }}</label></td>
-                </tr>
+
+
+            <table style="width: 70%;">
+
                 <tr>
                     <!-- TODO make something else when there are no notes-->
-                    <td>Bemerkungen:</td>
-                    <td>
+                    <td style="text-align: left; width: 3%">Bemerkungen:</td>
+                    <td class="bemerkung">
                         <div *ngIf="ride.notes">{{ ride.notes }}</div>
                     </td>
-
                 </tr>
             </table>
+            <br>
             <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate(ride)">
             <input type="button" value="zurück" class="btn" [routerLink]=" ['../'] ">
         </div>
     </div>
+
+    <br>
 </div>
