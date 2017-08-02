@@ -1,5 +1,5 @@
 <div class="main"><!-- id="content"  style="text-align: center;" -->
-    <br><h1 class="component">Create Ride</h1>
+    <br><br><h1 class="component">Create Ride</h1>
     <br/>
 
     <div class="inner">
@@ -27,16 +27,16 @@
                     </td>
                 </tr>
             </table>
-            <br>
+            <hr noshade>
             <table>
                 <tr>
-                    <td><h2>Hinfahrt</h2></td>
+                    <td><label class="heading"><b>Hinfahrt</b></label></td>
                     <td><input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
                     </td>
                 </tr>
                 <tr>
                     <td class="first"><label>Abfahrtsdatum:</label></td>
-                    <td class="second"><input formControlName="departureDate" type="date" min=""></td>
+                    <td class="second"><input formControlName="departureDate" type="date" min="" style="width:100%"></td>
                     <td class="third">
                         <small class="error-message"
                                [hidden]="createRideForm.controls.departureDate.valid || (createRideForm.controls.departureDate.pristine && !submitted)">
@@ -60,11 +60,11 @@
             <div *ngIf="getReturnRide()">
                 <table>
                     <tr class="returnFormRow">
-                        <td><h2>Rückfahrt</h2></td>
+                        <td class="first"><label class="heading"><b>Rückfahrt</b></label></td>
                     </tr>
                     <tr class="returnFormRow">
                         <td class="first"><label>Abfahrtsdatum:</label></td>
-                        <td class="second"><input formControlName="returnDepartureDate" type="date" min=""></td>
+                        <td class="second"><input formControlName="returnDepartureDate" type="date" min="" style="width:100%"></td>
                         <td class="third">
                             <small class="error-message"
                                    [hidden]="createRideForm.controls.returnDepartureDate.valid || (createRideForm.controls.returnDepartureDate.pristine && !submitted)">
@@ -86,8 +86,7 @@
                     </tr>
                 </table>
             </div>
-            <br>
-            <br>
+            <hr noshade>
             <div>
                 <table>
                     <tr>
@@ -98,13 +97,14 @@
                     </tr>
                 </table>
             </div>
-            <br/>
-            <br/>
+            <hr noshade>
             <input type="checkbox" id="periodicRideCheckBox" formControlName="periodic"> regelmäßige Fahrt
             <br/>
-            <br/>
             <!-- TODO: automatically select the departure day  -->
-            <div *ngIf="getPeriodic()" class="days">
+            <div *ngIf="getPeriodic()">
+                <br/>
+            <div class="days">
+
                 <table>
                     <tr>
                         <td><input type="checkbox" [formControl]="createRideForm.controls['periodicDays'].controls[0]">Montag
@@ -135,12 +135,14 @@
                         </td>
                     </tr>
                 </table>
-            </div>
+            </div></div>
+            <hr noshade>
             <div>
-                Bemerkung (max 400 Zeichen)
+                <label>Bemerkung (max 400 Zeichen)</label>
+                <br>
                 <textarea formControlName="notes" rows="6" cols="50" maxlength="400"></textarea>
             </div>
-            <br/>
+            <hr noshade>
             <button type="submit" class="btn" [disabled]="submitDisabled">Fahrt erstellen</button>
         </form>
     </div>

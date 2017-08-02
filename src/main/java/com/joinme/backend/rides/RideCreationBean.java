@@ -1,7 +1,5 @@
 package com.joinme.backend.rides;
 
-import com.joinme.backend.accounts.entity.UserAccount;
-import com.joinme.backend.accounts.repository.UserAccountRepository;
 import com.joinme.backend.rides.converter.RideConverter;
 import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.entity.Ride;
@@ -11,9 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
-
-import static com.joinme.backend.rides.entity.Ride_.provider;
 
 @Component
 @Transactional
