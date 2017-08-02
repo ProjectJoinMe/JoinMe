@@ -1,1 +1,22 @@
+td.bemerkung{
+    width: 60%;
+    height: auto;
+    text-align: left;
+    align-self: left;
+    padding-left: 2%;
 
+}
+label {
+    text-align: left;
+    padding-left: 5%;
+
+}
+.inner{
+    width: 48%;
+}
+h3{
+    padding: 1%;
+    padding-top: 7%;
+    margin: 0%;
+    text-align: left;
+}
