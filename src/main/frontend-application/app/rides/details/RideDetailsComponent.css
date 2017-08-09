@@ -1,9 +1,9 @@
 td.bemerkung{
-    width: 60%;
+    width: auto;
     height: auto;
     text-align: left;
     align-self: left;
-    padding-left: 2%;
+
 
 }
 label {
@@ -13,10 +13,21 @@ label {
 }
 .inner{
     width: 48%;
+    min-width: 40em;
 }
 h3{
     padding: 1%;
     padding-top: 7%;
     margin: 0%;
     text-align: left;
+}
+
+td.first
+{
+    width: 25%;
+    text-align: right;
+}
+
+td.second {
+    width: 60%;
 }
