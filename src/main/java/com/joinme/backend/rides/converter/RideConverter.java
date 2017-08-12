@@ -28,6 +28,11 @@ public class RideConverter {
 
     public RideDto toDto(Ride entity) {
         RideDto rideDto = new RideDto();
+        setPropertiesOnDto(rideDto, entity);
+        return rideDto;
+    }
+
+    public void setPropertiesOnDto(RideDto rideDto, Ride entity) {
         rideDto.setId(entity.getId());
         rideDto.setStart(entity.getStart());
         rideDto.setDestination(entity.getDestination());
@@ -37,11 +42,15 @@ public class RideConverter {
         rideDto.setNotes(entity.getNotes());
         rideDto.setCreationDateTime(entity.getCreationDateTime());
         rideDto.setProviderUsername(entity.getProvider().getUsername());
-        return rideDto;
     }
 
     public Ride toEntity(RideDto rideDto) {
         Ride rideEntity = new Ride();
+        setPropertiesOnEntity(rideEntity, rideDto);
+        return rideEntity;
+    }
+
+    public void setPropertiesOnEntity(Ride rideEntity, RideDto rideDto) {
         rideEntity.setId(rideDto.getId());
         rideEntity.setStart(rideDto.getStart());
         rideEntity.setDestination(rideDto.getDestination());
@@ -51,6 +60,5 @@ public class RideConverter {
         rideEntity.setNotes(rideDto.getNotes());
         rideEntity.setCreationDateTime(rideDto.getCreationDateTime());
         rideEntity.setProvider(userAccountRepository.findByUsername(rideDto.getProviderUsername()));
-        return rideEntity;
     }
 }

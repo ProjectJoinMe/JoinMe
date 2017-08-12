@@ -51,7 +51,7 @@ export class CreateRideComponent implements OnInit {
                 start: <string> this.createRideForm.get("start").value,
                 destination: <string> this.createRideForm.get("destination").value,
                 departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getMinutes(), departureHour, departureMinute, 0, 0),
-                returnDepartureDateTime: new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getMinutes(), returnDepartureHour, returnDepartureMinute, 0, 0),
+                returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth() + 1, returnDepartureDate.getDay(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
                 maxPassengers: <number> this.createRideForm.get("maxPassengers").value,
                 notes: this.createRideForm.get("notes").value
             };
@@ -74,7 +74,7 @@ export class CreateRideComponent implements OnInit {
         return this.createRideForm.get("periodic").value;
     }
 
-    public getReturnRide() {
+    public getReturnRide(): boolean {
         return this.createRideForm.get("returnRide").value;
     }
 
