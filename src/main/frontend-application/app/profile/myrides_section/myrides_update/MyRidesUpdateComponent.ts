@@ -4,6 +4,7 @@ import {Http} from "@angular/http";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Validators, FormGroup, FormBuilder, FormControl, FormArray} from "@angular/forms";
 import {Router} from "@angular/router";
+import {DatePipe} from '@angular/common';
 
 @Component({
     selector: 'myRidesUpdate',
@@ -21,7 +22,8 @@ export class MyRidesUpdateComponent implements OnInit {
     constructor(private http: Http,
                 private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
@@ -44,6 +46,8 @@ export class MyRidesUpdateComponent implements OnInit {
             maxPassengers: ["", Validators.required],
             notes: [""],
         });
+
+
     }
 
     public updateRide() {
@@ -67,14 +71,14 @@ export class MyRidesUpdateComponent implements OnInit {
             };
             console.info(rideData);
             /**
-            this.http.post("api/rides/updateRide", rideData)
-                .subscribe(
-                    data => {
+             this.http.post("api/rides/updateRide", rideData)
+             .subscribe(
+             data => {
                         this.submitDisabled = false;
                         this.router.navigate(['/profile']);
                         // TODO success -> show confirmation message and move to login screen
                     },
-                    error => {
+             error => {
                         this.submitDisabled = false;
                         console.error("failed to create ride, TODO");
                     });
@@ -91,10 +95,29 @@ export class MyRidesUpdateComponent implements OnInit {
             .subscribe(
                 data => {
                     this.ride = data.json();
+                    this.updateRideForm.setValue({
+                            start: this.ride.start,
+                            destination:this.ride.destination,
+                            departureDate: this.datePipe.transform(this.ride.departureDateTime, 'yyyy-MM-dd'),
+                            departureHour: this.datePipe.transform(this.ride.departureDateTime, 'HH'),
+                            departureMinute: this.datePipe.transform(this.ride.departureDateTime, 'mm'),
+                            returnRide:  this.ride.returnDepartureDateTime !== undefined,
+                            returnDepartureDate: this.getDateComponent(this.ride.returnDepartureDateTime, 'yyyy-MM-dd'),
+                            returnDepartureHour: this.getDateComponent(this.ride.returnDepartureDateTime, 'HH'),
+                            returnDepartureMinute: this.getDateComponent(this.ride.returnDepartureDateTime, 'mm'),
+                            maxPassengers: this.ride.maxPassengers,
+                            notes: this.ride.notes
+                    });
                 },
                 error => {
                     // TODO error handling
                 });
+    }
+
+    private getDateComponent(date: Date, format: string) {
+        return date !== undefined
+            ? this.datePipe.transform(date, format)
+            : undefined;
     }
 
     goToDetails(ride: Ride) {
