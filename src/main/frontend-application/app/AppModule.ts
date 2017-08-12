@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {removeNgStyles, createNewHosts, createInputTransfer} from '@angularclass/hmr';
+import {DatePipe} from '@angular/common';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -77,7 +78,8 @@ type StoreType = {
     providers: [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,
         APP_PROVIDERS,
-        { provide: LOCALE_ID, useValue: "de-DE" }
+        { provide: LOCALE_ID, useValue: "de-DE" },
+        DatePipe
     ]
 })
 export class AppModule {
