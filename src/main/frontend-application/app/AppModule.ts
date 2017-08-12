@@ -30,6 +30,7 @@ import {SecurityStatus} from "./security/SecurityStatus";
 import {SearchRideComponent} from "./rides/search_ride/SearchRideComponent";
 import {DetailComponent} from "./+detail/detail.component";
 import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
+import {TimezonifyDatePipe} from "./util/time/TimezonifyDatePipe";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -63,7 +64,8 @@ type StoreType = {
         RideDetailsComponent,
         MyRidesComponent,
         MyRidesUpdateComponent,
-        NoContentComponent
+        NoContentComponent,
+        TimezonifyDatePipe
     ],
     imports: [
         // Angular
@@ -79,7 +81,8 @@ type StoreType = {
         ENV_PROVIDERS,
         APP_PROVIDERS,
         { provide: LOCALE_ID, useValue: "de-DE" },
-        DatePipe
+        DatePipe,
+        TimezonifyDatePipe
     ]
 })
 export class AppModule {

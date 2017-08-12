@@ -23,8 +23,8 @@
                 </tr>
                 <tr>
                     <td class="first">Abfahrt:</td>
-                    <td class="second"><label>{{ ride.departureDateTime | date:'dd.MM.yyyy' }}</label></td>
-                    <td style="padding-left: 5%"><label>{{ ride.departureDateTime | date:'HH:mm' }}</label></td>
+                    <td class="second"><label>{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label></td>
+                    <td style="padding-left: 5%"><label>{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label></td>
                 </tr>
             </table>
 
@@ -35,8 +35,8 @@
                     </tr>
                     <tr>
                         <td class="first">Abfahrt:</td>
-                        <td class="second"><label>{{ ride.returnDepartureDateTime | date:'dd.MM.yyyy' }}</label></td>
-                        <td style="padding-left: 5%"><label>{{ ride.returnDepartureDateTime | date:'HH:mm' }}</label></td>
+                        <td class="second"><label>{{ ride.returnDepartureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label></td>
+                        <td style="padding-left: 5%"><label>{{ ride.returnDepartureDateTime | timezonifyDate | date:'HH:mm' }}</label></td>
                     </tr>
                 </table>
                 <br>

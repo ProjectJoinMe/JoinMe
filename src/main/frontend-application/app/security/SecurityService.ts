@@ -21,7 +21,7 @@ export class SecurityService {
                     this.securityStatus.loggedIn = this.securityStatus.username !== null;
                 },
                 error => {
-                    this.securityStatus.username = undefined;
+                    this.securityStatus.username = null;
                     this.securityStatus.loggedIn = false;
                 });
     }

@@ -44,8 +44,8 @@
             <div class="ride" *ngFor="let ride of rides" (click)="goToDetails(ride)">
                 <div>
                     <!-- TODO display year when it's not the current year -->
-                    <span>{{ ride.departureDateTime | date:'EEEE - d. MMMM' }} </span>
-                    <span class="ridetitle">{{ ride.departureDateTime | date:'HH:mm' }}</span>
+                    <span>{{ ride.departureDateTime | timezonifyDate | date:'EEEE - d. MMMM' }} </span>
+                    <span class="ridetitle">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</span>
                 </div>
                 <div>
                     <span>{{ ride.start }}</span> - <span>{{ ride.destination }}</span>
