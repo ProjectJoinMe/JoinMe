@@ -5,38 +5,40 @@
 
     <div class="inner">
         <div *ngIf="ride">
-            <table style="width:100%">
+
+            <table style="width:50%; ">
                 <tr>
-                    <td class="first"><label style="width: auto">Abfahrtsort:</label></td>
-                    <td class="second"><label>{{ ride.start }}</label></td>
+                    <td ><label class="des">Abfahrtsort:</label></td>
+                    <td ><label class="cont">{{ ride.start }}</label></td>
                 </tr>
                 <tr>
-                    <td class="first">Zielort:</td>
-                    <td class="second"><label style="width: auto"> {{ ride.destination }}</label></td>
+                    <td ><label class="des">Zielort:</label></td>
+                    <td ><label class="cont"> {{ ride.destination }}</label></td>
                 </tr>
                 <tr>
-                    <td class="first">Freie Plätze:</td>
-                    <td class="second"><label>{{ ride.maxPassengers }}</label></td>
+                    <td ><label class="des">Freie Plätze:</label></td>
+                    <td ><label class="cont">{{ ride.maxPassengers }}</label></td>
                 </tr>
                 <tr *ngIf="ride.returnDepartureDateTime" >
-                    <td class="second"><h3>Hinfahrt</h3></td>
+                    <td ><h3>Hinfahrt</h3></td>
                 </tr>
                 <tr>
-                    <td class="first">Abfahrt:</td>
-                    <td class="second"><label>{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label></td>
-                    <td style="padding-left: 5%"><label>{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label></td>
+                    <td ><label class="des">Abfahrt:</label></td>
+                    <td ><label class="cont">{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label></td>
+                    <td ><label class="cont">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label></td>
                 </tr>
             </table>
 
+
             <div *ngIf="ride.returnDepartureDateTime">
-                <table>
+                <table style="width:50%;">
                     <tr>
                         <td><h3>Rückfahrt</h3></td>
                     </tr>
                     <tr>
-                        <td class="first">Abfahrt:</td>
-                        <td class="second"><label>{{ ride.returnDepartureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label></td>
-                        <td style="padding-left: 5%"><label>{{ ride.returnDepartureDateTime | timezonifyDate | date:'HH:mm' }}</label></td>
+                        <td ><label class="des">Abfahrt:</label></td>
+                        <td ><label class="cont">{{ ride.returnDepartureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label></td>
+                        <td ><label class="cont">{{ ride.returnDepartureDateTime | timezonifyDate | date:'HH:mm' }}</label></td>
                     </tr>
                 </table>
                 <br>
@@ -47,7 +49,7 @@
 
                 <tr>
                     <!-- TODO make something else when there are no notes-->
-                    <td class="first">Bemerkungen:</td>
+                    <td ><label class="des">Bemerkungen:</label></td>
                     <td class="bemerkung">
                         <div *ngIf="ride.notes" style="padding-left: 5%">{{ ride.notes }}</div>
                     </td>
@@ -55,8 +57,12 @@
                 </tr>
             </table>
             <br>
-            <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate(ride)">
-            <input type="button" value="zurück" class="btn" [routerLink]=" ['../'] ">
+
+            <div style="horiz-align: center;">
+                <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate(ride)">
+                <input type="button" value="zurück" class="btn" [routerLink]=" ['../'] ">
+            </div>
+
         </div>
     </div>
 
