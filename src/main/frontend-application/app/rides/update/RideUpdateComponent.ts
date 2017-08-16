@@ -16,6 +16,7 @@ import {TimezonifyDatePipe} from "../../util/time/TimezonifyDatePipe";
 export class RideUpdateComponent implements OnInit {
 
     public rideForm: FormGroup;
+    public currentDate: Date = new Date();
     public submitted: boolean = false;
     public submitDisabled: boolean = false;
     private ride: Ride;
@@ -53,9 +54,9 @@ export class RideUpdateComponent implements OnInit {
     }
 
     public updateRide() {
-        console.info("updating ride");
         this.submitted = true;
         if (this.rideForm.valid) {
+            console.info("updating ride");
             this.submitDisabled = true;
             let departureDate = new Date(this.rideForm.get("departureDate").value);
             let departureHour = <number> this.rideForm.get("departureHour").value;

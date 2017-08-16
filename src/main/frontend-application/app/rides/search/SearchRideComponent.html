@@ -19,7 +19,7 @@
                         <input formControlName="destination" type="text">
                     </td>
                     <td>
-                        <input formControlName="date" type="date" min="{{maxDateOfFilter | date:'yyyy-MM-dd'}}" >
+                        <input formControlName="date" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}" >
                     </td>
                     <td  style="padding: 3%">
                         <input type="submit" value="Suchen" [disabled]="submitDisabled" class="btn">

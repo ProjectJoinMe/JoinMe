@@ -15,6 +15,7 @@ import cloneWith = require("lodash/cloneWith");
 export class CreateRideComponent implements OnInit {
 
     public rideForm: FormGroup;
+    public currentDate: Date = new Date();
     public submitted: boolean = false;
     public submitDisabled: boolean = false;
 
@@ -24,9 +25,9 @@ export class CreateRideComponent implements OnInit {
     }
 
     public createRide() {
-        console.info("creating ride");
         this.submitted = true;
         if (this.rideForm.valid) {
+            console.info("creating ride");
             this.submitDisabled = true;
             this.rideForm.get("periodicDays");
             let periodicWeekDays: WeekDay[] = [];
