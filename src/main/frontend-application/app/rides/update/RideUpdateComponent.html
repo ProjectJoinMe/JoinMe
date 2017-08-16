@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td class="first"><label>Abfahrtsdatum:</label></td>
-                    <td class="second"><input formControlName="departureDate" type="date" min="" style="width:100%">
+                    <td class="second"><input formControlName="departureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}" style="width:100%">
                     </td>
                     <td class="third">
                         <small class="error-message"
@@ -67,7 +67,7 @@
                     </tr>
                     <tr class="returnFormRow">
                         <td class="first"><label>Abfahrtsdatum:</label></td>
-                        <td class="second"><input formControlName="returnDepartureDate" type="date" min=""
+                        <td class="second"><input formControlName="returnDepartureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}"
                                                   style="width:100%"></td>
                         <td class="third">
                             <small class="error-message"

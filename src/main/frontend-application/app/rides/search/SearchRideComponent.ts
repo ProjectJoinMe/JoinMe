@@ -15,7 +15,7 @@ import {Ride} from "../create/Ride";
 export class SearchRideComponent {
 
     public searchForm: FormGroup;
-    public maxDateOfFilter: Date = new Date();
+    public currentDate: Date = new Date();
     public submitted: boolean = false;
     public submitDisabled: boolean = false;
     public rides: Ride[];
