@@ -69,7 +69,7 @@ public class TestDataGenerator {
             ride2.setProviderUsername(USERNAME);
             ride2.setStart("Graz");
             ride2.setDestination("Wien");
-            ride2.setDepartureDateTime(LocalDateTime.now().plus(3, ChronoUnit.DAYS));
+            ride2.setDepartureDateTime(LocalDateTime.now().plus(40, ChronoUnit.DAYS));
             ride2.setMaxPassengers(3);
             ride2.setReturnDepartureDateTime(LocalDateTime.now().plus(5, ChronoUnit.DAYS));
                 ride2.setNotes("Das ist eine Testfahrt mit Rückfahrt und einer möglichst langen Beschreibung, damit man sieht wie das aussehen könnte." +
