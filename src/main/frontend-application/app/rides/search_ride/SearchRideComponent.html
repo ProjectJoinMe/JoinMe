@@ -4,32 +4,48 @@
     <br />
 
     <div class="inner">
-        <table style="width:auto; border: 3px;">
-            <tr>
-                <th>Zielort</th>
-                <th>Datum/Zeit</th>
-                <th colspan="2" style="width: auto; padding-left: 3%; padding-right: 3% ">Häufigkeit</th>
-            </tr>
-            <tr>
-                <td>
-                    <input formControlName="placeFilter" type="text">
-                </td>
-                <td>
-                    <input formControlName="dateTimeFilter" type="date" max="{{maxDateOfFilter | date:'yyyy-MM-dd'}}" >
-                </td>
-                <!-- Häufigkeit eher ins Filtern? -->
-                <td>
-                    <input type="radio" name="period" value="onetime"> Einmal
-                </td>
-                <td>
-                    <input type="radio" name="period" value="periodic"> Regelmäßig
-                </td>
-                <td  style="padding: 3%">
-                    <input type="button" value="Suchen" class="btn">
-                </td>
-            </tr>
-        </table>
-
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
+            <table style="width:auto; border: 3px;">
+                <tr>
+                    <th>von</th>
+                    <th>bis</th>
+                    <th>Datum</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input formControlName="start" type="text">
+                    </td>
+                    <td>
+                        <input formControlName="destination" type="text">
+                    </td>
+                    <td>
+                        <input formControlName="date" type="date" min="{{maxDateOfFilter | date:'yyyy-MM-dd'}}" >
+                    </td>
+                    <td  style="padding: 3%">
+                        <input type="submit" value="Suchen" [disabled]="submitDisabled" class="btn">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div>
+            <div class="ride" *ngFor="let ride of rides" (click)="goToDetails(ride)">
+                <div>
+                    <!-- TODO display year when it's not the current year -->
+                    <span>{{ ride.departureDateTime | timezonifyDate | date:'EEEE - d. MMMM' }} </span>
+                    <span class="ridetitle">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</span>
+                </div>
+                <div>
+                    <span>{{ ride.start }}</span> - <span>{{ ride.destination }}</span>
+                    <span *ngIf="ride.returnDepartureDateTime"> und zurück</span>
+                </div>
+                <div>
+                    <span>Freie Plätze: </span><span>{{ ride.maxPassengers }}</span>
+                </div>
+                <br>
+            </div>
+        </div>
+        <br>
     </div>
     <br />
 
