@@ -1,21 +1,21 @@
 import {Component, OnInit} from "@angular/core";
-import {Ride} from "../../../rides/create_ride/Ride";
+import {Ride} from "../create/Ride";
 import {Http} from "@angular/http";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Validators, FormGroup, FormBuilder, FormControl, FormArray} from "@angular/forms";
 import {Router} from "@angular/router";
 import {DatePipe} from '@angular/common';
-import {TimezonifyDatePipe} from "../../../util/time/TimezonifyDatePipe";
+import {TimezonifyDatePipe} from "../../util/time/TimezonifyDatePipe";
 
 @Component({
     selector: 'myRidesUpdate',
     providers: [],
-    styleUrls: ['./MyRidesUpdateComponent.css'],
-    templateUrl: './MyRidesUpdateComponent.html'
+    styleUrls: ['./RideUpdateComponent.css'],
+    templateUrl: './RideUpdateComponent.html'
 })
-export class MyRidesUpdateComponent implements OnInit {
+export class RideUpdateComponent implements OnInit {
 
-    public updateRideForm: FormGroup;
+    public rideForm: FormGroup;
     public submitted: boolean = false;
     public submitDisabled: boolean = false;
     private ride: Ride;
@@ -35,7 +35,7 @@ export class MyRidesUpdateComponent implements OnInit {
                 this.getRide(parseInt(params['id']));
             });
 
-        this.updateRideForm = this.formBuilder.group({
+        this.rideForm = this.formBuilder.group({
             start: ["", [Validators.required]],
             destination: ["", [Validators.required]],
             departureDate: ["", [Validators.required]],
@@ -55,40 +55,40 @@ export class MyRidesUpdateComponent implements OnInit {
     public updateRide() {
         console.info("updating ride");
         this.submitted = true;
-        if (this.updateRideForm.valid) {
+        if (this.rideForm.valid) {
             this.submitDisabled = true;
-            let departureDate = new Date(this.updateRideForm.get("departureDate").value);
-            let departureHour = <number> this.updateRideForm.get("departureHour").value;
-            let departureMinute = <number> this.updateRideForm.get("departureMinute").value;
-            let returnDepartureDate = new Date(this.updateRideForm.get("returnDepartureDate").value);
-            let returnDepartureHour = <number> this.updateRideForm.get("returnDepartureHour").value;
-            let returnDepartureMinute = <number> this.updateRideForm.get("returnDepartureMinute").value;
+            let departureDate = new Date(this.rideForm.get("departureDate").value);
+            let departureHour = <number> this.rideForm.get("departureHour").value;
+            let departureMinute = <number> this.rideForm.get("departureMinute").value;
+            let returnDepartureDate = new Date(this.rideForm.get("returnDepartureDate").value);
+            let returnDepartureHour = <number> this.rideForm.get("returnDepartureHour").value;
+            let returnDepartureMinute = <number> this.rideForm.get("returnDepartureMinute").value;
             let rideData: Ride = {
                 id: this.ride.id,
-                start: <string> this.updateRideForm.get("start").value,
-                destination: <string> this.updateRideForm.get("destination").value,
+                start: <string> this.rideForm.get("start").value,
+                destination: <string> this.rideForm.get("destination").value,
                 departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getDate(), departureHour, departureMinute, 0, 0),
                 returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getDate(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
-                maxPassengers: <number> this.updateRideForm.get("maxPassengers").value,
-                notes: this.updateRideForm.get("notes").value
+                maxPassengers: <number> this.rideForm.get("maxPassengers").value,
+                notes: this.rideForm.get("notes").value
             };
             console.info(rideData);
             this.http.post("api/rides/updateRide", rideData)
                 .subscribe(
                     data => {
                         this.submitDisabled = false;
-                        this.router.navigate(['/profile/myRides/' + this.ride.id]);
+                        this.router.navigate(['/rides', this.ride.id]);
                         // TODO success -> show confirmation message
                     },
                     error => {
                         this.submitDisabled = false;
-                        console.error("failed to create ride, TODO");
+                        console.error("failed to update ride, TODO");
                     });
         }
     }
 
     public getReturnRide() {
-        return this.updateRideForm.get("returnRide").value;
+        return this.rideForm.get("returnRide").value;
     }
 
     getRide(id: number): void {
@@ -98,7 +98,7 @@ export class MyRidesUpdateComponent implements OnInit {
                     this.ride = data.json();
                     var departureDateTime = this.timezonifyDatePipe.transform(this.ride.departureDateTime);
                     var returnDepartureDateTime = this.timezonifyDatePipe.transform(this.ride.returnDepartureDateTime);
-                    this.updateRideForm.setValue({
+                    this.rideForm.setValue({
                         start: this.ride.start,
                         destination: this.ride.destination,
                         departureDate: this.datePipe.transform(departureDateTime, 'yyyy-MM-dd'),
@@ -124,7 +124,7 @@ export class MyRidesUpdateComponent implements OnInit {
     }
 
     goToDetails(ride: Ride) {
-        this.router.navigate(['/profile/myRides', ride.id]);
+        this.router.navigate(['/rides', ride.id]);
     }
 
 }

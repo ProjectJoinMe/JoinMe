@@ -20,14 +20,14 @@ import {AboutComponent} from './about';
 import {NoContentComponent} from './no-content';
 import {RegistrationComponent} from "./registration/RegistrationComponent";
 import {LoginComponent} from "./login/LoginComponent";
-import {CreateRideComponent} from "./rides/create_ride/CreateRideComponent";
+import {CreateRideComponent} from "./rides/create/CreateRideComponent";
 import {HeaderMenuComponent} from "./headermenu/HeaderMenuComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
-import {MyRidesComponent} from "./profile/myrides_section/MyRidesComponent";
-import {MyRidesUpdateComponent} from "./profile/myrides_section/myrides_update/MyRidesUpdateComponent";
+import {MyRidesComponent} from "./profile/rides/MyRidesComponent";
+import {RideUpdateComponent} from "./rides/update/RideUpdateComponent";
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
-import {SearchRideComponent} from "./rides/search_ride/SearchRideComponent";
+import {SearchRideComponent} from "./rides/search/SearchRideComponent";
 import {DetailComponent} from "./+detail/detail.component";
 import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
 import {TimezonifyDatePipe} from "./util/time/TimezonifyDatePipe";
@@ -63,7 +63,7 @@ type StoreType = {
         ProfileComponent,
         RideDetailsComponent,
         MyRidesComponent,
-        MyRidesUpdateComponent,
+        RideUpdateComponent,
         NoContentComponent,
         TimezonifyDatePipe
     ],

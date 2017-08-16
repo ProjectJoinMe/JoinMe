@@ -45,14 +45,3 @@ div.days {
 .days input {
     margin-right: 3px;
 }
-
-label.heading {
-    font-size: 28px;
-}
-
-hr {
-    border-color: white;
-    background-color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
