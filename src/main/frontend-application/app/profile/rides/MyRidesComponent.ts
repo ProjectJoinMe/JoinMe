@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Ride} from "../../rides/create_ride/Ride";
+import {Ride} from "../../rides/create/Ride";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 
@@ -30,7 +30,7 @@ export class MyRidesComponent {
     }
 
     goToDetails(ride: Ride) {
-        this.router.navigate(['/profile/myRides', ride.id]);
+        this.router.navigate(['/rides', ride.id]);
     }
 
 }

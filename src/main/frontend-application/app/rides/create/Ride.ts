@@ -7,4 +7,5 @@ export interface Ride {
     returnDepartureDateTime: Date;
     maxPassengers: number;
     notes: string;
+    providerUsername?: string;
 }

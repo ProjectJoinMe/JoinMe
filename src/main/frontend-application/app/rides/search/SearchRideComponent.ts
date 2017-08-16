@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Http, URLSearchParams} from "@angular/http";
 import {SearchRequest} from "./SearchRequest";
-import {Ride} from "../create_ride/Ride";
+import {Ride} from "../create/Ride";
 
 @Component({
     selector: 'searchRide',
@@ -60,6 +60,10 @@ export class SearchRideComponent {
             destination: ["",],
             date: ["",],
         });
+    }
+
+    goToDetails(ride: Ride) {
+        this.router.navigate(['/rides', ride.id]);
     }
 
 }

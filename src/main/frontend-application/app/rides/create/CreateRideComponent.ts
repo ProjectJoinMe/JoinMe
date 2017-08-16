@@ -14,7 +14,7 @@ import cloneWith = require("lodash/cloneWith");
 })
 export class CreateRideComponent implements OnInit {
 
-    public createRideForm: FormGroup;
+    public rideForm: FormGroup;
     public submitted: boolean = false;
     public submitDisabled: boolean = false;
 
@@ -26,12 +26,12 @@ export class CreateRideComponent implements OnInit {
     public createRide() {
         console.info("creating ride");
         this.submitted = true;
-        if (this.createRideForm.valid) {
+        if (this.rideForm.valid) {
             this.submitDisabled = true;
-            this.createRideForm.get("periodicDays");
+            this.rideForm.get("periodicDays");
             let periodicWeekDays: WeekDay[] = [];
-            if (<boolean> this.createRideForm.get("periodic").value) {
-                let periodicDaysControl = <FormArray> this.createRideForm.get("periodicDays");
+            if (<boolean> this.rideForm.get("periodic").value) {
+                let periodicDaysControl = <FormArray> this.rideForm.get("periodicDays");
                 let weekDayControls: FormControl[] = <FormControl[]> periodicDaysControl.controls;
                 periodicWeekDays = weekDayControls.map((weekDayControl, index) => {
                     if (weekDayControl.value) {
@@ -41,19 +41,19 @@ export class CreateRideComponent implements OnInit {
                     }
                 }).filter((index) => index !== null);
             }
-            let departureDate = new Date(this.createRideForm.get("departureDate").value);
-            let departureHour = <number> this.createRideForm.get("departureHour").value;
-            let departureMinute = <number> this.createRideForm.get("departureMinute").value;
-            let returnDepartureDate = new Date(this.createRideForm.get("returnDepartureDate").value);
-            let returnDepartureHour = <number> this.createRideForm.get("returnDepartureHour").value;
-            let returnDepartureMinute = <number> this.createRideForm.get("returnDepartureMinute").value;
+            let departureDate = new Date(this.rideForm.get("departureDate").value);
+            let departureHour = <number> this.rideForm.get("departureHour").value;
+            let departureMinute = <number> this.rideForm.get("departureMinute").value;
+            let returnDepartureDate = new Date(this.rideForm.get("returnDepartureDate").value);
+            let returnDepartureHour = <number> this.rideForm.get("returnDepartureHour").value;
+            let returnDepartureMinute = <number> this.rideForm.get("returnDepartureMinute").value;
             let rideData: Ride = {
-                start: <string> this.createRideForm.get("start").value,
-                destination: <string> this.createRideForm.get("destination").value,
-                departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getMinutes(), departureHour, departureMinute, 0, 0),
-                returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth() + 1, returnDepartureDate.getDay(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
-                maxPassengers: <number> this.createRideForm.get("maxPassengers").value,
-                notes: this.createRideForm.get("notes").value
+                start: <string> this.rideForm.get("start").value,
+                destination: <string> this.rideForm.get("destination").value,
+                departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getDate(), departureHour, departureMinute, 0, 0),
+                returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getDate(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
+                maxPassengers: <number> this.rideForm.get("maxPassengers").value,
+                notes: this.rideForm.get("notes").value
             };
             console.info(rideData);
             this.http.post("api/rides/createRide", rideData)
@@ -71,15 +71,15 @@ export class CreateRideComponent implements OnInit {
     }
 
     public getPeriodic() {
-        return this.createRideForm.get("periodic").value;
+        return this.rideForm.get("periodic").value;
     }
 
     public getReturnRide(): boolean {
-        return this.createRideForm.get("returnRide").value;
+        return this.rideForm.get("returnRide").value;
     }
 
     ngOnInit() {
-        this.createRideForm = this.formBuilder.group({
+        this.rideForm = this.formBuilder.group({
             start: ["", [Validators.required]],
             destination: ["", [Validators.required]],
             departureDate: ["", [Validators.required]],

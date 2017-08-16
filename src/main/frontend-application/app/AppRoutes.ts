@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home';
-import { CreateRideComponent } from './rides/create_ride';
-import { SearchRideComponent } from './rides/search_ride';
+import { CreateRideComponent } from './rides/create';
+import { SearchRideComponent } from './rides/search';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 
@@ -9,8 +9,8 @@ import { DataResolver } from './AppResolver';
 import {RegistrationComponent} from "./registration/RegistrationComponent";
 import {LoginComponent} from "./login/LoginComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
-import {MyRidesComponent} from "./profile/myrides_section/MyRidesComponent";
-import {MyRidesUpdateComponent} from "./profile/myrides_section/myrides_update/MyRidesUpdateComponent";
+import {MyRidesComponent} from "./profile/rides/MyRidesComponent";
+import {RideUpdateComponent} from "./rides/update/RideUpdateComponent";
 import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
 
 
@@ -23,8 +23,8 @@ export const ROUTES: Routes = [
   { path: 'searchRide',  component: SearchRideComponent },
   { path: 'profile',  component: ProfileComponent },
   { path: 'profile/myRides',  component: MyRidesComponent },
-  { path: 'profile/myRides/:id',  component: RideDetailsComponent },
-  { path: 'profile/myRides/myRidesUpdate/:id',  component: MyRidesUpdateComponent },
+  { path: 'rides/:id',  component: RideDetailsComponent },
+  { path: 'rides/:id/update',  component: RideUpdateComponent },
   { path: 'about', component: AboutComponent },
   { path: '**',    component: NoContentComponent },
 ];

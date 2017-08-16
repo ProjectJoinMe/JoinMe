@@ -161,3 +161,15 @@ h2 {
 label {
   color: white;
 }
+
+label.heading {
+  font-size: 28px;
+}
+
+/* Separators */
+hr {
+  border-color: white;
+  background-color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
