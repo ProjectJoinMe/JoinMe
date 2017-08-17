@@ -17,6 +17,7 @@ label.cont {
 }
 
 .inner{
+    text-align: left;
     width: 48%;
     min-width: 40em;
 }
@@ -28,4 +29,13 @@ h3{
 }
 td{
     width: 15%;
+}
+
+table {
+    width: 100%;
+}
+
+div.myRide {
+    text-align: center;
+    width: 100%;
 }

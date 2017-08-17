@@ -1,10 +1,10 @@
-<div id="content" class="main" style="text-align: center;">
+<div id="content" class="main">
     <br>
     <h1 class="component">Fahrt bearbeiten</h1>
     <br/>
 
     <div class="inner" *ngIf="ride">
-        <form [formGroup]="rideForm" (ngSubmit)="updateRide()" style="text-align: center">
+        <form [formGroup]="rideForm" (ngSubmit)="updateRide()">
             <table>
                 <tr>
                     <td class="first"><label>Abfahrtsort:</label></td>
@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td class="first"><label>Abfahrtsdatum:</label></td>
-                    <td class="second"><input formControlName="departureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}" style="width:100%">
+                    <td class="second"><input class="date" formControlName="departureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}">
                     </td>
                     <td class="third">
                         <small class="error-message"
@@ -67,8 +67,7 @@
                     </tr>
                     <tr class="returnFormRow">
                         <td class="first"><label>Abfahrtsdatum:</label></td>
-                        <td class="second"><input formControlName="returnDepartureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}"
-                                                  style="width:100%"></td>
+                        <td class="second"><input class="date" formControlName="returnDepartureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}"></td>
                         <td class="third">
                             <small class="error-message"
                                    [hidden]="rideForm.controls.returnDepartureDate.valid || (rideForm.controls.returnDepartureDate.pristine && !submitted)">

@@ -1,11 +1,11 @@
-<div id="content" class="main" style="text-align: center;">
+<div id="content" class="main">
     <br />
     <h1 class="component">Fahrt suchen</h1>
     <br />
 
     <div class="inner">
         <form [formGroup]="searchForm" (ngSubmit)="search()">
-            <table style="width:auto; border: 3px;">
+            <table>
                 <tr>
                     <th>von</th>
                     <th>bis</th>
@@ -21,7 +21,7 @@
                     <td>
                         <input formControlName="date" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}" >
                     </td>
-                    <td  style="padding: 3%">
+                    <td>
                         <input type="submit" value="Suchen" [disabled]="submitDisabled" class="btn">
                     </td>
                 </tr>
@@ -47,6 +47,7 @@
         </div>
         <br>
     </div>
-    <br />
+    <br>
+
 
 </div>

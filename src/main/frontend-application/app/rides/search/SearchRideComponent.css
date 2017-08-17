@@ -4,4 +4,9 @@ td{
 }
 div.inner{
     width: 50%;
+    min-width: 650px;
+}
+
+div.main {
+    text-align: center;
 }

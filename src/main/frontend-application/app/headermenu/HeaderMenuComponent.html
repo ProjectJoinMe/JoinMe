@@ -8,7 +8,7 @@ BITTE NICHT BENUTZEN
 <div>
     <header class="codrops-header">
         <br/><br/><br/>
-        <h1 style="font-size:500%">JoinMe</h1>
+        <h1 class="joinme">JoinMe</h1>
     </header>
     <nav id="bt-menu" class="bt-menu">
         <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
@@ -33,7 +33,7 @@ BITTE NICHT BENUTZEN
                     Fahrt erstellen
                 </a>
             </li>
-            <li *ngIf="!securityStatus.loggedIn" style="margin-left: 200px;">
+            <li *ngIf="!securityStatus.loggedIn">
                 <a [routerLink]=" ['./register'] ">
                     Registrieren
                 </a>

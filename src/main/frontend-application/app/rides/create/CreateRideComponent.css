@@ -4,6 +4,7 @@ div.main {
     padding-bottom: 20px;
 }
 div.inner {
+    text-align: center;
     width: 50%;
     min-width: 350px;
     padding: 1%;
@@ -44,4 +45,8 @@ div.days {
 
 .days input {
     margin-right: 3px;
+}
+
+textarea {
+    width: 100%;
 }
