@@ -3,5 +3,5 @@ package com.joinme.backend.rides;
 import com.joinme.backend.rides.dto.RideDto;
 
 public interface RideCreation {
-    void createRide(RideDto ride);
+    RideDto createRide(RideDto ride);
 }

@@ -9,21 +9,25 @@
             <table>
                 <tr>
                     <td class="first"><label>Abfahrtsort:</label></td>
-                    <td class="second"><input class="strechtInputField" formControlName="start" type="text"></td>
+                    <td class="second">
+                        <maps-autocomplete-place [formGroup]="rideForm" [name]="'start'"></maps-autocomplete-place>
+                    </td>
                     <td class="third">
                         <small class="error-message"
-                               [hidden]="rideForm.controls.start.valid || (rideForm.controls.start.pristine && !submitted)">
-                            Bitte einen Abfahrtsort angeben.
+                               [hidden]="(rideForm.controls.start.valid && rideForm.controls.startPlaceId.valid) || (rideForm.controls.start.pristine && !submitted)">
+                            Bitte einen Abfahrtsort auswählen.
                         </small>
                     </td>
                 </tr>
                 <tr>
                     <td class="first"><label>Ankunftsort:</label></td>
-                    <td class="second"><input class="strechtInputField" formControlName="destination" type="text"></td>
+                    <td class="second">
+                        <maps-autocomplete-place [formGroup]="rideForm" [name]="'destination'"></maps-autocomplete-place>
+                    </td>
                     <td class="third">
                         <small class="error-message"
-                               [hidden]="rideForm.controls.destination.valid || (rideForm.controls.destination.pristine && !submitted)">
-                            Bitte einen Ankunftsort angeben.
+                               [hidden]="(rideForm.controls.destination.valid && rideForm.controls.destinationPlaceId.valid) || (rideForm.controls.destination.pristine && !submitted)">
+                            Bitte einen Ankunftsort auswählen.
                         </small>
                     </td>
                 </tr>

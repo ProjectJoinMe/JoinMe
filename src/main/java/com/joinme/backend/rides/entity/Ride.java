@@ -31,7 +31,17 @@ public class Ride implements Serializable {
     @Column(length = 4000)
     @NotNull
     @Size(min = 1, max = 4000)
+    private String startPlaceId;
+
+    @Column(length = 4000)
+    @NotNull
+    @Size(min = 1, max = 4000)
     private String destination;
+
+    @Column(length = 4000)
+    @NotNull
+    @Size(min = 1, max = 4000)
+    private String destinationPlaceId;
 
     @Column(nullable = false)
     private LocalDateTime creationDateTime;
@@ -120,5 +130,21 @@ public class Ride implements Serializable {
 
     public void setCreationDateTime(LocalDateTime creationDateTime) {
         this.creationDateTime = creationDateTime;
+    }
+
+    public String getDestinationPlaceId() {
+        return destinationPlaceId;
+    }
+
+    public void setDestinationPlaceId(String destinationPlaceId) {
+        this.destinationPlaceId = destinationPlaceId;
+    }
+
+    public String getStartPlaceId() {
+        return startPlaceId;
+    }
+
+    public void setStartPlaceId(String startPlaceId) {
+        this.startPlaceId = startPlaceId;
     }
 }

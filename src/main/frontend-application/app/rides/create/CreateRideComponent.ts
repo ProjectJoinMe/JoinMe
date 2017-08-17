@@ -1,10 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {Ride} from "./Ride";
-import {Validators, FormGroup, FormBuilder, FormControl, FormArray} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Http} from "@angular/http";
-import {Router} from "@angular/router";
 import {WeekDay} from "../WeekDay";
-import cloneWith = require("lodash/cloneWith");
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'createRide',
@@ -24,12 +23,31 @@ export class CreateRideComponent implements OnInit {
                 private http: Http) {
     }
 
+    ngOnInit() {
+        this.rideForm = this.formBuilder.group({
+            start: ["", [Validators.required]],
+            startPlaceId: ["", [Validators.required]],
+            destination: ["", [Validators.required]],
+            destinationPlaceId: ["", [Validators.required]],
+            departureDate: ["", [Validators.required]],
+            departureHour: ["", Validators.required],
+            departureMinute: ["", Validators.required],
+            returnRide: [""],
+            returnDepartureDate: [""],
+            returnDepartureHour: [""],
+            returnDepartureMinute: [""],
+            periodic: [""],
+            maxPassengers: ["", Validators.required],
+            notes: [""],
+            periodicDays: this.formBuilder.array([false, false, false, false, false, false, false])
+        });
+    }
+
     public createRide() {
         this.submitted = true;
         if (this.rideForm.valid) {
             console.info("creating ride");
             this.submitDisabled = true;
-            this.rideForm.get("periodicDays");
             let periodicWeekDays: WeekDay[] = [];
             if (<boolean> this.rideForm.get("periodic").value) {
                 let periodicDaysControl = <FormArray> this.rideForm.get("periodicDays");
@@ -50,7 +68,9 @@ export class CreateRideComponent implements OnInit {
             let returnDepartureMinute = <number> this.rideForm.get("returnDepartureMinute").value;
             let rideData: Ride = {
                 start: <string> this.rideForm.get("start").value,
+                startPlaceId: <string> this.rideForm.get("startPlaceId").value,
                 destination: <string> this.rideForm.get("destination").value,
+                destinationPlaceId: <string> this.rideForm.get("destinationPlaceId").value,
                 departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getDate(), departureHour, departureMinute, 0, 0),
                 returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getDate(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
                 maxPassengers: <number> this.rideForm.get("maxPassengers").value,
@@ -61,8 +81,9 @@ export class CreateRideComponent implements OnInit {
                 .subscribe(
                     data => {
                         this.submitDisabled = false;
-                        this.router.navigate(['/profile']);
-                        // TODO success -> show confirmation message and move to login screen
+                        let createdRide: Ride = data.json();
+                        this.router.navigate(['/rides', createdRide.id]);
+                        // TODO success -> show confirmation message
                     },
                     error => {
                         this.submitDisabled = false;
@@ -77,23 +98,5 @@ export class CreateRideComponent implements OnInit {
 
     public getReturnRide(): boolean {
         return this.rideForm.get("returnRide").value;
-    }
-
-    ngOnInit() {
-        this.rideForm = this.formBuilder.group({
-            start: ["", [Validators.required]],
-            destination: ["", [Validators.required]],
-            departureDate: ["", [Validators.required]],
-            departureHour: ["", Validators.required],
-            departureMinute: ["", Validators.required],
-            returnRide: [""],
-            returnDepartureDate: [""],
-            returnDepartureHour: [""],
-            returnDepartureMinute: [""],
-            periodic: [""],
-            maxPassengers: ["", Validators.required],
-            notes: [""],
-            periodicDays: this.formBuilder.array([false, false, false, false, false, false, false])
-        });
     }
 }

@@ -88,6 +88,7 @@
     "@types/source-map": "~0.1.27",
     "@types/uglify-js": "~2.0.27",
     "@types/webpack": "~1.12.34",
+    "@types/googlemaps": "3.26.19",
     "angular2-template-loader": "~0.6.0",
     "awesome-typescript-loader": "2.2.4",
     "codelyzer": "~1.0.0-beta.2",
