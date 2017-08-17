@@ -38,7 +38,9 @@ export class RideUpdateComponent implements OnInit {
 
         this.rideForm = this.formBuilder.group({
             start: ["", [Validators.required]],
+            startPlaceId: ["", [Validators.required]],
             destination: ["", [Validators.required]],
+            destinationPlaceId: ["", [Validators.required]],
             departureDate: ["", [Validators.required]],
             departureHour: ["", Validators.required],
             departureMinute: ["", Validators.required],
@@ -49,8 +51,6 @@ export class RideUpdateComponent implements OnInit {
             maxPassengers: ["", Validators.required],
             notes: [""],
         });
-
-
     }
 
     public updateRide() {
@@ -67,7 +67,9 @@ export class RideUpdateComponent implements OnInit {
             let rideData: Ride = {
                 id: this.ride.id,
                 start: <string> this.rideForm.get("start").value,
+                startPlaceId: <string> this.rideForm.get("startPlaceId").value,
                 destination: <string> this.rideForm.get("destination").value,
+                destinationPlaceId: <string> this.rideForm.get("destinationPlaceId").value,
                 departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getDate(), departureHour, departureMinute, 0, 0),
                 returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getDate(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
                 maxPassengers: <number> this.rideForm.get("maxPassengers").value,
@@ -101,7 +103,9 @@ export class RideUpdateComponent implements OnInit {
                     var returnDepartureDateTime = this.timezonifyDatePipe.transform(this.ride.returnDepartureDateTime);
                     this.rideForm.setValue({
                         start: this.ride.start,
+                        startPlaceId: this.ride.startPlaceId,
                         destination: this.ride.destination,
+                        destinationPlaceId: this.ride.destinationPlaceId,
                         departureDate: this.datePipe.transform(departureDateTime, 'yyyy-MM-dd'),
                         departureHour: this.datePipe.transform(departureDateTime, 'HH'),
                         departureMinute: this.datePipe.transform(departureDateTime, 'mm'),

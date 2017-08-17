@@ -1,0 +1,8 @@
+<div [formGroup]="formGroup">
+  <input class="mapsAutocompleteTextfield"
+         formControlName="{{ name }}"
+         id="maps-autocomplete-textfield-{{ name }}"
+         type="text"
+         (change)="onPlaceTextChanged()"
+  >
+</div>
