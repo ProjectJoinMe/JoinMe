@@ -21,9 +21,10 @@ public class RideCreationBean implements RideCreation {
     private RideConverter rideConverter;
 
     @Override
-    public void createRide(RideDto ride) {
+    public RideDto createRide(RideDto ride) {
         ride.setCreationDateTime(LocalDateTime.now());
         Ride rideEntity = rideConverter.toEntity(ride);
         rideRepository.save(rideEntity);
+        return rideConverter.toDto(rideEntity);
     }
 }

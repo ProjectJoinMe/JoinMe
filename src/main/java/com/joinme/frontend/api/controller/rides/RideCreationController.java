@@ -2,7 +2,6 @@ package com.joinme.frontend.api.controller.rides;
 
 import com.joinme.backend.rides.RideCreation;
 import com.joinme.backend.rides.dto.RideDto;
-import com.joinme.backend.rides.entity.Ride;
 import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,8 +22,8 @@ public class RideCreationController {
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/rides/createRide", method = RequestMethod.POST)
     @ResponseBody
-    public void createRide(@Valid @RequestBody RideDto ride) {
+    public RideDto createRide(@Valid @RequestBody RideDto ride) {
         ride.setProviderUsername(SecurityUtil.getCurrentUsername());
-        rideCreation.createRide(ride);
+        return rideCreation.createRide(ride);
     }
 }

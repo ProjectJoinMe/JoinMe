@@ -24,8 +24,14 @@ public class RideDto implements Serializable {
     private String start;
 
     @NotNull
+    private String startPlaceId;
+
+    @NotNull
     @Size(min = 1, max = 4000)
     private String destination;
+
+    @NotNull
+    private String destinationPlaceId;
 
     private LocalDateTime creationDateTime;
 
@@ -109,5 +115,21 @@ public class RideDto implements Serializable {
 
     public void setProviderUsername(String providerUsername) {
         this.providerUsername = providerUsername;
+    }
+
+    public String getDestinationPlaceId() {
+        return destinationPlaceId;
+    }
+
+    public void setDestinationPlaceId(String destinationPlaceId) {
+        this.destinationPlaceId = destinationPlaceId;
+    }
+
+    public String getStartPlaceId() {
+        return startPlaceId;
+    }
+
+    public void setStartPlaceId(String startPlaceId) {
+        this.startPlaceId = startPlaceId;
     }
 }

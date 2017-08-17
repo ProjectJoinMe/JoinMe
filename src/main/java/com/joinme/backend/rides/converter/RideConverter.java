@@ -35,7 +35,9 @@ public class RideConverter {
     public void setPropertiesOnDto(RideDto rideDto, Ride entity) {
         rideDto.setId(entity.getId());
         rideDto.setStart(entity.getStart());
+        rideDto.setStartPlaceId(entity.getStartPlaceId());
         rideDto.setDestination(entity.getDestination());
+        rideDto.setDestinationPlaceId(entity.getDestinationPlaceId());
         rideDto.setDepartureDateTime(entity.getDepartureDateTime());
         rideDto.setMaxPassengers(entity.getMaxPassengers());
         rideDto.setReturnDepartureDateTime(entity.getReturnDepartureDateTime());
@@ -53,7 +55,9 @@ public class RideConverter {
     public void setPropertiesOnEntity(Ride rideEntity, RideDto rideDto) {
         rideEntity.setId(rideDto.getId());
         rideEntity.setStart(rideDto.getStart());
+        rideEntity.setStartPlaceId(rideDto.getStartPlaceId());
         rideEntity.setDestination(rideDto.getDestination());
+        rideEntity.setDestinationPlaceId(rideDto.getDestinationPlaceId());
         rideEntity.setDepartureDateTime(rideDto.getDepartureDateTime());
         rideEntity.setMaxPassengers(rideDto.getMaxPassengers());
         rideEntity.setReturnDepartureDateTime(rideDto.getReturnDepartureDateTime());
