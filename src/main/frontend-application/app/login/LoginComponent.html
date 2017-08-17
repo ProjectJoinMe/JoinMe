@@ -5,7 +5,7 @@
 
   <div class="inner">
 
-  <form [formGroup]="loginForm" (ngSubmit)="login()" style="text-align: center">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
 
     <table>
       <tr>
@@ -13,7 +13,7 @@
         <td><input formControlName="username" type="text"></td>
       </tr>
       <tr>
-        <td style="text-align: right"><label>Passwort:</label></td>
+        <td><label>Passwort:</label></td>
         <td><input formControlName="password" type="password"></td>
       </tr>
       <tr>

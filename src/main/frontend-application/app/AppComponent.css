@@ -36,6 +36,10 @@ h1.component {
   text-align: center;
 }
 
+h1.joinme {
+  font-size: 500%;
+}
+
 span.active {
   background-color: gray;
 }
@@ -120,6 +124,7 @@ img.flogo {
 }
 
 div.main {
+  text-align: center;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -166,10 +171,27 @@ label.heading {
   font-size: 28px;
 }
 
+input.date {
+  width: 100%;
+}
+
 /* Separators */
 hr {
   border-color: white;
   background-color: white;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+@media only screen and (max-device-width: 480px){
+
+  /*
+      Hier kommt das css für Devices unter 480px Breite (Handys) hin.
+      z.B.:
+
+      div.inner {
+          width: 90%;
+      }
+  */
+
 }
