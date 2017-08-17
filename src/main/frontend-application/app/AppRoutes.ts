@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
   { path: 'login',  component: LoginComponent },
   { path: 'createRide',  component: CreateRideComponent },
   { path: 'searchRide',  component: SearchRideComponent },
-  { path: 'profile',  component: ProfileComponent },
+  { path: 'profile/:username',  component: ProfileComponent },
   { path: 'profile/myRides',  component: MyRidesComponent },
   { path: 'rides/:id',  component: RideDetailsComponent },
   { path: 'rides/:id/update',  component: RideUpdateComponent },

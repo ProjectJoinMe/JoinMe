@@ -1,16 +1,56 @@
 <div id="content" class="main">
-  <br>
-  <h1 class="component">Mein Profil</h1>
-  <br/>
+    <br>
+    <h1 class="component">Mein Profil</h1>
+    <br/>
 
-  <div class="inner">
-    <table>
-      <tr>
-        <td>
-          <input type="button" value="Meine Fahrten" class="btn" [routerLink]=" ['myRides'] ">
-        </td>
-      </tr>
-    </table>
-  </div>
-  <br>
+    <div class="inner">
+        <div style="text-align: center">
+            Test2
+        </div>
+        <div *ngIf="userProfile">
+            <table>
+                <tr>
+                    <td>
+                        Username:
+                    </td>
+                    <td>
+                        {{userProfile.username}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E-Mail:
+                    </td>
+                    <td>
+                        {{userProfile.email}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Geburtsdatum:
+                    </td>
+                    <td>
+                        {{userProfile.dateOfBirth}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Geschlecht:
+                    </td>
+                    <td>
+                        {{userProfile.gender}}
+                    </td>
+                </tr>
+
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <input type="button" value="Meine Fahrten" class="btn" [routerLink]=" ['myRides'] ">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
 </div>
