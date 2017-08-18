@@ -45,7 +45,7 @@
                     &nbsp;
                 </li>
                 <li *ngIf="securityStatus.loggedIn">
-                    <a [routerLink]=" ['./profile'] ">
+                    <a [routerLink]=" ['./profile/' + securityStatus.username]">
                         Mein Profil
                     </a>
                 </li>
