@@ -32,6 +32,7 @@ import {DetailComponent} from "./+detail/detail.component";
 import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
 import {TimezonifyDatePipe} from "./util/time/TimezonifyDatePipe";
 import {MapsAutocompletePlaceComponent} from "./maps/autocomplete/MapsAutocompletePlaceComponent";
+import {MapsDisplayRouteComponent} from "./maps/route/MapsDisplayRouteComponent";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -67,7 +68,8 @@ type StoreType = {
         RideUpdateComponent,
         NoContentComponent,
         TimezonifyDatePipe,
-        MapsAutocompletePlaceComponent
+        MapsAutocompletePlaceComponent,
+        MapsDisplayRouteComponent
     ],
     imports: [
         // Angular
