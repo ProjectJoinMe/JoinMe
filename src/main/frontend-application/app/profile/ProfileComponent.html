@@ -4,7 +4,6 @@
     <br/>
 
     <div class="inner">
-        </div>
         <div *ngIf="userProfile">
             <table>
                 <tr>
@@ -45,6 +44,9 @@
                 <tr>
                     <td>
                         <input type="button" value="Meine Fahrten" class="btn" [routerLink]=" ['myRides'] ">
+                    </td>
+                    <td>
+                        <input type="button" value="Profil bearbeiten" class="btn" [routerLink]="['edit']">
                     </td>
                 </tr>
             </table>

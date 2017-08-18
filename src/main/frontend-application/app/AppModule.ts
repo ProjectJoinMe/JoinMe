@@ -23,6 +23,7 @@ import {LoginComponent} from "./login/LoginComponent";
 import {CreateRideComponent} from "./rides/create/CreateRideComponent";
 import {HeaderMenuComponent} from "./headermenu/HeaderMenuComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
+import {ProfileEditComponent} from "./profile/edit/ProfileEditComponent";
 import {MyRidesComponent} from "./profile/rides/MyRidesComponent";
 import {RideUpdateComponent} from "./rides/update/RideUpdateComponent";
 import {SecurityService} from "./security/SecurityService";
@@ -69,7 +70,8 @@ type StoreType = {
         NoContentComponent,
         TimezonifyDatePipe,
         MapsAutocompletePlaceComponent,
-        MapsDisplayRouteComponent
+        MapsDisplayRouteComponent,
+        ProfileEditComponent
     ],
     imports: [
         // Angular
