@@ -58,7 +58,9 @@ public class TestDataGenerator {
             RideDto ride = new RideDto();
             ride.setProviderUsername(USERNAME);
             ride.setStart("Groß Sankt Florian");
+            ride.setStartPlaceId("ChIJe2nUKqC4b0cRwGfmLVeXAAQ");
             ride.setDestination("HTBLA Kaindorf");
+            ride.setDestinationPlaceId("ChIJ1wvjNMCkb0cR3kRkVkLEB7Y");
             ride.setDepartureDateTime(LocalDateTime.now().plus(3, ChronoUnit.DAYS));
             ride.setMaxPassengers(4);
             ride.setReturnDepartureDateTime(null);
@@ -68,7 +70,9 @@ public class TestDataGenerator {
             RideDto ride2 = new RideDto();
             ride2.setProviderUsername(USERNAME);
             ride2.setStart("Graz");
+            ride2.setStartPlaceId("ChIJu2UwF4c1bkcRm93f0tGKjv4");
             ride2.setDestination("Wien");
+            ride2.setDestinationPlaceId("ChIJn8o2UZ4HbUcRRluiUYrlwv0");
             ride2.setDepartureDateTime(LocalDateTime.now().plus(40, ChronoUnit.DAYS));
             ride2.setMaxPassengers(3);
             ride2.setReturnDepartureDateTime(LocalDateTime.now().plus(5, ChronoUnit.DAYS));
