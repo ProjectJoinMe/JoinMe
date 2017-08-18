@@ -47,9 +47,7 @@
                 <br>
             </div>
 
-
             <table>
-
                 <tr>
                     <!-- TODO make something else when there are no notes-->
                     <td><label class="des">Bemerkungen:</label></td>
@@ -60,6 +58,10 @@
                 </tr>
             </table>
             <br>
+
+            <div *ngIf="ride.startPlaceId && ride.destinationPlaceId">
+                <maps-ride-route [ride]="ride"></maps-ride-route>
+            </div>
 
             <div *ngIf="isMyRide()" class="myRide">
                 <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate()">
