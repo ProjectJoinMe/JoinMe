@@ -9,6 +9,7 @@ import { DataResolver } from './AppResolver';
 import {RegistrationComponent} from "./registration/RegistrationComponent";
 import {LoginComponent} from "./login/LoginComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
+import {ProfileEditComponent} from "./profile/edit/ProfileEditComponent";
 import {MyRidesComponent} from "./profile/rides/MyRidesComponent";
 import {RideUpdateComponent} from "./rides/update/RideUpdateComponent";
 import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
@@ -22,7 +23,8 @@ export const ROUTES: Routes = [
   { path: 'createRide',  component: CreateRideComponent },
   { path: 'searchRide',  component: SearchRideComponent },
   { path: 'profile/:username',  component: ProfileComponent },
-  { path: 'profile/myRides',  component: MyRidesComponent },
+  { path: 'profile/:username/edit', component: ProfileEditComponent},
+  { path: 'profile/:username/myRides',  component: MyRidesComponent },
   { path: 'rides/:id',  component: RideDetailsComponent },
   { path: 'rides/:id/update',  component: RideUpdateComponent },
   { path: 'about', component: AboutComponent },
