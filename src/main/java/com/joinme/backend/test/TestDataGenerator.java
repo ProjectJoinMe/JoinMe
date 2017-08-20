@@ -7,6 +7,7 @@ import com.joinme.backend.accounts.dto.Gender;
 import com.joinme.backend.accounts.entity.UserAccount;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import com.joinme.backend.rides.RideCreation;
+import com.joinme.backend.rides.RideJoinManager;
 import com.joinme.backend.rides.RideRetrieval;
 import com.joinme.backend.rides.dto.RideDto;
 import org.slf4j.Logger;
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -25,7 +25,8 @@ import java.util.Date;
 @Component
 public class TestDataGenerator {
 
-    public static final String USERNAME = "test";
+    public static final String TEST_1 = "test";
+    public static final String TEST_2 = "test2";
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -40,14 +41,25 @@ public class TestDataGenerator {
     @Autowired
     private RideRetrieval rideRetrieval;
 
+    @Autowired
+    private RideJoinManager rideJoinManager;
+
+    private RideDto createdRide1;
+    private RideDto createdRide2;
 
     @PostConstruct
     public void generateTestData() {
-        UserAccount testUser = userAccountRepository.findByUsername(USERNAME);
+        logger.info("Generating test data");
+        createTestUser1();
+        createTestUser2();
+    }
+
+    private void createTestUser1() {
+        String username = TEST_1;
+        UserAccount testUser = userAccountRepository.findByUsername(username);
         if (testUser == null) {
-            logger.info("Generating test data");
             AccountRegistrationData accountRegistrationData = new AccountRegistrationData();
-            accountRegistrationData.setUsername(USERNAME);
+            accountRegistrationData.setUsername(username);
             accountRegistrationData.setEmail("test@testmail.com");
             accountRegistrationData.setPassword("123456");
             accountRegistrationData.setGender(Gender.MALE);
@@ -56,7 +68,7 @@ public class TestDataGenerator {
             userAccountCreation.createUser(accountRegistrationData);
 
             RideDto ride = new RideDto();
-            ride.setProviderUsername(USERNAME);
+            ride.setProviderUsername(username);
             ride.setStart("Groß Sankt Florian");
             ride.setStartPlaceId("ChIJe2nUKqC4b0cRwGfmLVeXAAQ");
             ride.setDestination("HTBLA Kaindorf");
@@ -68,7 +80,7 @@ public class TestDataGenerator {
             ride.setCreationDateTime(LocalDateTime.now());
 
             RideDto ride2 = new RideDto();
-            ride2.setProviderUsername(USERNAME);
+            ride2.setProviderUsername(username);
             ride2.setStart("Graz");
             ride2.setStartPlaceId("ChIJu2UwF4c1bkcRm93f0tGKjv4");
             ride2.setDestination("Wien");
@@ -81,10 +93,29 @@ public class TestDataGenerator {
                         "\n \nLG, Nicki");
             ride2.setCreationDateTime(LocalDateTime.now());
 
-            rideCreation.createRide(ride);
-            rideCreation.createRide(ride2);
+            createdRide1 = rideCreation.createRide(ride);
+            createdRide2 = rideCreation.createRide(ride2);
         } else {
-            logger.info("Skipping generation of test data as user \"" + USERNAME + "\" already exists");
+            logger.info("Skipping generation of test data as user \"" + username + "\" already exists");
+        }
+    }
+
+    private void createTestUser2() {
+        String username = TEST_2;
+        UserAccount testUser = userAccountRepository.findByUsername(username);
+        if (testUser == null) {
+            AccountRegistrationData accountRegistrationData = new AccountRegistrationData();
+            accountRegistrationData.setUsername(username);
+            accountRegistrationData.setEmail("test@testmail.com");
+            accountRegistrationData.setPassword("123456");
+            accountRegistrationData.setGender(Gender.FEMALE);
+            accountRegistrationData.setDateOfBirth(new Date());
+
+            userAccountCreation.createUser(accountRegistrationData);
+
+            rideJoinManager.joinRide(createdRide1.getId(), username);
+        } else {
+            logger.info("Skipping generation of test data as user \"" + username + "\" already exists");
         }
     }
 }

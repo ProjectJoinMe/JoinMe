@@ -45,6 +45,17 @@ export class RideDetailsComponent implements OnInit {
         this.router.navigate(['/rides', this.ride.id, 'update']);
     }
 
+    joinRide() {
+        this.http.post("api/rides/" + this.ride.id + "/join", null)
+            .subscribe(
+                data => {
+                    // TODO success -> show confirmation message
+                },
+                error => {
+                    console.error("failed to join ride, TODO");
+                });
+    }
+
     isMyRide(): boolean {
         return this.securityStatus.username === this.ride.providerUsername;
     }
