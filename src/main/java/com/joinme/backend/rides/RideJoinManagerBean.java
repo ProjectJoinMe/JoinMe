@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Component
 @Transactional
@@ -37,6 +38,12 @@ public class RideJoinManagerBean implements RideJoinManager {
         rideJoin.setCreationDateTime(LocalDateTime.now());
         rideJoinRepository.save(rideJoin);
         return rideJoinConverter.toDto(rideJoin);
+    }
+
+    @Override
+    public List<RideJoinDto> getRideJoinsForRide(long rideId) {
+        List<RideJoin> rideJoins = rideJoinRepository.findByRideOrderByCreationDateTime(rideRepository.findById(rideId));
+        return rideJoinConverter.toDto(rideJoins);
     }
 
     private void checkIfDuplicate(long rideId, String username) {

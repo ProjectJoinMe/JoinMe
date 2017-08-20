@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class RideJoinManagerController {
@@ -22,5 +23,12 @@ public class RideJoinManagerController {
     public RideJoinDto joinRide(@PathVariable long rideId) {
         String currentUsername = SecurityUtil.getCurrentUsername();
         return rideJoinManager.joinRide(rideId, currentUsername);
+    }
+
+    @RequestMapping(value = "/api/rides/{id}/joins", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RideJoinDto> getRideJoinsForRide(@PathVariable long id) {
+        List<RideJoinDto> rideJoins = rideJoinManager.getRideJoinsForRide(id);
+        return rideJoins;
     }
 }
