@@ -6,10 +6,12 @@ import com.joinme.backend.rides.entity.RideJoin;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RideJoinRepository extends CrudRepository<RideJoin, Long> {
 
-    RideJoin findByRide(Ride ride);
+    List<RideJoin> findByRideOrderByCreationDateTime(Ride ride);
 
     RideJoin findByPassenger(UserAccount passenger);
 

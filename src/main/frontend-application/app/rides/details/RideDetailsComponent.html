@@ -4,8 +4,7 @@
     <br/>
 
     <div class="inner">
-        <div *ngIf="ride">
-
+        <div *ngIf="ride && rideJoins">
             <table>
                 <tr>
                     <td><label class="description">Abfahrtsort:</label></td>
@@ -29,7 +28,6 @@
                     <td><label class="content">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label></td>
                 </tr>
             </table>
-
 
             <div *ngIf="ride.returnDepartureDateTime">
                 <table>
@@ -61,6 +59,15 @@
 
             <div *ngIf="ride.startPlaceId && ride.destinationPlaceId">
                 <maps-ride-route [ride]="ride"></maps-ride-route>
+            </div>
+            <div *ngIf="rideJoins.length != 0">
+                Mitfahrer auf dieser Fahrt
+                <div *ngFor="let rideJoin of rideJoins">
+                    <span>{{ rideJoin.userProfileDto.username }}</span>
+                </div>
+            </div>
+            <div *ngIf="rideJoins.length === 0">
+                bisher noch keine Mitfahrer
             </div>
 
             <div *ngIf="isMyRide()">

@@ -4,6 +4,7 @@ import {Http} from "@angular/http";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {SecurityStatus} from "../../security/SecurityStatus";
+import {RideJoin} from "./RideJoin";
 
 @Component({
     selector: 'ride-details',
@@ -14,6 +15,7 @@ import {SecurityStatus} from "../../security/SecurityStatus";
 export class RideDetailsComponent implements OnInit {
 
     ride: Ride;
+    rideJoins: RideJoin[];
 
     constructor(private http: Http,
                 private route: ActivatedRoute,
@@ -26,7 +28,9 @@ export class RideDetailsComponent implements OnInit {
         // TODO change after angular upgrade according to routing tutorial
         this.route.params
             .subscribe((params: Params) => {
-                this.getRide(parseInt(params['id']));
+                let id = parseInt(params['id']);
+                this.getRide(id);
+                this.getRideJoins(id);
             });
     }
 
@@ -35,6 +39,17 @@ export class RideDetailsComponent implements OnInit {
             .subscribe(
                 data => {
                     this.ride = data.json();
+                },
+                error => {
+                    // TODO error handling
+                });
+    }
+
+    getRideJoins(rideId: number): void {
+        this.http.get("/api/rides/" + rideId + "/joins")
+            .subscribe(
+                data => {
+                    this.rideJoins = data.json();
                 },
                 error => {
                     // TODO error handling
