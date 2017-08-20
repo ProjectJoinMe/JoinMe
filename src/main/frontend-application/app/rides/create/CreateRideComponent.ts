@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {Ride} from "./Ride";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Http} from "@angular/http";
 import {WeekDay} from "../WeekDay";
 import {Router} from "@angular/router";
+import {RideService} from "../../services/RideService";
 
 @Component({
     selector: 'createRide',
@@ -20,7 +20,7 @@ export class CreateRideComponent implements OnInit {
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,
-                private http: Http) {
+                private rideService: RideService) {
     }
 
     ngOnInit() {
@@ -77,18 +77,12 @@ export class CreateRideComponent implements OnInit {
                 notes: this.rideForm.get("notes").value
             };
             console.info(rideData);
-            this.http.post("api/rides/createRide", rideData)
-                .subscribe(
-                    data => {
-                        this.submitDisabled = false;
-                        let createdRide: Ride = data.json();
-                        this.router.navigate(['/rides', createdRide.id]);
-                        // TODO success -> show confirmation message
-                    },
-                    error => {
-                        this.submitDisabled = false;
-                        console.error("failed to create ride, TODO");
-                    });
+            this.rideService.createRide(rideData).then(createdRide => {
+                this.router.navigate(['/rides', createdRide.id]);
+            }).catch(reason => {
+                this.submitDisabled = false;
+                console.error("failed to create ride, TODO");
+            });
         }
     }
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by Alexander on 17.08.2017.
  */
 @Controller
-public class UserProfileRetrievalController {
+public class UserProfileController {
 
     @Autowired
     private UserProfileManager userProfileManager;

@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
 @Component
 @Transactional
 public class RideUpdateBean implements RideUpdate {
@@ -21,10 +19,11 @@ public class RideUpdateBean implements RideUpdate {
     private RideConverter rideConverter;
 
     @Override
-    public void updateRide(RideDto ride) {
+    public RideDto updateRide(RideDto ride) {
         Ride rideToUpdate = rideRepository.findById(ride.getId());
         ride.setCreationDateTime(rideToUpdate.getCreationDateTime());
         ride.setProviderUsername(rideToUpdate.getProvider().getUsername());
         rideConverter.setPropertiesOnEntity(rideToUpdate, ride);
+        return ride;
     }
 }

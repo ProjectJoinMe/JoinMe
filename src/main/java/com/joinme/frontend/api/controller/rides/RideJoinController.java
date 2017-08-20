@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class RideJoinManagerController {
+public class RideJoinController {
 
     @Autowired
     private RideJoinManager rideJoinManager;

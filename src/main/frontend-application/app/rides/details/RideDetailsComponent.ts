@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {Ride} from "../create/Ride";
-import {Http} from "@angular/http";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {SecurityStatus} from "../../security/SecurityStatus";
 import {RideJoin} from "./RideJoin";
+import {RideService} from "../../services/RideService";
 
 @Component({
     selector: 'ride-details',
@@ -17,7 +17,7 @@ export class RideDetailsComponent implements OnInit {
     ride: Ride;
     rideJoins: RideJoin[];
 
-    constructor(private http: Http,
+    constructor(private rideService: RideService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private location: Location,
@@ -25,35 +25,11 @@ export class RideDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // TODO change after angular upgrade according to routing tutorial
-        this.route.params
-            .subscribe((params: Params) => {
-                let id = parseInt(params['id']);
-                this.getRide(id);
-                this.getRideJoins(id);
+        this.route.data
+            .subscribe((data: { ride: Ride, rideJoins: RideJoin[] }) => {
+                this.ride = data.ride;
+                this.rideJoins = data.rideJoins;
             });
-    }
-
-    getRide(id: number): void {
-        this.http.get("/api/rides/" + id)
-            .subscribe(
-                data => {
-                    this.ride = data.json();
-                },
-                error => {
-                    // TODO error handling
-                });
-    }
-
-    getRideJoins(rideId: number): void {
-        this.http.get("/api/rides/" + rideId + "/joins")
-            .subscribe(
-                data => {
-                    this.rideJoins = data.json();
-                },
-                error => {
-                    // TODO error handling
-                });
     }
 
     goToUpdate() {
@@ -61,14 +37,12 @@ export class RideDetailsComponent implements OnInit {
     }
 
     joinRide() {
-        this.http.post("api/rides/" + this.ride.id + "/join", null)
-            .subscribe(
-                data => {
-                    // TODO success -> show confirmation message
-                },
-                error => {
-                    console.error("failed to join ride, TODO");
-                });
+        this.rideService.joinRide(this.ride).then(rideJoin => {
+            this.rideJoins.push(rideJoin);
+            // TODO show confirmation message
+        }).catch(reason => {
+            console.error("failed to join ride, TODO message");
+        });
     }
 
     isMyRide(): boolean {

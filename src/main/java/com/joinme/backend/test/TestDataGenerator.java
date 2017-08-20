@@ -1,4 +1,5 @@
 package com.joinme.backend.test;
+
 import java.time.LocalDateTime;
 
 import com.joinme.backend.accounts.UserAccountCreation;
@@ -25,8 +26,10 @@ import java.util.Date;
 @Component
 public class TestDataGenerator {
 
-    public static final String TEST_1 = "test";
-    public static final String TEST_2 = "test2";
+    private static final String TEST_1 = "test";
+    private static final String TEST_2 = "test2";
+    private static final String PASSWORD = "123456";
+
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -60,7 +63,7 @@ public class TestDataGenerator {
         if (testUser == null) {
             AccountRegistrationData accountRegistrationData = new AccountRegistrationData();
             accountRegistrationData.setUsername(username);
-            accountRegistrationData.setEmail("test@testmail.com");
+            accountRegistrationData.setEmail(username + "@testmail.com");
             accountRegistrationData.setPassword("123456");
             accountRegistrationData.setGender(Gender.MALE);
             accountRegistrationData.setDateOfBirth(new Date());
@@ -88,9 +91,9 @@ public class TestDataGenerator {
             ride2.setDepartureDateTime(LocalDateTime.now().plus(40, ChronoUnit.DAYS));
             ride2.setMaxPassengers(3);
             ride2.setReturnDepartureDateTime(LocalDateTime.now().plus(5, ChronoUnit.DAYS));
-                ride2.setNotes("Das ist eine Testfahrt mit Rückfahrt und einer möglichst langen Beschreibung, damit man sieht wie das aussehen könnte." +
-                        "\nIch habe sogar einen Zeilenbruch eingefügt und schön langsam fällt mir nichts mehr ein" +
-                        "\n \nLG, Nicki");
+            ride2.setNotes("Das ist eine Testfahrt mit Rückfahrt und einer möglichst langen Beschreibung, damit man sieht wie das aussehen könnte." +
+                    "\nIch habe sogar einen Zeilenbruch eingefügt und schön langsam fällt mir nichts mehr ein" +
+                    "\n \nLG, Nicki");
             ride2.setCreationDateTime(LocalDateTime.now());
 
             createdRide1 = rideCreation.createRide(ride);
@@ -106,8 +109,8 @@ public class TestDataGenerator {
         if (testUser == null) {
             AccountRegistrationData accountRegistrationData = new AccountRegistrationData();
             accountRegistrationData.setUsername(username);
-            accountRegistrationData.setEmail("test@testmail.com");
-            accountRegistrationData.setPassword("123456");
+            accountRegistrationData.setEmail(username + "@testmail.com");
+            accountRegistrationData.setPassword(PASSWORD);
             accountRegistrationData.setGender(Gender.FEMALE);
             accountRegistrationData.setDateOfBirth(new Date());
 

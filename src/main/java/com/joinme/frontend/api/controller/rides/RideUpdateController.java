@@ -22,10 +22,10 @@ public class RideUpdateController {
     private RideUpdate rideUpdate;
 
     @PreAuthorize("fullyAuthenticated")
-    @RequestMapping(value = "/api/rides/updateRide", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/rides/updateRide", method = RequestMethod.PUT)
     @ResponseBody
-    public void updateRide(@Valid @RequestBody RideDto ride) {
+    public RideDto updateRide(@Valid @RequestBody RideDto ride) {
         Objects.requireNonNull(ride.getId());
-        rideUpdate.updateRide(ride);
+        return rideUpdate.updateRide(ride);
     }
 }

@@ -1,4 +1,4 @@
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Http} from "@angular/http";
 import {Component} from "@angular/core";
 import {UserProfile} from "../UserProfile";
@@ -20,6 +20,10 @@ export class ProfileEditComponent {
     constructor(private http: Http,
                 private route: ActivatedRoute,
                 private router: Router) {
+        this.route.data
+            .subscribe((data: { userProfile: UserProfile }) => {
+                this.userProfile = data.userProfile;
+            });
     }
 
 
