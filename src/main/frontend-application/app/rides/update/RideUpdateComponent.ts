@@ -1,11 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {Ride} from "../create/Ride";
-import {Http} from "@angular/http";
-import {ActivatedRoute, Params} from "@angular/router";
-import {Validators, FormGroup, FormBuilder, FormControl, FormArray} from "@angular/forms";
-import {Router} from "@angular/router";
-import {DatePipe} from '@angular/common';
+import {ActivatedRoute, Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {DatePipe} from "@angular/common";
 import {TimezonifyDatePipe} from "../../util/time/TimezonifyDatePipe";
+import {RideService} from "../../services/RideService";
 
 @Component({
     selector: 'myRidesUpdate',
@@ -15,13 +14,13 @@ import {TimezonifyDatePipe} from "../../util/time/TimezonifyDatePipe";
 })
 export class RideUpdateComponent implements OnInit {
 
+    public ride: Ride;
     public rideForm: FormGroup;
     public currentDate: Date = new Date();
     public submitted: boolean = false;
     public submitDisabled: boolean = false;
-    private ride: Ride;
 
-    constructor(private http: Http,
+    constructor(private rideService: RideService,
                 private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -30,12 +29,6 @@ export class RideUpdateComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // TODO change after angular upgrade according to routing tutorial
-        this.route.params
-            .subscribe((params: Params) => {
-                this.getRide(parseInt(params['id']));
-            });
-
         this.rideForm = this.formBuilder.group({
             start: ["", [Validators.required]],
             startPlaceId: ["", [Validators.required]],
@@ -51,6 +44,29 @@ export class RideUpdateComponent implements OnInit {
             maxPassengers: ["", Validators.required],
             notes: [""],
         });
+
+        this.route.data
+            .subscribe((data: { ride: Ride }) => {
+                this.ride = data.ride;
+
+                let departureDateTime = this.timezonifyDatePipe.transform(this.ride.departureDateTime);
+                let returnDepartureDateTime = this.timezonifyDatePipe.transform(this.ride.returnDepartureDateTime);
+                this.rideForm.setValue({
+                    start: this.ride.start,
+                    startPlaceId: this.ride.startPlaceId,
+                    destination: this.ride.destination,
+                    destinationPlaceId: this.ride.destinationPlaceId,
+                    departureDate: this.datePipe.transform(departureDateTime, 'yyyy-MM-dd'),
+                    departureHour: this.datePipe.transform(departureDateTime, 'HH'),
+                    departureMinute: this.datePipe.transform(departureDateTime, 'mm'),
+                    returnRide: returnDepartureDateTime !== null,
+                    returnDepartureDate: this.getDateComponent(returnDepartureDateTime, 'yyyy-MM-dd'),
+                    returnDepartureHour: this.getDateComponent(returnDepartureDateTime, 'HH'),
+                    returnDepartureMinute: this.getDateComponent(returnDepartureDateTime, 'mm'),
+                    maxPassengers: this.ride.maxPassengers,
+                    notes: this.ride.notes
+                });
+            });
     }
 
     public updateRide() {
@@ -76,50 +92,18 @@ export class RideUpdateComponent implements OnInit {
                 notes: this.rideForm.get("notes").value
             };
             console.info(rideData);
-            this.http.post("api/rides/updateRide", rideData)
-                .subscribe(
-                    data => {
-                        this.submitDisabled = false;
-                        this.router.navigate(['/rides', this.ride.id]);
-                        // TODO success -> show confirmation message
-                    },
-                    error => {
-                        this.submitDisabled = false;
-                        console.error("failed to update ride, TODO");
-                    });
+
+            this.rideService.updateRide(rideData).then(updatedRide => {
+                this.router.navigate(['/rides', this.ride.id]);
+            }).catch(reason => {
+                this.submitDisabled = false;
+                console.error("failed to update ride, TODO message");
+            });
         }
     }
 
     public getReturnRide() {
         return this.rideForm.get("returnRide").value;
-    }
-
-    getRide(id: number): void {
-        this.http.get("/api/rides/" + id)
-            .subscribe(
-                data => {
-                    this.ride = data.json();
-                    var departureDateTime = this.timezonifyDatePipe.transform(this.ride.departureDateTime);
-                    var returnDepartureDateTime = this.timezonifyDatePipe.transform(this.ride.returnDepartureDateTime);
-                    this.rideForm.setValue({
-                        start: this.ride.start,
-                        startPlaceId: this.ride.startPlaceId,
-                        destination: this.ride.destination,
-                        destinationPlaceId: this.ride.destinationPlaceId,
-                        departureDate: this.datePipe.transform(departureDateTime, 'yyyy-MM-dd'),
-                        departureHour: this.datePipe.transform(departureDateTime, 'HH'),
-                        departureMinute: this.datePipe.transform(departureDateTime, 'mm'),
-                        returnRide: returnDepartureDateTime !== null,
-                        returnDepartureDate: this.getDateComponent(returnDepartureDateTime, 'yyyy-MM-dd'),
-                        returnDepartureHour: this.getDateComponent(returnDepartureDateTime, 'HH'),
-                        returnDepartureMinute: this.getDateComponent(returnDepartureDateTime, 'mm'),
-                        maxPassengers: this.ride.maxPassengers,
-                        notes: this.ride.notes
-                    });
-                },
-                error => {
-                    // TODO error handling
-                });
     }
 
     private getDateComponent(date: Date, format: string) {

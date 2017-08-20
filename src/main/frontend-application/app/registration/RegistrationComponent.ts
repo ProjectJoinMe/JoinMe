@@ -1,11 +1,12 @@
 import {Component, OnInit} from "@angular/core";
 import {RegistrationData} from "./RegistrationData";
-import {Validators, FormGroup, FormBuilder, FormControl, AbstractControl} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Http, URLSearchParams} from "@angular/http";
 import {MailValidator} from "../../validators/MailValidator";
-import cloneWith = require("lodash/cloneWith");
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
+import {UserRegistrationService} from "../services/UserRegistrationService";
+import cloneWith = require("lodash/cloneWith");
 
 @Component({
     selector: 'registration',
@@ -22,6 +23,7 @@ export class RegistrationComponent implements OnInit {
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,
+                private userRegistrationService: UserRegistrationService,
                 private http: Http) {
     }
 
@@ -36,18 +38,12 @@ export class RegistrationComponent implements OnInit {
                 gender: <string> this.registrationForm.get("gender").value,
                 password: <string> this.registrationForm.get("password").value
             };
-            this.http.post("api/accounts/register", registrationData)
-                .subscribe(
-                    data => {
-                        this.submitDisabled = false;
-                        this.router.navigate(['/login']);
-                        // TODO success -> show confirmation message and move to login screen
-                    },
-                    error => {
-                        this.submitDisabled = false;
-                        console.error("failed to register account, TODO");
-                    });
-            // .catch(this.handleError) // TODO handle all unhandled errors generally by showing some message bar
+            this.userRegistrationService.register(registrationData).then(value => {
+                this.router.navigate(['/login']);
+            }).catch(reason => {
+                this.submitDisabled = false;
+                console.error("failed to register account, TODO");
+            });
         }
     }
 
@@ -68,10 +64,10 @@ export class RegistrationComponent implements OnInit {
         var passwordControl = control.root.get("password");
         return passwordControl && (passwordControl.value === control.value)
             ? null : {
-            passwordsMatch: {
-                valid: false
-            }
-        };
+                passwordsMatch: {
+                    valid: false
+                }
+            };
     }
 
     private validateUniqueEmailPromise(email: string) { // TODO make work

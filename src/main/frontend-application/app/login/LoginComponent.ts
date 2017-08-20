@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import cloneWith = require("lodash/cloneWith");
-import {Validators, FormControl, FormGroup, ReactiveFormsModule, FormBuilder} from "@angular/forms";
-import {Http, Response, Headers, URLSearchParams} from "@angular/http";
+import {Component} from "@angular/core";
+import {FormBuilder, Validators} from "@angular/forms";
+import {Http, URLSearchParams} from "@angular/http";
 import {LoginData} from "./LoginData";
 import {SecurityService} from "../security/SecurityService";
 import {Router} from "@angular/router";
+import cloneWith = require("lodash/cloneWith");
 
 @Component({
     selector: 'login',
@@ -37,10 +37,9 @@ export class LoginComponent {
         this.http.post("api/login", data)
             .subscribe(
                 data => {
-                    console.info("logged in successfully!");
                     this.securityService.updateSecurityStatus();
                     this.router.navigate(['/home']);
-                    // TODO success -> show confirmation message and move to home screen
+                    // TODO success -> show confirmation message
                 },
                 error => {
                     console.error("failed to login, TODO")

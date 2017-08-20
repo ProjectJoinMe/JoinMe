@@ -1,23 +1,22 @@
-import {NgModule, ApplicationRef, LOCALE_ID} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule, JsonpModule} from '@angular/http';
-import {RouterModule} from '@angular/router';
-import {removeNgStyles, createNewHosts, createInputTransfer} from '@angularclass/hmr';
-import {DatePipe} from '@angular/common';
-
+import {ApplicationRef, LOCALE_ID, NgModule} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpModule, JsonpModule} from "@angular/http";
+import {RouterModule} from "@angular/router";
+import {createInputTransfer, createNewHosts, removeNgStyles} from "@angularclass/hmr";
+import {DatePipe} from "@angular/common";
 /*
  * Platform and Environment providers/directives/pipes
  */
-import {ENV_PROVIDERS} from './environment';
-import {ROUTES} from './AppRoutes';
+import {ENV_PROVIDERS} from "./environment";
+import {ROUTES} from "./AppRoutes";
 // App is our top level component
-import {AppComponent} from './AppComponent';
-import {APP_RESOLVER_PROVIDERS} from './AppResolver';
-import {AppState, InternalStateType} from './AppService';
-import {HomeComponent} from './home';
-import {AboutComponent} from './about';
-import {NoContentComponent} from './no-content';
+import {AppComponent} from "./AppComponent";
+import {APP_RESOLVER_PROVIDERS} from "./AppResolver";
+import {AppState, InternalStateType} from "./AppService";
+import {HomeComponent} from "./home";
+import {AboutComponent} from "./about";
+import {NoContentComponent} from "./no-content";
 import {RegistrationComponent} from "./registration/RegistrationComponent";
 import {LoginComponent} from "./login/LoginComponent";
 import {CreateRideComponent} from "./rides/create/CreateRideComponent";
@@ -29,11 +28,16 @@ import {RideUpdateComponent} from "./rides/update/RideUpdateComponent";
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
 import {SearchRideComponent} from "./rides/search/SearchRideComponent";
-import {DetailComponent} from "./+detail/detail.component";
 import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
 import {TimezonifyDatePipe} from "./util/time/TimezonifyDatePipe";
 import {MapsAutocompletePlaceComponent} from "./maps/autocomplete/MapsAutocompletePlaceComponent";
 import {MapsDisplayRouteComponent} from "./maps/route/MapsDisplayRouteComponent";
+import {RideService} from "./services/RideService";
+import {RideJoinsByRideIdResolver} from "./resolvers/RideJoinsByRideIdResolver";
+import {RideByIdResolver} from "./resolvers/RideByIdResolver";
+import {UserRegistrationService} from "./services/UserRegistrationService";
+import {UserProfileByUsernameResolver} from "./resolvers/UserProfileByUsernameResolver";
+import {UserProfileService} from "./services/UserProfileService";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -88,7 +92,13 @@ type StoreType = {
         APP_PROVIDERS,
         { provide: LOCALE_ID, useValue: "de-DE" },
         DatePipe,
-        TimezonifyDatePipe
+        TimezonifyDatePipe,
+        RideService,
+        UserRegistrationService,
+        UserProfileService,
+        RideByIdResolver,
+        RideJoinsByRideIdResolver,
+        UserProfileByUsernameResolver
     ]
 })
 export class AppModule {

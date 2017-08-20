@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-public class AccountCreationController {
+public class AccountRegistrationController {
 
     @Autowired
     private UserAccountCreation userAccountCreation;
