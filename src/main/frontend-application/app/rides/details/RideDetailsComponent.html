@@ -63,8 +63,11 @@
                 <maps-ride-route [ride]="ride"></maps-ride-route>
             </div>
 
-            <div *ngIf="isMyRide()" class="myRide">
+            <div *ngIf="isMyRide()">
                 <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate()">
+            </div>
+            <div *ngIf="!isMyRide()">
+                <input type="button" class="btn" value="Join" (click)="joinRide()">
             </div>
 
         </div>
