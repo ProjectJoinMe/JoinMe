@@ -16,15 +16,16 @@ export class MapsAutocompletePlaceComponent {
     @Input() name: string;
     @Input() formGroup: FormGroup;
     autocomplete: any;
+    inputFieldElement: any;
 
     constructor(private ngZone: NgZone) {
     }
 
     ngAfterViewInit() {
-        let input = document.getElementById('maps-autocomplete-textfield-' + this.name);
+        this.inputFieldElement = document.getElementById('maps-autocomplete-textfield-' + this.name);
         let options = {};
 
-        this.autocomplete = new google.maps.places.Autocomplete(input, options);
+        this.autocomplete = new google.maps.places.Autocomplete(this.inputFieldElement, options);
 
         this.autocomplete.addListener('place_changed', () => {
             // update in context of angular as this event is triggered by google library
@@ -44,7 +45,7 @@ export class MapsAutocompletePlaceComponent {
         this.setPlaceId(placeId);
         if (placeId){
             // update model value as textfield value was changed directly by google library
-            this.setFormValue(this.name, place.name);
+            this.setFormValue(this.name, this.inputFieldElement.value);
         }
     }
 
