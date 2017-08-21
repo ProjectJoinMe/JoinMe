@@ -57,7 +57,7 @@
             </table>
             <br>
 
-            <div *ngIf="ride.startPlaceId && ride.destinationPlaceId">
+            <div *ngIf="ride.startPlaceId && ride.destinationPlaceId" >
                 <maps-ride-route [ride]="ride"></maps-ride-route>
             </div>
             <div *ngIf="rideJoins.length != 0">

@@ -7,6 +7,24 @@
   <form [formGroup]="registrationForm" (ngSubmit)="register()">
   <table>
     <tr>
+      <td class="first"><label>Vorname: </label></td>
+      <td><input formControlName="*todo*" type="text"></td>
+      <td>
+        <!-- to-do  <small class="error-message" [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
+          Benutzername ungültig (zwischen 5 und 20 Zeichen)</small> -->
+      </td>
+    </tr>
+
+    <tr>
+      <td class="first"><label>Nachname: </label></td>
+      <td><input formControlName="*todo*" type="text"></td>
+      <td>
+        <!-- to-do <small class="error-message" [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
+          Benutzername ungültig (zwischen 5 und 20 Zeichen)</small> -->
+      </td>
+    </tr>
+
+    <tr>
       <td class="first"><label>Nutzername: </label></td>
       <td><input formControlName="username" type="text"></td>
       <td>
