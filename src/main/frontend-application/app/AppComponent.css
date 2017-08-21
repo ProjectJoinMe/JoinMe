@@ -147,6 +147,14 @@ div.inner {
   margin: auto;
 }
 
+td.first {
+  text-align: right;
+}
+small{
+  font-size: x-small;
+  width: auto;
+}
+
 div.ride {
   margin-bottom: 8px;
   border: black 1px solid;

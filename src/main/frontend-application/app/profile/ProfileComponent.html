@@ -4,42 +4,7 @@
     <br/>
 
     <div class="inner">
-        <div *ngIf="userProfile">
-            <table>
-                <tr>
-                    <td>
-                        Username:
-                    </td>
-                    <td>
-                        {{userProfile.username}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        E-Mail-Adresse:
-                    </td>
-                    <td>
-                        {{userProfile.email}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Geburtsdatum:
-                    </td>
-                    <td>
-                        {{userProfile.dateOfBirth | date:'dd.MM.yyyy'}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Geschlecht:
-                    </td>
-                    <td>
-                        {{userProfile.gender}}
-                    </td>
-                </tr>
 
-            </table>
             <table>
                 <tr>
                     <td>
@@ -50,7 +15,47 @@
                     </td>
                 </tr>
             </table>
-        </div>
+
     </div>
+    <br>
+
+    <div *ngIf="userProfile" class="inner">
+        <table>
+            <tr>
+                <td class="first">
+                    <label>Username:</label>
+                </td>
+                <td>
+                    {{userProfile.username}}
+                </td>
+            </tr>
+            <tr>
+                <td class="first">
+                    <label>E-Mail-Adresse:</label>
+                </td>
+                <td>
+                    {{userProfile.email}}
+                </td>
+            </tr>
+            <tr>
+                <td class="first">
+                    <label>Geburtsdatum:</label>
+                </td>
+                <td>
+                    {{userProfile.dateOfBirth | date:'dd.MM.yyyy'}}
+                </td>
+            </tr>
+            <tr>
+                <td class="first">
+                    <label>Geschlecht:</label>
+                </td>
+                <td>
+                    {{userProfile.gender}}
+                </td>
+            </tr>
+
+        </table>
+        </div>
+
     <br>
 </div>
