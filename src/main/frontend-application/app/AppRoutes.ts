@@ -14,6 +14,7 @@ import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
 import {RideByIdResolver} from "./resolvers/RideByIdResolver";
 import {RideJoinsByRideIdResolver} from "./resolvers/RideJoinsByRideIdResolver";
 import {UserProfileByUsernameResolver} from "./resolvers/UserProfileByUsernameResolver";
+import {MyRidesResolver} from "./resolvers/MyRidesResolver";
 
 
 export const ROUTES: Routes = [
@@ -53,7 +54,8 @@ export const ROUTES: Routes = [
     },
     {
         path: 'profile/:username/myRides',
-        component: MyRidesComponent
+        component: MyRidesComponent,
+        resolve: {rides: MyRidesResolver}
     },
     {
         path: 'rides/:id',

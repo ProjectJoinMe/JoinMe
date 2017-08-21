@@ -34,8 +34,7 @@ export class RideService extends AbstractApiService {
     }
 
     getRide(id: number): Promise<Ride> {
-        const url = `${this.ridesApiUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(`${this.ridesApiUrl}/${id}`)
             .toPromise()
             .then(response => response.json() as Ride)
             .catch(this.handleError);

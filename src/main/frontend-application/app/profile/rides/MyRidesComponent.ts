@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {Ride} from "../../rides/create/Ride";
 import {Http} from "@angular/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'myRides',
@@ -14,19 +14,15 @@ export class MyRidesComponent {
     rides: Ride[];
 
     constructor(private http: Http,
-                private router: Router) {
-        this.getRides();
+                private router: Router,
+                private route: ActivatedRoute) {
     }
 
-    getRides(): void {
-        this.http.get("/api/rides/myRides")
-            .subscribe(
-                data => {
-                    this.rides = data.json();
-                },
-                error => {
-                    // TODO error handling
-                });
+    ngOnInit(): void {
+        this.route.data
+            .subscribe((data: { rides: Ride[] }) => {
+                this.rides = data.rides;
+            });
     }
 
     goToDetails(ride: Ride) {

@@ -38,6 +38,7 @@ import {RideByIdResolver} from "./resolvers/RideByIdResolver";
 import {UserRegistrationService} from "./services/UserRegistrationService";
 import {UserProfileByUsernameResolver} from "./resolvers/UserProfileByUsernameResolver";
 import {UserProfileService} from "./services/UserProfileService";
+import {MyRidesResolver} from "./resolvers/MyRidesResolver";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -98,7 +99,8 @@ type StoreType = {
         UserProfileService,
         RideByIdResolver,
         RideJoinsByRideIdResolver,
-        UserProfileByUsernameResolver
+        UserProfileByUsernameResolver,
+        MyRidesResolver
     ]
 })
 export class AppModule {
