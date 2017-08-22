@@ -67,7 +67,8 @@ export class RegistrationComponent implements OnInit {
         // partially from https://scotch.io/tutorials/how-to-implement-a-custom-validator-directive-confirm-password-in-angular-2
         var passwordControl = control.root.get("password");
         return passwordControl && (passwordControl.value === control.value)
-            ? null : {
+            ? null
+            : {
                 passwordsMatch: {
                     valid: false
                 }

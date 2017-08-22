@@ -27,4 +27,11 @@ public class UserProfileManagerBean implements UserProfileManager {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
         return userAccountConverter.toDto(userAccount);
     }
+
+    @Override
+    public UserProfileDto updateUserProfile(UserProfileDto userProfile) {
+        UserAccount userAccount = userAccountRepository.findByUsername(userProfile.getUsername());
+        userAccountConverter.setPropertiesOnEntity(userAccount, userProfile);
+        return userAccountConverter.toDto(userAccount);
+    }
 }

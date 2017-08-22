@@ -7,10 +7,8 @@ import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Objects;
@@ -22,9 +20,10 @@ public class RideUpdateController {
     private RideUpdate rideUpdate;
 
     @PreAuthorize("fullyAuthenticated")
-    @RequestMapping(value = "/api/rides/updateRide", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/rides/{id}/updateRide", method = RequestMethod.PUT)
     @ResponseBody
-    public RideDto updateRide(@Valid @RequestBody RideDto ride) {
+    public RideDto updateRide(@PathVariable long id, @Valid @RequestBody RideDto ride) {
+        Assert.isTrue(ride.getId().equals(id));
         Objects.requireNonNull(ride.getId());
         return rideUpdate.updateRide(ride);
     }
