@@ -17,6 +17,8 @@ import {UserProfileByUsernameResolver} from "./resolvers/UserProfileByUsernameRe
 import {MyRidesResolver} from "./resolvers/UserProfileRidesResolver";
 import {JoinedRidesComponent} from "./profile/joined_rides/JoinedRidesComponent";
 import {JoinedRidesByUserResolver} from "./resolvers/JoinedRidesByUserResolver";
+import {PasswordChangeComponent} from "./profile/change_password/PasswordChangeComponent";
+import {EmailChangeComponent} from "./profile/change_email/EmailChangeComponent";
 
 
 export const ROUTES: Routes = [
@@ -63,6 +65,16 @@ export const ROUTES: Routes = [
         path: 'profile/:username/joinedRides',
         component: JoinedRidesComponent,
         resolve: {rides: JoinedRidesByUserResolver}
+    },
+    {
+        path: 'profile/:username/changePassword',
+        component: PasswordChangeComponent,
+        resolve: {userProfile: UserProfileByUsernameResolver}
+    },
+    {
+        path: 'profile/:username/changeEmail',
+        component: EmailChangeComponent,
+        resolve: {userProfile: UserProfileByUsernameResolver}
     },
     {
         path: 'rides/:id',

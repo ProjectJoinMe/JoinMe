@@ -41,6 +41,8 @@ import {UserProfileService} from "./services/UserProfileService";
 import {MyRidesResolver} from "./resolvers/UserProfileRidesResolver";
 import {JoinedRidesComponent} from "./profile/joined_rides/JoinedRidesComponent";
 import {JoinedRidesByUserResolver} from "./resolvers/JoinedRidesByUserResolver";
+import {PasswordChangeComponent} from "./profile/change_password/PasswordChangeComponent";
+import {EmailChangeComponent} from "./profile/change_email/EmailChangeComponent";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -79,7 +81,9 @@ type StoreType = {
         MapsAutocompletePlaceComponent,
         MapsDisplayRouteComponent,
         ProfileEditComponent,
-        JoinedRidesComponent
+        JoinedRidesComponent,
+        PasswordChangeComponent,
+        EmailChangeComponent
     ],
     imports: [
         // Angular
