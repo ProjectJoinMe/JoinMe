@@ -34,6 +34,8 @@ public class UserAccountConverter {
         userProfileDto.setEmail(entity.getEmail());
         userProfileDto.setDateOfBirth(entity.getDateOfBirth());
         userProfileDto.setGender(entity.getGender());
+        userProfileDto.setFirstName(entity.getFirstName());
+        userProfileDto.setLastName(entity.getLastName());
     }
 
     public UserAccount toEntity(UserProfileDto userProfileDto) {
@@ -47,5 +49,7 @@ public class UserAccountConverter {
         userAccountEntity.setEmail(userProfileDto.getEmail());
         userAccountEntity.setDateOfBirth(userProfileDto.getDateOfBirth());
         userAccountEntity.setGender(userProfileDto.getGender());
+        userAccountEntity.setFirstName(userProfileDto.getFirstName());
+        userAccountEntity.setLastName(userProfileDto.getLastName());
     }
 }

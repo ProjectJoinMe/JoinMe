@@ -4,4 +4,6 @@ export interface RegistrationData {
   dateOfBirth: Date;
   gender: string;
   password: string;
+    firstName: string;
+    lastName: string;
 }

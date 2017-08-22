@@ -36,7 +36,9 @@ export class RegistrationComponent implements OnInit {
                 email: <string> this.registrationForm.get("email").value,
                 dateOfBirth: new Date(this.registrationForm.get("dateOfBirth").value),
                 gender: <string> this.registrationForm.get("gender").value,
-                password: <string> this.registrationForm.get("password").value
+                password: <string> this.registrationForm.get("password").value,
+                firstName: <string> this.registrationForm.get("firstName").value,
+                lastName: <string> this.registrationForm.get("lastName").value
             };
             this.userRegistrationService.register(registrationData).then(value => {
                 this.router.navigate(['/login']);
@@ -56,6 +58,8 @@ export class RegistrationComponent implements OnInit {
             gender: ["", Validators.required],
             password: ["", [Validators.required, Validators.minLength(6)]],
             passwordCheck: ["", [Validators.required, this.passwordsMatchValidator]],
+            firstName: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+            lastName: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
         });
     }
 

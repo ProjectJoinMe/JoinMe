@@ -1,8 +1,5 @@
 package com.joinme.backend.accounts.dto;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
 /**
@@ -16,6 +13,10 @@ public class UserProfileDto {
     private LocalDate dateOfBirth;
 
     private Gender gender;
+
+    private String firstName;
+
+    private String lastName;
 
     public String getUsername() {
         return username;
@@ -47,5 +48,21 @@ public class UserProfileDto {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

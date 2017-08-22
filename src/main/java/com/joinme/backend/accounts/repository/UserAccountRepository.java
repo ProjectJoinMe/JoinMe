@@ -11,4 +11,5 @@ public interface UserAccountRepository extends CrudRepository<UserAccount, Strin
     UserAccount findByUsername(String username);
 
     UserAccount findByEmail(String email);
+
 }
