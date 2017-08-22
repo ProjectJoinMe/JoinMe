@@ -1,0 +1,27 @@
+<div id="content" class="main">
+    <br>
+    <h1 class="component">E-Mail-Adresse ändern</h1>
+    <br/>
+    <div class="inner">
+        <form [formGroup]="emailForm" (ngSubmit)="change()">
+            <table>
+                <tr>
+                    <td class="first"><label>E-Mail: </label></td>
+                    <td><input formControlName="email" type="text"></td>
+                    <td>
+                        <small class="error-message"
+                               [hidden]="emailForm.controls.email.valid || (emailForm.controls.email.pristine && !submitted)">
+                            ungültige Email
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first"><label>Passwort: </label></td>
+                    <td><input formControlName="password" type="password"></td>
+                </tr>
+            </table>
+            <button type="submit" class="button" [disabled]="submitDisabled">Password ändern</button>
+        </form>
+    </div>
+    <br>
+</div>

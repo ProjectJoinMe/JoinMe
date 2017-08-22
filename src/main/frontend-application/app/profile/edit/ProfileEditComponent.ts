@@ -1,6 +1,6 @@
 import {ActivatedRoute, Router} from "@angular/router";
 import {Http} from "@angular/http";
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {UserProfile} from "../UserProfile";
 import {SecurityService} from ".../security/SecurityService";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -16,7 +16,7 @@ import {MailValidator} from "../../../validators/MailValidator";
     styleUrls: ['./ProfileEditComponent.css'],
     templateUrl: './ProfileEditComponent.html'
 })
-export class ProfileEditComponent {
+export class ProfileEditComponent implements OnInit {
 
     public userProfile: UserProfile;
     public editForm: FormGroup;
