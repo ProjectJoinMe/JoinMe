@@ -14,4 +14,6 @@ import java.util.List;
 public interface UserProfileManager {
 
     UserProfileDto getProfile(String username);
+
+    UserProfileDto updateUserProfile(UserProfileDto userProfile);
 }

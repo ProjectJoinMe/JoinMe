@@ -50,7 +50,7 @@ export class RideService extends AbstractApiService {
 
     updateRide(ride: Ride): Promise<Ride> {
         return this.http
-            .put(`${this.ridesApiUrl}/updateRide`, ride, {headers: this.headers})
+            .put(`${this.ridesApiUrl}/${ride.id}/updateRide`, ride, {headers: this.headers})
             .toPromise()
             .then(res => res.json() as Ride)
             .catch(this.handleError);

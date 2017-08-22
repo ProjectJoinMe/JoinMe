@@ -11,24 +11,25 @@ import java.time.LocalDate;
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Column
-    String lastName;
+
     @Id
-    @Column
+    @Column(nullable = false)
     private String username;
     @Column(unique = true, length = 4000)
     private String email;
-    @Column
+    @Column(nullable = false)
     private LocalDate dateOfBirth;
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(nullable = false)
     private Gender gender;
-    @Column
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
+    private String lastName;
     /**
      * encrypted password
      */
-    @Column(length = 1024)
+    @Column(nullable = false, length = 1024)
     private String password;
 
     public String getUsername() {

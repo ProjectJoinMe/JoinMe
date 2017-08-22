@@ -18,4 +18,12 @@ export class UserProfileService extends AbstractApiService {
             .then(response => response.json() as UserProfile)
             .catch(this.handleError);
     }
+
+    updateUserProfile(userProfile: UserProfile): Promise<UserProfile> {
+        return this.http
+            .put(`${this.profileApiUrl}/${userProfile.username}/update`, userProfile, {headers: this.headers})
+            .toPromise()
+            .then(res => res.json() as UserProfile)
+            .catch(this.handleError);
+    }
 }
