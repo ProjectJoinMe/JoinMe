@@ -8,6 +8,7 @@ export interface Ride {
     creationDate?: Date;
     returnDepartureDateTime: Date;
     maxPassengers: number;
+    freeSeats?: number;
     notes: string;
     providerUsername?: string;
 }
