@@ -25,6 +25,14 @@ public class RideJoinController {
         return rideJoinManager.joinRide(rideId, currentUsername);
     }
 
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/rides/{rideId}/unjoin", method = RequestMethod.POST)
+    @ResponseBody
+    public void unjoinRide(@PathVariable long rideId) {
+        String currentUsername = SecurityUtil.getCurrentUsername();
+        rideJoinManager.unjoinRide(rideId, currentUsername);
+    }
+
     @RequestMapping(value = "/api/rides/{id}/joins", method = RequestMethod.GET)
     @ResponseBody
     public List<RideJoinDto> getRideJoinsForRide(@PathVariable long id) {
