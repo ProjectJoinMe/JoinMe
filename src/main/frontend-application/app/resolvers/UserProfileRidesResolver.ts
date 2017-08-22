@@ -10,7 +10,8 @@ export class MyRidesResolver implements Resolve<Ride[]> {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<Ride[]> {
-        return this.rideService.getMyRides().then(rides => {
+        let username = route.params['username'];
+        return this.rideService.getRidesOf(username).then(rides => {
             if (rides) {
                 return rides;
             } else {

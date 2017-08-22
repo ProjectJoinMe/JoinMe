@@ -1,0 +1,26 @@
+<div id="content" class="main">
+    <br>
+    <h1 class="component">Meine Fahrten</h1>
+    <br/>
+
+    <div class="inner">
+        <div>
+            <div class="ride" *ngFor="let ride of rides" (click)="goToDetails(ride)">
+                <div>
+                    <!-- TODO display year when it's not the current year -->
+                    <span>{{ ride.departureDateTime | timezonifyDate | date:'EEEE - d. MMMM' }} </span>
+                    <span class="ridetitle">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</span>
+                </div>
+                <div>
+                    <span>{{ ride.start }}</span> - <span>{{ ride.destination }}</span>
+                    <span *ngIf="ride.returnDepartureDateTime"> und zurück</span>
+                </div>
+                <div>
+                    <span>Freie Plätze: </span><span>{{ ride.maxPassengers }}</span>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>

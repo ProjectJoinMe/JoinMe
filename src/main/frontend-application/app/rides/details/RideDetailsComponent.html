@@ -73,8 +73,11 @@
             <div *ngIf="isMyRide()">
                 <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate()">
             </div>
-            <div *ngIf="!isMyRide()">
-                <input type="button" class="btn" value="Join" (click)="joinRide()">
+            <div *ngIf="!isMyRide() && !joined">
+                <input type="button" class="btn" value="Teilnehmen" (click)="joinRide()">
+            </div>
+            <div *ngIf="!isMyRide() && joined">
+                <input type="button" class="btn" value="Teilnahme zurückziehen" (click)="joinRide()">
             </div>
 
         </div>

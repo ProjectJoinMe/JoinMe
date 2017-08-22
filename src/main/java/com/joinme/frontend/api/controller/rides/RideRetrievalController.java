@@ -1,5 +1,6 @@
 package com.joinme.frontend.api.controller.rides;
 
+import com.joinme.backend.rides.RideJoinManager;
 import com.joinme.backend.rides.RideRetrieval;
 import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.dto.RideSearchFilter;
@@ -19,11 +20,22 @@ public class RideRetrievalController {
     @Autowired
     private RideRetrieval rideRetrieval;
 
+    @Autowired
+    private RideJoinManager rideJoinManager;
+
     @PreAuthorize("fullyAuthenticated")
-    @RequestMapping(value = "/api/rides/myRides", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/profile/{username}/rides", method = RequestMethod.GET)
     @ResponseBody
-    public List<RideDto> getMyRides() {
-        List<RideDto> rides = rideRetrieval.getRidesOf(SecurityUtil.getCurrentUsername());
+    public List<RideDto> getRidesOf(@PathVariable String username) {
+        List<RideDto> rides = rideRetrieval.getRidesOf(username);
+        return rides;
+    }
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/profile/{username}/joins", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RideDto> getJoinedRides(@PathVariable String username) {
+        List<RideDto> rides = rideJoinManager.getJoinedRidesOf(username);
         return rides;
     }
 

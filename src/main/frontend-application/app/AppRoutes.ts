@@ -8,13 +8,15 @@ import {RegistrationComponent} from "./registration/RegistrationComponent";
 import {LoginComponent} from "./login/LoginComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
 import {ProfileEditComponent} from "./profile/edit/ProfileEditComponent";
-import {MyRidesComponent} from "./profile/rides/MyRidesComponent";
+import {MyRidesComponent} from "./profile/my_rides/MyRidesComponent";
 import {RideUpdateComponent} from "./rides/update/RideUpdateComponent";
 import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
 import {RideByIdResolver} from "./resolvers/RideByIdResolver";
 import {RideJoinsByRideIdResolver} from "./resolvers/RideJoinsByRideIdResolver";
 import {UserProfileByUsernameResolver} from "./resolvers/UserProfileByUsernameResolver";
-import {MyRidesResolver} from "./resolvers/MyRidesResolver";
+import {MyRidesResolver} from "./resolvers/UserProfileRidesResolver";
+import {JoinedRidesComponent} from "./profile/joined_rides/JoinedRidesComponent";
+import {JoinedRidesByUserResolver} from "./resolvers/JoinedRidesByUserResolver";
 
 
 export const ROUTES: Routes = [
@@ -53,9 +55,14 @@ export const ROUTES: Routes = [
         resolve: {userProfile: UserProfileByUsernameResolver}
     },
     {
-        path: 'profile/:username/myRides',
+        path: 'profile/:username/rides',
         component: MyRidesComponent,
         resolve: {rides: MyRidesResolver}
+    },
+    {
+        path: 'profile/:username/joinedRides',
+        component: JoinedRidesComponent,
+        resolve: {rides: JoinedRidesByUserResolver}
     },
     {
         path: 'rides/:id',
