@@ -3,6 +3,7 @@ package com.joinme.backend.rides.converter;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.entity.Ride;
+import com.joinme.backend.rides.repository.RideJoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,9 @@ public class RideConverter {
 
     @Autowired
     private UserAccountRepository userAccountRepository;
+
+    @Autowired
+    private RideJoinRepository rideJoinRepository;
 
     public List<RideDto> toDto(List<Ride> entities) {
         return entities.stream()
@@ -44,6 +48,7 @@ public class RideConverter {
         rideDto.setNotes(entity.getNotes());
         rideDto.setCreationDateTime(entity.getCreationDateTime());
         rideDto.setProviderUsername(entity.getProvider().getUsername());
+        rideDto.setFreeSeats(entity.getMaxPassengers() - rideJoinRepository.countByRide(entity));
     }
 
     public Ride toEntity(RideDto rideDto) {

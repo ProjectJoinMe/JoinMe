@@ -41,6 +41,8 @@ public class RideDto implements Serializable {
     @NotNull
     private int maxPassengers;
 
+    private int freeSeats;
+
     private LocalDateTime returnDepartureDateTime;
 
     private String notes;
@@ -131,5 +133,13 @@ public class RideDto implements Serializable {
 
     public void setStartPlaceId(String startPlaceId) {
         this.startPlaceId = startPlaceId;
+    }
+
+    public int getFreeSeats() {
+        return freeSeats;
+    }
+
+    public void setFreeSeats(int freeSeats) {
+        this.freeSeats = freeSeats;
     }
 }
