@@ -37,6 +37,8 @@ public class UserAccountCreationBean implements UserAccountCreation {
         userAccount.setUsername(accountRegistrationData.getUsername());
         userAccount.setGender(accountRegistrationData.getGender());
         userAccount.setDateOfBirth(LocalDate.from(LocalDateTime.ofInstant(accountRegistrationData.getDateOfBirth().toInstant(), ZoneId.systemDefault())));
+        userAccount.setFirstName(accountRegistrationData.getFirstName());
+        userAccount.setLastName(accountRegistrationData.getLastName());
 
         String rawPassword = accountRegistrationData.getPassword();
         String encodedPassword = passwordEncoder.encode(rawPassword);

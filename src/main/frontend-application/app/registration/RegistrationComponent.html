@@ -8,19 +8,23 @@
   <table>
     <tr>
       <td class="first"><label>Vorname: </label></td>
-      <td><input formControlName="*todo*" type="text"></td>
+      <td><input formControlName="firstName" type="text"></td>
       <td>
-        <!-- to-do  <small class="error-message" [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
-          Benutzername ungültig (zwischen 5 und 20 Zeichen)</small> -->
+        <small class="error-message"
+               [hidden]="registrationForm.controls.firstName.valid || (registrationForm.controls.firstName.pristine && !submitted)">
+          Bitte den Vornamen eingeben
+        </small>
       </td>
     </tr>
 
     <tr>
       <td class="first"><label>Nachname: </label></td>
-      <td><input formControlName="*todo*" type="text"></td>
+      <td><input formControlName="lastName" type="text"></td>
       <td>
-        <!-- to-do <small class="error-message" [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
-          Benutzername ungültig (zwischen 5 und 20 Zeichen)</small> -->
+        <small class="error-message"
+               [hidden]="registrationForm.controls.lastName.valid || (registrationForm.controls.lastName.pristine && !submitted)">
+          Bitte den Nachnamen eingeben
+        </small>
       </td>
     </tr>
 

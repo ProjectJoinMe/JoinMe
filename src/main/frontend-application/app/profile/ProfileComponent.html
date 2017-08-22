@@ -2,8 +2,7 @@
     <br>
     <h1 class="component">Mein Profil</h1>
     <br/>
-
-    <div class="inner">
+    <div *ngIf="securityStatus.loggedIn && userProfile.username == securityStatus.username" class="inner">
 
             <table>
                 <tr>
@@ -18,12 +17,26 @@
                     </td>
                 </tr>
             </table>
-
     </div>
     <br>
-
     <div *ngIf="userProfile" class="inner">
         <table>
+            <tr>
+                <td class="first">
+                    <label>Vorname:</label>
+                </td>
+                <td>
+                    {{userProfile.firstName}}
+                </td>
+            </tr>
+            <tr>
+                <td class="first">
+                    <label>Nachname:</label>
+                </td>
+                <td>
+                    {{userProfile.lastName}}
+                </td>
+            </tr>
             <tr>
                 <td class="first">
                     <label>Username:</label>

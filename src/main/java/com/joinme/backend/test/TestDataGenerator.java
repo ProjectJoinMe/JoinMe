@@ -67,6 +67,8 @@ public class TestDataGenerator {
             accountRegistrationData.setPassword("123456");
             accountRegistrationData.setGender(Gender.MALE);
             accountRegistrationData.setDateOfBirth(new Date());
+            accountRegistrationData.setFirstName("Günther");
+            accountRegistrationData.setLastName("Stefan");
 
             userAccountCreation.createUser(accountRegistrationData);
 
@@ -113,6 +115,8 @@ public class TestDataGenerator {
             accountRegistrationData.setPassword(PASSWORD);
             accountRegistrationData.setGender(Gender.FEMALE);
             accountRegistrationData.setDateOfBirth(new Date());
+            accountRegistrationData.setFirstName("Güntherine");
+            accountRegistrationData.setLastName("Dietrich");
 
             userAccountCreation.createUser(accountRegistrationData);
 

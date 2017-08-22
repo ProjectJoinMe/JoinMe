@@ -3,4 +3,6 @@ export interface UserProfile {
     email: string;
     dateOfBirth: Date;
     gender: string;
+    firstName: string;
+    lastName: string;
 }

@@ -4,13 +4,12 @@
     <br/>
 
     <div class="inner">
-
-        <form >
+        <form [formGroup]="editForm" (ngSubmit)="edit()">
             <table>
                 <tr>
                     <td class="first"><label>Vorname:</label></td>
                     <td class="second">
-                        <input type="text">
+                        <input formControlName="firstName" type="text">
                     </td>
                     <td>
                         <!-- to do: error message like registration -->
@@ -19,25 +18,17 @@
                 <tr>
                     <td class="first"><label>Nachname:</label></td>
                     <td class="second">
-                        <input type="text">
+                        <input formControlName="lastName" type="text">
                     </td>
                     <td>
                         <!-- to do: error message like registration -->
                     </td>
                 </tr>
-                <tr>
-                    <td class="first"><label>Geburtsdatum:</label></td>
-                    <td class="second">
-                        <input type="text">
-                    </td>
-                    <td>
-                        <!-- to do: error message like registration -->
-                    </td>
-                </tr>
+
                 <tr>
                     <td class="first"><label>E-Mail:</label></td>
                     <td class="second">
-                        <input type="text" value="{{userProfile.email}}">
+                        <input formControlName="email" type="text">
                     </td>
                     <td>
                         <!-- to do: error message like registration -->
@@ -46,25 +37,7 @@
                 <tr>
                     <td class="first"><label>Beschreibung:</label></td>
                     <td class="second">
-                        <textarea maxlength="500" minlength="20"></textarea>
-                    </td>
-                    <td>
-                        <!-- to do: error message like registration -->
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first"><label>neues Passwort:</label></td>
-                    <td class="second">
-                        <input type="text">
-                    </td>
-                    <td>
-                        <!-- to do: error message like registration -->
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first"><label>neues Passwort (wiederholen):</label></td>
-                    <td class="second">
-                        <input type="text">
+                        <textarea formControlName="description" maxlength="500" minlength="20">TODO</textarea>
                     </td>
                     <td>
                         <!-- to do: error message like registration -->
@@ -72,7 +45,7 @@
                 </tr>
             </table>
 
-            <button type="submit">Speichern</button>
+            <button type="submit" class="button" [disabled]="submitDisabled">Speichern</button>
 
         </form>
 

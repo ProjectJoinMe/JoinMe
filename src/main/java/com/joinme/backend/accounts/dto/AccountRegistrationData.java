@@ -26,6 +26,10 @@ public class AccountRegistrationData {
     @NotNull
     private Date dateOfBirth;
 
+    private String firstName;
+
+    private String lastName;
+
     public String getUsername() {
         return username;
     }
@@ -64,5 +68,21 @@ public class AccountRegistrationData {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
