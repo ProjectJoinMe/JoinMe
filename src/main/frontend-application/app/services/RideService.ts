@@ -13,8 +13,8 @@ export class RideService extends AbstractApiService {
         super();
     }
 
-    getMyRides(): Promise<Ride[]> {
-        return this.http.get(`${this.ridesApiUrl}/myRides`)
+    getRidesOf(username: string): Promise<Ride[]> {
+        return this.http.get(`/api/profile/${username}/rides`)
             .toPromise()
             .then(response => response.json() as Ride[])
             .catch(this.handleError);
@@ -61,6 +61,14 @@ export class RideService extends AbstractApiService {
         return this.http.get(url)
             .toPromise()
             .then(response => response.json() as RideJoin[])
+            .catch(this.handleError);
+    }
+
+    getJoinedRidesOf(username: string): Promise<Ride[]> {
+        const url = `api/profile/${username}/joins`;
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json() as Ride[])
             .catch(this.handleError);
     }
 

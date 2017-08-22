@@ -16,6 +16,7 @@ export class RideDetailsComponent implements OnInit {
 
     ride: Ride;
     rideJoins: RideJoin[];
+    joined: boolean;
 
     constructor(private rideService: RideService,
                 private route: ActivatedRoute,
@@ -29,8 +30,11 @@ export class RideDetailsComponent implements OnInit {
             .subscribe((data: { ride: Ride, rideJoins: RideJoin[] }) => {
                 this.ride = data.ride;
                 this.rideJoins = data.rideJoins;
+                let rideJoin = this.rideJoins.find(rideJoin => rideJoin.userProfileDto.username === this.securityStatus.username);
+                this.joined = rideJoin !== undefined;
             });
     }
+
 
     goToUpdate() {
         this.router.navigate(['/rides', this.ride.id, 'update']);

@@ -23,7 +23,7 @@ import {CreateRideComponent} from "./rides/create/CreateRideComponent";
 import {HeaderMenuComponent} from "./headermenu/HeaderMenuComponent";
 import {ProfileComponent} from "./profile/ProfileComponent";
 import {ProfileEditComponent} from "./profile/edit/ProfileEditComponent";
-import {MyRidesComponent} from "./profile/rides/MyRidesComponent";
+import {MyRidesComponent} from "./profile/my_rides/MyRidesComponent";
 import {RideUpdateComponent} from "./rides/update/RideUpdateComponent";
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
@@ -38,7 +38,9 @@ import {RideByIdResolver} from "./resolvers/RideByIdResolver";
 import {UserRegistrationService} from "./services/UserRegistrationService";
 import {UserProfileByUsernameResolver} from "./resolvers/UserProfileByUsernameResolver";
 import {UserProfileService} from "./services/UserProfileService";
-import {MyRidesResolver} from "./resolvers/MyRidesResolver";
+import {MyRidesResolver} from "./resolvers/UserProfileRidesResolver";
+import {JoinedRidesComponent} from "./profile/joined_rides/JoinedRidesComponent";
+import {JoinedRidesByUserResolver} from "./resolvers/JoinedRidesByUserResolver";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -76,7 +78,8 @@ type StoreType = {
         TimezonifyDatePipe,
         MapsAutocompletePlaceComponent,
         MapsDisplayRouteComponent,
-        ProfileEditComponent
+        ProfileEditComponent,
+        JoinedRidesComponent
     ],
     imports: [
         // Angular
@@ -100,7 +103,8 @@ type StoreType = {
         RideByIdResolver,
         RideJoinsByRideIdResolver,
         UserProfileByUsernameResolver,
-        MyRidesResolver
+        MyRidesResolver,
+        JoinedRidesByUserResolver
     ]
 })
 export class AppModule {
