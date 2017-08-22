@@ -74,9 +74,17 @@ export class RideService extends AbstractApiService {
 
     joinRide(ride: Ride): Promise<RideJoin> {
         return this.http
-            .post(`${this.ridesApiUrl}/${ride.id}/join`, ride, {headers: this.headers})
+            .post(`${this.ridesApiUrl}/${ride.id}/join`, null, {headers: this.headers})
             .toPromise()
             .then(res => res.json() as RideJoin)
+            .catch(this.handleError);
+    }
+
+    unjoinRide(ride: Ride): Promise<void> {
+        return this.http
+            .post(`${this.ridesApiUrl}/${ride.id}/unjoin`, null, {headers: this.headers})
+            .toPromise()
+            .then(res => undefined)
             .catch(this.handleError);
     }
 }

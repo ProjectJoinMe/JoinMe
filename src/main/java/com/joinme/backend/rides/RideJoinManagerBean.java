@@ -48,6 +48,12 @@ public class RideJoinManagerBean implements RideJoinManager {
     }
 
     @Override
+    public void unjoinRide(long rideId, String username) {
+        RideJoin join = getJoin(rideId, username);
+        rideJoinRepository.delete(join);
+    }
+
+    @Override
     public List<RideJoinDto> getRideJoinsForRide(long rideId) {
         List<RideJoin> rideJoins = rideJoinRepository.findByRideOrderByCreationDateTime(rideRepository.findById(rideId));
         return rideJoinConverter.toDto(rideJoins);
@@ -63,9 +69,13 @@ public class RideJoinManagerBean implements RideJoinManager {
     }
 
     private void checkIfDuplicate(long rideId, String username) {
-        RideJoin existingJoin = rideJoinRepository.findByPassengerUsernameAndRideOrderByCreationDateTime(username, rideRepository.findById(rideId));
+        RideJoin existingJoin = getJoin(rideId, username);
         if (existingJoin != null) {
             throw new IllegalArgumentException("Already joined this ride");
         }
+    }
+
+    private RideJoin getJoin(long rideId, String username) {
+        return rideJoinRepository.findByPassengerUsernameAndRideOrderByCreationDateTime(username, rideRepository.findById(rideId));
     }
 }

@@ -43,9 +43,21 @@ export class RideDetailsComponent implements OnInit {
     joinRide() {
         this.rideService.joinRide(this.ride).then(rideJoin => {
             this.rideJoins.push(rideJoin);
+            this.joined = true;
             // TODO show confirmation message
         }).catch(reason => {
             console.error("failed to join ride, TODO message");
+        });
+    }
+
+    unjoinRide() {
+        this.rideService.unjoinRide(this.ride).then(nothing => {
+            let rideJoin = this.rideJoins.find(rideJoin => rideJoin.userProfileDto.username === this.securityStatus.username);
+            this.rideJoins.splice(this.rideJoins.indexOf(rideJoin), 1);
+            this.joined = false;
+            // TODO show confirmation message
+        }).catch(reason => {
+            console.error("failed to unjoin ride, TODO message");
         });
     }
 
