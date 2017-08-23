@@ -26,8 +26,10 @@ public class AccountRegistrationData {
     @NotNull
     private Date dateOfBirth;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String lastName;
 
     public String getUsername() {

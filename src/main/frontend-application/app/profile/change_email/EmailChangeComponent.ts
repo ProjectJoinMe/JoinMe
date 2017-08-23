@@ -29,21 +29,17 @@ export class EmailChangeComponent implements OnInit {
                 private formBuilder: FormBuilder,
                 private router: Router,
                 private userProfileService: UserProfileService) {
+        this.route.data
+            .subscribe((data: { userProfile: UserProfile }) => {
+                this.userProfile = data.userProfile;
+            });
     }
 
     ngOnInit(): void {
         this.emailForm = this.formBuilder.group({
-            email: ["", [Validators.required, MailValidator.mailValidator()]],
+            email: [this.userProfile.email, [Validators.required, MailValidator.mailValidator()]],
             // email: ["", [Validators.required, MailValidator.mailValidator()], this.validateUniqueEmailPromise],
         });
-
-        this.route.data
-            .subscribe((data: { userProfile: UserProfile }) => {
-                this.userProfile = data.userProfile;
-                this.emailForm.setValue({
-                    email: this.userProfile.email
-                });
-            });
     }
 
     public change() {

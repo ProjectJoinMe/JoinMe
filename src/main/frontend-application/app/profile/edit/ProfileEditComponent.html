@@ -4,6 +4,13 @@
     <br/>
 
     <div class="inner">
+        <!--<form [formGroup]="pictureForm" (ngSubmit)="uploadPicture()">-->
+        <!--<table>-->
+        <!--<tr>-->
+        <!---->
+        <!--</tr>-->
+        <!--</table>-->
+        <!--</form>-->
         <form [formGroup]="editForm" (ngSubmit)="edit()">
             <table>
                 <tr>
@@ -12,7 +19,10 @@
                         <input formControlName="firstName" type="text">
                     </td>
                     <td>
-                        <!-- to do: error message like registration -->
+                        <small class="error-message"
+                               [hidden]="editForm.controls.firstName.valid || (editForm.controls.firstName.pristine && !submitted)">
+                            Bitte den Vornamen eingeben
+                        </small>
                     </td>
                 </tr>
                 <tr>
@@ -21,26 +31,19 @@
                         <input formControlName="lastName" type="text">
                     </td>
                     <td>
-                        <!-- to do: error message like registration -->
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="first"><label>E-Mail:</label></td>
-                    <td class="second">
-                        <input formControlName="email" type="text">
-                    </td>
-                    <td>
-                        <!-- to do: error message like registration -->
+                        <small class="error-message"
+                               [hidden]="editForm.controls.lastName.valid || (editForm.controls.lastName.pristine && !submitted)">
+                            Bitte den Nachnamen eingeben
+                        </small>
                     </td>
                 </tr>
                 <tr>
                     <td class="first"><label>Beschreibung:</label></td>
                     <td class="second">
-                        <textarea formControlName="description" maxlength="500" minlength="20">TODO</textarea>
+                        <textarea formControlName="description" maxlength="500" minlength="0"></textarea>
                     </td>
                     <td>
-                        <!-- to do: error message like registration -->
+
                     </td>
                 </tr>
             </table>

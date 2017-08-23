@@ -5,4 +5,5 @@ export interface UserProfile {
     gender: string;
     firstName: string;
     lastName: string;
+    description: string;
 }

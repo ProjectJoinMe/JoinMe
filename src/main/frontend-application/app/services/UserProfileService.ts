@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {UserProfile} from "../profile/UserProfile";
 import {AbstractApiService} from "./AbstractApiService";
+import {UserPassword} from "../profile/change_password/UserPassword";
 
 @Injectable()
 export class UserProfileService extends AbstractApiService {
@@ -22,6 +23,14 @@ export class UserProfileService extends AbstractApiService {
     updateUserProfile(userProfile: UserProfile): Promise<UserProfile> {
         return this.http
             .put(`${this.profileApiUrl}/${userProfile.username}/update`, userProfile, {headers: this.headers})
+            .toPromise()
+            .then(res => res.json() as UserProfile)
+            .catch(this.handleError);
+    }
+
+    updateUserPassword(userPassword: UserPassword): Promise<UserProfile> {
+        return this.http
+            .put(`${this.profileApiUrl}/${userPassword.username}/updatePassword`, userPassword, {headers: this.headers})
             .toPromise()
             .then(res => res.json() as UserProfile)
             .catch(this.handleError);
