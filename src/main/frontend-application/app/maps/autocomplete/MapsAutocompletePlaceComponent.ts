@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, KeyValueDiffer, KeyValueDiffers, NgZone} from '@angular/core';
+import {Component, Input, NgZone} from "@angular/core";
 import {LoginData} from "./LoginData";
 import {SecurityService} from "../security/SecurityService";
 import {FormGroup} from "@angular/forms";
@@ -15,6 +15,7 @@ export class MapsAutocompletePlaceComponent {
 
     @Input() name: string;
     @Input() formGroup: FormGroup;
+    @Input() onPlaceChange?: (place: any, isFullPlace: boolean) => void;
     autocomplete: any;
     inputFieldElement: any;
 
@@ -36,16 +37,23 @@ export class MapsAutocompletePlaceComponent {
     }
 
     onPlaceTextChanged() {
-        this.setPlaceId(null);
+        if (this.formGroup.contains(this.getPlaceIdFormControlName())) {
+            this.setPlaceId(null);
+        }
     }
 
     private selectedPlaceWasChanged() {
         let place = this.autocomplete.getPlace();
         let placeId = place.place_id;
-        this.setPlaceId(placeId);
-        if (placeId){
+        if (this.formGroup.contains(this.getPlaceIdFormControlName())) {
+            this.setPlaceId(placeId);
+        }
+        if (placeId && this.formGroup.contains(this.name)) {
             // update model value as textfield value was changed directly by google library
             this.setFormValue(this.name, this.inputFieldElement.value);
+        }
+        if (this.onPlaceChange) {
+            this.onPlaceChange(place, !!placeId);
         }
     }
 

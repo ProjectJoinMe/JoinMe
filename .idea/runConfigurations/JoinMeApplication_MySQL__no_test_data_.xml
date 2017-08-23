@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="JoinMeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+  <configuration default="false" name="JoinMeApplication MySQL (no test-data)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false">
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
       <pattern>
         <option name="PATTERN" value="com.joinme.*" />
@@ -7,9 +7,9 @@
       </pattern>
     </extension>
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.joinme.JoinMeApplication" />
-    <option name="ACTIVE_PROFILES" value="test-data" />
+    <option name="ACTIVE_PROFILES" value="mysql-local-dev" />
     <option name="ALTERNATIVE_JRE_PATH" />
-    <module name="joinme" />
+    <module name="JoinMe" />
     <envs />
     <method />
   </configuration>

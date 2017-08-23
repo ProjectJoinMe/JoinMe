@@ -21,7 +21,8 @@
                 <tr>
                     <td class="first"><label>Ankunftsort:</label></td>
                     <td class="second">
-                        <maps-autocomplete-place [formGroup]="rideForm" [name]="'destination'"></maps-autocomplete-place>
+                        <maps-autocomplete-place [formGroup]="rideForm"
+                                                 [name]="'destination'"></maps-autocomplete-place>
                     </td>
                     <td class="third">
                         <small class="error-message"
@@ -40,7 +41,8 @@
                 </tr>
                 <tr>
                     <td class="first"><label>Abfahrtsdatum:</label></td>
-                    <td class="second"><input class="date" formControlName="departureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}">
+                    <td class="second"><input class="date" formControlName="departureDate" type="date"
+                                              min="{{currentDate | date:'yyyy-MM-dd'}}">
                     </td>
                     <td class="third">
                         <small class="error-message"
@@ -71,7 +73,8 @@
                     </tr>
                     <tr class="returnFormRow">
                         <td class="first"><label>Abfahrtsdatum:</label></td>
-                        <td class="second"><input formControlName="returnDepartureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}"
+                        <td class="second"><input formControlName="returnDepartureDate" type="date"
+                                                  min="{{currentDate | date:'yyyy-MM-dd'}}"
                                                   class="date"></td>
                         <td class="third">
                             <small class="error-message"
@@ -104,6 +107,17 @@
                         </td>
                         <td class="third"></td>
                     </tr>
+                    <tr>
+                        <td class="first">Preis pro Teilnehmer in €</td>
+                        <td class="second">
+                            <input formControlName="pricePerPassenger" type="number" min="0" max="100">
+                        </td>
+                        <td class="third">
+                            <small class="error-message" [hidden]="rideForm.controls.pricePerPassenger.valid || (rideForm.controls.pricePerPassenger.pristine && !submitted)">
+                                ungültiger Preis
+                            </small>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <hr noshade>
@@ -116,6 +130,14 @@
             <button type="submit" class="btn" [disabled]="submitDisabled">Speichern</button>
             <input type="button" class="btn" value="Abbrechen" (click)="goToDetails(ride)">
         </form>
+
+        <div *ngIf="rideForm.controls.startPlaceId.value && rideForm.controls.destinationPlaceId.value">
+            <h3>Route</h3>
+            <maps-display-embedded-route
+                    [originPlaceId]="rideForm.controls.startPlaceId.value"
+                    [destinationPlaceId]="rideForm.controls.destinationPlaceId.value">
+            </maps-display-embedded-route>
+        </div>
     </div>
     <br>
 </div>

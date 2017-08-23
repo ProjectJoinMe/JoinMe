@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {Ride} from "../create/Ride";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {SecurityStatus} from "../../security/SecurityStatus";
-import {RideJoin} from "./RideJoin";
 import {RideService} from "../../services/RideService";
+import {Ride} from "../model/Ride";
+import {RideJoin} from "../model/RideJoin";
 
 @Component({
     selector: 'ride-details',
@@ -57,6 +57,16 @@ export class RideDetailsComponent implements OnInit {
             this.rideJoins.splice(this.rideJoins.indexOf(rideJoin), 1);
             this.joined = false;
             this.ride.freeSeats++;
+            // TODO show confirmation message
+        }).catch(reason => {
+            console.error("failed to unjoin ride, TODO message");
+        });
+    }
+
+    deleteRide() {
+        //TODO send information message to all users that joined that ride
+        this.rideService.deleteRide(this.ride).then(nothing => {
+            this.router.navigate(['/profile', this.securityStatus.username, 'rides']);
             // TODO show confirmation message
         }).catch(reason => {
             console.error("failed to unjoin ride, TODO message");

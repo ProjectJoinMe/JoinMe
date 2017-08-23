@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
-import {Ride} from "../rides/create/Ride";
 import {RegistrationData} from "../registration/RegistrationData";
 import {AbstractApiService} from "./AbstractApiService";
+import {Ride} from "../rides/model/Ride";
 
 @Injectable()
 export class UserRegistrationService extends AbstractApiService {

@@ -2,12 +2,14 @@ package com.joinme.backend.rides.converter;
 
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import com.joinme.backend.rides.dto.RideDto;
+import com.joinme.backend.rides.dto.RideRouteDto;
 import com.joinme.backend.rides.entity.Ride;
 import com.joinme.backend.rides.repository.RideJoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +51,10 @@ public class RideConverter {
         rideDto.setCreationDateTime(entity.getCreationDateTime());
         rideDto.setProviderUsername(entity.getProvider().getUsername());
         rideDto.setFreeSeats(entity.getMaxPassengers() - rideJoinRepository.countByRide(entity));
+        rideDto.setPricePerPassenger(entity.getPricePerPassenger());
+        RideRouteDto rideRouteDto = new RideRouteDto();
+        rideRouteDto.setStepLocations(entity.getStepLocations());
+        rideDto.setRoute(rideRouteDto);
     }
 
     public Ride toEntity(RideDto rideDto) {
@@ -68,6 +74,8 @@ public class RideConverter {
         rideEntity.setReturnDepartureDateTime(rideDto.getReturnDepartureDateTime());
         rideEntity.setNotes(rideDto.getNotes());
         rideEntity.setCreationDateTime(rideDto.getCreationDateTime());
+        rideEntity.setPricePerPassenger(rideDto.getPricePerPassenger());
         rideEntity.setProvider(userAccountRepository.findByUsername(rideDto.getProviderUsername()));
+        rideEntity.setStepLocations(new ArrayList<>(rideDto.getRoute().getStepLocations()));
     }
 }

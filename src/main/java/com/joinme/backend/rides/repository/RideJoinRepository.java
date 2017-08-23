@@ -17,6 +17,8 @@ public interface RideJoinRepository extends CrudRepository<RideJoin, Long> {
 
     int countByRide(Ride ride);
 
+    int deleteByRide(Ride ride);
+
     RideJoin findByPassengerUsernameAndRideOrderByCreationDateTime(String passengerUsername, Ride ride);
 
 }

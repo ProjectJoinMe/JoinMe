@@ -31,7 +31,6 @@ import {SearchRideComponent} from "./rides/search/SearchRideComponent";
 import {RideDetailsComponent} from "./rides/details/RideDetailsComponent";
 import {TimezonifyDatePipe} from "./util/time/TimezonifyDatePipe";
 import {MapsAutocompletePlaceComponent} from "./maps/autocomplete/MapsAutocompletePlaceComponent";
-import {MapsDisplayRouteComponent} from "./maps/route/MapsDisplayRouteComponent";
 import {RideService} from "./services/RideService";
 import {RideJoinsByRideIdResolver} from "./resolvers/RideJoinsByRideIdResolver";
 import {RideByIdResolver} from "./resolvers/RideByIdResolver";
@@ -43,6 +42,9 @@ import {JoinedRidesComponent} from "./profile/joined_rides/JoinedRidesComponent"
 import {JoinedRidesByUserResolver} from "./resolvers/JoinedRidesByUserResolver";
 import {PasswordChangeComponent} from "./profile/change_password/PasswordChangeComponent";
 import {EmailChangeComponent} from "./profile/change_email/EmailChangeComponent";
+import {MapsApiKeyService} from "./maps/config/MapsApiKeyService";
+import {MapsDisplayEmbeddedRouteComponent} from "./maps/display_embed_route/MapsDisplayEmbeddedRouteComponent";
+import {MapsDisplayCustomizableRouteComponent} from "./maps/display_customizable_route/MapsDisplayCustomizableRouteComponent";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -79,7 +81,8 @@ type StoreType = {
         NoContentComponent,
         TimezonifyDatePipe,
         MapsAutocompletePlaceComponent,
-        MapsDisplayRouteComponent,
+        MapsDisplayCustomizableRouteComponent,
+        MapsDisplayEmbeddedRouteComponent,
         ProfileEditComponent,
         JoinedRidesComponent,
         PasswordChangeComponent,
@@ -99,6 +102,7 @@ type StoreType = {
         ENV_PROVIDERS,
         APP_PROVIDERS,
         { provide: LOCALE_ID, useValue: "de-DE" },
+        MapsApiKeyService,
         DatePipe,
         TimezonifyDatePipe,
         RideService,

@@ -1,8 +1,5 @@
 package com.joinme.backend.rides.dto;
 
-import com.joinme.backend.accounts.entity.UserAccount;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -46,6 +43,10 @@ public class RideDto implements Serializable {
     private LocalDateTime returnDepartureDateTime;
 
     private String notes;
+
+    private Double pricePerPassenger;
+
+    private RideRouteDto route;
 
     public Long getId() {
         return id;
@@ -141,5 +142,21 @@ public class RideDto implements Serializable {
 
     public void setFreeSeats(int freeSeats) {
         this.freeSeats = freeSeats;
+    }
+
+    public Double getPricePerPassenger() {
+        return pricePerPassenger;
+    }
+
+    public void setPricePerPassenger(Double pricePerPassenger) {
+        this.pricePerPassenger = pricePerPassenger;
+    }
+
+    public RideRouteDto getRoute() {
+        return route;
+    }
+
+    public void setRoute(RideRouteDto route) {
+        this.route = route;
     }
 }

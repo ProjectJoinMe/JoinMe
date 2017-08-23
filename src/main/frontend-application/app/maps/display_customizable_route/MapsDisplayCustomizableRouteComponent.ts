@@ -1,23 +1,22 @@
-import {
-    ChangeDetectorRef, Component, ElementRef, Input, KeyValueDiffer, KeyValueDiffers, NgZone,
-    ViewChild
-} from '@angular/core';
+import {Component, ElementRef, Input, NgZone} from "@angular/core";
 import {LoginData} from "./LoginData";
 import {SecurityService} from "../security/SecurityService";
-import {FormGroup} from "@angular/forms";
-import {Ride} from "../../rides/create/Ride";
 
 declare let google: any;
 
+/**
+ * @unused Currently unused as it used the quota of the Maps Directions API. Embedded maps/routes have unlimited quota but arent that customizable which isnt necessary in our case.
+ */
 @Component({
-    selector: 'maps-ride-route',
+    selector: 'maps-display-customizable-route',
     providers: [],
-    styleUrls: ['./MapsDisplayRouteComponent.css'],
-    templateUrl: './MapsDisplayRouteComponent.html'
+    styleUrls: ['./MapsDisplayCustomizableRouteComponent.css'],
+    templateUrl: './MapsDisplayCustomizableRouteComponent.html'
 })
-export class MapsDisplayRouteComponent {
+export class MapsDisplayCustomizableRouteComponent {
 
-    @Input() ride: Ride;
+    @Input() originPlaceId: string;
+    @Input() destinationPlaceId: string;
     mapElement: any;
     directionsService: any;
     directionsDisplay: any;
@@ -43,16 +42,18 @@ export class MapsDisplayRouteComponent {
 
     ngOnChanges(changes: any) {
         if (this.routeLoaded) {
-            this.calculateAndDisplayRoute();
+            if (this.originPlaceId && this.destinationPlaceId) {
+                this.calculateAndDisplayRoute();
+            }
         }
     }
 
-    calculateAndDisplayRoute() {
+    private calculateAndDisplayRoute() {
         let origin = {
-            placeId: this.ride.startPlaceId
+            placeId: this.originPlaceId
         };
         let destination = {
-            placeId: this.ride.destinationPlaceId
+            placeId: this.destinationPlaceId
         };
         this.directionsService.route({
             origin: origin,
@@ -63,12 +64,16 @@ export class MapsDisplayRouteComponent {
         }, (response, status) => {
             this.ngZone.run(() => {
                 if (status === 'OK') {
-                    this.directionsDisplay.setDirections(response);
-                    this.routeLoaded = true;
+                    this.displayRoute(response);
                 } else {
                     // TODO display error when no route was found or other error
                 }
             });
         });
+    }
+
+    private displayRoute(response: any) {
+        this.directionsDisplay.setDirections(response);
+        this.routeLoaded = true;
     }
 }

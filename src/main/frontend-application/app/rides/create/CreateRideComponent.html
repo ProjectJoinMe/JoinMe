@@ -22,7 +22,8 @@
                 <tr>
                     <td class="first"><label>Ankunftsort:</label></td>
                     <td class="second">
-                        <maps-autocomplete-place [formGroup]="rideForm" [name]="'destination'"></maps-autocomplete-place>
+                        <maps-autocomplete-place [formGroup]="rideForm"
+                                                 [name]="'destination'"></maps-autocomplete-place>
                     </td>
                     <td class="third">
                         <small class="error-message"
@@ -41,7 +42,8 @@
                 </tr>
                 <tr>
                     <td class="first"><label>Abfahrtsdatum:</label></td>
-                    <td class="second"><input class="date" formControlName="departureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}">
+                    <td class="second"><input class="date" formControlName="departureDate" type="date"
+                                              min="{{currentDate | date:'yyyy-MM-dd'}}">
                     </td>
                     <td class="third">
                         <small class="error-message"
@@ -72,7 +74,8 @@
                     </tr>
                     <tr class="returnFormRow">
                         <td class="first"><label>Abfahrtsdatum:</label></td>
-                        <td class="second"><input formControlName="returnDepartureDate" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}"
+                        <td class="second"><input formControlName="returnDepartureDate" type="date"
+                                                  min="{{currentDate | date:'yyyy-MM-dd'}}"
                                                   class="date"></td>
                         <td class="third">
                             <small class="error-message"
@@ -169,6 +172,14 @@
             </div>
             <hr noshade>
             <button type="submit" class="btn" [disabled]="submitDisabled">Fahrt erstellen</button>
+
+            <div *ngIf="rideForm.controls.startPlaceId.value && rideForm.controls.destinationPlaceId.value">
+                <h3>Route</h3>
+                <maps-display-embedded-route
+                        [originPlaceId]="rideForm.controls.startPlaceId.value"
+                        [destinationPlaceId]="rideForm.controls.destinationPlaceId.value">
+                </maps-display-embedded-route>
+            </div>
         </form>
     </div>
 

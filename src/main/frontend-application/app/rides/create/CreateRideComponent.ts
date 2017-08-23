@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {Ride} from "./Ride";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {WeekDay} from "../WeekDay";
 import {Router} from "@angular/router";
 import {RideService} from "../../services/RideService";
+import {Ride} from "../model/Ride";
 
 @Component({
     selector: 'createRide',

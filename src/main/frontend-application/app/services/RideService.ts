@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Http, URLSearchParams} from "@angular/http";
-import {Ride} from "../rides/create/Ride";
-import {RideJoin} from "../rides/details/RideJoin";
 import {AbstractApiService} from "./AbstractApiService";
+import {Ride} from "../rides/model/Ride";
+import {RideJoin} from "../rides/model/RideJoin";
 
 @Injectable()
 export class RideService extends AbstractApiService {
@@ -53,6 +53,14 @@ export class RideService extends AbstractApiService {
             .put(`${this.ridesApiUrl}/${ride.id}/updateRide`, ride, {headers: this.headers})
             .toPromise()
             .then(res => res.json() as Ride)
+            .catch(this.handleError);
+    }
+
+    deleteRide(ride: Ride): Promise<void> {
+        return this.http
+            .delete(`${this.ridesApiUrl}/${ride.id}/delete`)
+            .toPromise()
+            .then(res => undefined)
             .catch(this.handleError);
     }
 

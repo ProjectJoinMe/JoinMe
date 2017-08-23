@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -39,6 +40,9 @@ public class RideRetrievalBean implements RideRetrieval {
     @Override
     public RideDto getRideById(long id) {
         Ride ride = rideRepository.findById(id);
+        if (ride == null) {
+            return null;
+        }
         return rideConverter.toDto(ride);
     }
 
