@@ -32,6 +32,10 @@ public class UserAccount implements Serializable {
     @Column(nullable = false, length = 1024)
     private String password;
 
+    @Column
+    private String description;
+
+
     public String getUsername() {
         return username;
     }
@@ -86,5 +90,13 @@ public class UserAccount implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -18,6 +18,8 @@ public class UserProfileDto {
 
     private String lastName;
 
+    private String description;
+
     public String getUsername() {
         return username;
     }
@@ -64,5 +66,13 @@ public class UserProfileDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -1,5 +1,6 @@
 package com.joinme.backend.accounts;
 
+import com.joinme.backend.accounts.dto.UserPasswordDto;
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,4 +17,6 @@ public interface UserProfileManager {
     UserProfileDto getProfile(String username);
 
     UserProfileDto updateUserProfile(UserProfileDto userProfile);
+
+    UserProfileDto updateUserPassword(UserPasswordDto userPasswordDto);
 }

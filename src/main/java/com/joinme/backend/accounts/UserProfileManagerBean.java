@@ -1,10 +1,12 @@
 package com.joinme.backend.accounts;
 
 import com.joinme.backend.accounts.coverter.UserAccountConverter;
+import com.joinme.backend.accounts.dto.UserPasswordDto;
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.entity.UserAccount;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -22,6 +24,9 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Autowired
     private UserAccountConverter userAccountConverter;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public UserProfileDto getProfile(String username) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
@@ -32,6 +37,18 @@ public class UserProfileManagerBean implements UserProfileManager {
     public UserProfileDto updateUserProfile(UserProfileDto userProfile) {
         UserAccount userAccount = userAccountRepository.findByUsername(userProfile.getUsername());
         userAccountConverter.setPropertiesOnEntity(userAccount, userProfile);
+        return userAccountConverter.toDto(userAccount);
+    }
+
+    @Override
+    public UserProfileDto updateUserPassword(UserPasswordDto userPasswordDto) {
+        String rawPassword = userPasswordDto.getPassword();
+        System.out.println(rawPassword);
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+
+        UserAccount userAccount = userAccountRepository.findByUsername(userPasswordDto.getUsername());
+        userAccount.setPassword(encodedPassword);
+
         return userAccountConverter.toDto(userAccount);
     }
 }
