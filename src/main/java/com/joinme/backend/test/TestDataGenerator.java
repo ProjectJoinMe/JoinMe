@@ -14,7 +14,9 @@ import com.joinme.backend.rides.dto.RideDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.time.temporal.ChronoUnit;
@@ -24,6 +26,8 @@ import java.util.Date;
  * Created by Nicole on 23.07.2017.
  */
 @Component
+@Transactional
+@Profile("test-data")
 public class TestDataGenerator {
 
     private static final String TEST_1 = "test";

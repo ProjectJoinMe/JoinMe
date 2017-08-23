@@ -1,8 +1,8 @@
 import {Crisis, CrisisService} from "./crisis.service";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {Injectable} from "@angular/core";
-import {Ride} from "../rides/create/Ride";
 import {RideService} from "../services/RideService";
+import {Ride} from "../rides/model/Ride";
 
 @Injectable()
 export class JoinedRidesByUserResolver implements Resolve<Ride> {

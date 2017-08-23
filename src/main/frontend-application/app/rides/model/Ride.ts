@@ -1,3 +1,5 @@
+import {RideRoute} from "./RideRoute";
+
 export interface Ride {
     id?: number;
     start: string;
@@ -11,4 +13,6 @@ export interface Ride {
     freeSeats?: number;
     notes: string;
     providerUsername?: string;
+    pricePerPassenger?: number;
+    route?: RideRoute;
 }

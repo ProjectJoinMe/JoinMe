@@ -2,8 +2,8 @@ import {Component} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {SearchRequest} from "./SearchRequest";
-import {Ride} from "../create/Ride";
 import {RideService} from "../../services/RideService";
+import {Ride} from "../model/Ride";
 
 @Component({
     selector: 'searchRide',

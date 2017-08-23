@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
-import {Ride} from "../../rides/create/Ride";
 import {Http} from "@angular/http";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Ride} from "../../rides/model/Ride";
 
 @Component({
     selector: 'myRides',

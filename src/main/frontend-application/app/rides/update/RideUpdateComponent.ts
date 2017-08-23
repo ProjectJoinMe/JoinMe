@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {Ride} from "../create/Ride";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {TimezonifyDatePipe} from "../../util/time/TimezonifyDatePipe";
 import {RideService} from "../../services/RideService";
+import {Ride} from "../model/Ride";
 
 @Component({
     selector: 'myRidesUpdate',
@@ -43,6 +43,7 @@ export class RideUpdateComponent implements OnInit {
             returnDepartureMinute: [""],
             maxPassengers: ["", Validators.required],
             notes: [""],
+            pricePerPassenger: ["", Validators.required],
         });
 
         this.route.data
@@ -64,7 +65,8 @@ export class RideUpdateComponent implements OnInit {
                     returnDepartureHour: this.getDateComponent(returnDepartureDateTime, 'HH'),
                     returnDepartureMinute: this.getDateComponent(returnDepartureDateTime, 'mm'),
                     maxPassengers: this.ride.maxPassengers,
-                    notes: this.ride.notes
+                    notes: this.ride.notes,
+                    pricePerPassenger: this.ride.pricePerPassenger
                 });
             });
     }
@@ -89,7 +91,8 @@ export class RideUpdateComponent implements OnInit {
                 departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getDate(), departureHour, departureMinute, 0, 0),
                 returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getDate(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
                 maxPassengers: <number> this.rideForm.get("maxPassengers").value,
-                notes: this.rideForm.get("notes").value
+                notes: this.rideForm.get("notes").value,
+                pricePerPassenger: this.rideForm.get("pricePerPassenger").value,
             };
             console.info(rideData);
 

@@ -27,4 +27,11 @@ public class RideUpdateController {
         Objects.requireNonNull(ride.getId());
         return rideUpdate.updateRide(ride);
     }
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/rides/{id}/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteRide(@PathVariable long id) {
+        rideUpdate.deleteRide(id);
+    }
 }

@@ -1,5 +1,6 @@
 package com.joinme.backend.rides;
 
+import com.joinme.backend.googlemaps.RideGoogleMapsRouteProcessing;
 import com.joinme.backend.rides.converter.RideConverter;
 import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.entity.Ride;
@@ -20,9 +21,13 @@ public class RideCreationBean implements RideCreation {
     @Autowired
     private RideConverter rideConverter;
 
+    @Autowired
+    private RideGoogleMapsRouteProcessing rideGoogleMapsRouteProcessing;
+
     @Override
     public RideDto createRide(RideDto ride) {
         ride.setCreationDateTime(LocalDateTime.now());
+        rideGoogleMapsRouteProcessing.fillGoogleMapsRouteInformation(ride);
         Ride rideEntity = rideConverter.toEntity(ride);
         rideRepository.save(rideEntity);
         return rideConverter.toDto(rideEntity);

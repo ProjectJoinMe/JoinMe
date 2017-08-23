@@ -9,7 +9,6 @@ import {UserProfileService} from "../../services/UserProfileService";
 /**
  * Created by Alexander on 18.08.2017.
  */
-
 @Component({
     selector: 'edit',
     providers: [],

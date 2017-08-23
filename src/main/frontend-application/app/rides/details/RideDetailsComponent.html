@@ -57,9 +57,13 @@
             </table>
             <br>
 
-            <div *ngIf="ride.startPlaceId && ride.destinationPlaceId" >
-                <maps-ride-route [ride]="ride"></maps-ride-route>
+            <div *ngIf="ride.startPlaceId && ride.destinationPlaceId">
+                <maps-display-embedded-route
+                        [originPlaceId]="ride.startPlaceId"
+                        [destinationPlaceId]="ride.destinationPlaceId">
+                </maps-display-embedded-route>
             </div>
+
             <div *ngIf="rideJoins.length != 0">
                 Mitfahrer auf dieser Fahrt
                 <div *ngFor="let rideJoin of rideJoins">
@@ -72,6 +76,9 @@
 
             <div *ngIf="isMyRide()">
                 <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate()">
+            </div>
+            <div *ngIf="isMyRide()">
+                <input type="button" class="btn" value="Löschen" (click)="deleteRide()">
             </div>
             <div *ngIf="!isMyRide() && !joined">
                 <input type="button" class="btn" value="Teilnehmen" (click)="joinRide()">
