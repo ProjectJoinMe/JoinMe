@@ -192,9 +192,7 @@ hr {
 
 @media only screen and (max-width: 480px){
   /* For mobile phones: */
-  /*[class*="col-"] {
-    width: 100%;
-  }*/
+
   .col-m-1 {width: 8.33%;}
   .col-m-2 {width: 16.66%;}
   .col-m-3 {width: 25%;}
@@ -222,11 +220,19 @@ hr {
     border-radius: 15px;
     margin: auto;
   }
-  .tdsize {
-    height: 100%;
+  td.tdsize2 {
+    line-height: 200%;
     width: 50%;
     align-content: center;
   }
+
+  div.colMarginTop{
+    margin-top: 25px;
+
+  }
+
+
+
 }
 
 
@@ -267,6 +273,11 @@ hr {
     width: 25%;
     align-content: center;
   }
+
+  div.colMarginTop{
+    margin-top: 35px;
+
+  }
 }
 
 
@@ -286,7 +297,9 @@ hr {
   .col-12 {width: 100%;}
   div.inner {
     background-color: #A0D751;
-    width: 50%;
+    min-width: 50%;
+    width: auto;
+    max-width: 80%;
     border: none;
     border-radius: 15px;
     margin: auto;
@@ -295,17 +308,44 @@ hr {
   input {
     width: 99%;
   }
+
   .tdsize {
     height: 100%;
     width: 25%;
     align-content: center;
   }
+
+  .tdsize3 {
+    line-height: 200%;
+    width: auto;
+    align-content: center;
+  }
+
+  div.marginLeft{
+    margin-left: 1.5%;
+  }
+
+  div.colMarginTop{
+    margin-top: 50px;
+
+  }
+
+  div.logoTop {
+    border-radius: 10%;
+    text-align: left;
+  }
+
 }
 
 [class*="col-"] {
   float: left;
-  /*border: 1px solid silver;*/
+  border: 1px solid transparent;
   margin: 0px;
+}
+
+
+[class*="dateTimeWidth"] {
+  width: 25%;
 }
 
 .row::after {
