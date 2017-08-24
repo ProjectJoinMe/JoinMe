@@ -5,3 +5,17 @@
 img {
     border-radius: 10%;
 }
+
+img.logo {
+    height: auto;
+    max-width: 100%;
+}
+.marginButton{
+    margin-top: 17px;
+}
+
+.tableheight {
+    height: 100%;
+    align-content: center;
+    width: 100%;
+}
