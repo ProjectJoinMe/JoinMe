@@ -1,41 +1,114 @@
 <div id="content" >
 
   <div class="main">
-  <br /> <br>
+  <br />
 
 
     <div class="row">
-      <div class="col-2 col-m-12 col-t-6"> <img class="logo" src="assets/img/joinme/FooterLogo.png" width="50%" height="50%">  </div>
-      <div class="col-3 col-m-12 col-t-6"> <label>JoinMe - ... </label></div>
-      <div class="col-6 col-m-12 col-t-12 inner">
+      <div class="col-1">   </div>
 
+      <div class="col-2 col-m-12 col-t-5 colMarginTop logoTop" > <img class="logo" src="assets/img/joinme/FooterLogo.png" width="50%" height="50%">  </div>
+
+      <div class="col-2 col-m-12 col-t-6 colMarginTop">
+        <h2 class="text">JoinMe - ... <br></h2>
+      </div>
+
+      <div class="col-6 col-m-12 col-t-12 inner colMarginTop">
         <h2>Fahrt suchen</h2>
 
         <table class="tableheight">
           <tr>
-            <td class="col-3 col-m-6 col-t-3 tdsize">
+            <td class="col-3 col-m-6 col-t-3 tdsize tdsize2">
               <label> Abfahrtsort </label> <br>
               <input type="text">
             </td>
-            <td class="col-3 col-m-6 col-t-3 tdsize">
+            <td class="col-3 col-m-6 col-t-3 tdsize tdsize2">
               <label> Zielort </label> <br>
               <input type="text">
             </td>
-            <td class="col-3 col-m-6 col-t-3 tdsize">
+            <td class="col-3 col-m-6 col-t-3 tdsize tdsize2">
               <label> Datum </label> <br>
               <input type="date" min="{{currentDate | date:'yyyy-MM-dd'}}" >
             </td>
-            <td class="col-3 col-m-6 col-t-3 tdsize">
+            <td class="col-3 col-m-6 col-t-3 tdsize tdsize2">
 
-              <input type="submit" value="Suchen" class="btn marginButton">
+              <input type="submit" value="Jetzt suchen →" class="btn marginButton">
               <!-- todo [disabled]="submitDisabled" formControlName="date" -->
-          </td>
+            </td>
           </tr>
         </table>
         <br>
       </div>
-      <div class="col-1"></div>
+      <div class="col-1 "></div>
     </div>
+
+
+
+
+
+    <div class="row ">
+
+        <div class="col-1">   </div>
+        <div class="col-8 col-m-12 col-t-9 inner colMarginTop">
+          <h2> Fahrt anbieten</h2>
+
+          <table >
+            <tr >
+              <td class="col-2 col-m-6 col-t-2 tdsize3 tdsize2">
+                <label>Abfahrtsort</label><br>
+                <input type="text">
+              </td>
+
+              <td class="col-2 col-m-6 col-t-2 tdsize3 tdsize2">
+                <label>Ankunftsort</label><br>
+                <input type="text">
+              </td>
+
+              <td class="col-2 col-m-6 col-t-2 tdsize3 tdsize2">
+                <label>Abfahrtsdatum:</label><br>
+                <input type="date"
+                       min="{{currentDate | date:'yyyy-MM-dd'}}">
+              </td>
+
+              <td class="col-2 col-m-6 col-t-2 tdsize3 tdsize2">
+                <label>Uhrzeit:</label><br>
+                <input class="dateTimeWidth" type="number" min="0" max="23">:
+                <input class="dateTimeWidth" type="number" min="0" max="59" step="5">
+              </td>
+
+               <td class="col-2 col-m-6 col-t-2 tdsize3 tdsize2">
+                 <label>Rückfahrt?</label><br>
+                 <input type="checkbox" value="Ja"> Ja
+               </td>
+
+              <td class="col-2 col-m-6 col-t-2 tdsize3 tdsize2">
+                <input type="submit" value="Jetzt anbieten →" (click)="goToCreateRide()" class="btn marginButton2">
+              </td>
+
+            </tr>
+          </table>
+          <br>
+        </div>
+
+        <div class="col-1 colMarginTop"> </div>
+        <div class="col-2 col-m-12 col-t-13 colMarginTop marginLeft">
+          <img src="assets/img/joinme/JoinMe_LogoAppCommercial.jpg" width="70%" height="70%">
+        </div>
+
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+
+      <div class="col-12 col-m-12 col-t-12">
+        <h2 class="text">Rest folgt dann, wenn es soweit ist!</h2>
+
+      </div>
+      <br>
+
+    </div>
+
 
     <br>
   </div>
