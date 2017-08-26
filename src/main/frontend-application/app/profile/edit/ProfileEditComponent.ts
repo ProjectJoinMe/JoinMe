@@ -22,6 +22,7 @@ export class ProfileEditComponent implements OnInit {
     public editForm: FormGroup;
     public profileSubmitted: boolean = false;
     public profileSubmitDisabled: boolean = false;
+    public userProfilePicturePath: string = "";
 
     constructor(private http: Http,
                 private route: ActivatedRoute,
@@ -32,6 +33,7 @@ export class ProfileEditComponent implements OnInit {
             .subscribe((data: { userProfile: UserProfile }) => {
                 this.userProfile = data.userProfile;
             });
+        this.userProfilePicturePath = "/api/profile/" + this.userProfile.username + "/profilePicture"
     }
 
     ngOnInit() {

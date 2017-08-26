@@ -38,7 +38,7 @@ export class UserProfileService extends AbstractApiService {
 
     setProfilePicture(formData: FormData, username: string): Promise<UserProfile> {
         return this.http
-            .put(`${this.profileApiUrl}/${username}/uploadProfilePicture`, formData)
+            .put(`${this.profileApiUrl}/${username}/uploadProfilePicture`, formData) //no headers to define here, boundary has to be generated automatically
             .toPromise()
             .then(res => res.json() as UserProfile)
             .catch(this.handleError);

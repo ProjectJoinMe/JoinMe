@@ -16,4 +16,6 @@ public interface UserProfileManager {
     UserProfileDto updateUserPassword(UserPasswordDto userPasswordDto);
 
     UserProfileDto setProfilePicture(String username, MultipartFile profilePicture);
+
+    byte[] getProfilePicture(String username);
 }

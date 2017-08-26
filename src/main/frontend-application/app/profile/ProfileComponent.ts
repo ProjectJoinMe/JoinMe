@@ -2,7 +2,6 @@ import {Component} from "@angular/core";
 import {UserProfile} from "./UserProfile";
 import {ActivatedRoute} from "@angular/router";
 import {SecurityStatus} from "../security/SecurityStatus";
-import cloneWith = require("lodash/cloneWith");
 
 @Component({
     selector: 'profile',
@@ -13,6 +12,7 @@ import cloneWith = require("lodash/cloneWith");
 export class ProfileComponent {
 
     userProfile: UserProfile;
+    public userProfilePicturePath: string = "";
 
     constructor(private route: ActivatedRoute,
                 public securityStatus: SecurityStatus) {
@@ -23,5 +23,6 @@ export class ProfileComponent {
             .subscribe((data: { userProfile: UserProfile }) => {
                 this.userProfile = data.userProfile;
             });
+        this.userProfilePicturePath = "/api/profile/" + this.userProfile.username + "/profilePicture"
     }
 }
