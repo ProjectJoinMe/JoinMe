@@ -57,6 +57,8 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Override
     public UserProfileDto setProfilePicture(String username, MultipartFile profilePicture) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
+        //TODO make image size smaller
+
         try {
             userAccount.setProfilePicture(profilePicture.getBytes());
         } catch (IOException e) {
@@ -65,5 +67,18 @@ public class UserProfileManagerBean implements UserProfileManager {
 
         return userAccountConverter.toDto(userAccount);
 
+    }
+
+    @Override
+    public byte[] getProfilePicture(String username) {
+        UserAccount userAccount = userAccountRepository.findByUsername(username);
+        byte[] profilePicture = userAccount.getProfilePicture();
+
+        if (profilePicture != null && profilePicture.length != 0) {
+            return profilePicture;
+        } else {
+            //TODO what if there is no profile pic
+            return new byte[1];
+        }
     }
 }

@@ -58,6 +58,7 @@ public class UserProfileController {
     @ResponseBody
     public UserProfileDto uploadUserProfilePicture(@PathVariable String username, @RequestParam("pictureFile") MultipartFile profilePicture) {
         Assert.isTrue(username.equals(SecurityUtil.getCurrentUsername()));
+        //TODO check if file really is an image
         return userProfileManager.setProfilePicture(username, profilePicture);
     }
 
@@ -69,9 +70,16 @@ public class UserProfileController {
     @Bean
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(5242880);
-        multipartResolver.setMaxInMemorySize(1048576);
+        multipartResolver.setMaxUploadSize(10485760);
+        multipartResolver.setMaxInMemorySize(2097152);
         return multipartResolver;
+    }
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/profile/{username}/profilePicture", method = RequestMethod.GET)
+    @ResponseBody
+    public byte[] getUserProfilePicture(@PathVariable String username) {
+        return userProfileManager.getProfilePicture(username);
     }
 }
 
