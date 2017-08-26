@@ -2,12 +2,7 @@ package com.joinme.backend.accounts;
 
 import com.joinme.backend.accounts.dto.UserPasswordDto;
 import com.joinme.backend.accounts.dto.UserProfileDto;
-import com.joinme.backend.accounts.repository.UserAccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by Alexander on 17.08.2017.
@@ -19,4 +14,6 @@ public interface UserProfileManager {
     UserProfileDto updateUserProfile(UserProfileDto userProfile);
 
     UserProfileDto updateUserPassword(UserPasswordDto userPasswordDto);
+
+    UserProfileDto setProfilePicture(String username, MultipartFile profilePicture);
 }

@@ -35,6 +35,9 @@ public class UserAccount implements Serializable {
     @Column
     private String description;
 
+    @Lob
+    @Column
+    private byte[] profilePicture;
 
     public String getUsername() {
         return username;
@@ -98,5 +101,13 @@ public class UserAccount implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

@@ -8,8 +8,10 @@ import com.joinme.backend.accounts.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 
 /**
  * Created by Alexander on 17.08.2017.
@@ -50,5 +52,18 @@ public class UserProfileManagerBean implements UserProfileManager {
         userAccount.setPassword(encodedPassword);
 
         return userAccountConverter.toDto(userAccount);
+    }
+
+    @Override
+    public UserProfileDto setProfilePicture(String username, MultipartFile profilePicture) {
+        UserAccount userAccount = userAccountRepository.findByUsername(username);
+        try {
+            userAccount.setProfilePicture(profilePicture.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return userAccountConverter.toDto(userAccount);
+
     }
 }

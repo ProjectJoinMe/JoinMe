@@ -1,6 +1,6 @@
 import {ActivatedRoute, Router} from "@angular/router";
 import {Http} from "@angular/http";
-import {Component, OnInit} from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {UserProfile} from "../UserProfile";
 import {SecurityService} from ".../security/SecurityService";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -16,11 +16,12 @@ import {UserProfileService} from "../../services/UserProfileService";
     templateUrl: './ProfileEditComponent.html'
 })
 export class ProfileEditComponent implements OnInit {
+    @ViewChild('fileInput') inputEl: ElementRef;
 
     public userProfile: UserProfile;
     public editForm: FormGroup;
-    public submitted: boolean = false;
-    public submitDisabled: boolean = false;
+    public profileSubmitted: boolean = false;
+    public profileSubmitDisabled: boolean = false;
 
     constructor(private http: Http,
                 private route: ActivatedRoute,
@@ -39,13 +40,14 @@ export class ProfileEditComponent implements OnInit {
             lastName: [this.userProfile.lastName, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
             description: [this.userProfile.description],
         });
+
     }
 
     public edit() {
-        this.submitted = true;
+        this.profileSubmitted = true;
         if (this.editForm.valid) {
             console.info("updating profile");
-            this.submitDisabled = true;
+            this.profileSubmitDisabled = true;
 
             let firstName = <string> this.editForm.get("firstName").value;
             let lastName = <string> this.editForm.get("lastName").value;
@@ -58,8 +60,24 @@ export class ProfileEditComponent implements OnInit {
             this.userProfileService.updateUserProfile(this.userProfile).then(updatedUserProfile => {
                 this.router.navigate(['/profile', this.userProfile.username]);
             }).catch(reason => {
-                this.submitDisabled = false;
+                this.profileSubmitDisabled = false;
                 console.error("failed to update profile, TODO message");
+            });
+        }
+    }
+
+    public upload() {
+        //partially from https://stackoverflow.com/questions/36352405/file-upload-with-angular2-to-rest-api
+
+        let inputEl: HTMLInputElement = this.inputEl.nativeElement;
+        let fileCount: number = inputEl.files.length;
+        let formData = new FormData();
+        if (fileCount === 1) { // a file was selected
+            formData.append('pictureFile', inputEl.files.item(0));
+            this.userProfileService.setProfilePicture(formData, this.userProfile.username).then(updatedUserProfile => {
+                this.router.navigate(['/profile', this.userProfile.username]);
+            }).catch(reason => {
+                console.error("failed to update profile picture, TODO message");
             });
         }
     }

@@ -5,6 +5,7 @@ import {HttpModule, JsonpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {createInputTransfer, createNewHosts, removeNgStyles} from "@angularclass/hmr";
 import {DatePipe} from "@angular/common";
+import {FileSelectDirective} from 'ng2-file-upload';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -86,7 +87,8 @@ type StoreType = {
         ProfileEditComponent,
         JoinedRidesComponent,
         PasswordChangeComponent,
-        EmailChangeComponent
+        EmailChangeComponent,
+        FileSelectDirective
     ],
     imports: [
         // Angular
