@@ -77,8 +77,7 @@
     "lodash": "3.10.1",
     "@types/lodash": "ts2.0",
     "moment": "2.18.1",
-    "moment-timezone ": "0.5.13",
-    "ng2-file-upload": "1.2.1"
+    "moment-timezone ": "0.5.13"
   },
   "devDependencies": {
     "@types/hammerjs": "~2.0.33",

@@ -5,11 +5,16 @@ import com.joinme.backend.accounts.dto.UserPasswordDto;
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import javax.servlet.MultipartConfigElement;
 import javax.validation.Valid;
 
 /**
@@ -47,4 +52,26 @@ public class UserProfileController {
         Assert.isTrue(username.equals(SecurityUtil.getCurrentUsername()));
         return userProfileManager.updateUserPassword(userPasswordDto);
     }
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/profile/{username}/uploadProfilePicture", method = RequestMethod.PUT)
+    @ResponseBody
+    public UserProfileDto uploadUserProfilePicture(@PathVariable String username, @RequestParam("pictureFile") MultipartFile profilePicture) {
+        Assert.isTrue(username.equals(SecurityUtil.getCurrentUsername()));
+        return userProfileManager.setProfilePicture(username, profilePicture);
+    }
+
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        return new MultipartConfigElement("");
+    }
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(5242880);
+        multipartResolver.setMaxInMemorySize(1048576);
+        return multipartResolver;
+    }
 }
+

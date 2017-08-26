@@ -35,4 +35,12 @@ export class UserProfileService extends AbstractApiService {
             .then(res => res.json() as UserProfile)
             .catch(this.handleError);
     }
+
+    setProfilePicture(formData: FormData, username: string): Promise<UserProfile> {
+        return this.http
+            .put(`${this.profileApiUrl}/${username}/uploadProfilePicture`, formData)
+            .toPromise()
+            .then(res => res.json() as UserProfile)
+            .catch(this.handleError);
+    }
 }

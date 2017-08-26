@@ -3,16 +3,29 @@
     <h1 class="component">Profil bearbeiten</h1>
     <br/>
 
-    <div class="inner">
-        <!--<form [formGroup]="pictureForm" (ngSubmit)="uploadPicture()">-->
-        <!--<table>-->
-        <!--<tr>-->
-        <!---->
-        <!--</tr>-->
-        <!--</table>-->
-        <!--</form>-->
+    <div class="inner" style=" margin: auto; width: 50%; padding: 10px;">
+        <!--TODO Designteam: inline pfusch ändern, danke-->
+        <h2>Profilbild</h2>
+
+        <table style=" margin: auto; width: 50%; padding: 10px;"><!--TODO Designteam: inline pfusch ändern, danke-->
+            <tr>
+                <td><img
+                        src="https://lh4.ggpht.com/wKrDLLmmxjfRG2-E-k5L5BUuHWpCOe4lWRF7oVs1Gzdn5e5yvr8fj-ORTlBF43U47yI=w300"
+                        alt="Placeholder Image" style="width:125px;height:125px;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form enctype="multipart/form-data" method="">
+                        <input #fileInput type="file" (change)="upload()" [multiple]="false" name="pictureFile"
+                               class="pictureFile" accept="image/*">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <h2>Persönliche Informationen</h2>
         <form [formGroup]="editForm" (ngSubmit)="edit()">
-            <table>
+            <table style=" margin: auto; width: 50%; padding: 10px;"><!--TODO Designteam: inline pfusch ändern, danke-->
                 <tr>
                     <td class="first"><label>Vorname:</label></td>
                     <td class="second">
@@ -20,7 +33,7 @@
                     </td>
                     <td>
                         <small class="error-message"
-                               [hidden]="editForm.controls.firstName.valid || (editForm.controls.firstName.pristine && !submitted)">
+                               [hidden]="editForm.controls.firstName.valid || (editForm.controls.firstName.pristine && !profileSubmitted)">
                             Bitte den Vornamen eingeben
                         </small>
                     </td>
@@ -32,7 +45,7 @@
                     </td>
                     <td>
                         <small class="error-message"
-                               [hidden]="editForm.controls.lastName.valid || (editForm.controls.lastName.pristine && !submitted)">
+                               [hidden]="editForm.controls.lastName.valid || (editForm.controls.lastName.pristine && !profileSubmitted)">
                             Bitte den Nachnamen eingeben
                         </small>
                     </td>
@@ -48,7 +61,7 @@
                 </tr>
             </table>
 
-            <button type="submit" class="button" [disabled]="submitDisabled">Speichern</button>
+            <button type="submit" class="button" [disabled]="profileSubmitDisabled">Speichern</button>
 
         </form>
 
