@@ -28,6 +28,9 @@ public class RideCreationBean implements RideCreation {
     public RideDto createRide(RideDto ride) {
         ride.setCreationDateTime(LocalDateTime.now());
         rideGoogleMapsRouteProcessing.fillGoogleMapsRouteInformation(ride);
+        if (ride.getPricePerPassenger() == null) {
+            ride.setPricePerPassenger(ride.getRoute().getSuggestedPricePerPassenger());
+        }
         Ride rideEntity = rideConverter.toEntity(ride);
         rideRepository.save(rideEntity);
         return rideConverter.toDto(rideEntity);

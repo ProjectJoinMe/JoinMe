@@ -13,10 +13,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <input formControlName="start" type="text">
+                        <maps-autocomplete-place [formGroup]="searchForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
                     </td>
                     <td>
-                        <input formControlName="destination" type="text">
+                        <maps-autocomplete-place [formGroup]="searchForm" [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
                     </td>
                     <td>
                         <input formControlName="date" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}" >
@@ -26,6 +26,14 @@
                     </td>
                 </tr>
             </table>
+            <small class="error-message"
+                   [hidden]="searchForm.controls.startPlaceId.valid || (searchForm.controls.startPlaceId.pristine && !submitted)">
+                Bitte einen Abfahrtsort auswählen.
+            </small>
+            <small class="error-message"
+                   [hidden]="searchForm.controls.destinationPlaceId.valid || (searchForm.controls.destinationPlaceId.pristine && !submitted)">
+                Bitte einen Ankunftsort auswählen.
+            </small>
         </form>
         <br>
         <div>

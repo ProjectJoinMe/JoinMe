@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -52,6 +53,12 @@ public class Ride implements Serializable {
     @Column(nullable = false)
     @NotNull
     private LocalDateTime departureDateTime;
+    /**
+     * Truncated date of departureDateTime for search
+     */
+    @Column(nullable = false)
+    @NotNull
+    private LocalDate departureDate;
 
     @Column(nullable = false)
     @NotNull
@@ -59,17 +66,30 @@ public class Ride implements Serializable {
 
     @Column
     private LocalDateTime returnDepartureDateTime;
+    /**
+     * Truncated date of departureDateTime for search
+     */
+    @Column
+    private LocalDate returnDepartureDate;
 
     @Column(length = 4000)
     private String notes;
 
-    @Column
+    @Column(nullable = false)
     private Double pricePerPassenger;
 
-    @Type(type = "serializable")
-    @Column(length = 6000, nullable = false)
-    // using ArrayList instead of List to exploit Hibernate behavior: https://stackoverflow.com/questions/6622710/store-list-in-hibernate-as-serializable-object
-    private ArrayList<LatLng> stepLocations;
+    @Column(nullable = false)
+    private Double borderBoxSouthWestLat;
+    @Column(nullable = false)
+    private Double borderBoxSouthWestLng;
+    @Column(nullable = false)
+    private Double borderBoxNorthEastLat;
+    @Column(nullable = false)
+    private Double borderBoxNorthEastLng;
+
+    @Column(nullable = false)
+    @Lob
+    private String encodedPathLocations;
 
     public Long getId() {
         return id;
@@ -167,11 +187,59 @@ public class Ride implements Serializable {
         this.pricePerPassenger = pricePerPassenger;
     }
 
-    public ArrayList<LatLng> getStepLocations() {
-        return stepLocations;
+    public Double getBorderBoxSouthWestLat() {
+        return borderBoxSouthWestLat;
     }
 
-    public void setStepLocations(ArrayList<LatLng> stepLocations) {
-        this.stepLocations = stepLocations;
+    public void setBorderBoxSouthWestLat(Double borderBoxSouthWestLat) {
+        this.borderBoxSouthWestLat = borderBoxSouthWestLat;
+    }
+
+    public Double getBorderBoxSouthWestLng() {
+        return borderBoxSouthWestLng;
+    }
+
+    public void setBorderBoxSouthWestLng(Double borderBoxSouthWestLng) {
+        this.borderBoxSouthWestLng = borderBoxSouthWestLng;
+    }
+
+    public Double getBorderBoxNorthEastLat() {
+        return borderBoxNorthEastLat;
+    }
+
+    public void setBorderBoxNorthEastLat(Double borderBoxNorthEastLat) {
+        this.borderBoxNorthEastLat = borderBoxNorthEastLat;
+    }
+
+    public Double getBorderBoxNorthEastLng() {
+        return borderBoxNorthEastLng;
+    }
+
+    public void setBorderBoxNorthEastLng(Double borderBoxNorthEastLng) {
+        this.borderBoxNorthEastLng = borderBoxNorthEastLng;
+    }
+
+    public LocalDate getReturnDepartureDate() {
+        return returnDepartureDate;
+    }
+
+    public void setReturnDepartureDate(LocalDate returnDepartureDate) {
+        this.returnDepartureDate = returnDepartureDate;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public String getEncodedPathLocations() {
+        return encodedPathLocations;
+    }
+
+    public void setEncodedPathLocations(String encodedPathLocations) {
+        this.encodedPathLocations = encodedPathLocations;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +19,7 @@ public interface RideRepository extends CrudRepository<Ride, Long> {
 
     Ride findById(long id);
 
-    @Query("SELECT ride FROM Ride ride WHERE (:start IS NULL OR ride.start = :start)" +
-            " AND (:destination IS NULL OR ride.destination = :destination)" +
-            " AND (:date IS NULL OR ride.departureDateTime = :date)")
-    List<Ride> search(@Param("start") String start, @Param("destination") String destination, @Param("date") Date date);
+    @Query("SELECT ride FROM Ride ride WHERE" +
+            " ((:date IS NULL AND ride.departureDateTime > current_date) OR ride.departureDate = :date)")
+    List<Ride> getRidesInFutureOrAtDate(@Param("date") LocalDate date);
 }

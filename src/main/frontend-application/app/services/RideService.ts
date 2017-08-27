@@ -3,6 +3,7 @@ import {Http, URLSearchParams} from "@angular/http";
 import {AbstractApiService} from "./AbstractApiService";
 import {Ride} from "../rides/model/Ride";
 import {RideJoin} from "../rides/model/RideJoin";
+import {LatLng} from "../rides/model/LatLng";
 
 @Injectable()
 export class RideService extends AbstractApiService {
@@ -20,13 +21,11 @@ export class RideService extends AbstractApiService {
             .catch(this.handleError);
     }
 
-    searchRides(start: string | null, destination: string | null, date: Date | null): Promise<Ride[]> {
-        let data = new URLSearchParams();
-        data.append('start', start);
-        data.append('destination', destination);
-        data.append('date', date && date.toJSON());
-        return this.http.get(`${this.ridesApiUrl}/search`, {
-            search: data
+    searchRides(start: LatLng | null, destination: LatLng | null, date: Date | null): Promise<Ride[]> {
+        return this.http.post(`${this.ridesApiUrl}/search`, {
+            startLocation: start,
+            destinationLocation: destination,
+            date: date
         })
             .toPromise()
             .then(response => response.json() as Ride[])
