@@ -2,8 +2,6 @@ package com.joinme.backend.accounts.coverter;
 
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.entity.UserAccount;
-import com.joinme.backend.accounts.repository.UserAccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -37,6 +35,10 @@ public class UserAccountConverter {
         userProfileDto.setFirstName(entity.getFirstName());
         userProfileDto.setLastName(entity.getLastName());
         userProfileDto.setDescription(entity.getDescription());
+        userProfileDto.setCarMake(entity.getCarMake());
+        userProfileDto.setCarModel(entity.getCarModel());
+        userProfileDto.setCarManufacturingYear(entity.getCarManufacturingYear());
+        userProfileDto.setCarDescription(entity.getCarDescription());
     }
 
     public UserAccount toEntity(UserProfileDto userProfileDto) {
@@ -53,5 +55,9 @@ public class UserAccountConverter {
         userAccountEntity.setFirstName(userProfileDto.getFirstName());
         userAccountEntity.setLastName(userProfileDto.getLastName());
         userAccountEntity.setDescription(userProfileDto.getDescription());
+        userAccountEntity.setCarMake(userProfileDto.getCarMake());
+        userAccountEntity.setCarModel(userProfileDto.getCarModel());
+        userAccountEntity.setCarManufacturingYear(userProfileDto.getCarManufacturingYear());
+        userAccountEntity.setCarDescription(userProfileDto.getCarDescription());
     }
 }

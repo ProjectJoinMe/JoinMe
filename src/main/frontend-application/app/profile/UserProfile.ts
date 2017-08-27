@@ -6,4 +6,8 @@ export interface UserProfile {
     firstName: string;
     lastName: string;
     description: string;
+    carMake: string;
+    carModel: string;
+    carManufacturingYear: number;
+    carDescription: string;
 }

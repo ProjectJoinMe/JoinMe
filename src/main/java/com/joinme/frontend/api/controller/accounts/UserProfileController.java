@@ -56,10 +56,21 @@ public class UserProfileController {
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/profile/{username}/uploadProfilePicture", method = RequestMethod.PUT)
     @ResponseBody
-    public UserProfileDto uploadUserProfilePicture(@PathVariable String username, @RequestParam("pictureFile") MultipartFile profilePicture) {
+    public UserProfileDto uploadUserProfilePicture(@PathVariable String username, @RequestParam("profilePicture") MultipartFile profilePicture) {
         Assert.isTrue(username.equals(SecurityUtil.getCurrentUsername()));
+        System.out.println(profilePicture.getOriginalFilename());
         //TODO check if file really is an image
         return userProfileManager.setProfilePicture(username, profilePicture);
+    }
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/profile/{username}/uploadCarPicture", method = RequestMethod.PUT)
+    @ResponseBody
+    public UserProfileDto uploadUserCarPicture(@PathVariable String username, @RequestParam("carPicture") MultipartFile carPicture) {
+        Assert.isTrue(username.equals(SecurityUtil.getCurrentUsername()));
+        System.out.println(carPicture.getOriginalFilename());
+        //TODO check if file really is an image
+        return userProfileManager.setCarPicture(username, carPicture);
     }
 
     @Bean
@@ -80,6 +91,13 @@ public class UserProfileController {
     @ResponseBody
     public byte[] getUserProfilePicture(@PathVariable String username) {
         return userProfileManager.getProfilePicture(username);
+    }
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/profile/{username}/carPicture", method = RequestMethod.GET)
+    @ResponseBody
+    public byte[] getUserCarPicture(@PathVariable String username) {
+        return userProfileManager.getCarPicture(username);
     }
 }
 

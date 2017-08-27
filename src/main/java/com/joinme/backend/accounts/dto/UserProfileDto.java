@@ -20,6 +20,16 @@ public class UserProfileDto {
 
     private String description;
 
+    //Car
+
+    private String carMake;
+
+    private String carModel;
+
+    private int carManufacturingYear;
+
+    private String carDescription;
+
     public String getUsername() {
         return username;
     }
@@ -74,5 +84,37 @@ public class UserProfileDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCarMake() {
+        return carMake;
+    }
+
+    public void setCarMake(String carMake) {
+        this.carMake = carMake;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+
+    public int getCarManufacturingYear() {
+        return carManufacturingYear;
+    }
+
+    public void setCarManufacturingYear(int carManufacturingYear) {
+        this.carManufacturingYear = carManufacturingYear;
+    }
+
+    public String getCarDescription() {
+        return carDescription;
+    }
+
+    public void setCarDescription(String carDescription) {
+        this.carDescription = carDescription;
     }
 }
