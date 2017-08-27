@@ -17,8 +17,8 @@
             <tr>
                 <td>
                     <form enctype="multipart/form-data" method="">
-                        <input #fileInput type="file" (change)="upload()" [multiple]="false" name="pictureFile"
-                               class="pictureFile" accept="image/*">
+                        <input #profilePictureFileInput type="file" [multiple]="false" name="profilePicture"
+                               class="profilePicture" accept="image/*" (change)="uploadProfilePicture()">
                     </form>
                 </td>
             </tr>
@@ -60,7 +60,68 @@
                     </td>
                 </tr>
             </table>
-
+            <h2>Auto</h2>
+            <img src="{{userCarPicturePath}}"
+                 alt="Autobild" style="width:125px;height:125px;">
+            <form enctype="multipart/form-data" method="">
+                <input #carPictureFileInput type="file" [multiple]="false" name="carPicture"
+                       class="carPicture" accept="image/*" (change)="uploadCarPicture()">
+            </form>
+            <table style=" margin: auto; width: 50%; padding: 10px;"><!--TODO Designteam: inline pfusch ändern, danke-->
+                <tr>
+                    <td class="first">
+                        <label>Hersteller:</label>
+                    </td>
+                    <td class="second">
+                        <input formControlName="carMake" type="text">
+                    </td>
+                    <td>
+                        <small class="error-message"
+                               [hidden]="editForm.controls.carMake.valid || (editForm.controls.carMake.pristine && !profileSubmitted)">
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first">
+                        <label>Modell:</label>
+                    </td>
+                    <td class="second">
+                        <input formControlName="carModel" type="text">
+                    </td>
+                    <td>
+                        <small class="error-message"
+                               [hidden]="editForm.controls.carModel.valid || (editForm.controls.carModel.pristine && !profileSubmitted)">
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first">
+                        <label>Baujahr:</label>
+                    </td>
+                    <td class="second">
+                        <input formControlName="carManufacturingYear" type="number" min="1900"
+                               max="{{date | date:'yyyy'}}" step="1">
+                    </td>
+                    <td>
+                        <small class="error-message"
+                               [hidden]="editForm.controls.carManufacturingYear.valid || (editForm.controls.carManufacturingYear.pristine && !profileSubmitted)">
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first">
+                        <label>Beschreibung:</label>
+                    </td>
+                    <td class="second">
+                        <textarea formControlName="carDescription" maxlength="500" minlength="0"></textarea>
+                    </td>
+                    <td>
+                        <small class="error-message"
+                               [hidden]="editForm.controls.carDescription.valid || (editForm.controls.carDescription.pristine && !profileSubmitted)">
+                        </small>
+                    </td>
+                </tr>
+            </table>
             <button type="submit" class="button" [disabled]="profileSubmitDisabled">Speichern</button>
 
         </form>

@@ -13,6 +13,7 @@ export class ProfileComponent {
 
     userProfile: UserProfile;
     public userProfilePicturePath: string = "";
+    public userCarPicturePath: string = "";
 
     constructor(private route: ActivatedRoute,
                 public securityStatus: SecurityStatus) {
@@ -23,6 +24,7 @@ export class ProfileComponent {
             .subscribe((data: { userProfile: UserProfile }) => {
                 this.userProfile = data.userProfile;
             });
-        this.userProfilePicturePath = "/api/profile/" + this.userProfile.username + "/profilePicture"
+        this.userProfilePicturePath = "/api/profile/" + this.userProfile.username + "/profilePicture";
+        this.userCarPicturePath = "/api/profile/" + this.userProfile.username + "/carPicture";
     }
 }

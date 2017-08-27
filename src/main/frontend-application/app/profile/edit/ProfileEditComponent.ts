@@ -16,13 +16,16 @@ import {UserProfileService} from "../../services/UserProfileService";
     templateUrl: './ProfileEditComponent.html'
 })
 export class ProfileEditComponent implements OnInit {
-    @ViewChild('fileInput') inputEl: ElementRef;
+    @ViewChild('profilePictureFileInput') profilePictureEl: ElementRef;
+    @ViewChild('carPictureFileInput') carPictureEl: ElementRef;
 
     public userProfile: UserProfile;
     public editForm: FormGroup;
     public profileSubmitted: boolean = false;
     public profileSubmitDisabled: boolean = false;
     public userProfilePicturePath: string = "";
+    public userCarPicturePath: string = "";
+    public date: Date = new Date();
 
     constructor(private http: Http,
                 private route: ActivatedRoute,
@@ -33,7 +36,8 @@ export class ProfileEditComponent implements OnInit {
             .subscribe((data: { userProfile: UserProfile }) => {
                 this.userProfile = data.userProfile;
             });
-        this.userProfilePicturePath = "/api/profile/" + this.userProfile.username + "/profilePicture"
+        this.userProfilePicturePath = "/api/profile/" + this.userProfile.username + "/profilePicture";
+        this.userCarPicturePath = "/api/profile/" + this.userProfile.username + "/carPicture";
     }
 
     ngOnInit() {
@@ -41,6 +45,10 @@ export class ProfileEditComponent implements OnInit {
             firstName: [this.userProfile.firstName, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
             lastName: [this.userProfile.lastName, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
             description: [this.userProfile.description],
+            carMake: [this.userProfile.carMake],
+            carModel: [this.userProfile.carModel],
+            carManufacturingYear: [this.userProfile.carManufacturingYear],
+            carDescription: [this.userProfile.carDescription]
         });
 
     }
@@ -54,10 +62,21 @@ export class ProfileEditComponent implements OnInit {
             let firstName = <string> this.editForm.get("firstName").value;
             let lastName = <string> this.editForm.get("lastName").value;
             let description = <string> this.editForm.get("description").value;
+            let carMake = <string> this.editForm.get("carMake").value;
+            let carModel = <string> this.editForm.get("carModel").value;
+            let carManufacturingYear = <number> this.editForm.get("carManufacturingYear").value;
+            let carDescription = <string> this.editForm.get("carDescription").value;
 
             this.userProfile.firstName = firstName;
             this.userProfile.lastName = lastName;
             this.userProfile.description = description;
+            this.userProfile.carMake = carMake;
+            this.userProfile.carModel = carModel;
+            this.userProfile.carManufacturingYear = carManufacturingYear;
+            this.userProfile.carDescription = carDescription;
+
+            // this.uploadProfilePicture();
+            // this.uploadCarPicture();
 
             this.userProfileService.updateUserProfile(this.userProfile).then(updatedUserProfile => {
                 this.router.navigate(['/profile', this.userProfile.username]);
@@ -68,18 +87,34 @@ export class ProfileEditComponent implements OnInit {
         }
     }
 
-    public upload() {
+    public uploadProfilePicture() {
         //partially from https://stackoverflow.com/questions/36352405/file-upload-with-angular2-to-rest-api
 
-        let inputEl: HTMLInputElement = this.inputEl.nativeElement;
+        let inputEl: HTMLInputElement = this.profilePictureEl.nativeElement;
         let fileCount: number = inputEl.files.length;
         let formData = new FormData();
         if (fileCount === 1) { // a file was selected
-            formData.append('pictureFile', inputEl.files.item(0));
+            formData.append('profilePicture', inputEl.files.item(0));
             this.userProfileService.setProfilePicture(formData, this.userProfile.username).then(updatedUserProfile => {
-                this.router.navigate(['/profile', this.userProfile.username]);
+                // this.router.navigate(['/profile', this.userProfile.username]);
             }).catch(reason => {
                 console.error("failed to update profile picture, TODO message");
+            });
+        }
+    }
+
+    public uploadCarPicture() {
+        //partially from https://stackoverflow.com/questions/36352405/file-upload-with-angular2-to-rest-api
+
+        let inputEl: HTMLInputElement = this.carPictureEl.nativeElement;
+        let fileCount: number = inputEl.files.length;
+        let formData = new FormData();
+        if (fileCount === 1) { // a file was selected
+            formData.append('carPicture', inputEl.files.item(0));
+            this.userProfileService.setCarPicture(formData, this.userProfile.username).then(updatedUserProfile => {
+                // this.router.navigate(['/profile', this.userProfile.username]);
+            }).catch(reason => {
+                console.error("failed to update car picture, TODO message");
             });
         }
     }

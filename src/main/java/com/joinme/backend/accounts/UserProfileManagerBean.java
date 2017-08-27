@@ -70,6 +70,21 @@ public class UserProfileManagerBean implements UserProfileManager {
     }
 
     @Override
+    public UserProfileDto setCarPicture(String username, MultipartFile carPicture) {
+        UserAccount userAccount = userAccountRepository.findByUsername(username);
+        //TODO make image size smaller
+
+        try {
+            userAccount.setCarPicture(carPicture.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return userAccountConverter.toDto(userAccount);
+
+    }
+
+    @Override
     public byte[] getProfilePicture(String username) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
         byte[] profilePicture = userAccount.getProfilePicture();
@@ -78,6 +93,19 @@ public class UserProfileManagerBean implements UserProfileManager {
             return profilePicture;
         } else {
             //TODO what if there is no profile pic
+            return new byte[1];
+        }
+    }
+
+    @Override
+    public byte[] getCarPicture(String username) {
+        UserAccount userAccount = userAccountRepository.findByUsername(username);
+        byte[] carPicture = userAccount.getCarPicture();
+
+        if (carPicture != null && carPicture.length != 0) {
+            return carPicture;
+        } else {
+            //TODO what if there is no car pic
             return new byte[1];
         }
     }

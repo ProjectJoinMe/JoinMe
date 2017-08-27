@@ -39,6 +39,24 @@ public class UserAccount implements Serializable {
     @Column
     private byte[] profilePicture;
 
+    //Car data
+
+    @Column
+    private String carMake;
+
+    @Column
+    private String carModel;
+
+    @Column
+    private int carManufacturingYear;
+
+    @Column
+    private String carDescription;
+
+    @Lob
+    @Column
+    private byte[] carPicture;
+
     public String getUsername() {
         return username;
     }
@@ -109,5 +127,52 @@ public class UserAccount implements Serializable {
 
     public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    //Car getters and setters
+
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getCarMake() {
+        return carMake;
+    }
+
+    public void setCarMake(String carMake) {
+        this.carMake = carMake;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+
+    public int getCarManufacturingYear() {
+        return carManufacturingYear;
+    }
+
+    public void setCarManufacturingYear(int carManufacturingYear) {
+        this.carManufacturingYear = carManufacturingYear;
+    }
+
+    public String getCarDescription() {
+        return carDescription;
+    }
+
+    public void setCarDescription(String carDescription) {
+        this.carDescription = carDescription;
+    }
+
+    public byte[] getCarPicture() {
+        return carPicture;
+    }
+
+    public void setCarPicture(byte[] carPicture) {
+        this.carPicture = carPicture;
     }
 }

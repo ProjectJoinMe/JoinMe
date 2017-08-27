@@ -17,5 +17,9 @@ public interface UserProfileManager {
 
     UserProfileDto setProfilePicture(String username, MultipartFile profilePicture);
 
+    UserProfileDto setCarPicture(String username, MultipartFile carPicture);
+
     byte[] getProfilePicture(String username);
+
+    byte[] getCarPicture(String username);
 }
