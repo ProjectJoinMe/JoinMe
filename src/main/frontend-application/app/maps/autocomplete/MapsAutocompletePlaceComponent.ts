@@ -39,6 +39,9 @@ export class MapsAutocompletePlaceComponent {
     onPlaceTextChanged() {
         if (this.formGroup.contains(this.getPlaceIdFormControlName())) {
             this.setPlaceId(null);
+            if (this.onPlaceChange) {
+                this.onPlaceChange(null, false);
+            }
         }
     }
 

@@ -1,6 +1,8 @@
 package com.joinme.backend.rides.converter;
 
 import com.joinme.backend.accounts.repository.UserAccountRepository;
+import com.joinme.backend.location.BorderBox;
+import com.joinme.backend.location.LatLng;
 import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.dto.RideRouteDto;
 import com.joinme.backend.rides.entity.Ride;
@@ -53,7 +55,11 @@ public class RideConverter {
         rideDto.setFreeSeats(entity.getMaxPassengers() - rideJoinRepository.countByRide(entity));
         rideDto.setPricePerPassenger(entity.getPricePerPassenger());
         RideRouteDto rideRouteDto = new RideRouteDto();
-        rideRouteDto.setStepLocations(entity.getStepLocations());
+        rideRouteDto.setEncodedPathLocations(entity.getEncodedPathLocations());
+        rideRouteDto.setBorderBox(new BorderBox(
+                new LatLng(entity.getBorderBoxSouthWestLat(), entity.getBorderBoxSouthWestLng()),
+                new LatLng(entity.getBorderBoxNorthEastLat(), entity.getBorderBoxNorthEastLng())
+        ));
         rideDto.setRoute(rideRouteDto);
     }
 
@@ -70,12 +76,18 @@ public class RideConverter {
         rideEntity.setDestination(rideDto.getDestination());
         rideEntity.setDestinationPlaceId(rideDto.getDestinationPlaceId());
         rideEntity.setDepartureDateTime(rideDto.getDepartureDateTime());
+        rideEntity.setDepartureDate(rideDto.getDepartureDateTime().toLocalDate());
         rideEntity.setMaxPassengers(rideDto.getMaxPassengers());
         rideEntity.setReturnDepartureDateTime(rideDto.getReturnDepartureDateTime());
+        rideEntity.setReturnDepartureDate(rideDto.getReturnDepartureDateTime() != null ? rideDto.getReturnDepartureDateTime().toLocalDate() : null);
         rideEntity.setNotes(rideDto.getNotes());
         rideEntity.setCreationDateTime(rideDto.getCreationDateTime());
         rideEntity.setPricePerPassenger(rideDto.getPricePerPassenger());
         rideEntity.setProvider(userAccountRepository.findByUsername(rideDto.getProviderUsername()));
-        rideEntity.setStepLocations(new ArrayList<>(rideDto.getRoute().getStepLocations()));
+        rideEntity.setEncodedPathLocations(rideDto.getRoute().getEncodedPathLocations());
+        rideEntity.setBorderBoxSouthWestLat(rideDto.getRoute().getBorderBox().getSouthWest().lat);
+        rideEntity.setBorderBoxSouthWestLng(rideDto.getRoute().getBorderBox().getSouthWest().lng);
+        rideEntity.setBorderBoxNorthEastLat(rideDto.getRoute().getBorderBox().getNorthEast().lat);
+        rideEntity.setBorderBoxNorthEastLng(rideDto.getRoute().getBorderBox().getNorthEast().lng);
     }
 }

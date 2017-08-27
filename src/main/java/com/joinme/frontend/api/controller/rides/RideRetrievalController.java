@@ -4,14 +4,11 @@ import com.joinme.backend.rides.RideJoinManager;
 import com.joinme.backend.rides.RideRetrieval;
 import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.dto.RideSearchFilter;
-import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -47,15 +44,12 @@ public class RideRetrievalController {
         return ride;
     }
 
-    @PreAuthorize("fullyAuthenticated")
-    @RequestMapping(value = "/api/rides/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/rides/search", method = RequestMethod.POST)
     @ResponseBody
-    public List<RideDto> searchRides(@RequestParam(required = false) String start, @RequestParam(required = false) String destination, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  LocalDate date) {
-        RideSearchFilter rideSearchFilter = new RideSearchFilter();
-        rideSearchFilter.setStart(start);
-        rideSearchFilter.setDestination(destination);
-        rideSearchFilter.setDate(date);
-        List<RideDto> rides = rideRetrieval.searchRides(rideSearchFilter);
-        return rides;
+    public List<RideDto> searchRides(@RequestBody RideSearchFilter rideSearchFilter) {
+        if (rideSearchFilter.getBasicAllowedDistanceFromRouteInMeters() == null) {
+            rideSearchFilter.setBasicAllowedDistanceFromRouteInMeters(3000d);
+        }
+        return rideRetrieval.searchRides(rideSearchFilter);
     }
 }

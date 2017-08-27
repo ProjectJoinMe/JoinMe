@@ -7,6 +7,7 @@ import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.*;
 import com.joinme.backend.location.LatLng;
+import com.joinme.backend.location.LatLngUtils;
 import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.dto.RideRouteDto;
 import org.slf4j.Logger;
@@ -16,10 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
 public class RideGoogleMapsRouteProcessing {
@@ -37,27 +36,20 @@ public class RideGoogleMapsRouteProcessing {
         DirectionsRoute route = directions.routes[0];
         Assert.isTrue(route.legs.length == 1);
         DirectionsLeg routeLeg = route.legs[0];
-        if (ride.getPricePerPassenger() == null) {
-            ride.setPricePerPassenger(determineSuggestedPrice(routeLeg));
-        }
 
         checkPlaceIdChange(ride, directions);
 
-        ride.setRoute(createRideRouteInfo(routeLeg));
+        ride.setRoute(createRideRouteInfo(route, routeLeg));
     }
 
-    private RideRouteDto createRideRouteInfo(DirectionsLeg routeLeg) {
+    private RideRouteDto createRideRouteInfo(DirectionsRoute route, DirectionsLeg routeLeg) {
         RideRouteDto rideRouteDto = new RideRouteDto();
 
-        List<LatLng> stepLocations = Stream.concat(
-                Stream.of(routeLeg.startLocation),
-                Arrays.stream(routeLeg.steps)
-                        .map(directionsStep -> directionsStep.endLocation)
-        )
-                .map(com.joinme.backend.location.LatLng::new)
-                .collect(Collectors.toList());
+        rideRouteDto.setEncodedPathLocations(route.overviewPolyline.getEncodedPath());
+        List<LatLng> pathLocations = rideRouteDto.getPathLocations();
+        rideRouteDto.setBorderBox(LatLngUtils.createBorderBox(pathLocations));
 
-        rideRouteDto.setStepLocations(stepLocations);
+        rideRouteDto.setSuggestedPricePerPassenger(determineSuggestedPrice(routeLeg));
         return rideRouteDto;
     }
 
