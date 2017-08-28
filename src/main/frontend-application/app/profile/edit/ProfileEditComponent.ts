@@ -3,7 +3,7 @@ import {Http} from "@angular/http";
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {UserProfile} from "../UserProfile";
 import {SecurityService} from ".../security/SecurityService";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserProfileService} from "../../services/UserProfileService";
 
 /**
@@ -47,10 +47,14 @@ export class ProfileEditComponent implements OnInit {
             description: [this.userProfile.description],
             carMake: [this.userProfile.carMake],
             carModel: [this.userProfile.carModel],
-            carManufacturingYear: [this.userProfile.carManufacturingYear],
+            carManufacturingYear: [this.userProfile.carManufacturingYear, [this.carManufacturingYearValidator]],
             carDescription: [this.userProfile.carDescription]
         });
 
+    }
+
+    private carManufacturingYearValidator(control: AbstractControl): any {
+        return !control.value.isNaN() && control.value > 1900 && control.value < this.date.getFullYear();
     }
 
     public edit() {
