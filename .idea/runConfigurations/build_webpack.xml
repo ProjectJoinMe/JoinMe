@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="build webpack" type="js.build_tools.npm" factoryName="npm">
     <package-json value="$PROJECT_DIR$/package.json" />
-    <command value="run-script" />
+    <command value="run" />
     <scripts>
       <script value="build" />
     </scripts>
-    <node-interpreter value="$PROJECT_DIR$/../nodejs/node" />
+    <node-interpreter value="project" />
     <envs />
     <method />
   </configuration>
