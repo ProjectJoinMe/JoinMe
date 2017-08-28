@@ -2,16 +2,16 @@ import {RideRoute} from "./RideRoute";
 
 export interface Ride {
     id?: number;
-    start: string;
-    startPlaceId: string;
-    destination: string;
-    destinationPlaceId: string;
-    departureDateTime: Date;
+    start?: string;
+    startPlaceId?: string;
+    destination?: string;
+    destinationPlaceId?: string;
+    departureDateTime?: Date;
     creationDate?: Date;
-    returnDepartureDateTime: Date;
-    maxPassengers: number;
+    returnDepartureDateTime?: Date;
+    maxPassengers?: number;
     freeSeats?: number;
-    notes: string;
+    notes?: string;
     providerUsername?: string;
     pricePerPassenger?: number;
     route?: RideRoute;

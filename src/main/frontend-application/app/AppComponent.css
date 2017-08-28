@@ -78,6 +78,16 @@ span.active {
   text-decoration: none;
 }
 
+.btn:disabled,
+.btn[disabled]{
+  background: #c0c0c0;
+  background-image: -webkit-linear-gradient(top, #c0c0c0, #c0c0c0);
+  background-image: -moz-linear-gradient(top, #c0c0c0, #c0c0c0);
+  background-image: -ms-linear-gradient(top, #c0c0c0, #c0c0c0);
+  background-image: -o-linear-gradient(top, #c0c0c0, #c0c0c0);
+  background-image: linear-gradient(to bottom, #c0c0c0, #c0c0c0);
+}
+
 /* Checkbox */
 input[type=checkbox]:checked {
   background-color: green;
@@ -362,6 +372,3 @@ hr {
   margin-top: 0px;
   padding: 0px;
 }
-
-
-

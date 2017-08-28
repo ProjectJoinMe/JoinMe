@@ -17,6 +17,7 @@ export class RideDetailsComponent implements OnInit {
     ride: Ride;
     rideJoins: RideJoin[];
     joined: boolean;
+    rideFull: boolean;
 
     constructor(private rideService: RideService,
                 private route: ActivatedRoute,
@@ -32,6 +33,7 @@ export class RideDetailsComponent implements OnInit {
                 this.rideJoins = data.rideJoins;
                 let rideJoin = this.rideJoins.find(rideJoin => rideJoin.userProfileDto.username === this.securityStatus.username);
                 this.joined = rideJoin !== undefined;
+                this.rideFull = (this.ride.maxPassengers - this.rideJoins.length) === 0;
             });
     }
 
@@ -45,6 +47,7 @@ export class RideDetailsComponent implements OnInit {
             this.rideJoins.push(rideJoin);
             this.joined = true;
             this.ride.freeSeats--;
+            this.rideFull = (this.ride.maxPassengers - this.rideJoins.length) === 0;
             // TODO show confirmation message
         }).catch(reason => {
             console.error("failed to join ride, TODO message");
@@ -57,6 +60,7 @@ export class RideDetailsComponent implements OnInit {
             this.rideJoins.splice(this.rideJoins.indexOf(rideJoin), 1);
             this.joined = false;
             this.ride.freeSeats++;
+            this.rideFull = (this.ride.maxPassengers - this.rideJoins.length) === 0;
             // TODO show confirmation message
         }).catch(reason => {
             console.error("failed to unjoin ride, TODO message");

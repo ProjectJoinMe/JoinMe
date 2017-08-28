@@ -81,7 +81,7 @@
                 <input type="button" class="btn" value="Löschen" (click)="deleteRide()">
             </div>
             <div *ngIf="!isMyRide() && !joined">
-                <input type="button" class="btn" value="Teilnehmen" (click)="joinRide()">
+                <input type="button" class="btn" value="Teilnehmen" (click)="joinRide()" [disabled]="rideFull">
             </div>
             <div *ngIf="!isMyRide() && joined">
                 <input type="button" class="btn" value="Teilnahme zurückziehen" (click)="unjoinRide()">

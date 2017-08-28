@@ -94,4 +94,11 @@ export class RideService extends AbstractApiService {
             .then(res => undefined)
             .catch(this.handleError);
     }
+
+    getRouteInfo(ride: Ride): Promise<Ride> {
+        return this.http.get(`${this.ridesApiUrl}/routeInformation`)
+            .toPromise()
+            .then(response => response.json() as Ride)
+            .catch(this.handleError);
+    }
 }

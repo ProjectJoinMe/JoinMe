@@ -92,7 +92,7 @@ export class RideUpdateComponent implements OnInit {
                 returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getDate(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
                 maxPassengers: <number> this.rideForm.get("maxPassengers").value,
                 notes: this.rideForm.get("notes").value,
-                pricePerPassenger: this.rideForm.get("pricePerPassenger").value,
+                pricePerPassenger: this.rideForm.get("pricePerPassenger").value
             };
             console.info(rideData);
 
