@@ -1,5 +1,6 @@
 package com.joinme.frontend.api.controller.rides;
 
+import com.joinme.backend.googlemaps.RideGoogleMapsRouteProcessing;
 import com.joinme.backend.rides.RideJoinManager;
 import com.joinme.backend.rides.RideRetrieval;
 import com.joinme.backend.rides.dto.RideDto;
@@ -19,6 +20,9 @@ public class RideRetrievalController {
 
     @Autowired
     private RideJoinManager rideJoinManager;
+
+    @Autowired
+    private RideGoogleMapsRouteProcessing rideGoogleMapsRouteProcessing;
 
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/profile/{username}/rides", method = RequestMethod.GET)
@@ -51,5 +55,12 @@ public class RideRetrievalController {
             rideSearchFilter.setBasicAllowedDistanceFromRouteInMeters(3000d);
         }
         return rideRetrieval.searchRides(rideSearchFilter);
+    }
+
+    @RequestMapping(value = "/api/rides/routeInformation", method = RequestMethod.GET)
+    @ResponseBody
+    public RideDto getRouteInformation(@RequestBody RideDto ride) {
+        rideGoogleMapsRouteProcessing.fillGoogleMapsRouteInformation(ride);
+        return ride;
     }
 }

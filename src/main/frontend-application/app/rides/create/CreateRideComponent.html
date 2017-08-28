@@ -10,7 +10,7 @@
                 <tr>
                     <td class="first"><label>Abfahrtsort:</label></td>
                     <td class="second">
-                        <maps-autocomplete-place [formGroup]="rideForm" [name]="'start'"></maps-autocomplete-place>
+                        <maps-autocomplete-place [formGroup]="rideForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
                     </td>
                     <td class="third">
                         <small class="error-message"
@@ -23,7 +23,7 @@
                     <td class="first"><label>Ankunftsort:</label></td>
                     <td class="second">
                         <maps-autocomplete-place [formGroup]="rideForm"
-                                                 [name]="'destination'"></maps-autocomplete-place>
+                                                 [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
                     </td>
                     <td class="third">
                         <small class="error-message"
@@ -108,6 +108,17 @@
                         </td>
                         <td class="third"></td>
                     </tr>
+                    <tr>
+                        <td class="first">Preis pro Teilnehmer in €</td>
+                        <td class="second">
+                            <input formControlName="pricePerPassenger" type="number" min="0" max="100">
+                        </td>
+                        <td class="third">
+                            <small class="error-message" [hidden]="rideForm.controls.pricePerPassenger.valid || (rideForm.controls.pricePerPassenger.pristine && !submitted)">
+                                ungültiger Preis
+                            </small>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <hr noshade>
@@ -171,7 +182,7 @@
                 <textarea formControlName="notes" rows="6" maxlength="400"></textarea>
             </div>
             <hr noshade>
-            <button type="submit" class="btn" [disabled]="submitDisabled">Fahrt erstellen</button>
+            <input type="submit" class="btn" [disabled]="submitDisabled" value="Fahrt erstellen">
 
             <div *ngIf="rideForm.controls.startPlaceId.value && rideForm.controls.destinationPlaceId.value">
                 <h3>Route</h3>

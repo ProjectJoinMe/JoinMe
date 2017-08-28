@@ -17,10 +17,18 @@ export class CreateRideComponent implements OnInit {
     public currentDate: Date = new Date();
     public submitted: boolean = false;
     public submitDisabled: boolean = false;
+    private onStartPlaceChange: (place: any, isFullPlace: boolean) => void;
+    private onDestinationPlaceChange: (place: any, isFullPlace: boolean) => void;
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,
                 private rideService: RideService) {
+        this.onStartPlaceChange = (place: any, isFullPlace: boolean) => {
+            this.updateRouteInfo();
+        };
+        this.onDestinationPlaceChange = (place: any, isFullPlace: boolean) => {
+            this.updateRouteInfo();
+        };
     }
 
     ngOnInit() {
@@ -39,8 +47,21 @@ export class CreateRideComponent implements OnInit {
             periodic: [""],
             maxPassengers: ["", Validators.required],
             notes: [""],
-            periodicDays: this.formBuilder.array([false, false, false, false, false, false, false])
+            periodicDays: this.formBuilder.array([false, false, false, false, false, false, false]),
+            pricePerPassenger: ["", Validators.required]
         });
+    }
+
+    private updateRouteInfo(){
+        let startPlaceId = <string> this.rideForm.get("startPlaceId").value;
+        let destinationPlaceId = <string> this.rideForm.get("destinationPlaceId").value;
+        if(startPlaceId && destinationPlaceId){
+            this.rideService.getRouteInfo({startPlaceId: startPlaceId, destinationPlaceId: destinationPlaceId}).then(rideWithRouteInformation => {
+                rideWithRouteInformation.route.suggestedPricePerPassenger;
+            }).catch(reason => {
+                console.error("failed to get ride information, TODO");
+            });
+        }
     }
 
     public createRide() {
@@ -74,7 +95,8 @@ export class CreateRideComponent implements OnInit {
                 departureDateTime: new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getDate(), departureHour, departureMinute, 0, 0),
                 returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getDate(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
                 maxPassengers: <number> this.rideForm.get("maxPassengers").value,
-                notes: this.rideForm.get("notes").value
+                notes: this.rideForm.get("notes").value,
+                pricePerPassenger: this.rideForm.get("pricePerPassenger").value
             };
             console.info(rideData);
             this.rideService.createRide(rideData).then(createdRide => {

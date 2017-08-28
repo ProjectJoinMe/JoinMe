@@ -124,7 +124,7 @@ public class TestDataGenerator {
 
             userAccountCreation.createUser(accountRegistrationData);
 
-            rideJoinManager.joinRide(createdRide1.getId(), username);
+            //rideJoinManager.joinRide(createdRide1.getId(), username);
         } else {
             logger.info("Skipping generation of test data as user \"" + username + "\" already exists");
         }

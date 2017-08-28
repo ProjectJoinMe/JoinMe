@@ -39,8 +39,13 @@ public class RideJoinManagerBean implements RideJoinManager {
     @Override
     public RideJoinDto joinRide(long rideId, String username) {
         checkIfDuplicate(rideId, username);
+        Ride ride = rideRepository.findById(rideId);
+        List<RideJoin> rideJoins = rideJoinRepository.findByRide(ride);
+        if(ride.getMaxPassengers() - rideJoins.size() > 0){
+            throw new IllegalArgumentException("No free places");
+        }
         RideJoin rideJoin = new RideJoin();
-        rideJoin.setRide(rideRepository.findById(rideId));
+        rideJoin.setRide(ride);
         rideJoin.setPassenger(userAccountRepository.findByUsername(username));
         rideJoin.setCreationDateTime(LocalDateTime.now());
         rideJoinRepository.save(rideJoin);
