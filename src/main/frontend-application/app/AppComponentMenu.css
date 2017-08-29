@@ -6,7 +6,7 @@
 */
 
 /* Menu */
-
+/*
 .bt-menu {
   position: fixed;
   top: 0;
@@ -70,7 +70,7 @@
   -ms-user-select: none;
   user-select: none;
 }
-/*alte Farbe  #2980b9*/
+
 .bt-menu-open .bt-menu-trigger span {
   background-color: green;
 }
@@ -141,7 +141,7 @@
 .bt-menu ul li {
   display: inline-block;
   margin: 0 1%;
-  width: 12%;/* changed */
+  width: 12%;
   height: 90px;
   line-height: 90px;
   opacity: 0;
@@ -246,4 +246,66 @@
   .bt-menu ul li a:before {
     font-size: 24px;
   }
+}
+*/
+
+body {margin:0;}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+}
+
+.topnav a, .topnav span {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav .icon, .topnav .spaceholder {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a {display: none;} /* :not(:first-child) */
+  .topnav a.icon {
+    /*float: left;*/
+    top: 0;
+    left:0;
+    height: auto;
+    display: block;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .topnav.responsive .icon {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+  .topnav.responsive a, .topnav.responsive span{
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
 }
