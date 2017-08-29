@@ -11,7 +11,7 @@
 /*jshint browser: true, strict: true, undef: true */
 /*global define: false */
 
-( function( window ) {
+/*( function( window ) {
 'use strict';
 
 // class helper functions from bonzo https://github.com/ded/bonzo
@@ -71,4 +71,4 @@ var classie = {
 // browser global
 window.classie = classie;
 
-})( window );
+})( window );*/

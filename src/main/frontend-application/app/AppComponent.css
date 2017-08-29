@@ -31,6 +31,11 @@ body  {
   bottom: 100%;
 }
 
+.content {
+  height: 100%;
+  width: 100%;
+}
+
 h1.component {
   color: #A0D751;
   text-align: center;
@@ -76,16 +81,6 @@ span.active {
   background-image: -o-linear-gradient(top, #ebebeb, #ebebeb);
   background-image: linear-gradient(to bottom, #ebebeb, #ebebeb);
   text-decoration: none;
-}
-
-.btn:disabled,
-.btn[disabled]{
-  background: #c0c0c0;
-  background-image: -webkit-linear-gradient(top, #c0c0c0, #c0c0c0);
-  background-image: -moz-linear-gradient(top, #c0c0c0, #c0c0c0);
-  background-image: -ms-linear-gradient(top, #c0c0c0, #c0c0c0);
-  background-image: -o-linear-gradient(top, #c0c0c0, #c0c0c0);
-  background-image: linear-gradient(to bottom, #c0c0c0, #c0c0c0);
 }
 
 /* Checkbox */
@@ -198,11 +193,18 @@ hr {
 
 
 
+
+
+
+
+
+
+
+
 /* RWD - Hilfe von W3Schools */
 
 @media only screen and (max-width: 480px){
   /* For mobile phones: */
-
   .col-m-1 {width: 8.33%;}
   .col-m-2 {width: 16.66%;}
   .col-m-3 {width: 25%;}
@@ -230,24 +232,20 @@ hr {
     border-radius: 15px;
     margin: auto;
   }
-  td.tdsize2 {
+  /*Tablesize of the first Table -> mobile version width = 50%*/
+  td.tdsizeMobile {
     line-height: 200%;
     width: 50%;
     align-content: center;
   }
-
   div.colMarginTop{
     margin-top: 25px;
-
   }
-
-
-
 }
 
 
 @media only screen and (min-width: 600px) {
-  /* For tablets: */
+  /* For tablets  */
   .col-t-1 {width: 8.33%;}
   .col-t-2 {width: 16.66%;}
   .col-t-3 {width: 25%;}
@@ -267,31 +265,13 @@ hr {
     margin-top: 15px;
     margin-bottom: 15px;
   }
-  div.inner {
-    background-color: #A0D751;
-    width: 100%;
-    border: none;
-    border-radius: 15px;
-    margin: auto;
-    text-align: center;
-  }
-  input {
-    width: 99%;
-  }
-  .tdsize {
-    height: 100%;
-    width: 25%;
-    align-content: center;
-  }
-
   div.colMarginTop{
     margin-top: 35px;
-
   }
 }
 
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 769px) and (orientation: landscape){
   /* For desktop: */
   .col-1 {width: 8.33%;}
   .col-2 {width: 16.66%;}
@@ -305,58 +285,17 @@ hr {
   .col-10 {width: 83.33%;}
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
-  div.inner {
-    background-color: #A0D751;
-    min-width: 50%;
-    width: auto;
-    max-width: 80%;
-    border: none;
-    border-radius: 15px;
-    margin: auto;
-    text-align: center;
-  }
-  input {
-    width: 99%;
-  }
-
-  .tdsize {
-    height: 100%;
-    width: 25%;
-    align-content: center;
-  }
-
-  .tdsize3 {
-    line-height: 200%;
-    width: auto;
-    align-content: center;
-  }
-
-  div.marginLeft{
-    margin-left: 1.5%;
-  }
-
-  div.colMarginTop{
-    margin-top: 50px;
-
-  }
-
-  div.logoTop {
-    border-radius: 10%;
-    text-align: left;
-  }
-
 }
+
 
 [class*="col-"] {
   float: left;
-  border: 1px solid transparent;
+  border: 1px solid silver;
   margin: 0px;
 }
 
 
-[class*="dateTimeWidth"] {
-  width: 25%;
-}
+
 
 .row::after {
   content: "";

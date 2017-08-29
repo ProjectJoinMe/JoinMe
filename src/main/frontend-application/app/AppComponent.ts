@@ -45,6 +45,22 @@ export class AppComponent implements OnInit {
         require('./externalscripts/classie.js');
         require('./externalscripts/borderMenu.js');
     }
+
+    myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+
+    hideMenu() {
+        var menu = document.getElementById("myTopnav");
+        if(menu.className !== "topnav") {
+            menu.className = "topnav";
+        }
+    }
 }
 
 
@@ -56,3 +72,4 @@ export class AppComponent implements OnInit {
  * For help or questions please contact us at @AngularClass on twitter
  * or our chat on Slack at https://AngularClass.com/slack-join
  */
+
