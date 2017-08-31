@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { AppState } from '../AppService';
 import {Router} from "@angular/router";
+import {MessageService} from "../message_service/MessageService";
 
 @Component({
   selector: 'home',  // <home></home>
@@ -11,7 +12,8 @@ import {Router} from "@angular/router";
   templateUrl: './HomeComponent.html'
 })
 export class HomeComponent {
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private messageService: MessageService) {
   }
 
   goToRegistration() {

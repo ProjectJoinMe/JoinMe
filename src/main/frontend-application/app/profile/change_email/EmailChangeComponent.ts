@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MailValidator} from "../../../validators/MailValidator";
 import {UserProfileService} from "../../services/UserProfileService";
 import {UserProfile} from "../UserProfile";
+import {MessageService} from "../../message_service/MessageService";
 
 /**
  * Created by Alexander on 22.08.2017.
@@ -28,7 +29,8 @@ export class EmailChangeComponent implements OnInit {
                 private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
                 private router: Router,
-                private userProfileService: UserProfileService) {
+                private userProfileService: UserProfileService,
+                private messageService: MessageService) {
         this.route.data
             .subscribe((data: { userProfile: UserProfile }) => {
                 this.userProfile = data.userProfile;
@@ -50,10 +52,11 @@ export class EmailChangeComponent implements OnInit {
             let email = <string> this.emailForm.get("email").value;
             this.userProfile.email = email;
             this.userProfileService.updateUserProfile(this.userProfile).then(updatedUserProfile => {
+                this.messageService.setMessage("Email wurde erfolgreich geändert.", "success");
                 this.router.navigate(['/profile', this.userProfile.username]);
             }).catch(reason => {
                 this.submitDisabled = false;
-                console.error("failed to update email, TODO message");
+                this.messageService.setMessage("Email konnte nicht geändert werden.", "failure");
             });
         }
     }

@@ -45,13 +45,18 @@ import {EmailChangeComponent} from "./profile/change_email/EmailChangeComponent"
 import {MapsApiKeyService} from "./maps/config/MapsApiKeyService";
 import {MapsDisplayEmbeddedRouteComponent} from "./maps/display_embed_route/MapsDisplayEmbeddedRouteComponent";
 import {MapsDisplayCustomizableRouteComponent} from "./maps/display_customizable_route/MapsDisplayCustomizableRouteComponent";
+import {MessageComponent} from "./message/MessageComponent";
+import {Message} from "./message_service/Message";
+import {MessageService} from "./message_service/MessageService";
 
 // Application wide providers
 const APP_PROVIDERS = [
     ...APP_RESOLVER_PROVIDERS,
     AppState,
     SecurityService,
-    SecurityStatus
+    SecurityStatus,
+    Message,
+    MessageService
 ];
 
 type StoreType = {
@@ -86,7 +91,8 @@ type StoreType = {
         ProfileEditComponent,
         JoinedRidesComponent,
         PasswordChangeComponent,
-        EmailChangeComponent
+        EmailChangeComponent,
+        MessageComponent
     ],
     imports: [
         // Angular
