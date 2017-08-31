@@ -1,4 +1,4 @@
-<div class="main">
+<div>
   <div [ngClass]="{'message': true, 'success': messageService.currentMessage.type === 'success', 'failure': messageService.currentMessage.type === 'failure'}"
        *ngIf="messageService.currentMessage.text">
     <label>{{ messageService.currentMessage.text }}</label>
