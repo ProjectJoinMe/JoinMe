@@ -6,6 +6,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {UserPassword} from "./UserPassword";
 import {UserProfile} from "../UserProfile";
 import {UserProfileService} from "../../services/UserProfileService";
+import {MessageService} from "../../message_service/MessageService";
 
 /**
  * Created by Alexander on 22.08.2017.
@@ -29,7 +30,8 @@ export class PasswordChangeComponent implements OnInit {
                 private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
                 private router: Router,
-                private userProfileService: UserProfileService) {
+                private userProfileService: UserProfileService,
+                private messageService: MessageService) {
 
         this.route.data
             .subscribe((data: { userProfile: UserProfile }) => {
@@ -70,10 +72,11 @@ export class PasswordChangeComponent implements OnInit {
             };
 
             this.userProfileService.updateUserPassword(this.userPassword).then(updatedUserProfile => {
+                this.messageService.setMessage("Passwort wurde erfolgreich geändert.", "success");
                 this.router.navigate(['/profile', this.userProfile.username]);
             }).catch(reason => {
                 this.submitDisabled = false;
-                console.error("failed to update password, TODO message");
+                this.messageService.setMessage("Passwort konnte nicht geändert werden.", "failure");
             });
         }
     }

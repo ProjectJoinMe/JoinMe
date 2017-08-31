@@ -5,6 +5,7 @@ import {DatePipe} from "@angular/common";
 import {TimezonifyDatePipe} from "../../util/time/TimezonifyDatePipe";
 import {RideService} from "../../services/RideService";
 import {Ride} from "../model/Ride";
+import {MessageService} from "../../message_service/MessageService";
 
 @Component({
     selector: 'myRidesUpdate',
@@ -25,7 +26,8 @@ export class RideUpdateComponent implements OnInit {
                 private route: ActivatedRoute,
                 private router: Router,
                 private datePipe: DatePipe,
-                private timezonifyDatePipe: TimezonifyDatePipe) {
+                private timezonifyDatePipe: TimezonifyDatePipe,
+                private messageService: MessageService) {
     }
 
     ngOnInit(): void {
@@ -97,10 +99,11 @@ export class RideUpdateComponent implements OnInit {
             console.info(rideData);
 
             this.rideService.updateRide(rideData).then(updatedRide => {
+                this.messageService.setMessage("Fahrt wurde erfolgreich bearbeitet.", "success");
                 this.router.navigate(['/rides', this.ride.id]);
             }).catch(reason => {
                 this.submitDisabled = false;
-                console.error("failed to update ride, TODO message");
+                this.messageService.setMessage("Fahrt konnte nicht bearbeitet werden.", "failure");
             });
         }
     }

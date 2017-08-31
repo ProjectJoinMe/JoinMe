@@ -5,6 +5,7 @@ import {SearchRequest} from "./SearchRequest";
 import {RideService} from "../../services/RideService";
 import {Ride} from "../model/Ride";
 import {LatLng} from "../model/LatLng";
+import {MessageService} from "../../message_service/MessageService";
 
 @Component({
     selector: 'searchRide',
@@ -27,7 +28,8 @@ export class SearchRideComponent {
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,
-                private rideService: RideService) {
+                private rideService: RideService,
+                private messageService: MessageService) {
         this.onStartPlaceChange = (place: any, isFullPlace: boolean) => {
             if (isFullPlace) {
                 let location = place.geometry.location;
@@ -75,7 +77,7 @@ export class SearchRideComponent {
                 })
                 .catch(reason => {
                     this.submitDisabled = false;
-                    console.error("failed to search rides, TODO");
+                    this.messageService.setMessage("Es konnten keine Fahrten gefunden werden.", "failure");
                     // TODO handle all unhandled errors generally by showing some message bar
                 });
         }

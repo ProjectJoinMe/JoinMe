@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {UserRegistrationService} from "../services/UserRegistrationService";
 import cloneWith = require("lodash/cloneWith");
+import {MessageService} from "../message_service/MessageService";
 
 @Component({
     selector: 'registration',
@@ -24,7 +25,8 @@ export class RegistrationComponent implements OnInit {
     constructor(private router: Router,
                 private formBuilder: FormBuilder,
                 private userRegistrationService: UserRegistrationService,
-                private http: Http) {
+                private http: Http,
+                private messageService: MessageService) {
     }
 
     public register() {
@@ -83,11 +85,12 @@ export class RegistrationComponent implements OnInit {
                 .subscribe(
                     data => {
                         this.submitDisabled = false;
+                        this.messageService.setMessage("Ihr Account wurde erfolgreich registriert!", "success");
                         this.router.navigate(['/login']);
-                        // TODO success -> show confirmation message and move to login screen
                     },
                     error => {
                         this.submitDisabled = false;
+                        this.messageService.setMessage("Die Registrierung Ihres Accounts ist leider fehlgeschlagen.", "failure");
                         console.error("failed to register account, TODO");
                     });
             setTimeout(() => {

@@ -5,6 +5,7 @@ import {LoginData} from "./LoginData";
 import {SecurityService} from "../security/SecurityService";
 import {Router} from "@angular/router";
 import cloneWith = require("lodash/cloneWith");
+import {MessageService} from "../message_service/MessageService";
 
 @Component({
     selector: 'login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     constructor(public formBuilder: FormBuilder,
                 private http: Http,
                 private securityService: SecurityService,
-                private router: Router) {
+                private router: Router,
+                private messageService: MessageService) {
     }
 
     public login() {
@@ -39,10 +41,9 @@ export class LoginComponent {
                 data => {
                     this.securityService.updateSecurityStatus();
                     this.router.navigate(['/home']);
-                    // TODO success -> show confirmation message
                 },
                 error => {
-                    console.error("failed to login, TODO")
+                    this.messageService.setMessage("Falsche Login-Daten, bitte Eingabe überprüfen.", "failure");
                 });
 
     }

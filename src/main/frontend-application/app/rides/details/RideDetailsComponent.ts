@@ -5,6 +5,7 @@ import {SecurityStatus} from "../../security/SecurityStatus";
 import {RideService} from "../../services/RideService";
 import {Ride} from "../model/Ride";
 import {RideJoin} from "../model/RideJoin";
+import {MessageService} from "../../message_service/MessageService";
 
 @Component({
     selector: 'ride-details',
@@ -23,7 +24,8 @@ export class RideDetailsComponent implements OnInit {
                 private route: ActivatedRoute,
                 private router: Router,
                 private location: Location,
-                private securityStatus: SecurityStatus) {
+                private securityStatus: SecurityStatus,
+                private messageService: MessageService) {
     }
 
     ngOnInit(): void {
@@ -37,7 +39,6 @@ export class RideDetailsComponent implements OnInit {
             });
     }
 
-
     goToUpdate() {
         this.router.navigate(['/rides', this.ride.id, 'update']);
     }
@@ -48,9 +49,9 @@ export class RideDetailsComponent implements OnInit {
             this.joined = true;
             this.ride.freeSeats--;
             this.rideFull = (this.ride.maxPassengers - this.rideJoins.length) === 0;
-            // TODO show confirmation message
+            this.messageService.setMessage("Fahrt erfolgreich beigetreten.", "success");
         }).catch(reason => {
-            console.error("failed to join ride, TODO message");
+            this.messageService.setMessage("Der Fahrt konnte nicht beigetreten werden.", "failure");
         });
     }
 
@@ -61,9 +62,9 @@ export class RideDetailsComponent implements OnInit {
             this.joined = false;
             this.ride.freeSeats++;
             this.rideFull = (this.ride.maxPassengers - this.rideJoins.length) === 0;
-            // TODO show confirmation message
+            this.messageService.setMessage("Teilnahme erfolgreich zurückgezogen", "success");
         }).catch(reason => {
-            console.error("failed to unjoin ride, TODO message");
+            this.messageService.setMessage("Die Teilnahme konnte nicht zurückgezogen werden.", "failure");
         });
     }
 
@@ -71,9 +72,9 @@ export class RideDetailsComponent implements OnInit {
         //TODO send information message to all users that joined that ride
         this.rideService.deleteRide(this.ride).then(nothing => {
             this.router.navigate(['/profile', this.securityStatus.username, 'rides']);
-            // TODO show confirmation message
+            this.messageService.setMessage("Ihre Fahrt wurde erfolgreich gelöscht.", "success");
         }).catch(reason => {
-            console.error("failed to unjoin ride, TODO message");
+            this.messageService.setMessage("Fahrt konnte nicht gelöscht werden.", "failure");
         });
     }
 

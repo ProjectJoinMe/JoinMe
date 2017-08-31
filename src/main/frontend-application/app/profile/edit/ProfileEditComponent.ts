@@ -5,6 +5,7 @@ import {UserProfile} from "../UserProfile";
 import {SecurityService} from ".../security/SecurityService";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserProfileService} from "../../services/UserProfileService";
+import {MessageService} from "../../message_service/MessageService";
 
 /**
  * Created by Alexander on 18.08.2017.
@@ -31,7 +32,8 @@ export class ProfileEditComponent implements OnInit {
                 private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
                 private router: Router,
-                private userProfileService: UserProfileService) {
+                private userProfileService: UserProfileService,
+                private messageService: MessageService) {
         this.route.data
             .subscribe((data: { userProfile: UserProfile }) => {
                 this.userProfile = data.userProfile;
@@ -83,10 +85,11 @@ export class ProfileEditComponent implements OnInit {
             // this.uploadCarPicture();
 
             this.userProfileService.updateUserProfile(this.userProfile).then(updatedUserProfile => {
+                this.messageService.setMessage("Profil wurde erfolgreich geändert.", "success");
                 this.router.navigate(['/profile', this.userProfile.username]);
             }).catch(reason => {
                 this.profileSubmitDisabled = false;
-                console.error("failed to update profile, TODO message");
+                this.messageService.setMessage("Profil konnte nicht geändert werden.", "failure");
             });
         }
     }

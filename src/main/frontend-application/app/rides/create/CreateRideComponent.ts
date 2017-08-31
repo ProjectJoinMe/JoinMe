@@ -4,6 +4,7 @@ import {WeekDay} from "../WeekDay";
 import {Router} from "@angular/router";
 import {RideService} from "../../services/RideService";
 import {Ride} from "../model/Ride";
+import {MessageService} from "../../message_service/MessageService";
 
 @Component({
     selector: 'createRide',
@@ -22,7 +23,8 @@ export class CreateRideComponent implements OnInit {
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,
-                private rideService: RideService) {
+                private rideService: RideService,
+                private messageService: MessageService) {
         this.onStartPlaceChange = (place: any, isFullPlace: boolean) => {
             this.updateRouteInfo();
         };
@@ -100,10 +102,11 @@ export class CreateRideComponent implements OnInit {
             };
             console.info(rideData);
             this.rideService.createRide(rideData).then(createdRide => {
+                this.messageService.setMessage("Ihre Fahrt wurde erfolgreich erstellt.", "succes");
                 this.router.navigate(['/rides', createdRide.id]);
             }).catch(reason => {
                 this.submitDisabled = false;
-                console.error("failed to create ride, TODO");
+                this.messageService.setMessage("Fahrt konnte nicht erstellt werden.", "failure");
             });
         }
     }
