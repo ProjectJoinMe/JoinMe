@@ -1,7 +1,5 @@
 package com.joinme.backend.test;
 
-import java.time.LocalDateTime;
-
 import com.joinme.backend.accounts.UserAccountCreation;
 import com.joinme.backend.accounts.dto.AccountRegistrationData;
 import com.joinme.backend.accounts.dto.Gender;
@@ -19,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -53,6 +52,7 @@ public class TestDataGenerator {
 
     private RideDto createdRide1;
     private RideDto createdRide2;
+    private RideDto createdRide3;
 
     @PostConstruct
     public void generateTestData() {
@@ -122,7 +122,21 @@ public class TestDataGenerator {
             accountRegistrationData.setFirstName("Güntherine");
             accountRegistrationData.setLastName("Dietrich");
 
+            RideDto ride = new RideDto();
+            ride.setProviderUsername(username);
+            ride.setStart("Groß Sankt Florian");
+            ride.setStartPlaceId("ChIJe2nUKqC4b0cRwGfmLVeXAAQ");
+            ride.setDestination("HTBLA Kaindorf");
+            ride.setDestinationPlaceId("ChIJ1wvjNMCkb0cR3kRkVkLEB7Y");
+            ride.setDepartureDateTime(LocalDateTime.now().plus(3, ChronoUnit.DAYS));
+            ride.setMaxPassengers(4);
+            ride.setReturnDepartureDateTime(null);
+            ride.setNotes("Das ist eine testfahrt");
+            ride.setCreationDateTime(LocalDateTime.now());
+
             userAccountCreation.createUser(accountRegistrationData);
+
+            createdRide3 = rideCreation.createRide(ride);
 
             //rideJoinManager.joinRide(createdRide1.getId(), username);
         } else {

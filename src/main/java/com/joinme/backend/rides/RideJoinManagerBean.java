@@ -1,6 +1,8 @@
 package com.joinme.backend.rides;
 
 import com.joinme.backend.accounts.repository.UserAccountRepository;
+import com.joinme.backend.ratings.converter.RatingConverter;
+import com.joinme.backend.ratings.dto.RatingDto;
 import com.joinme.backend.rides.converter.RideConverter;
 import com.joinme.backend.rides.converter.RideJoinConverter;
 import com.joinme.backend.rides.dto.RideDto;
@@ -36,16 +38,20 @@ public class RideJoinManagerBean implements RideJoinManager {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
+    @Autowired
+    private RatingConverter ratingConverter;
+
     @Override
     public RideJoinDto joinRide(long rideId, String username) {
         checkIfDuplicate(rideId, username);
         Ride ride = rideRepository.findById(rideId);
         List<RideJoin> rideJoins = rideJoinRepository.findByRide(ride);
-        if(ride.getMaxPassengers() - rideJoins.size() > 0){
+        if (ride.getMaxPassengers() - rideJoins.size() <= 0) {
             throw new IllegalArgumentException("No free places");
         }
         RideJoin rideJoin = new RideJoin();
         rideJoin.setRide(ride);
+        System.out.println("username is: " + username);
         rideJoin.setPassenger(userAccountRepository.findByUsername(username));
         rideJoin.setCreationDateTime(LocalDateTime.now());
         rideJoinRepository.save(rideJoin);
@@ -71,6 +77,13 @@ public class RideJoinManagerBean implements RideJoinManager {
                 .map(rideJoin -> rideJoin.getRide())
                 .collect(Collectors.toList());
         return rideConverter.toDto(joinedRides);
+    }
+
+    @Override
+    public RideJoinDto setRating(RideJoinDto rideJoinDto, RatingDto ratingDto) {
+        RideJoin existingJoin = rideJoinRepository.findById(rideJoinDto.getId());
+        existingJoin.setRating(ratingConverter.toEntity(ratingDto));
+        return rideJoinConverter.toDto(existingJoin);
     }
 
     private void checkIfDuplicate(long rideId, String username) {

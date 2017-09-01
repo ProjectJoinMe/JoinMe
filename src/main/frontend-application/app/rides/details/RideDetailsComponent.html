@@ -87,6 +87,20 @@
                 <input type="button" class="btn" value="Teilnahme zurückziehen" (click)="unjoinRide()">
             </div>
 
+            <div *ngIf="joined">
+                <h2>Fahrt bewerten</h2>
+                <form>
+                    <select>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5" selected>5</option>
+                    </select>
+                    <textarea>Diese Fahrt war supiii</textarea>
+                </form>
+            </div>
+
         </div>
     </div>
 

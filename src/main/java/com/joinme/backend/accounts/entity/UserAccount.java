@@ -48,7 +48,7 @@ public class UserAccount implements Serializable {
     private String carModel;
 
     @Column
-    private int carManufacturingYear;
+    private Integer carManufacturingYear;
 
     @Column
     private String carDescription;
@@ -152,11 +152,11 @@ public class UserAccount implements Serializable {
         this.carModel = carModel;
     }
 
-    public int getCarManufacturingYear() {
+    public Integer getCarManufacturingYear() {
         return carManufacturingYear;
     }
 
-    public void setCarManufacturingYear(int carManufacturingYear) {
+    public void setCarManufacturingYear(Integer carManufacturingYear) {
         this.carManufacturingYear = carManufacturingYear;
     }
 
