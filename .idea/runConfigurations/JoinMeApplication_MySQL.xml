@@ -8,8 +8,9 @@
     </extension>
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.joinme.JoinMeApplication" />
     <option name="ACTIVE_PROFILES" value="mysql-local-dev,test-data" />
-    <option name="ALTERNATIVE_JRE_PATH" />
-    <module name="JoinMe" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+    <module name="joinme" />
     <envs />
     <method />
   </configuration>

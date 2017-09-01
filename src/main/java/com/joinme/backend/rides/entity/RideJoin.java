@@ -1,11 +1,9 @@
 package com.joinme.backend.rides.entity;
 
 import com.joinme.backend.accounts.entity.UserAccount;
-import org.springframework.data.repository.query.Param;
+import com.joinme.backend.ratings.entity.Rating;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -30,6 +28,9 @@ public class RideJoin implements Serializable {
 
     @Column(nullable = false)
     private LocalDateTime creationDateTime;
+
+    @OneToOne
+    private Rating rating;
 
     public Long getId() {
         return id;
@@ -61,5 +62,13 @@ public class RideJoin implements Serializable {
 
     public void setCreationDateTime(LocalDateTime creationDateTime) {
         this.creationDateTime = creationDateTime;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 }

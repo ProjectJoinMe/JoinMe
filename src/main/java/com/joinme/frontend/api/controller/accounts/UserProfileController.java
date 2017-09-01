@@ -68,7 +68,6 @@ public class UserProfileController {
     @ResponseBody
     public UserProfileDto uploadUserCarPicture(@PathVariable String username, @RequestParam("carPicture") MultipartFile carPicture) {
         Assert.isTrue(username.equals(SecurityUtil.getCurrentUsername()));
-        System.out.println(carPicture.getOriginalFilename());
         //TODO check if file really is an image
         return userProfileManager.setCarPicture(username, carPicture);
     }
