@@ -5,7 +5,7 @@
     <scripts>
       <script value="build" />
     </scripts>
-    <node-interpreter value="$PROJECT_DIR$/node/node_bin/node/node" />
+    <node-interpreter value="project" />
     <envs />
     <method />
   </configuration>
