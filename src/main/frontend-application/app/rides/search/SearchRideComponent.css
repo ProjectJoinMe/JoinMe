@@ -1,12 +1,25 @@
-
-td{
-    width: auto;
+@media only screen and (min-width: 769px) and (orientation: landscape){
+    /* For desktop: */
+    .autoMapsSize{
+        width: 80%;
+    }
+    td.inputField{
+        width: 27%;
+        margin: 0;
+        padding: 1%;
+    }
+    td.buttonField {
+        width: auto;
+        margin: 0;
+        padding: 0.8%;
+        vertical-align: middle;
+    }
 }
-div.inner{
-    width: 50%;
-    min-width: 650px;
-}
 
-div.main {
-    text-align: center;
+
+@media only screen and (min-width: 600px) {
+    /*For Tabletts */
+    td{
+        width: 25%;
+    }
 }

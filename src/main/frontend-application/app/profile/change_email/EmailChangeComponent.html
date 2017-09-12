@@ -1,23 +1,38 @@
 <div id="content" class="main">
     <br>
-    <h1 class="component">E-Mail-Adresse ändern</h1>
+    <div class="row">
+        <div class="col-12 col-m-12 col-t-12">
+            <h1 class="component">E-Mail-Adresse ändern</h1>
+        </div>
+    </div>
+
     <br/>
-    <div class="inner">
-        <form [formGroup]="emailForm" (ngSubmit)="change()">
-            <table>
-                <tr>
-                    <td class="first"><label>E-Mail: </label></td>
-                    <td><input formControlName="email" type="text"></td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="emailForm.controls.email.valid || (emailForm.controls.email.pristine && !submitted)">
-                            ungültige Email
-                        </small>
-                    </td>
-                </tr>
-            </table>
-            <button type="submit" class="button" [disabled]="submitDisabled">E-Mail ändern</button>
-        </form>
+
+    <div class="row">
+        <div class="col-3 col-t-3 "></div>
+        <div class="inner col-6 col-t-6 col-m-12">
+            <form [formGroup]="emailForm" (ngSubmit)="change()">
+                <table>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6 tdsizeMobile"><label>E-Mail: </label></td>
+                        <td class="col-4 col-t-4 col-m-6 tdsizeMobile"><input formControlName="email" type="text"></td>
+                       <!-- <td class="col-4 col-t-4 col-m-6 tdsizeMobile"><input formControlName="email" type="text"></td> -->
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="emailForm.controls.email.valid || (emailForm.controls.email.pristine && !submitted)">
+                                ungültige Email
+                            </small>
+                        </td>
+                    </tr>
+                </table>
+                <div class="row">
+                    <div class="col-12 col-t-12 col-m-12 buttonRow">
+                        <button type="submit" class="button" [disabled]="submitDisabled">E-Mail ändern</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-3 col-t-3 "></div>
     </div>
     <br>
 </div>

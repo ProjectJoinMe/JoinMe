@@ -1,42 +1,46 @@
-td.bemerkung{
-    width: auto;
-    height: auto;
-    text-align: left;
-    align-self: left;
-    margin-right: 5%;
-}
-label {
-    text-align: left;
-    padding-left: 5%;
-}
-label.description {
-    text-align: right;
-    padding-left: 5%;
-}
-label.content {
-    text-align: left;
-}
-
-.inner{
-    text-align: left;
-    width: 48%;
-    min-width: 40em;
-}
-h3{
-    padding: 1%;
-    padding-top: 7%;
-    margin: 0%;
-    text-align: left;
-}
-td{
-    width: 10%;
+@media only screen and (min-width: 769px) and (orientation: landscape){
+    /* For desktop: */
+    div.inner {
+        background-color: #A0D751;
+        border: none;
+        border-radius: 15px;
+        margin: auto;
+        text-align: center;
+    }
+    table{
+        width: 100%;
+    }
+    .second{
+        text-align: left;
+        margin-left:  25px;
+    }
 }
 
-table {
-    width: 100%;
+
+
+@media only screen and (min-width: 600px) {
+    /*For Tabletts */
+    div.inner {
+        background-color: #A0D751;
+        border: none;
+        border-radius: 15px;
+        margin: auto;
+        text-align: center;
+    }
+    table{
+        width: 100%;
+    }
+    .second{
+        text-align: left;
+        margin-left:  25px;
+    }
 }
 
-div.myRide {
-    text-align: center;
-    width: 100%;
+@media only screen and (max-width: 480px) {
+    /* For mobile phones: */
+    .second{
+        text-align: left;
+        margin-left: 10px;
+    }
 }
+

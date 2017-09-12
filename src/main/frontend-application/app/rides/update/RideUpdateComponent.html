@@ -1,143 +1,188 @@
 <div id="content" class="main">
     <br>
-    <h1 class="component">Fahrt bearbeiten</h1>
+    <div class="row">
+        <div class="col-12 col-t-12 col-m-12">
+            <h1 class="component">Fahrt bearbeiten</h1>
+        </div>
+    </div>
+
     <br/>
 
-    <div class="inner" *ngIf="ride">
-        <form [formGroup]="rideForm" (ngSubmit)="updateRide()">
-            <table>
-                <tr>
-                    <td class="first"><label>Abfahrtsort:</label></td>
-                    <td class="second">
-                        <maps-autocomplete-place [formGroup]="rideForm" [name]="'start'"></maps-autocomplete-place>
-                    </td>
-                    <td class="third">
-                        <small class="error-message"
-                               [hidden]="(rideForm.controls.start.valid && rideForm.controls.startPlaceId.valid) || (rideForm.controls.start.pristine && !submitted)">
-                            Bitte einen Abfahrtsort auswählen.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first"><label>Ankunftsort:</label></td>
-                    <td class="second">
-                        <maps-autocomplete-place [formGroup]="rideForm"
-                                                 [name]="'destination'"></maps-autocomplete-place>
-                    </td>
-                    <td class="third">
-                        <small class="error-message"
-                               [hidden]="(rideForm.controls.destination.valid && rideForm.controls.destinationPlaceId.valid) || (rideForm.controls.destination.pristine && !submitted)">
-                            Bitte einen Ankunftsort auswählen.
-                        </small>
-                    </td>
-                </tr>
-            </table>
-            <hr noshade>
-            <table>
-                <tr>
-                    <td><label class="heading"><b>Hinfahrt</b></label></td>
-                    <td><input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first"><label>Abfahrtsdatum:</label></td>
-                    <td class="second"><input class="date" formControlName="departureDate" type="date"
-                                              min="{{currentDate | date:'yyyy-MM-dd'}}">
-                    </td>
-                    <td class="third">
-                        <small class="error-message"
-                               [hidden]="rideForm.controls.departureDate.valid || (rideForm.controls.departureDate.pristine && !submitted)">
-                            ungültiges Abfahrtsdatum
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first"><label>Uhrzeit:</label></td>
-                    <td class="second">
-                        <input formControlName="departureHour" type="number" min="0" max="23">&nbsp;:
-                        <input formControlName="departureMinute" type="number" min="0" max="59" step="5">
-                    </td>
-                    <td class="third">
-                        <small class="error-message" [hidden]="rideForm.controls.departureHour.valid || (rideForm.controls.departureHour.pristine && !submitted)
-                                                   && rideForm.controls.departureMinute.valid || (rideForm.controls.departureMinute.pristine && !submitted)">
-                            ungültige Uhrzeit
-                        </small>
-                    </td>
-                </tr>
-            </table>
-            <br>
-            <div *ngIf="getReturnRide()">
+    <div class="row">
+        <div class="col-3 col-t-2"></div>
+
+        <div class="inner col-6 col-t-8 col-m-12" *ngIf="ride">
+            <form [formGroup]="rideForm" (ngSubmit)="updateRide()">
                 <table>
-                    <tr class="returnFormRow">
-                        <td class="first"><label class="heading"><b>Rückfahrt</b></label></td>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsort:</label></td>
+
+                        <td class="col-4 col-t-4 col-m-6 inputField">
+                            <maps-autocomplete-place [formGroup]="rideForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
+                        </td>
+
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message "
+                                   [hidden]="(rideForm.controls.start.valid && rideForm.controls.startPlaceId.valid) || (rideForm.controls.start.pristine && !submitted)">
+                                Bitte einen Abfahrtsort auswählen.
+                            </small>
+                        </td>
                     </tr>
-                    <tr class="returnFormRow">
-                        <td class="first"><label>Abfahrtsdatum:</label></td>
-                        <td class="second"><input formControlName="returnDepartureDate" type="date"
-                                                  min="{{currentDate | date:'yyyy-MM-dd'}}"
-                                                  class="date"></td>
-                        <td class="third">
+
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6"><label>Ankunftsort:</label></td>
+                        <td class="col-4 col-t-4 col-m-6 inputField">
+                            <maps-autocomplete-place [formGroup]="rideForm"
+                                                     [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
                             <small class="error-message"
-                                   [hidden]="rideForm.controls.returnDepartureDate.valid || (rideForm.controls.returnDepartureDate.pristine && !submitted)">
+                                   [hidden]="(rideForm.controls.destination.valid && rideForm.controls.destinationPlaceId.valid) || (rideForm.controls.destination.pristine && !submitted)">
+                                Bitte einen Ankunftsort auswählen.
+                            </small>
+                        </td>
+                    </tr>
+                </table>
+
+                <hr noshade>
+
+                <table>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6"><label class="heading"><b>Hinfahrt</b></label></td>
+                        <td class="col-8 col-t-8 col-m-6 inputField"><input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
+                        </td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsdatum:</label></td>
+                        <td class="col-4 col-t-8 col-m-6 inputField"><input class="date" formControlName="departureDate" type="date"
+                                                                            min="{{currentDate | date:'yyyy-MM-dd'}}">
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="rideForm.controls.departureDate.valid || (rideForm.controls.departureDate.pristine && !submitted)">
                                 ungültiges Abfahrtsdatum
                             </small>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="first"><label>Uhrzeit:</label></td>
-                        <td class="second">
-                            <input formControlName="returnDepartureHour" type="number" min="0" max="23">&nbsp;:
-                            <input formControlName="returnDepartureMinute" type="number" min="0" max="55" step="5"></td>
-                        <td class="third">
-                            <small class="error-message" [hidden]="rideForm.controls.returnDepartureHour.valid || (rideForm.controls.returnDepartureHour.pristine && !submitted)
-                                                   && rideForm.controls.returnDepartureMinute.valid || (rideForm.controls.returnDepartureMinute.pristine && !submitted)">
+
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6"><label>Uhrzeit:</label></td>
+                        <td class="col-4 col-t-8 col-m-6 inputField">
+                            <input formControlName="departureHour" type="number" min="0" max="23">&nbsp;:
+                            <input formControlName="departureMinute" type="number" min="0" max="59" step="5">
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message" [hidden]="rideForm.controls.departureHour.valid || (rideForm.controls.departureHour.pristine && !submitted)
+                                                           && rideForm.controls.departureMinute.valid || (rideForm.controls.departureMinute.pristine && !submitted)">
                                 ungültige Uhrzeit
                             </small>
                         </td>
                     </tr>
                 </table>
-            </div>
-            <hr noshade>
-            <div>
-                <table>
-                    <tr>
-                        <td class="first">Freie Plätze</td>
-                        <td class="second">
-                            <input formControlName="maxPassengers" type="number" min="1" max="10">
-                        </td>
-                        <td class="third"></td>
-                    </tr>
-                    <tr>
-                        <td class="first">Preis pro Teilnehmer in €</td>
-                        <td class="second">
-                            <input formControlName="pricePerPassenger" type="number" min="0" max="100">
-                        </td>
-                        <td class="third">
-                            <small class="error-message" [hidden]="rideForm.controls.pricePerPassenger.valid || (rideForm.controls.pricePerPassenger.pristine && !submitted)">
-                                ungültiger Preis
-                            </small>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <hr noshade>
-            <div>
-                <label>Bemerkung (max 400 Zeichen)</label>
-                <br>
-                <textarea formControlName="notes" rows="6" cols="50" maxlength="400"></textarea>
-            </div>
-            <hr noshade>
-            <button type="submit" class="btn" [disabled]="submitDisabled">Speichern</button>
-            <input type="button" class="btn" value="Abbrechen" (click)="goToDetails(ride)">
-        </form>
 
-        <div *ngIf="rideForm.controls.startPlaceId.value && rideForm.controls.destinationPlaceId.value">
-            <h3>Route</h3>
-            <maps-display-embedded-route
-                    [originPlaceId]="rideForm.controls.startPlaceId.value"
-                    [destinationPlaceId]="rideForm.controls.destinationPlaceId.value">
-            </maps-display-embedded-route>
+
+                <br>
+                <div *ngIf="getReturnRide()">
+                    <table>
+                        <tr class="returnFormRow row">
+                            <td class="first col-4 col-t-4 col-m-6"><label class="heading"><b>Rückfahrt</b></label></td>
+                        </tr>
+                        <tr class="returnFormRow row">
+                            <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsdatum:</label></td>
+                            <td class="col-4 col-t-8 col-m-6 inputField"><input formControlName="returnDepartureDate" type="date"
+                                                                                min="{{currentDate | date:'yyyy-MM-dd'}}"
+                                                                                class="date"></td>
+                            <td class="col-4 col-t-4 col-m-12">
+                                <small class="error-message"
+                                       [hidden]="rideForm.controls.returnDepartureDate.valid || (rideForm.controls.returnDepartureDate.pristine && !submitted)">
+                                    ungültiges Abfahrtsdatum
+                                </small>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="first col-4 col-t-4 col-m-6"><label>Uhrzeit:</label></td>
+                            <td class="col-4 col-t-8 col-m-6 inputField">
+                                <input formControlName="returnDepartureHour" type="number" min="0" max="23">&nbsp;:
+                                <input formControlName="returnDepartureMinute" type="number" min="0" max="55" step="5"></td>
+                            <td class="col-4 col-t-4 col-m-12">
+                                <small class="error-message" [hidden]="rideForm.controls.returnDepartureHour.valid || (rideForm.controls.returnDepartureHour.pristine && !submitted)
+                                                           && rideForm.controls.returnDepartureMinute.valid || (rideForm.controls.returnDepartureMinute.pristine && !submitted)">
+                                    ungültige Uhrzeit
+                                </small>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <hr noshade>
+
+                <div>
+                    <table>
+                        <tr class="row">
+                            <td class="first col-4 col-t-4 col-m-6">Freie Plätze</td>
+                            <td class="col-4 col-t-8 col-m-6 inputField">
+                                <input formControlName="maxPassengers" type="number" min="1" max="10">
+                            </td>
+                            <td class="col-4 col-t-4 col-m-12"></td>
+                        </tr>
+                        <tr>
+                            <td class="first col-4 col-t-4 col-m-6">Preis pro Teilnehmer in €</td>
+                            <td class="col-4 col-t-8 col-m-6 inputField">
+                                <input formControlName="pricePerPassenger" type="number" min="0" max="100">
+                            </td>
+                            <td class="col-4 col-t-4 col-m-12">
+                                <small class="error-message" [hidden]="rideForm.controls.pricePerPassenger.valid || (rideForm.controls.pricePerPassenger.pristine && !submitted)">
+                                    ungültiger Preis
+                                </small>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <hr noshade>
+
+                <div class="row">
+                    <div class="col-12 col-t-12 col-m-12">
+                        <label>Bemerkung (max 400 Zeichen)</label>
+                    </div>
+                    <br>
+                    <div class="col-12 col-t-12 col-m-12">
+                        <textarea formControlName="notes" rows="6" maxlength="400"></textarea>
+                    </div>
+                </div>
+
+                <hr noshade>
+
+                <div class="row">
+                    <div class="col-4 col-t-4"></div>
+                    <div class="col-2 col-t-2 col-m-6">
+                        <button type="submit" class="btn" [disabled]="submitDisabled">Speichern</button>
+                    </div>
+                    <div class="col-2 col-t-2 col-m-6">
+                        <input type="button" class="btn" value="Abbrechen" (click)="goToDetails(ride)">
+                    </div>
+                    <div class="col-4 col-t-4"></div>
+                </div>
+
+            </form>
+
+            <div class="row" *ngIf="rideForm.controls.startPlaceId.value && rideForm.controls.destinationPlaceId.value">
+
+                <div class="col-12 col-t-12 col-m-12">
+                    <h3>Route</h3> <br>
+                    <maps-display-embedded-route
+                            [originPlaceId]="rideForm.controls.startPlaceId.value"
+                            [destinationPlaceId]="rideForm.controls.destinationPlaceId.value">
+                    </maps-display-embedded-route>
+                </div>
+
+            </div>
         </div>
+
+        <div class="col-3 col-t-2"></div>
     </div>
+
+
     <br>
 </div>

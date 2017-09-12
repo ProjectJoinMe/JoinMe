@@ -1,108 +1,177 @@
 <div id="content" class="main">
     <br>
-    <h1 class="component">Details</h1>
-    <br/>
-
-    <div class="inner">
-        <div>
-            <table>
-                <tr>
-                    <td><label class="description">Abfahrtsort:</label></td>
-                    <td><label class="content">{{ ride.start }}</label></td>
-                </tr>
-                <tr>
-                    <td><label class="description">Zielort:</label></td>
-                    <td><label class="content"> {{ ride.destination }}</label></td>
-                </tr>
-                <tr>
-                    <td><label class="description">Freie Plätze:</label></td>
-                    <td><label class="content">{{ ride.freeSeats }}</label></td>
-                </tr>
-                <tr *ngIf="ride.returnDepartureDateTime">
-                    <td><h3>Hinfahrt</h3></td>
-                </tr>
-                <tr>
-                    <td><label class="description">Abfahrt:</label></td>
-                    <td><label class="content">{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label>
-                    </td>
-                    <td><label class="content">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label></td>
-                </tr>
-            </table>
-
-            <div *ngIf="ride.returnDepartureDateTime">
-                <table>
-                    <tr>
-                        <td><h3>Rückfahrt</h3></td>
-                    </tr>
-                    <tr>
-                        <td><label class="description">Abfahrt:</label></td>
-                        <td><label class="content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'dd.MM.yyyy'
-                            }}</label></td>
-                        <td><label class="content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'HH:mm'
-                            }}</label></td>
-                    </tr>
-                </table>
-                <br>
-            </div>
-
-            <table>
-                <tr>
-                    <!-- TODO make something else when there are no notes-->
-                    <td><label class="description">Bemerkungen:</label></td>
-                    <td class="bemerkung">
-                        <div *ngIf="ride.notes">{{ ride.notes }}</div>
-                    </td>
-                    <td></td>
-                </tr>
-            </table>
-            <br>
-
-            <div *ngIf="ride.startPlaceId && ride.destinationPlaceId">
-                <maps-display-embedded-route
-                        [originPlaceId]="ride.startPlaceId"
-                        [destinationPlaceId]="ride.destinationPlaceId">
-                </maps-display-embedded-route>
-            </div>
-
-            <div *ngIf="rideJoins.length != 0">
-                Mitfahrer auf dieser Fahrt
-                <div *ngFor="let rideJoin of rideJoins">
-                    <span>{{ rideJoin.userProfileDto.username }}</span>
-                </div>
-            </div>
-            <div *ngIf="rideJoins.length === 0">
-                bisher noch keine Mitfahrer
-            </div>
-
-            <div *ngIf="isMyRide()">
-                <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate()">
-            </div>
-            <div *ngIf="isMyRide()">
-                <input type="button" class="btn" value="Löschen" (click)="deleteRide()">
-            </div>
-            <div *ngIf="!isMyRide() && !joined">
-                <input type="button" class="btn" value="Teilnehmen" (click)="joinRide()" [disabled]="rideFull">
-            </div>
-            <div *ngIf="!isMyRide() && joined">
-                <input type="button" class="btn" value="Teilnahme zurückziehen" (click)="unjoinRide()">
-            </div>
-
-            <div *ngIf="joined">
-                <h2>Fahrt bewerten</h2>
-                <form>
-                    <select>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5" selected>5</option>
-                    </select>
-                    <textarea>Diese Fahrt war supiii</textarea>
-                </form>
-            </div>
-
+    <div class="row">
+        <div class="col-12 col-t-12 col-m-12">
+            <h1 class="component">Details</h1>
         </div>
     </div>
+
+    <br/>
+
+
+    <div class="row">
+        <div class="col-3 col-t-1"></div>
+
+        <div class="col-6 col-t-10 col-m-12 inner">
+            <div>
+                <table>
+                    <tr class="row">
+                        <td class=" first col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <label class="description">Abfahrtsort:</label>
+                        </td>
+                        <td class=" second col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <label class="content">{{ ride.start }}</label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class=" first col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <label class="description">Zielort:</label>
+                        </td>
+                        <td class=" second col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <label class="content"> {{ ride.destination }}</label>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class=" first col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <label class="description">Freie Plätze:</label>
+                        </td>
+                        <td class=" second col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <label class="content">{{ ride.freeSeats }}</label>
+                        </td>
+                    </tr>
+                    <tr *ngIf="ride.returnDepartureDateTime" class="row">
+                        <td class=" col-12 col-t-12 col-m-12 tdsizeMobile">
+                            <h3>Hinfahrt</h3>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class=" first col-4 col-t-4 col-m-4">
+                            <label class="description">Abfahrt:</label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-4">
+                            <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-4">
+                            <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label>
+                        </td>
+                    </tr>
+                </table>
+
+
+                <div *ngIf="ride.returnDepartureDateTime">
+                    <table>
+                        <tr class="row">
+                            <td class="col-12 col-t-12 col-m-12"><h3>Rückfahrt</h3></td>
+                        </tr>
+                        <tr class="row">
+                            <td class=" firszcol-4 col-t-4 col-m-4">
+                                <label class="description">Abfahrt:</label>
+                            </td>
+                            <td class="col-4 col-t-4 col-m-4">
+                                <label class="content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'dd.MM.yyyy'
+                                    }}</label>
+                            </td>
+                            <td class="col-4 col-t-4 col-m-4">
+                                <label class="content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'HH:mm'
+                                    }}</label>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+
+                <table>
+                    <tr class="row">
+                        <!-- TODO make something else when there are no notes-->
+                        <td class="col-4 col-t-4 col-m-6">
+                            <label class="description">Bemerkungen:</label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-6">
+                            <div *ngIf="ride.notes">{{ ride.notes }}</div>
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
+
+                <div class="row">
+                    <div *ngIf="ride.startPlaceId && ride.destinationPlaceId" class="col-8 col-t-8 col-m-6">
+                        <maps-display-embedded-route
+                                [originPlaceId]="ride.startPlaceId"
+                                [destinationPlaceId]="ride.destinationPlaceId">
+                        </maps-display-embedded-route>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div *ngIf="rideJoins.length != 0" class="col-12 col-t-12 col-m-12">
+                        Mitfahrer auf dieser Fahrt
+                        <div *ngFor="let rideJoin of rideJoins">
+                            <span>{{ rideJoin.userProfileDto.username }}</span>
+                        </div>
+                    </div>
+
+                    <div *ngIf="rideJoins.length === 0" class="col-12 col-t-12 col-m-12">
+                        bisher noch keine Mitfahrer
+                    </div>
+
+
+
+                    <div *ngIf="isMyRide()" class="row">
+                        <div class="col-4 col-t-4"></div>
+                        <div class="col-2 col-t-2">
+                            <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate()">
+                        </div>
+                        <div class="col-2 col-t-2">
+                            <input type="button" class="btn" value="Löschen" (click)="deleteRide()">
+                        </div>
+                        <div class="col-4 col-t-4"></div>
+                    </div>
+
+
+                    <div *ngIf="!isMyRide() && !joined" class="col-12 col-t-12 col-m-12">
+                        <input type="button" class="btn" value="Teilnehmen" (click)="joinRide()" [disabled]="rideFull">
+                    </div>
+
+                    <div *ngIf="!isMyRide() && joined" class="col-12 col-t-12 col-m-12">
+                        <input type="button" class="btn" value="Teilnahme zurückziehen" (click)="unjoinRide()">
+                    </div>
+
+                </div>
+
+                <div *ngIf="joined">
+                    <div class="row">
+                        <div class="col-12 col-t-12 col-m-12">
+                            <h2>Fahrt bewerten</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-t-12 col-m-12">
+                            <form>
+                                <select class="row">
+                                    <option value="1" class="col-2 col-t-2 col-m-2">1</option>
+                                    <option value="2" class="col-2 col-t-2 col-m-2">2</option>
+                                    <option value="3" class="col-2 col-t-2 col-m-2">3</option>
+                                    <option value="4" class="col-2 col-t-2 col-m-2">4</option>
+                                    <option value="5" class="col-2 col-t-2 col-m-2" selected>5</option>
+                                </select>
+                                <div class="col-12 col-t-12 col-m-12">
+                                    <textarea>Diese Fahrt war supiii</textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+
+        <div class="col-3 col-t-1"></div>
+    </div>
+
 
     <br>
 </div>

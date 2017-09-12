@@ -136,7 +136,6 @@ div.main {
 
 div.inner {
   background-color: #A0D751;
-  width: 80%;
   border: none;
   border-radius: 15px;
   padding: 1%;
@@ -177,8 +176,13 @@ label.heading {
   font-size: 28px;
 }
 
+/* vielleicht weg */
 input.date {
   width: 100%;
+}
+
+.second{
+  align: left;
 }
 
 /* Separators */
@@ -268,10 +272,11 @@ hr {
   div.colMarginTop{
     margin-top: 35px;
   }
+
+
 }
 
-
-@media only screen and (min-width: 769px) and (orientation: landscape){
+@media only screen and (min-width: 980px) and (orientation: landscape){
   /* For desktop: */
   .col-1 {width: 8.33%;}
   .col-2 {width: 16.66%;}
@@ -290,8 +295,12 @@ hr {
 
 [class*="col-"] {
   float: left;
-  border: 1px solid silver;
+  border: 1px solid transparent;
   margin: 0px;
+}
+
+table{
+  width: 100%;
 }
 
 
@@ -310,4 +319,9 @@ hr {
   margin-bottom: 15px;
   margin-top: 0px;
   padding: 0px;
+}
+
+.buttonRow{
+  text-align: center;
+  width: 100%;
 }
