@@ -1,131 +1,205 @@
 <div id="content" class="main">
     <br>
-    <h1 class="component">Profil bearbeiten</h1>
+    <div class="row">
+        <div class="col-12 col-t-12 col-m-12">
+            <h1 class="component">Profil bearbeiten</h1>
+        </div>
+    </div>
+
     <br/>
 
-    <div class="inner" style=" margin: auto; width: 50%; padding: 10px;">
-        <!--TODO Designteam: inline pfusch ändern, danke-->
-        <h2>Profilbild</h2>
+    <div class="row">
+        <div class="col-3 col-t-1 "></div>
+        <div class="inner col-6 col-t-10 col-m-12" >
 
-        <table style=" margin: auto; width: 50%; padding: 10px;"><!--TODO Designteam: inline pfusch ändern, danke-->
-            <tr>
-                <td><img
-                        src="{{userProfilePicturePath}}"
-                        alt="Profilbild" style="width:125px;height:125px;">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <form enctype="multipart/form-data" method="">
-                        <input #profilePictureFileInput type="file" [multiple]="false" name="profilePicture"
-                               class="profilePicture" accept="image/*" (change)="uploadProfilePicture()">
+            <div class="row">
+                <div class="col-12 col-t-12 col-m-12">
+                    <h2>Profilbild</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 col-t-3"></div>
+                <div class="col-6 col-t-6 col-m-12">
+                    <table>
+                        <tr class="row">
+                            <td class="col-12 col-t-12 col-m-12">
+                                <img src="{{userProfilePicturePath}}" alt="Profilbild" width="125px" height="125px">
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-12 col-t-12 col-m-12">
+                                <form enctype="multipart/form-data" method="">
+                                    <div class="col-12 col-t-12 col-m-12">
+                                        <input #profilePictureFileInput type="file" [multiple]="false" name="profilePicture"
+                                           class="profilePicture" accept="image/*" (change)="uploadProfilePicture()">
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-3 col-t-3"></div>
+            </div>
+
+            <hr noshade>
+
+            <div class="row">
+                <div class="col-12 col-t-12 col-m-12">
+                    <h2>Persönliche Informationen</h2>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-2 "></div>
+                <div class="col-10 col-t-12 col-m-12">
+                    <form [formGroup]="editForm" (ngSubmit)="edit()">
+                        <table>
+                            <tr class="row">
+                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile"><label>Vorname:</label></td>
+                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <input formControlName="firstName" type="text">
+                                </td>
+                                <td class="col-4 col-t-4 col-m-12">
+                                    <small class="error-message"
+                                           [hidden]="editForm.controls.firstName.valid || (editForm.controls.firstName.pristine && !profileSubmitted)">
+                                        Bitte den Vornamen eingeben
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr class="row">
+                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile"><label>Nachname:</label></td>
+                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <input formControlName="lastName" type="text">
+                                </td>
+                                <td class="col-4 col-t-4 col-m-12">
+                                    <small class="error-message"
+                                           [hidden]="editForm.controls.lastName.valid || (editForm.controls.lastName.pristine && !profileSubmitted)">
+                                        Bitte den Nachnamen eingeben
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr class="row">
+                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile"><label>Beschreibung:</label></td>
+                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <textarea formControlName="description" maxlength="500" minlength="0"></textarea>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </table>
                     </form>
-                </td>
-            </tr>
-        </table>
-        <h2>Persönliche Informationen</h2>
-        <form [formGroup]="editForm" (ngSubmit)="edit()">
-            <table style=" margin: auto; width: 50%; padding: 10px;"><!--TODO Designteam: inline pfusch ändern, danke-->
-                <tr>
-                    <td class="first"><label>Vorname:</label></td>
-                    <td class="second">
-                        <input formControlName="firstName" type="text">
-                    </td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="editForm.controls.firstName.valid || (editForm.controls.firstName.pristine && !profileSubmitted)">
-                            Bitte den Vornamen eingeben
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first"><label>Nachname:</label></td>
-                    <td class="second">
-                        <input formControlName="lastName" type="text">
-                    </td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="editForm.controls.lastName.valid || (editForm.controls.lastName.pristine && !profileSubmitted)">
-                            Bitte den Nachnamen eingeben
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first"><label>Beschreibung:</label></td>
-                    <td class="second">
-                        <textarea formControlName="description" maxlength="500" minlength="0"></textarea>
-                    </td>
-                    <td>
+                </div>
+            </div>
 
-                    </td>
-                </tr>
-            </table>
-            <h2>Auto</h2>
-            <img src="{{userCarPicturePath}}"
-                 alt="Autobild" style="width:125px;height:125px;">
-            <form enctype="multipart/form-data" method="">
-                <input #carPictureFileInput type="file" [multiple]="false" name="carPicture"
-                       class="carPicture" accept="image/*" (change)="uploadCarPicture()">
-            </form>
-            <table style=" margin: auto; width: 50%; padding: 10px;"><!--TODO Designteam: inline pfusch ändern, danke-->
-                <tr>
-                    <td class="first">
-                        <label>Hersteller:</label>
-                    </td>
-                    <td class="second">
-                        <input formControlName="carMake" type="text">
-                    </td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="editForm.controls.carMake.valid || (editForm.controls.carMake.pristine && !profileSubmitted)">
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first">
-                        <label>Modell:</label>
-                    </td>
-                    <td class="second">
-                        <input formControlName="carModel" type="text">
-                    </td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="editForm.controls.carModel.valid || (editForm.controls.carModel.pristine && !profileSubmitted)">
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first">
-                        <label>Baujahr:</label>
-                    </td>
-                    <td class="second">
-                        <input formControlName="carManufacturingYear" type="number" min="1900"
-                               max="{{date | date:'yyyy'}}" step="1">
-                    </td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="editForm.controls.carManufacturingYear.valid || (editForm.controls.carManufacturingYear.pristine && !profileSubmitted)">
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="first">
-                        <label>Beschreibung:</label>
-                    </td>
-                    <td class="second">
-                        <textarea formControlName="carDescription" maxlength="500" minlength="0"></textarea>
-                    </td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="editForm.controls.carDescription.valid || (editForm.controls.carDescription.pristine && !profileSubmitted)">
-                        </small>
-                    </td>
-                </tr>
-            </table>
-            <button type="submit" class="button" [disabled]="profileSubmitDisabled">Speichern</button>
+            <hr noshade>
 
-        </form>
+            <div class="row">
+                <div class="col-12 col-t-12 col-m-12">
+                    <h2>Auto Informationen</h2>
+                </div>
+            </div>
 
+
+            <div class="row">
+                <div class="col-3 col-t-3"></div>
+                <div class="col-6 col-t-6 col-m-12">
+                    <table>
+                        <tr class="row">
+                            <td class="col-12 col-t-12 col-m-12">
+                                <img src="{{userCarPicturePath}}" alt="Autobild" width="125px" height="125px">
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-12 col-t-12 col-m-12">
+                                <form enctype="multipart/form-data" method="">
+                                    <div class="col-12 col-t-12 col-m-12">
+                                    <input #carPictureFileInput type="file" [multiple]="false" name="carPicture"
+                                           class="carPicture" accept="image/*" (change)="uploadCarPicture()">
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-3 col-t-3"></div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-2 "></div>
+                <div class="col-10 col-t-12 col-m-12">
+                    <form [formGroup]="editForm" (ngSubmit)="edit()">
+                        <table>
+                            <tr class="row">
+                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <label>Hersteller:</label>
+                                </td>
+                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <input formControlName="carMake" type="text">
+                                </td>
+                                <td class="col-4 col-t-4 col-m-12">
+                                    <small class="error-message"
+                                           [hidden]="editForm.controls.carMake.valid || (editForm.controls.carMake.pristine && !profileSubmitted)">
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <label>Modell:</label>
+                                </td>
+                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <input formControlName="carModel" type="text">
+                                </td>
+                                <td  class="col-4 col-t-4 col-m-12">
+                                    <small class="error-message"
+                                           [hidden]="editForm.controls.carModel.valid || (editForm.controls.carModel.pristine && !profileSubmitted)">
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <label>Baujahr:</label>
+                                </td>
+                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile ">
+                                    <input formControlName="carManufacturingYear" type="number" min="1900"
+                                           max="{{date | date:'yyyy'}}" step="1">
+                                </td>
+                                <td class="col-4 col-t-4 col-m-12">
+                                    <small class="error-message"
+                                           [hidden]="editForm.controls.carManufacturingYear.valid || (editForm.controls.carManufacturingYear.pristine && !profileSubmitted)">
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <label>Beschreibung:</label>
+                                </td>
+                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
+                                    <textarea formControlName="carDescription" maxlength="500" minlength="0"></textarea>
+                                </td>
+                                <td class="col-4 col-t-4 col-m-12">
+                                    <small class="error-message"
+                                           [hidden]="editForm.controls.carDescription.valid || (editForm.controls.carDescription.pristine && !profileSubmitted)">
+                                    </small>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-t-12 col-m-12">
+                        <button type="submit" class="button" [disabled]="profileSubmitDisabled">Speichern</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-3 col-t-1 "></div>
     </div>
 
     <br>

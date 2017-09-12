@@ -1,61 +1,67 @@
 <div id="content" class="main">
     <br />
-    <h1 class="component">Fahrt suchen</h1>
+    <div class="row">
+        <div class="col-12 col-m-12 col-t-12"><h1 class="component">Fahrt suchen</h1></div>
+    </div>
     <br />
 
-    <div class="inner">
-        <form [formGroup]="searchForm" (ngSubmit)="search()">
-            <table>
-                <tr>
-                    <th>von</th>
-                    <th>bis</th>
-                    <th>Datum</th>
-                </tr>
-                <tr>
-                    <td>
-                        <maps-autocomplete-place [formGroup]="searchForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
-                    </td>
-                    <td>
-                        <maps-autocomplete-place [formGroup]="searchForm" [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
-                    </td>
-                    <td>
-                        <input formControlName="date" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}" >
-                    </td>
-                    <td>
-                        <input type="submit" value="Suchen" [disabled]="submitDisabled" class="btn">
-                    </td>
-                </tr>
-            </table>
-            <small class="error-message"
-                   [hidden]="searchForm.controls.startPlaceId.valid || (searchForm.controls.startPlaceId.pristine && !submitted)">
-                Bitte einen Abfahrtsort auswählen.
-            </small>
-            <small class="error-message"
-                   [hidden]="searchForm.controls.destinationPlaceId.valid || (searchForm.controls.destinationPlaceId.pristine && !submitted)">
-                Bitte einen Ankunftsort auswählen.
-            </small>
-        </form>
-        <br>
-        <div>
-            <div class="ride" *ngFor="let ride of rides" (click)="goToDetails(ride)">
-                <div>
-                    <!-- TODO display year when it's not the current year -->
-                    <span>{{ ride.departureDateTime | timezonifyDate | date:'EEEE - d. MMMM' }} </span>
-                    <span class="ridetitle">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</span>
-                </div>
-                <div>
-                    <span>{{ ride.start }}</span> - <span>{{ ride.destination }}</span>
-                    <span *ngIf="ride.returnDepartureDateTime"> und zurück</span>
-                </div>
-                <div>
-                    <span>Freie Plätze: </span><span>{{ ride.freeSeats }}</span>
-                </div>
-                <br>
+    <div class="row">
+        <div class="col-3 "></div>
+        <div class="inner col-6 col-t-12 col-m-12">
+            <form [formGroup]="searchForm" (ngSubmit)="search()">
+                <table>
+                    <tr class="row">
+                        <td class="col-3 col-m-6 col-t-3 inputField">
+                            <label> Abfahrtsort </label> <br>
+                            <maps-autocomplete-place class="autoMapsSize" [formGroup]="searchForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
+                        </td>
+                        <td class="col-3 col-m-6 col-t-3 inputField">
+                            <label> Zielort </label> <br>
+                            <maps-autocomplete-place [formGroup]="searchForm" [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
+                        </td>
+                        <td class="col-3 col-m-6 col-t-3 inputField">
+                            <label> Datum </label> <br>
+                            <input formControlName="date" type="date" min="{{currentDate | date:'yyyy-MM-dd'}}" >
+                        </td>
+                        <td class="col-3 col-m-6 col-t-3 buttonField">
+                            <br>
+                            <input type="submit" value="Suchen" [disabled]="submitDisabled" class="btn">
+                        </td>
+                    </tr>
+                </table>
+                <small class="error-message"
+                       [hidden]="searchForm.controls.startPlaceId.valid || (searchForm.controls.startPlaceId.pristine && !submitted)">
+                    Bitte einen Abfahrtsort auswählen.
+                </small>
+                <small class="error-message"
+                       [hidden]="searchForm.controls.destinationPlaceId.valid || (searchForm.controls.destinationPlaceId.pristine && !submitted)">
+                    Bitte einen Ankunftsort auswählen.
+                </small>
+            </form>
             </div>
+        <div class="col-3 "></div>
         </div>
-        <br>
-    </div>
     <br>
-
-
+        <div class="row">
+            <div class="col-4 col-t-3"></div>
+            <div class="col-4 col-t-6 col-m-12">
+                <div class="ride" *ngFor="let ride of rides" (click)="goToDetails(ride)">
+                    <div>
+                        <!-- TODO display year when it's not the current year -->
+                        <span>{{ ride.departureDateTime | timezonifyDate | date:'EEEE - d. MMMM' }} </span>
+                        <span class="ridetitle">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</span>
+                    </div>
+                    <div>
+                        <span>{{ ride.start }}</span> - <span>{{ ride.destination }}</span>
+                        <span *ngIf="ride.returnDepartureDateTime"> und zurück</span>
+                    </div>
+                    <div>
+                        <span>Freie Plätze: </span><span>{{ ride.freeSeats }}</span>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="col-4 col-t-3"></div>
+        </div>
+    <br>
 </div>

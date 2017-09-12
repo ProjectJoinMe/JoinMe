@@ -1,27 +1,44 @@
 <div class="main">
   <br>
-  <h1 class="component">Login</h1>
+  <div class="row">
+    <div class="col-12 col-m-12 col-t-12"><h1 class="component">Login</h1></div>
+  </div>
   <br />
 
-  <div class="inner">
 
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="row">
+    <div class="col-4 col-t-3"></div>
+    <div class="inner col-4 col-t-6 col-m-12">
 
-    <table>
-      <tr>
-        <td class="first"><label>Nutzername:</label></td>
-        <td><input formControlName="username" type="text"></td>
-      </tr>
-      <tr>
-        <td class="first"><label>Passwort:</label></td>
-        <td><input formControlName="password" type="password"></td>
-      </tr>
-      <tr>
-        <td colspan="2"><button type="submit" class="btn" >Anmelden</button></td>
-      </tr>
-    </table>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <table>
+              <tr class="row">
+                <td class="first col-m-6 col-t-6 col-6"><label>Nutzername:</label></td>
+                <td class="col-m-6 col-t-6 col-6 inputField"><input class="col-m-12 col-t-12 col-12" formControlName="username" type="text"></td>
+              </tr>
+              <tr class="row">
+                <td class="first col-m-6 col-t-6 col-6"><label>Passwort:</label></td>
+                <td class="col-m-6 col-t-6 col-6 inputField"><input class="col-m-12 col-t-12 col-12" formControlName="password" type="password"></td>
+              </tr>
+              <tr class="row buttonRow">
+                <td class="col-m-12 col-t-12 col-12"><button type="submit" class="btn" >Anmelden</button></td>
+              </tr>
+            </table>
 
-  </form>
+          </form>
+        </div>
+        <div class="col-2"></div>
+      </div>
+
+
+
+    </div>
+    <div class="col-4 col-t-3"></div>
   </div>
+
+
   <br>
 </div>

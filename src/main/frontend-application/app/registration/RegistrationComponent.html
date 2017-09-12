@@ -1,108 +1,144 @@
 <div class="main">
     <br>
-    <h1 class="component">Registrieren</h1>
+    <div class="row">
+        <div class="col-12 col-m-12 col-t-12"><h1 class="component">Registrieren</h1></div>
+    </div>
     <br/>
 
-    <div class="inner">
-        <form [formGroup]="registrationForm" (ngSubmit)="register()">
-            <table>
-                <tr>
-                    <td class="first"><label>Vorname: </label></td>
-                    <td><input formControlName="firstName" type="text"></td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="registrationForm.controls.firstName.valid || (registrationForm.controls.firstName.pristine && !submitted)">
-                            Bitte den Vornamen eingeben
-                        </small>
-                    </td>
-                </tr>
 
-                <tr>
-                    <td class="first"><label>Nachname: </label></td>
-                    <td><input formControlName="lastName" type="text"></td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="registrationForm.controls.lastName.valid || (registrationForm.controls.lastName.pristine && !submitted)">
-                            Bitte den Nachnamen eingeben
-                        </small>
-                    </td>
-                </tr>
+    <div class="row">
+        <div class="col-3 col-t-2"></div>
+        <div class="inner col-6 col-t-8 col-m-12">
+            <form [formGroup]="registrationForm" (ngSubmit)="register()">
+                <table>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6">
+                            <label>Vorname: </label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-6 ">
+                            <input class="col-12 col-t-12 col-m-10" formControlName="firstName" type="text">
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="registrationForm.controls.firstName.valid || (registrationForm.controls.firstName.pristine && !submitted)">
+                                Bitte den Vornamen eingeben
+                            </small>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="first"><label>Nutzername: </label></td>
-                    <td><input formControlName="username" type="text"></td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
-                            Benutzername ungültig (zwischen 5 und 20 Zeichen)
-                        </small>
-                    </td>
-                </tr>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6">
+                            <label>Nachname: </label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-6 ">
+                            <input class="col-12 col-t-12 col-m-10" formControlName="lastName" type="text">
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="registrationForm.controls.lastName.valid || (registrationForm.controls.lastName.pristine && !submitted)">
+                                Bitte den Nachnamen eingeben
+                            </small>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="first"><label>E-Mail: </label></td>
-                    <td><input formControlName="email" type="text"></td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="registrationForm.controls.email.valid || (registrationForm.controls.email.pristine && !submitted)">
-                            ungültige Email
-                        </small>
-                    </td>
-                </tr>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6">
+                            <label>Nutzername: </label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-6 ">
+                            <input class="col-12 col-t-12 col-m-10" formControlName="username" type="text">
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="registrationForm.controls.username.valid || (registrationForm.controls.username.pristine && !submitted)">
+                                Benutzername ungültig (zwischen 5 und 20 Zeichen)
+                            </small>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="first"><label>Geburtsdatum: </label></td>
-                    <td><input formControlName="dateOfBirth" type="date" max="{{maxDateOfBirth | date:'yyyy-MM-dd'}}">
-                    </td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="registrationForm.controls.dateOfBirth.valid || (registrationForm.controls.dateOfBirth.pristine && !submitted)">
-                            ungültiges Geburtsdatum
-                        </small>
-                    </td>
-                </tr>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6">
+                            <label>E-Mail: </label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-6 ">
+                            <input class="col-12 col-t-12 col-m-10" formControlName="email" type="text">
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="registrationForm.controls.email.valid || (registrationForm.controls.email.pristine && !submitted)">
+                                ungültige Email
+                            </small>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="first"><label>Geschlecht: </label></td>
-                    <td>
-                        <input type="radio" formControlName="gender" value="FEMALE"><label>Weiblich</label>
-                        <input type="radio" formControlName="gender" value="MALE"><label>Männlich</label></td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="registrationForm.controls.gender.valid || (registrationForm.controls.gender.pristine && !submitted)">
-                            bitte auswählen
-                        </small>
-                    </td>
-                </tr>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6">
+                            <label>Geburtsdatum:</label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-6 ">
+                            <input class="col-12 col-t-12 col-m-10" formControlName="dateOfBirth" type="date" max="{{maxDateOfBirth | date:'yyyy-MM-dd'}}">
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="registrationForm.controls.dateOfBirth.valid || (registrationForm.controls.dateOfBirth.pristine && !submitted)">
+                                ungültiges Geburtsdatum
+                            </small>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="first"><label>Passwort: </label></td>
-                    <td><input formControlName="password" type="password"></td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="registrationForm.controls.password.valid || (registrationForm.controls.password.pristine && !submitted)">
-                            ungültiges Passwort (mindestens 6 Zeichen)
-                        </small>
-                    </td>
-                </tr>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6">
+                            <label>Geschlecht: </label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-6 putLeft">
+                            <input type="radio" formControlName="gender" value="FEMALE">
+                            <label> Weiblich</label> <br>
+                            <input type="radio" formControlName="gender" value="MALE">
+                            <label> Männlich</label></td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="registrationForm.controls.gender.valid || (registrationForm.controls.gender.pristine && !submitted)">
+                                bitte auswählen
+                            </small>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="first"><label>Passwort wiederholen: </label></td>
-                    <td><input formControlName="passwordCheck" type="password"></td>
-                    <td>
-                        <small class="error-message"
-                               [hidden]="registrationForm.controls.passwordCheck.valid || (registrationForm.controls.passwordCheck.pristine && !submitted)">
-                            Passwörter stimmen nicht überein
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <button type="submit" class="btn" [disabled]="submitDisabled">Registrieren</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6"><label>Passwort: </label></td>
+                        <td class="col-4 col-t-4 col-m-6 ">
+                            <input class="col-12 col-t-12 col-m-10" formControlName="password" type="password">
+                        </td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="registrationForm.controls.password.valid || (registrationForm.controls.password.pristine && !submitted)">
+                                ungültiges Passwort (mindestens 6 Zeichen)
+                            </small>
+                        </td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="first col-4 col-t-4 col-m-6 ">
+                            <label>Passwort wiederholen: </label>
+                        </td>
+                        <td class="col-4 col-t-4 col-m-6 "><input class="col-12 col-t-12 col-m-10" formControlName="passwordCheck" type="password"></td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <small class="error-message"
+                                   [hidden]="registrationForm.controls.passwordCheck.valid || (registrationForm.controls.passwordCheck.pristine && !submitted)">
+                                Passwörter stimmen nicht überein
+                            </small>
+                        </td>
+                    </tr>
+                    <tr class="row ">
+                        <td class="col-4 col-t-4"></td>
+                        <td class="col-4 col-t-4 col-m-12">
+                            <button type="submit" class="btn " [disabled]="submitDisabled">Registrieren</button>
+                        </td>
+                        <td class="col-4 col-t-4"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="col-3 col-t-2"></div>
     </div>
     <br>
 </div>

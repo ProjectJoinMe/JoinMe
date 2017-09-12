@@ -1,12 +1,83 @@
+.buttonRow{
+    text-align: center;
+}
+div.days {
+    padding: 10px;
+    width: 66.66%;
+    background-color: white;
+    border-radius: 5px;
+    color: #A0D751;
+    margin: 0 auto;
+}
+.days input {
+    margin-right: 3px;
+}
+.days td{
+    align-items: left;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
 
-/*th {*/
-    /*width: 30%;*/
-/*}*/
 
-/*td {*/
-    /*width: 17.5%;*/
-/*}*/
 
-.inner{
-    width: 50%;
+@media only screen and (min-width: 769px) and (orientation: landscape){
+    /* For desktop: */
+    div.inner {
+        background-color: #A0D751;
+        border: none;
+        border-radius: 15px;
+        margin: auto;
+        text-align: center;
+    }
+    td.inputField{
+        width: 35%;
+    }
+    .first{
+        width: 30%;
+    }
+}
+
+
+@media only screen and (min-width: 600px) {
+    /*For Tabletts */
+    div.inner {
+        background-color: #A0D751;
+        border: none;
+        border-radius: 15px;
+        margin: auto;
+        text-align: center;
+    }
+    small{
+        width: 99.99%;
+        min-width: 99.99%;
+    }
+    input.widthSize{
+        width: 99.99%;
+    }
+    label{
+        width: 99.99%;
+        min-width: 99.99%;
+    }
+    td{
+        width: 33.33%;
+    }
+    table{
+        width: 100%;
+    }
+    .mapSize{
+        max-width: 80%;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+    /* For mobile phones: */
+    .mapSize{
+        width: 360px;
+        height: auto;
+    }
+    .first{
+        width: 40%;
+    }
 }
