@@ -4,6 +4,7 @@ import {Http} from "@angular/http";
 import {SecurityService} from "../security/SecurityService";
 import {Router} from "@angular/router";
 import {MessageService} from "../message_service/MessageService";
+import {NotificationsService} from "./NotificationsService";
 
 @Component({
     selector: 'notifications',
@@ -17,7 +18,7 @@ export class NotificationsComponent {
                 private http: Http,
                 private securityService: SecurityService,
                 private router: Router,
-                private messageService: MessageService) {
+                private notificationsService: NotificationsService) {
     }
 
 }
