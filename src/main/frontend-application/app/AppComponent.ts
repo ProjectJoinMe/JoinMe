@@ -6,6 +6,7 @@ import {AppState} from './AppService';
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
 import {Router} from "@angular/router";
+import {NotificationsService} from "./notifications/NotificationsService";
 
 require('./externalscripts/modernizr.custom.js');
 
@@ -28,12 +29,13 @@ require('./externalscripts/modernizr.custom.js');
 export class AppComponent implements OnInit {
     name = 'JoinMe';
     url = 'https://joinme.io';
+    notificationsShown: boolean = false;
 
     constructor(public appState: AppState,
                 private securityService: SecurityService,
                 private router: Router,
-                public securityStatus: SecurityStatus) {
-
+                public securityStatus: SecurityStatus,
+                public notificationsService: NotificationsService) {
     }
 
     logout(){
@@ -60,6 +62,10 @@ export class AppComponent implements OnInit {
         if(menu.className !== "topnav") {
             menu.className = "topnav";
         }
+    }
+
+    toggleNotifications() {
+        this.notificationsShown = !this.notificationsShown;
     }
 }
 

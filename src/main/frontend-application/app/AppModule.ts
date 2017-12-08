@@ -48,6 +48,8 @@ import {MapsDisplayCustomizableRouteComponent} from "./maps/display_customizable
 import {MessageComponent} from "./message/MessageComponent";
 import {Message} from "./message_service/Message";
 import {MessageService} from "./message_service/MessageService";
+import {NotificationsComponent} from "./notifications/NotificationsComponent";
+import {NotificationsService} from "./notifications/NotificationsService";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -92,7 +94,8 @@ type StoreType = {
         JoinedRidesComponent,
         PasswordChangeComponent,
         EmailChangeComponent,
-        MessageComponent
+        MessageComponent,
+        NotificationsComponent
     ],
     imports: [
         // Angular
@@ -118,7 +121,8 @@ type StoreType = {
         RideJoinsByRideIdResolver,
         UserProfileByUsernameResolver,
         MyRidesResolver,
-        JoinedRidesByUserResolver
+        JoinedRidesByUserResolver,
+        NotificationsService
     ]
 })
 export class AppModule {
