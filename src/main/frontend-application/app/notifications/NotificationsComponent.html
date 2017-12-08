@@ -1,3 +1,5 @@
 <div>
-  hallo eule
+  <div *ngFor="let notification of notificationsService.notifications.list">
+    {{ notification.message }}
+  </div>
 </div>

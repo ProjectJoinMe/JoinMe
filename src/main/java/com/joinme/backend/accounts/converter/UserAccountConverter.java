@@ -1,4 +1,4 @@
-package com.joinme.backend.accounts.coverter;
+package com.joinme.backend.accounts.converter;
 
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.entity.UserAccount;

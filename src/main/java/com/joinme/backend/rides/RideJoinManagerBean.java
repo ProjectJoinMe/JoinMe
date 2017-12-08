@@ -1,6 +1,11 @@
 package com.joinme.backend.rides;
 
+import com.joinme.backend.accounts.entity.UserAccount;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
+import com.joinme.backend.notifications.NotificationManagerBean;
+import com.joinme.backend.notifications.dto.RideReferenceUserNotificationData;
+import com.joinme.backend.notifications.dto.UserNotificationDto;
+import com.joinme.backend.notifications.dto.UserNotificationType;
 import com.joinme.backend.ratings.converter.RatingConverter;
 import com.joinme.backend.ratings.dto.RatingDto;
 import com.joinme.backend.rides.converter.RideConverter;
@@ -41,6 +46,10 @@ public class RideJoinManagerBean implements RideJoinManager {
     @Autowired
     private RatingConverter ratingConverter;
 
+    @Autowired
+    private NotificationManagerBean notificationManagerBean;
+
+
     @Override
     public RideJoinDto joinRide(long rideId, String username) {
         checkIfDuplicate(rideId, username);
@@ -51,10 +60,14 @@ public class RideJoinManagerBean implements RideJoinManager {
         }
         RideJoin rideJoin = new RideJoin();
         rideJoin.setRide(ride);
-        System.out.println("username is: " + username);
-        rideJoin.setPassenger(userAccountRepository.findByUsername(username));
+        UserAccount passenger = userAccountRepository.findByUsername(username);
+        rideJoin.setPassenger(passenger);
         rideJoin.setCreationDateTime(LocalDateTime.now());
         rideJoinRepository.save(rideJoin);
+        createNotification(UserNotificationType.rideWasJoined,
+                ride,
+                passenger,
+                " ist deiner Fahrt beigetreten.");
         return rideJoinConverter.toDto(rideJoin);
     }
 
@@ -62,6 +75,19 @@ public class RideJoinManagerBean implements RideJoinManager {
     public void unjoinRide(long rideId, String username) {
         RideJoin join = getJoin(rideId, username);
         rideJoinRepository.delete(join);
+        createNotification(UserNotificationType.rideWasUnjoined,
+                rideRepository.findById(rideId),
+                userAccountRepository.findByUsername(username),
+                " hat die Teilnahme an deiner Fahrt zurückgezogen.");
+    }
+
+    private void createNotification(UserNotificationType type, Ride ride, UserAccount passenger, String messagePostfix) {
+        UserNotificationDto notification = new UserNotificationDto();
+        notification.setType(type);
+        notification.setMessage(passenger.getFirstName() + messagePostfix);
+        notification.setTypeSpecificData(new RideReferenceUserNotificationData(ride.getId()));
+        notification.setUsername(ride.getProvider().getUsername());
+        notificationManagerBean.create(notification);
     }
 
     @Override

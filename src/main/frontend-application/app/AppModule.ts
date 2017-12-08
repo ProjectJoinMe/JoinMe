@@ -50,6 +50,7 @@ import {Message} from "./message_service/Message";
 import {MessageService} from "./message_service/MessageService";
 import {NotificationsComponent} from "./notifications/NotificationsComponent";
 import {NotificationsService} from "./notifications/NotificationsService";
+import {NotificationService} from "./services/NotificationService";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -122,7 +123,8 @@ type StoreType = {
         UserProfileByUsernameResolver,
         MyRidesResolver,
         JoinedRidesByUserResolver,
-        NotificationsService
+        NotificationsService,
+        NotificationService
     ]
 })
 export class AppModule {

@@ -2,6 +2,6 @@
 import {UserNotification} from "./UserNotification";
 
 export class UserNotifications {
-  public notifications: UserNotification[] = [];
+  public list: UserNotification[] = [];
   public unreadNotificationCount: number = 0;
 }

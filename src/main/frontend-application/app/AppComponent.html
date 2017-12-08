@@ -10,25 +10,26 @@
             <a [routerLink]=" ['./about'] ">
                 Über JoinMe
             </a>
-            <a *ngIf="securityStatus.loggedIn" [routerLink]=" ['./searchRide'] ">
+            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./searchRide'] ">
                 Fahrt suchen
             </a>
-            <a *ngIf="securityStatus.loggedIn" [routerLink]=" ['./createRide'] ">
+            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./createRide'] ">
                 Fahrt anbieten
             </a>
-            <a *ngIf="!securityStatus.loggedIn" [routerLink]=" ['./register'] ">
+            <a *ngIf="!securityStatus.loggedIn" [routerLink]="['./register'] ">
                 Registrieren
             </a>
-            <a *ngIf="!securityStatus.loggedIn" [routerLink]=" ['./login'] ">
+            <a *ngIf="!securityStatus.loggedIn" [routerLink]="['./login'] ">
                 Login
             </a>
-            <a *ngIf="securityStatus.loggedIn" [routerLink]=" ['./profile/' + securityStatus.username]">
+            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./profile/' + securityStatus.username]">
                 Mein Profil
             </a>
-            <a *ngIf="securityStatus.loggedIn" (click)="logout()" [routerLink]=" ['./home']">
+            <a *ngIf="securityStatus.loggedIn" (click)="logout()" [routerLink]="['./home']">
                 Logout
             </a>
             <a *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()" class="float-right">
+                <div class="clear"></div>
                 Notifications <span *ngIf="notificationsService.notifications.unreadNotificationCount != 0">({{ notificationsService.notifications.unreadNotificationCount }})</span>
             </a>
             <div class="clear"></div>
@@ -37,6 +38,7 @@
     </header>
     <div class="content" (click)="hideMenu()">
     <br/><br/><br/>
+    <br/><br/><br/> <!-- pls make not behindert, thx -->
     <div *ngIf="notificationsShown">
         <notifications></notifications>
     </div>

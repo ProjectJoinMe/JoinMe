@@ -1,11 +1,13 @@
 import {Injectable, OnInit} from "@angular/core";
 import {SecurityStatus} from "./SecurityStatus";
 import {Http} from "@angular/http";
+import {NotificationsService} from "../notifications/NotificationsService";
 
 @Injectable()
 export class SecurityService {
 
     constructor(private securityStatus: SecurityStatus,
+                private notificationsService: NotificationsService,
                 private http: Http) {
     }
 
@@ -19,11 +21,18 @@ export class SecurityService {
                 data => {
                     this.securityStatus.username = data.json().username;
                     this.securityStatus.loggedIn = this.securityStatus.username !== null;
+                    this.updateNotificationService();
                 },
                 error => {
                     this.securityStatus.username = null;
                     this.securityStatus.loggedIn = false;
+                    this.updateNotificationService();
                 });
+    }
+
+    private updateNotificationService() {
+        this.notificationsService.clear();
+        this.notificationsService.setEnabled(this.securityStatus.loggedIn);
     }
 
     logout() {

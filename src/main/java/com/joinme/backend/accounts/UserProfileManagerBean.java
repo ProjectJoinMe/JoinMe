@@ -1,6 +1,6 @@
 package com.joinme.backend.accounts;
 
-import com.joinme.backend.accounts.coverter.UserAccountConverter;
+import com.joinme.backend.accounts.converter.UserAccountConverter;
 import com.joinme.backend.accounts.dto.UserPasswordDto;
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.entity.UserAccount;
