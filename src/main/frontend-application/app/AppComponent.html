@@ -28,11 +28,18 @@
             <a *ngIf="securityStatus.loggedIn" (click)="logout()" [routerLink]=" ['./home']">
                 Logout
             </a>
+            <a *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()" class="float-right">
+                Notifications <span *ngIf="notificationsService.notifications.unreadNotificationCount != 0">({{ notificationsService.notifications.unreadNotificationCount }})</span>
+            </a>
+            <div class="clear"></div>
             <a href="javascript:void(0);" style="font-size:15px;" class="icon" (click)="myFunction()">&#9776;</a>
         </div>
     </header>
     <div class="content" (click)="hideMenu()">
     <br/><br/><br/>
+    <div *ngIf="notificationsShown">
+        <notifications></notifications>
+    </div>
 
     <div class="row">
         <div class="col-12 col-m-12 col-t-12"><h1 class="joinme">JoinMe</h1></div>

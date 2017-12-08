@@ -325,3 +325,12 @@ table{
   text-align: center;
   width: 100%;
 }
+
+.float-right {
+  float: right !important;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
