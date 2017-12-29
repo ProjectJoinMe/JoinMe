@@ -27,11 +27,19 @@ public class UserNotificationController {
     private NotificationManagerBean notificationManagerBean;
 
     @PreAuthorize("fullyAuthenticated")
-    @RequestMapping(value = "/api/notifications/currentUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/notifications", method = RequestMethod.GET)
     @ResponseBody
     public List<UserNotificationDto> getNotificationsForCurrentUser() {
         String currentUsername = SecurityUtil.getCurrentUsername();
         return notificationManagerBean.getNotifications(currentUsername);
+    }
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/notifications/markAsRead", method = RequestMethod.POST)
+    @ResponseBody
+    public void markAsRead() {
+        String currentUsername = SecurityUtil.getCurrentUsername();
+        notificationManagerBean.markNotificationsAsRead(currentUsername);
     }
 
 }

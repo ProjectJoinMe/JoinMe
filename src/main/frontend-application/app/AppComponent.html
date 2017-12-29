@@ -28,7 +28,7 @@
             <a *ngIf="securityStatus.loggedIn" (click)="logout()" [routerLink]="['./home']">
                 Logout
             </a>
-            <a *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()" class="float-right">
+            <a id="toggleNotificationsButton" *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()" class="float-right">
                 <div class="clear"></div>
                 Notifications <span *ngIf="notificationsService.notifications.unreadNotificationCount != 0">({{ notificationsService.notifications.unreadNotificationCount }})</span>
             </a>
@@ -39,65 +39,13 @@
     <div class="content" (click)="hideMenu()">
     <br/><br/><br/>
     <br/><br/><br/> <!-- pls make not behindert, thx -->
-    <div *ngIf="notificationsShown">
-        <notifications></notifications>
+    <div #notificationsElementContainer>
+        <notifications *ngIf="notificationsShown"></notifications>
     </div>
 
     <div class="row">
         <div class="col-12 col-m-12 col-t-12"><h1 class="joinme">JoinMe</h1></div>
     </div>
-    <!--<nav id="bt-menu" class="bt-menu">
-        <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
-        <ul>
-            <li *ngIf="!securityStatus.loggedIn">
-                &nbsp;
-            </li>
-            <li>
-                <a [routerLink]=" ['./home'] ">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a [routerLink]=" ['./about'] ">
-                    Über JoinMe
-                </a>
-            </li>
-            <li *ngIf="securityStatus.loggedIn">
-                <a [routerLink]=" ['./searchRide'] ">
-                    Fahrt suchen
-                </a>
-            </li>
-            <li *ngIf="securityStatus.loggedIn">
-                <a [routerLink]=" ['./createRide'] ">
-                    Fahrt anbieten
-                </a>
-            </li>
-            <li *ngIf="!securityStatus.loggedIn">
-                <a [routerLink]=" ['./register'] ">
-                    Registrieren
-                </a>
-            </li>
-            <li *ngIf="!securityStatus.loggedIn">
-                <a [routerLink]=" ['./login'] ">
-                    Login
-                </a>
-            </li>
-            <li *ngIf="!securityStatus.loggedIn">
-                &nbsp;
-            </li>
-            <li *ngIf="securityStatus.loggedIn">
-                <a [routerLink]=" ['./profile/' + securityStatus.username]">
-                    Mein Profil
-                </a>
-            </li>
-            <li *ngIf="securityStatus.loggedIn">
-                <a (click)="logout()" [routerLink]=" ['./home']">
-                    Logout
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <!--</div>-->
         <message></message>
     <main>
         <router-outlet></router-outlet>

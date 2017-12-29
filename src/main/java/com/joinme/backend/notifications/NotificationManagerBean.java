@@ -1,21 +1,14 @@
 package com.joinme.backend.notifications;
 
-import com.joinme.backend.accounts.converter.UserAccountConverter;
-import com.joinme.backend.accounts.dto.UserPasswordDto;
-import com.joinme.backend.accounts.dto.UserProfileDto;
-import com.joinme.backend.accounts.entity.UserAccount;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import com.joinme.backend.notifications.converter.UserNotificationConverter;
 import com.joinme.backend.notifications.dto.UserNotificationDto;
 import com.joinme.backend.notifications.entity.UserNotification;
 import com.joinme.backend.notifications.repository.UserNotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,4 +36,8 @@ public class NotificationManagerBean {
         userNotificationRepository.save(entity);
     }
 
+    public void markNotificationsAsRead(String username) {
+        List<UserNotification> notifications = userNotificationRepository.findByUserOrderByCreationDateTimeDesc(userAccountRepository.findByUsername(username));
+        notifications.forEach(userNotification -> userNotification.setNotificationRead(true));
+    }
 }
