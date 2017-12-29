@@ -25,6 +25,9 @@ public class NotificationManagerBean {
     @Autowired
     private UserNotificationConverter userNotificationConverter;
 
+    @Autowired
+    private EmailSenderBean emailSenderBean;
+
     public List<UserNotificationDto> getNotifications(String username) {
         List<UserNotification> notificationEntities = userNotificationRepository.findByUserOrderByCreationDateTimeDesc(userAccountRepository.findByUsername(username));
         return userNotificationConverter.toDto(notificationEntities);
@@ -34,6 +37,8 @@ public class NotificationManagerBean {
         dto.setCreationDateTime(LocalDateTime.now());
         UserNotification entity = userNotificationConverter.toEntity(dto);
         userNotificationRepository.save(entity);
+
+        emailSenderBean.sendMailForNotificationAsync(entity);
     }
 
     public void markNotificationsAsRead(String username) {
