@@ -15,7 +15,7 @@ export class NotificationService extends AbstractApiService {
     }
 
     getNotifications(): Promise<UserNotifications> {
-        return this.http.get('/api/notifications/currentUser')
+        return this.http.get('/api/notifications')
             .toPromise()
             .then(response => {
                 let notificationList = response.json() as UserNotification[];
@@ -24,6 +24,12 @@ export class NotificationService extends AbstractApiService {
                 userNotifications.unreadNotificationCount = notificationList.filter(a => !a.read).length;
                 return userNotifications;
             })
+            .catch(this.handleError);
+    }
+
+    markNotificationsAsRead(): void {
+        this.http.post('/api/notifications/markAsRead', null)
+            .toPromise()
             .catch(this.handleError);
     }
 }

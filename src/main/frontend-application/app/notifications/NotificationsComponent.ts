@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, ElementRef} from "@angular/core";
 import {FormBuilder} from "@angular/forms";
 import {Http} from "@angular/http";
 import {SecurityService} from "../security/SecurityService";
@@ -13,12 +13,10 @@ import {NotificationsService} from "./NotificationsService";
     templateUrl: './NotificationsComponent.html'
 })
 export class NotificationsComponent {
-
     constructor(public formBuilder: FormBuilder,
                 private http: Http,
                 private securityService: SecurityService,
                 private router: Router,
                 private notificationsService: NotificationsService) {
     }
-
 }

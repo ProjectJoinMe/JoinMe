@@ -77,7 +77,8 @@
     "lodash": "3.10.1",
     "@types/lodash": "ts2.0",
     "moment": "2.18.1",
-    "moment-timezone ": "0.5.13"
+    "moment-timezone ": "0.5.13",
+    "angular2-click-outside": "0.1.0"
   },
   "devDependencies": {
     "@types/hammerjs": "~2.0.33",

@@ -42,4 +42,10 @@ export class NotificationsService {
                 this.notifications = notifications;
             });
     }
+
+    markNotificationsAsRead() {
+        this.notifications.list.forEach(value => value.read = true);
+        this.notifications.unreadNotificationCount = 0;
+        this.notificationService.markNotificationsAsRead();
+    }
 }

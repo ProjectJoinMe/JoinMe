@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {AppState} from './AppService';
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
@@ -24,21 +24,26 @@ require('./externalscripts/modernizr.custom.js');
         './AppComponent.css',
         './AppComponentMenu.css'
     ],
-    templateUrl: "./AppComponent.html"
+    templateUrl: "./AppComponent.html",
+    host: {
+        '(document:click)': 'onClick($event)',
+    }
 })
 export class AppComponent implements OnInit {
     name = 'JoinMe';
     url = 'https://joinme.io';
     notificationsShown: boolean = false;
+    @ViewChild('notificationsElementContainer') notificationsElementContainer: ElementRef;
 
     constructor(public appState: AppState,
                 private securityService: SecurityService,
                 private router: Router,
                 public securityStatus: SecurityStatus,
-                public notificationsService: NotificationsService) {
+                public notificationsService: NotificationsService,
+                private appComponentElement: ElementRef) {
     }
 
-    logout(){
+    logout() {
         this.securityService.logout();
     }
 
@@ -59,16 +64,28 @@ export class AppComponent implements OnInit {
 
     hideMenu() {
         var menu = document.getElementById("myTopnav");
-        if(menu.className !== "topnav") {
+        if (menu.className !== "topnav") {
             menu.className = "topnav";
         }
     }
 
     toggleNotifications() {
         this.notificationsShown = !this.notificationsShown;
+        if(!this.notificationsShown){
+            this.notificationsService.markNotificationsAsRead();
+        }
+    }
+
+    onClick(event) {
+        if (this.notificationsShown) {
+            let toggleNotificationsButton = document.getElementById('toggleNotificationsButton');
+            if (!this.notificationsElementContainer.nativeElement.contains(event.target)
+                && !toggleNotificationsButton.contains(event.target)) {
+                this.toggleNotifications();
+            }
+        }
     }
 }
-
 
 
 /*
