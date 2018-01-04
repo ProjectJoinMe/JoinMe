@@ -19,6 +19,7 @@ import {JoinedRidesComponent} from "./profile/joined_rides/JoinedRidesComponent"
 import {JoinedRidesByUserResolver} from "./resolvers/JoinedRidesByUserResolver";
 import {PasswordChangeComponent} from "./profile/change_password/PasswordChangeComponent";
 import {EmailChangeComponent} from "./profile/change_email/EmailChangeComponent";
+import {ProactiveMatchingComponent} from "./profile/proactive_matching/ProactiveMatchingComponent";
 
 
 export const ROUTES: Routes = [
@@ -74,6 +75,11 @@ export const ROUTES: Routes = [
     {
         path: 'profile/:username/changeEmail',
         component: EmailChangeComponent,
+        resolve: {userProfile: UserProfileByUsernameResolver}
+    },
+    {
+        path: 'profile/:username/proactiveMatchingConfiguration',
+        component: ProactiveMatchingComponent,
         resolve: {userProfile: UserProfileByUsernameResolver}
     },
     {

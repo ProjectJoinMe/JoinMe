@@ -1,0 +1,30 @@
+<div id="content" class="main">
+    <br/>
+    <div class="inner">
+        <h2>Points of Interest</h2>
+        <br/>
+        <div>
+            <table>
+                <tr *ngFor="let poi of pois">
+                    <td>{{ poi.name }}</td>
+                    <td>
+                        <button (click)="deletePoi(poi)"> x </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <div>
+            <form [formGroup]="placeForm" (ngSubmit)="add()">
+                <label>Orte hinzufügen</label>
+                <maps-autocomplete-place class="autoMapsSize" [formGroup]="placeForm" [name]="'poiMapsInput'"
+                                         [onPlaceChange]="onPlaceChange"></maps-autocomplete-place>
+                <small class="error-message"
+                       [hidden]="(placeForm.controls.poiMapsInputPlaceId.valid || placeForm.controls.poiMapsInputPlaceId.pristine) || !submitted">
+                    Bitte einen gültigen Ort auswählen.
+                </small>
+            </form>
+        </div>
+    </div>
+    <br/>
+</div>
