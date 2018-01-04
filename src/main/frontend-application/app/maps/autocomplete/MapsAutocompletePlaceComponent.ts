@@ -60,6 +60,10 @@ export class MapsAutocompletePlaceComponent {
         }
     }
 
+    private setTextFormValue(value: string) {
+        this.setFormValue(this.name, value);
+    }
+
     private setPlaceId(placeId: string) {
         this.setFormValue(this.getPlaceIdFormControlName(), placeId);
     }
@@ -68,9 +72,16 @@ export class MapsAutocompletePlaceComponent {
         let patch = {};
         patch[name] = value;
         this.formGroup.patchValue(patch);
+        this.formGroup.get(name).markAsDirty();
     }
 
     private getPlaceIdFormControlName() {
         return this.name + "PlaceId";
+    }
+
+    public clear(){
+        this.inputFieldElement.value = "";
+        this.setTextFormValue("");
+        this.setPlaceId(null);
     }
 }
