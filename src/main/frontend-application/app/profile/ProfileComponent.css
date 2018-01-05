@@ -1,55 +1,6 @@
-@media only screen and (min-width: 769px) and (orientation: landscape){
-    /* For desktop: */
-    div.inner {
-        background-color: #A0D751;
-        border: none;
-        border-radius: 15px;
-        margin: auto;
-        text-align: center;
-    }
-    table{
-        width: 100%;
-    }
-    td.first{
-        width: 40%;
-        margin-left: 25px;
-    }
-}
-
 .second{
     text-align: left;
     margin-left:  25px;
     width: 40%;
 }
 
-@media only screen and (min-width: 600px) {
-    /*For Tabletts */
-    div.inner {
-        background-color: #A0D751;
-        border: none;
-        border-radius: 15px;
-        margin: auto;
-        text-align: center;
-    }
-    div.tablettTop{
-        width: 100%;
-    }
-    td.top{
-        width: 20%;
-    }
-    table{
-        width: 100%;
-    }
-    td.first{
-        width: 40%;
-        margin-left: 25px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    /* For mobile phones: */
-    td.first{
-        width: 40%;
-        margin-left: 30px;
-    }
-}

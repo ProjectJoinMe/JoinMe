@@ -17,7 +17,7 @@
                     <tr class="row">
                         <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsort:</label></td>
 
-                        <td class="col-4 col-t-4 col-m-6 inputField">
+                        <td class="col-4 col-t-4 col-m-6 ">
                             <maps-autocomplete-place [formGroup]="rideForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
                         </td>
 
@@ -31,7 +31,7 @@
 
                     <tr class="row">
                         <td class="first col-4 col-t-4 col-m-6"><label>Ankunftsort:</label></td>
-                        <td class="col-4 col-t-4 col-m-6 inputField">
+                        <td class="col-4 col-t-4 col-m-6 ">
                             <maps-autocomplete-place [formGroup]="rideForm"
                                                      [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
                         </td>
@@ -49,13 +49,15 @@
                 <table>
                     <tr class="row">
                         <td class="first col-4 col-t-4 col-m-6"><label class="heading"><b>Hinfahrt</b></label></td>
-                        <td class="col-8 col-t-8 col-m-6 inputField"><input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
+                        <td class="col-8 col-t-8 col-m-6 ">
+                            <input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
                         </td>
                     </tr>
 
                     <tr class="row">
                         <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsdatum:</label></td>
-                        <td class="col-4 col-t-8 col-m-6 inputField"><input class="date" formControlName="departureDate" type="date"
+                        <td class="col-4 col-t-8 col-m-6 ">
+                            <input class="date" formControlName="departureDate" type="date"
                                                                             min="{{currentDate | date:'yyyy-MM-dd'}}">
                         </td>
                         <td class="col-4 col-t-4 col-m-12">
@@ -90,9 +92,11 @@
                         </tr>
                         <tr class="returnFormRow row">
                             <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsdatum:</label></td>
-                            <td class="col-4 col-t-8 col-m-6 inputField"><input formControlName="returnDepartureDate" type="date"
+                            <td class="col-4 col-t-8 col-m-6 ">
+                                <input formControlName="returnDepartureDate" type="date"
                                                                                 min="{{currentDate | date:'yyyy-MM-dd'}}"
-                                                                                class="date"></td>
+                                                                                class="date">
+                            </td>
                             <td class="col-4 col-t-4 col-m-12">
                                 <small class="error-message"
                                        [hidden]="rideForm.controls.returnDepartureDate.valid || (rideForm.controls.returnDepartureDate.pristine && !submitted)">
@@ -102,7 +106,7 @@
                         </tr>
                         <tr class="row">
                             <td class="first col-4 col-t-4 col-m-6"><label>Uhrzeit:</label></td>
-                            <td class="col-4 col-t-8 col-m-6 inputField">
+                            <td class="col-4 col-t-8 col-m-6 ">
                                 <input formControlName="returnDepartureHour" type="number" min="0" max="23">&nbsp;:
                                 <input formControlName="returnDepartureMinute" type="number" min="0" max="55" step="5"></td>
                             <td class="col-4 col-t-4 col-m-12">
@@ -121,14 +125,14 @@
                     <table>
                         <tr class="row">
                             <td class="first col-4 col-t-4 col-m-6">Freie Plätze</td>
-                            <td class="col-4 col-t-8 col-m-6 inputField">
+                            <td class="col-4 col-t-8 col-m-6 ">
                                 <input formControlName="maxPassengers" type="number" min="1" max="10">
                             </td>
                             <td class="col-4 col-t-4 col-m-12"></td>
                         </tr>
                         <tr>
                             <td class="first col-4 col-t-4 col-m-6">Preis pro Teilnehmer in €</td>
-                            <td class="col-4 col-t-8 col-m-6 inputField">
+                            <td class="col-4 col-t-8 col-m-6 ">
                                 <input formControlName="pricePerPassenger" type="number" min="0" max="100">
                             </td>
                             <td class="col-4 col-t-4 col-m-12">
