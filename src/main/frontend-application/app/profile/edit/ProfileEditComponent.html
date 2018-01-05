@@ -32,7 +32,7 @@
                                 <form enctype="multipart/form-data" method="">
                                     <div class="col-12 col-t-12 col-m-12">
                                         <input #profilePictureFileInput type="file" [multiple]="false" name="profilePicture"
-                                           class="profilePicture" accept="image/*" (change)="uploadProfilePicture()" class="col-12 col-t-12 col-m-12">
+                                           class="profilePicture" accept="image/*" (change)="uploadProfilePicture()" class="col-12 col-t-12 col-m-12 bzn">
                                     </div>
                                 </form>
                             </td>
@@ -192,9 +192,11 @@
                 </div>
 
                 <div class="row buttonRow">
-                    <div class="col-12 col-t-12 col-m-12">
-                        <button type="submit" class="button" [disabled]="profileSubmitDisabled">Speichern</button>
+                    <div class="col-4 col-t-4"></div>
+                    <div class="col-4 col-t-4 col-m-12">
+                        <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="profileSubmitDisabled">Speichern</button>
                     </div>
+                    <div class="col-4 col-t-4"></div>
                 </div>
             </div>
 

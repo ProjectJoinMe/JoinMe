@@ -122,21 +122,21 @@
                     <div *ngIf="isMyRide()" class="row">
                         <div class="col-4 col-t-4"></div>
                         <div class="col-2 col-t-2 col-m-6">
-                            <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate()">
+                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Bearbeiten" (click)="goToUpdate()">
                         </div>
                         <div class="col-2 col-t-2 col-m-6">
-                            <input type="button" class="btn" value="Löschen" (click)="deleteRide()">
+                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Löschen" (click)="deleteRide()">
                         </div>
                         <div class="col-4 col-t-4"></div>
                     </div>
 
 
                     <div *ngIf="!isMyRide() && !joined" class="col-12 col-t-12 col-m-12">
-                        <input type="button" class="btn" value="Teilnehmen" (click)="joinRide()" [disabled]="rideFull">
+                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnehmen" (click)="joinRide()" [disabled]="rideFull">
                     </div>
 
                     <div *ngIf="!isMyRide() && joined" class="col-12 col-t-12 col-m-12">
-                        <input type="button" class="btn" value="Teilnahme zurückziehen" (click)="unjoinRide()">
+                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnahme zurückziehen" (click)="unjoinRide()">
                     </div>
 
                 </div>
