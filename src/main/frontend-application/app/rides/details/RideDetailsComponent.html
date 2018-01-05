@@ -16,42 +16,42 @@
             <div>
                 <table>
                     <tr class="row">
-                        <td class=" first col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class=" first col-4 col-t-4 col-m-6">
                             <label class="description">Abfahrtsort:</label>
                         </td>
-                        <td class=" second col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class=" second col-4 col-t-4 col-m-6 ">
                             <label class="content">{{ ride.start }}</label>
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class=" first col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class=" first col-4 col-t-4 col-m-6 ">
                             <label class="description">Zielort:</label>
                         </td>
-                        <td class=" second col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class=" second col-4 col-t-4 col-m-6 ">
                             <label class="content"> {{ ride.destination }}</label>
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class=" first col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class=" first col-4 col-t-4 col-m-6 ">
                             <label class="description">Freie Plätze:</label>
                         </td>
-                        <td class=" second col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class=" second col-4 col-t-4 col-m-6 ">
                             <label class="content">{{ ride.freeSeats }}</label>
                         </td>
                     </tr>
                     <tr *ngIf="ride.returnDepartureDateTime" class="row">
-                        <td class=" col-12 col-t-12 col-m-12 tdsizeMobile">
+                        <td class=" col-12 col-t-12 col-m-12 ">
                             <h3>Hinfahrt</h3>
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class=" first col-4 col-t-4 col-m-4">
+                        <td class=" first col-4 col-t-4 col-m-6">
                             <label class="description">Abfahrt:</label>
                         </td>
-                        <td class="col-4 col-t-4 col-m-4">
+                        <td class="col-4 col-t-4 col-m-3">
                             <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label>
                         </td>
-                        <td class="col-4 col-t-4 col-m-4">
+                        <td class="col-4 col-t-4 col-m-3">
                             <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label>
                         </td>
                     </tr>
@@ -64,14 +64,14 @@
                             <td class="col-12 col-t-12 col-m-12"><h3>Rückfahrt</h3></td>
                         </tr>
                         <tr class="row">
-                            <td class=" firszcol-4 col-t-4 col-m-4">
+                            <td class=" first col-4 col-t-4 col-m-6">
                                 <label class="description">Abfahrt:</label>
                             </td>
-                            <td class="col-4 col-t-4 col-m-4">
+                            <td class="col-4 col-t-4 col-m-3">
                                 <label class="content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'dd.MM.yyyy'
                                     }}</label>
                             </td>
-                            <td class="col-4 col-t-4 col-m-4">
+                            <td class="col-4 col-t-4 col-m-3">
                                 <label class="content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'HH:mm'
                                     }}</label>
                             </td>
@@ -121,10 +121,10 @@
 
                     <div *ngIf="isMyRide()" class="row">
                         <div class="col-4 col-t-4"></div>
-                        <div class="col-2 col-t-2">
+                        <div class="col-2 col-t-2 col-m-6">
                             <input type="button" class="btn" value="Bearbeiten" (click)="goToUpdate()">
                         </div>
-                        <div class="col-2 col-t-2">
+                        <div class="col-2 col-t-2 col-m-6">
                             <input type="button" class="btn" value="Löschen" (click)="deleteRide()">
                         </div>
                         <div class="col-4 col-t-4"></div>

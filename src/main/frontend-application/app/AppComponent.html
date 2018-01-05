@@ -2,53 +2,68 @@
     <!--<header-menu></header-menu>
     <div>-->
     <header>
-        <div class="topnav" id="myTopnav">
-            <span class="spaceholder">&nbsp;</span>
-            <a [routerLink]=" ['./home'] ">
+        <div class="topnav row" id="myTopnav">
+            <span class="spaceholder row">&nbsp;</span>
+            <a [routerLink]=" ['./home'] " class="col-1-2 col-t-1-2 ">
                 Home
             </a>
-            <a [routerLink]=" ['./about'] ">
+            <a [routerLink]=" ['./about'] " class="col-1-2 col-t-1-2 ">
                 Über JoinMe
             </a>
-            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./searchRide'] ">
+            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./searchRide'] " class="col-1-2 col-t-1-2 ">
                 Fahrt suchen
             </a>
-            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./createRide'] ">
+            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./createRide'] " class="col-1-2 col-t-1-2 ">
                 Fahrt anbieten
             </a>
-            <a *ngIf="!securityStatus.loggedIn" [routerLink]="['./register'] ">
+            <a *ngIf="!securityStatus.loggedIn" [routerLink]="['./register'] " class="col-1-2 col-t-2 ">
                 Registrieren
             </a>
-            <a *ngIf="!securityStatus.loggedIn" [routerLink]="['./login'] ">
+            <a *ngIf="!securityStatus.loggedIn" [routerLink]="['./login'] " class="col-1-2 col-t-1-2 ">
                 Login
             </a>
-            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./profile/' + securityStatus.username]">
+            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./profile/' + securityStatus.username]" class="col-1-2 col-t-1-2 ">
                 Mein Profil
             </a>
-            <a *ngIf="securityStatus.loggedIn" (click)="logout()" [routerLink]="['./home']">
+            <a *ngIf="securityStatus.loggedIn" (click)="logout()" [routerLink]="['./home']" class="col-1-2 col-t-1-2 ">
                 Logout
             </a>
-            <a id="toggleNotificationsButton" *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()" class="float-right">
-                <div class="clear"></div>
-                Notifications <span *ngIf="notificationsService.notifications.unreadNotificationCount != 0">({{ notificationsService.notifications.unreadNotificationCount }})</span>
+            <a id="toggleNotificationsButton" *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()" class="float-right col-2 col-t-3">
+                <div class="clear" ></div>
+                Benachrichtigungen
+                <span *ngIf="notificationsService.notifications.unreadNotificationCount != 0">({{ notificationsService.notifications.unreadNotificationCount }})</span>
+
             </a>
             <div class="clear"></div>
             <a href="javascript:void(0);" style="font-size:15px;" class="icon" (click)="myFunction()">&#9776;</a>
         </div>
     </header>
-    <div class="content" (click)="hideMenu()">
-    <br/><br/><br/>
-    <br/><br/><br/> <!-- pls make not behindert, thx -->
-    <div #notificationsElementContainer>
-        <notifications *ngIf="notificationsShown"></notifications>
+
+
+
+    <!-- wird gerade bearbeitet -->
+    <div class="row">
+        <div class="col-8 col-t-8"></div>
+        <div #notificationsElementContainer class="infobox col-4 col-t-4 col-m-12">
+            <notifications *ngIf="notificationsShown" class="col-12 col-t-12 col-m-12"></notifications>
+        </div>
     </div>
+
+    <div class="content " (click)="hideMenu()">
+
+    <br/><br/><br> <!-- pls make not behindert, thx -->
+
 
     <div class="row">
         <div class="col-12 col-m-12 col-t-12"><h1 class="joinme">JoinMe</h1></div>
     </div>
-        <message></message>
+
+        <div class="row">
+            <div class="col-12 col-m-12 col-t-12"><message></message></div>
+        </div>
+
     <main>
-        <router-outlet></router-outlet>
+        <router-outlet ></router-outlet>
     </main>
 
     <footer>

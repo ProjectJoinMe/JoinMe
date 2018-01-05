@@ -32,7 +32,7 @@
                                 <form enctype="multipart/form-data" method="">
                                     <div class="col-12 col-t-12 col-m-12">
                                         <input #profilePictureFileInput type="file" [multiple]="false" name="profilePicture"
-                                           class="profilePicture" accept="image/*" (change)="uploadProfilePicture()">
+                                           class="profilePicture" accept="image/*" (change)="uploadProfilePicture()" class="col-12 col-t-12 col-m-12">
                                     </div>
                                 </form>
                             </td>
@@ -57,9 +57,9 @@
                     <form [formGroup]="editForm" (ngSubmit)="edit()">
                         <table>
                             <tr class="row">
-                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile"><label>Vorname:</label></td>
-                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
-                                    <input formControlName="firstName" type="text">
+                                <td class="first col-4 col-t-4 col-m-6 "><label>Vorname:</label></td>
+                                <td class="col-4 col-t-4 col-m-6 ">
+                                    <input formControlName="firstName" type="text" class="col-12 col-t-12 col-m-12">
                                 </td>
                                 <td class="col-4 col-t-4 col-m-12">
                                     <small class="error-message"
@@ -69,9 +69,9 @@
                                 </td>
                             </tr>
                             <tr class="row">
-                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile"><label>Nachname:</label></td>
-                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
-                                    <input formControlName="lastName" type="text">
+                                <td class="first col-4 col-t-4 col-m-6 "><label>Nachname:</label></td>
+                                <td class="col-4 col-t-4 col-m-6 ">
+                                    <input formControlName="lastName" type="text" class="col-12 col-t-12 col-m-12">
                                 </td>
                                 <td class="col-4 col-t-4 col-m-12">
                                     <small class="error-message"
@@ -81,8 +81,8 @@
                                 </td>
                             </tr>
                             <tr class="row">
-                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile"><label>Beschreibung:</label></td>
-                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
+                                <td class="first col-4 col-t-4 col-m-6 "><label>Beschreibung:</label></td>
+                                <td class="col-4 col-t-4 col-m-6 ">
                                     <textarea formControlName="description" maxlength="500" minlength="0"></textarea>
                                 </td>
                                 <td>
@@ -117,7 +117,7 @@
                                 <form enctype="multipart/form-data" method="">
                                     <div class="col-12 col-t-12 col-m-12">
                                     <input #carPictureFileInput type="file" [multiple]="false" name="carPicture"
-                                           class="carPicture" accept="image/*" (change)="uploadCarPicture()">
+                                           class="carPicture" accept="image/*" (change)="uploadCarPicture()" class="col-12 col-t-12 col-m-12">
                                     </div>
                                 </form>
                             </td>
@@ -135,11 +135,11 @@
                     <form [formGroup]="editForm" (ngSubmit)="edit()">
                         <table>
                             <tr class="row">
-                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                                <td class="first col-4 col-t-4 col-m-6 ">
                                     <label>Hersteller:</label>
                                 </td>
-                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
-                                    <input formControlName="carMake" type="text">
+                                <td class="col-4 col-t-4 col-m-6 ">
+                                    <input class="col-12 col-t-12 col-m-12" formControlName="carMake" type="text">
                                 </td>
                                 <td class="col-4 col-t-4 col-m-12">
                                     <small class="error-message"
@@ -148,11 +148,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                                <td class="first col-4 col-t-4 col-m-6 ">
                                     <label>Modell:</label>
                                 </td>
-                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
-                                    <input formControlName="carModel" type="text">
+                                <td class="col-4 col-t-4 col-m-6 ">
+                                    <input class="col-12 col-t-12 col-m-12" formControlName="carModel" type="text">
                                 </td>
                                 <td  class="col-4 col-t-4 col-m-12">
                                     <small class="error-message"
@@ -161,11 +161,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                                <td class="first col-4 col-t-4 col-m-6 ">
                                     <label>Baujahr:</label>
                                 </td>
-                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile ">
-                                    <input formControlName="carManufacturingYear" type="number" min="1900"
+                                <td class="col-4 col-t-4 col-m-6  ">
+                                    <input class="col-12 col-t-12 col-m-12" formControlName="carManufacturingYear" type="number" min="1900"
                                            max="{{date | date:'yyyy'}}" step="1">
                                 </td>
                                 <td class="col-4 col-t-4 col-m-12">
@@ -175,10 +175,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                                <td class="first col-4 col-t-4 col-m-6">
                                     <label>Beschreibung:</label>
                                 </td>
-                                <td class="col-4 col-t-4 col-m-6 tdsizeMobile">
+                                <td class="col-4 col-t-4 col-m-6 ">
                                     <textarea formControlName="carDescription" maxlength="500" minlength="0"></textarea>
                                 </td>
                                 <td class="col-4 col-t-4 col-m-12">
@@ -191,7 +191,7 @@
                     </form>
                 </div>
 
-                <div class="row">
+                <div class="row buttonRow">
                     <div class="col-12 col-t-12 col-m-12">
                         <button type="submit" class="button" [disabled]="profileSubmitDisabled">Speichern</button>
                     </div>

@@ -1,30 +1,49 @@
 <div id="content" class="main">
     <br/>
-    <div class="inner">
-        <h2>Points of Interest</h2>
-        <br/>
-        <div>
-            <table>
-                <tr *ngFor="let poi of pois">
-                    <td>{{ poi.name }}</td>
-                    <td>
-                        <button (click)="deletePoi(poi)"> x </button>
-                    </td>
-                </tr>
-            </table>
+
+    <div class="row">
+        <div class="col-12 col-t-12 col-m-12">
+            <h1 class="component">Proaktives Matching</h1>
         </div>
-        <br/>
-        <div>
-            <form [formGroup]="placeForm" (ngSubmit)="add()">
-                <label>Orte hinzufügen</label>
-                <maps-autocomplete-place class="autoMapsSize" [formGroup]="placeForm" [name]="'poiMapsInput'"
-                                         [onPlaceChange]="onPlaceChange"></maps-autocomplete-place>
-                <small class="error-message"
-                       [hidden]="(placeForm.controls.poiMapsInputPlaceId.valid || placeForm.controls.poiMapsInputPlaceId.pristine) || !submitted">
-                    Bitte einen gültigen Ort auswählen.
-                </small>
-            </form>
+    </div>
+
+    <br/>
+
+    <div class="row">
+
+        <div class="col-3 col-t-3 "></div>
+
+        <div class="inner col-6 col-t-6 col-m-12">
+            <div class="row">
+                <h2 class="col-12 col-t-12 col-m-12">Interessenspunkte</h2>
+            </div>
+            <br/>
+            <div class="row">
+                <table>
+                    <tr *ngFor="let poi of pois">
+                        <td class="col-11 col-t-11 col-m-11"><label>{{ poi.name }}</label></td>
+                        <td class="col-1 col-t-1 col-m-1">
+                            <button class="deleteBtn"(click)="deletePoi(poi)"> x </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div class="row" >
+                <form [formGroup]="placeForm" (ngSubmit)="add()">
+                    <label class="col-12 col-t-12 col-m-12">Orte hinzufügen</label>
+                    <maps-autocomplete-place class="autoMapsSize col-12 col-t-12 col-m-12" [formGroup]="placeForm" [name]="'poiMapsInput'"
+                                             [onPlaceChange]="onPlaceChange"></maps-autocomplete-place>
+                    <small class="error-message col-12 col-t-12 col-m-12"
+                           [hidden]="(placeForm.controls.poiMapsInputPlaceId.valid || placeForm.controls.poiMapsInputPlaceId.pristine) || !submitted">
+                        Bitte einen gültigen Ort auswählen.
+                    </small>
+                </form>
+            </div>
         </div>
+
+        <div class="col-3 col-t-3 "></div>
+
     </div>
     <br/>
 </div>

@@ -65,7 +65,7 @@
                         </td>
                         <td class="col-4 col-t-8 col-m-6 inputField tdsizeMobile">
                             <div class="col-2 col-t-2"></div>
-                            <input class="col-5 col-t-5 col-m-12" formControlName="departureDate" type="date"
+                            <input class="col-12 col-t-12 col-m-12" formControlName="departureDate" type="date"
                                                   min="{{currentDate | date:'yyyy-MM-dd'}}">
                         </td>
                         <td class="col-4 col-t-4 col-m-12">
@@ -111,7 +111,7 @@
                             </td>
                             <td class="col-4 col-t-8 col-m-6 inputField tdsizeMobile">
                                 <div class="col-2 col-t-3"></div>
-                                <input class="col-5 col-t-5 col-m-12" formControlName="returnDepartureDate" type="date"
+                                <input class="col-12 col-t-12 col-m-12" formControlName="returnDepartureDate" type="date"
                                        min="{{currentDate | date:'yyyy-MM-dd'}}">
                             </td>
                             <td class="col-4 col-t-4 col-m-12">
@@ -171,11 +171,11 @@
                 <hr noshade>
 
                 <div class="row">
-                    <div class="col-4 col-t-4 first"></div>
-                    <div class="col-4 col-t-4 ">
+                    <div class="col-4 col-t-4 col-m-3"></div>
+                    <div class="col-4 col-t-4 col-m-6">
                         <input class="col-12 col-t-12 col-m-12" type="checkbox" id="periodicRideCheckBox" formControlName="periodic"> regelmäßige Fahrt
                     </div>
-                    <div class="col-4 col-t-4"></div>
+                    <div class="col-4 col-t-4 col-m-3"></div>
                 </div>
                 <br/>
                 <!-- TODO: automatically select the departure day  -->
@@ -201,20 +201,20 @@
                                 <td class="col-3 col-t-3"> </td>
                             </tr>
                             <tr class="row">
-                                <td class="col-2 col-t-2"> </td>
-                                <td class="col-8 col-t-8 col-m-12">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[2]">Mittwoch
                                 </td>
-                                <td class="col-2 col-t-2"> </td>
+                                <td class="col-3 col-t-3"> </td>
                             </tr>
                             <tr class="row">
-                                <td class="col-2 col-t-2"> </td>
-                                <td class="col-8 col-t-8 col-m-12">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[3]">Donnerstag
                                 </td>
-                                <td class="col-2 col-t-2"> </td>
+                                <td class="col-3 col-t-3"> </td>
                             </tr>
                             <tr class="row">
                                 <td class="col-3 col-t-3"> </td>
@@ -238,7 +238,7 @@
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[6]">Sonntag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3 "> </td>
                             </tr>
                         </table>
                     </div>
