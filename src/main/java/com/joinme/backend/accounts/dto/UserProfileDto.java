@@ -1,6 +1,7 @@
 package com.joinme.backend.accounts.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by Alexander on 17.08.2017.
@@ -21,7 +22,6 @@ public class UserProfileDto {
     private String description;
 
     //Car
-
     private String carMake;
 
     private String carModel;
@@ -29,6 +29,9 @@ public class UserProfileDto {
     private Integer carManufacturingYear;
 
     private String carDescription;
+
+    public UserProfileDto() {
+    }
 
     public String getUsername() {
         return username;

@@ -34,8 +34,7 @@ export class ProactiveMatchingComponent implements OnInit {
                 private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
                 private router: Router,
-                private userProfileService: UserProfileService,
-                private messageService: MessageService) {
+                private userProfileService: UserProfileService) {
         this.onPlaceChange = (place: any, isFullPlace: boolean) => {
             if (isFullPlace) {
                 this.add();
@@ -46,11 +45,16 @@ export class ProactiveMatchingComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.route.data
+            .subscribe((data: {pois: PointOfInterest[] }) => {
+                this.pois = data.pois;
+            });
         this.placeForm = this.formBuilder.group({
             poiMapsInput: ["",],
             poiMapsInputPlaceId: ["", [this.requiredWhenFieldNotEmpty]],
         });
     }
+
 
     private mapsLatLngToJoinMeLatLng(location: any): LatLng {
         return {
@@ -72,11 +76,18 @@ export class ProactiveMatchingComponent implements OnInit {
             poi.placeId = <string> this.placeForm.get("poiMapsInputPlaceId").value;
             this.pois.push(poi);
             this.placeComponent.clear();
+            this.update();
         }
+    }
+
+    public update() {
+        this.userProfileService.updatePointsOfInterest(this.pois);
+        console.log(this.pois);
     }
 
     private deletePoi(poi: PointOfInterest){
         let index = this.pois.findIndex(value => value.placeId === poi.placeId);
         this.pois.splice(index, 1);
+        this.update();
     }
 }

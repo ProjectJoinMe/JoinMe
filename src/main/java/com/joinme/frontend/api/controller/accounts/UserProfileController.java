@@ -1,6 +1,7 @@
 package com.joinme.frontend.api.controller.accounts;
 
 import com.joinme.backend.accounts.UserProfileManager;
+import com.joinme.backend.accounts.dto.PointOfInterestDto;
 import com.joinme.backend.accounts.dto.UserPasswordDto;
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.frontend.api.util.SecurityUtil;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.MultipartConfigElement;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by Alexander on 17.08.2017.
@@ -43,6 +45,21 @@ public class UserProfileController {
         return userProfileManager.updateUserProfile(userProfile);
     }
 
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/profile/getPointsOfInterest", method = RequestMethod.GET)
+    @ResponseBody
+    public List<PointOfInterestDto> getPointsOfInterest() {
+        List<PointOfInterestDto> pois = userProfileManager.getPointsOfInterest(SecurityUtil.getCurrentUsername());
+        return pois;
+    }
+
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/profile/updatePointsOfInterest", method = RequestMethod.PUT)
+    @ResponseBody
+    public void updatePointsOfInterest(@Valid @RequestBody List<PointOfInterestDto> poiDto) {
+        userProfileManager.updatePointsOfInterest(SecurityUtil.getCurrentUsername(), poiDto);
+    }
 
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/profile/{username}/updatePassword", method = RequestMethod.PUT)

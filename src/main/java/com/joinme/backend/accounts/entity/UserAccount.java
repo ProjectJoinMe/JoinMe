@@ -1,10 +1,14 @@
 package com.joinme.backend.accounts.entity;
 
 import com.joinme.backend.accounts.dto.Gender;
+import com.joinme.backend.accounts.dto.PointOfInterestDto;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "UserAccount")
@@ -32,6 +36,11 @@ public class UserAccount implements Serializable {
     @Column(nullable = false, length = 1024)
     private String password;
 
+    @Type(type = "serializable")
+    @Column(length = 6000)
+    // using ArrayList instead of List to exploit Hibernate behavior: https://stackoverflow.com/questions/6622710/store-list-in-hibernate-as-serializable-object
+    private ArrayList<PointOfInterestDto> pointsOfInterest;
+
     @Column
     private String description;
 
@@ -40,7 +49,6 @@ public class UserAccount implements Serializable {
     private byte[] profilePicture;
 
     //Car data
-
     @Column
     private String carMake;
 
@@ -63,6 +71,14 @@ public class UserAccount implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public ArrayList<PointOfInterestDto> getPointsOfInterest() {
+        return pointsOfInterest;
+    }
+
+    public void setPointsOfInterest(ArrayList<PointOfInterestDto> pointsOfInterest) {
+        this.pointsOfInterest = pointsOfInterest;
     }
 
     public String getEmail() {

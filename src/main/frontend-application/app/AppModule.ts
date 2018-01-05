@@ -52,6 +52,7 @@ import {NotificationsComponent} from "./notifications/NotificationsComponent";
 import {NotificationsService} from "./notifications/NotificationsService";
 import {NotificationService} from "./services/NotificationService";
 import {ProactiveMatchingComponent} from "./profile/proactive_matching/ProactiveMatchingComponent";
+import {PointsOfInterestResolver} from "./resolvers/PointsOfInterestResolver";
 
 export class MobileDetector {
     // http://detectmobilebrowsers.com/
@@ -128,6 +129,7 @@ type StoreType = {
         UserRegistrationService,
         UserProfileService,
         RideByIdResolver,
+        PointsOfInterestResolver,
         RideJoinsByRideIdResolver,
         UserProfileByUsernameResolver,
         MyRidesResolver,
