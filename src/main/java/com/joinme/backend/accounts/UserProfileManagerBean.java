@@ -1,6 +1,7 @@
 package com.joinme.backend.accounts;
 
 import com.joinme.backend.accounts.converter.UserAccountConverter;
+import com.joinme.backend.accounts.dto.PointOfInterestDto;
 import com.joinme.backend.accounts.dto.UserPasswordDto;
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.entity.UserAccount;
@@ -12,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Alexander on 17.08.2017.
@@ -40,6 +43,22 @@ public class UserProfileManagerBean implements UserProfileManager {
         UserAccount userAccount = userAccountRepository.findByUsername(userProfile.getUsername());
         userAccountConverter.setPropertiesOnEntity(userAccount, userProfile);
         return userAccountConverter.toDto(userAccount);
+    }
+
+    @Override
+    public void updatePointsOfInterest(String username, List<PointOfInterestDto> pointsOfInterest) {
+        UserAccount userAccount = userAccountRepository.findByUsername(username);
+        userAccount.setPointsOfInterest(new ArrayList<>(pointsOfInterest));
+    }
+
+    @Override
+    public List<PointOfInterestDto> getPointsOfInterest(String username) {
+        UserAccount userAccount = userAccountRepository.findByUsername(username);
+        ArrayList<PointOfInterestDto> pointsOfInterest = userAccount.getPointsOfInterest();
+        if(pointsOfInterest == null){
+            pointsOfInterest = new ArrayList<>();
+        }
+        return pointsOfInterest;
     }
 
     @Override
