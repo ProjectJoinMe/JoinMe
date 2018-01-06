@@ -106,6 +106,12 @@ public class RideJoinManagerBean implements RideJoinManager {
     }
 
     @Override
+    public RideJoinDto getRideJoinById(long rideId) {
+        RideJoin rideJoin = rideJoinRepository.findById(rideId);
+        return rideJoinConverter.toDto(rideJoin);
+    }
+
+    @Override
     public RideJoinDto setRating(RideJoinDto rideJoinDto, RatingDto ratingDto) {
         RideJoin existingJoin = rideJoinRepository.findById(rideJoinDto.getId());
         existingJoin.setRating(ratingConverter.toEntity(ratingDto));

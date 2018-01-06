@@ -6,5 +6,5 @@ export interface RideJoin {
     rideId: number;
     userProfileDto: UserProfile;
     creationDateTime: Date;
-    rating: Rating;
+    ratingDto: Rating;
 }

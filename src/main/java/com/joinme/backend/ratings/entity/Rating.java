@@ -14,7 +14,7 @@ public class Rating implements Serializable {
     private Long id;
 
     @Column(nullable = false)
-    private int rating;
+    private Integer rating;
 
     @Column
     private String comment;

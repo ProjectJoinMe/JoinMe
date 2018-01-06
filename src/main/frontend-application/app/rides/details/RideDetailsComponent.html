@@ -1,11 +1,6 @@
 <div id="content" class="main">
     <br>
-    <div class="row">
-        <div class="col-12 col-t-12 col-m-12">
-            <h1 class="component">Details</h1>
-        </div>
-    </div>
-
+    <h1 class="component">Details</h1>
     <br/>
 
 
@@ -49,7 +44,8 @@
                             <label class="description">Abfahrt:</label>
                         </td>
                         <td class="col-4 col-t-4 col-m-3">
-                            <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy' }}</label>
+                            <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy'
+                                }}</label>
                         </td>
                         <td class="col-4 col-t-4 col-m-3">
                             <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label>
@@ -68,7 +64,8 @@
                                 <label class="description">Abfahrt:</label>
                             </td>
                             <td class="col-4 col-t-4 col-m-3">
-                                <label class="content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'dd.MM.yyyy'
+                                <label class="content">{{ ride.returnDepartureDateTime | timezonifyDate |
+                                    date:'dd.MM.yyyy'
                                     }}</label>
                             </td>
                             <td class="col-4 col-t-4 col-m-3">
@@ -118,60 +115,58 @@
                     </div>
 
 
-
                     <div *ngIf="isMyRide()" class="row">
                         <div class="col-4 col-t-4"></div>
                         <div class="col-2 col-t-2 col-m-6">
-                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Bearbeiten" (click)="goToUpdate()">
+                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Bearbeiten"
+                                   (click)="goToUpdate()">
                         </div>
                         <div class="col-2 col-t-2 col-m-6">
-                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Löschen" (click)="deleteRide()">
+                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Löschen"
+                                   (click)="deleteRide()">
                         </div>
                         <div class="col-4 col-t-4"></div>
                     </div>
 
 
                     <div *ngIf="!isMyRide() && !joined" class="col-12 col-t-12 col-m-12">
-                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnehmen" (click)="joinRide()" [disabled]="rideFull">
+                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnehmen"
+                               (click)="joinRide()" [disabled]="rideFull">
                     </div>
 
                     <div *ngIf="!isMyRide() && joined" class="col-12 col-t-12 col-m-12">
-                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnahme zurückziehen" (click)="unjoinRide()">
+                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnahme zurückziehen"
+                               (click)="unjoinRide()">
+                    </div>
+
+                    <div *ngIf="joined && !rated && !isMyRide()">
+                        <h2>Fahrt bewerten</h2>
+                        <form [formGroup]="ratingForm" (ngSubmit)="rate()">
+                            <select formControlName="ratingValue">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5" selected>5</option>
+                            </select>
+                            <textarea formGroupName="ratingComment">Diese Fahrt war supiii</textarea>
+                            <button type="submit" class="button" [disabled]="submitDisabled">Bewerten</button>
+                        </form>
+                    </div>
+
+                    <div *ngIf="rated && !isMyRide()">
+                        <h2>Deine Bewertung</h2>
+                        <p>Punkte: {{rating.rating}}/5</p>
+                        <p>Kommentar: {{rating.comment}}</p>
                     </div>
 
                 </div>
 
-                <div *ngIf="joined">
-                    <div class="row">
-                        <div class="col-12 col-t-12 col-m-12">
-                            <h2>Fahrt bewerten</h2>
-                        </div>
-                    </div>
+                <div class="col-3 col-t-1"></div>
+            </div>
 
-                    <div class="row">
-                        <div class="col-12 col-t-12 col-m-12">
-                            <form>
-                                <select class="row">
-                                    <option value="1" class="col-2 col-t-2 col-m-2">1</option>
-                                    <option value="2" class="col-2 col-t-2 col-m-2">2</option>
-                                    <option value="3" class="col-2 col-t-2 col-m-2">3</option>
-                                    <option value="4" class="col-2 col-t-2 col-m-2">4</option>
-                                    <option value="5" class="col-2 col-t-2 col-m-2" selected>5</option>
-                                </select>
-                                <div class="col-12 col-t-12 col-m-12">
-                                    <textarea>Diese Fahrt war supiii</textarea>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
-                </div>
+            <br>
         </div>
-
-        <div class="col-3 col-t-1"></div>
     </div>
-
-
-    <br>
 </div>

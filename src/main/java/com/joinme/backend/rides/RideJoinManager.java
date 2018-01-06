@@ -15,6 +15,8 @@ public interface RideJoinManager {
 
     List<RideDto> getJoinedRidesOf(String username);
 
+    RideJoinDto getRideJoinById(long rideId);
+
     RideJoinDto setRating(RideJoinDto rideJoinDto, RatingDto ratingDto);
 
 }

@@ -32,6 +32,7 @@ public class RideJoinConverter {
     }
 
     public void setPropertiesOnDto(RideJoinDto rideJoinDto, RideJoin entity) {
+        rideJoinDto.setId(entity.getId());
         rideJoinDto.setRideId(entity.getRide().getId());
         rideJoinDto.setUserProfileDto(userProfileManager.getProfile(entity.getPassenger().getUsername()));
         rideJoinDto.setCreationDateTime(entity.getCreationDateTime());

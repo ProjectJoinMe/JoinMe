@@ -3,6 +3,7 @@ package com.joinme.backend.ratings.dto;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class RatingDto implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -10,7 +11,7 @@ public class RatingDto implements Serializable {
     private Long id;
 
     @NotNull
-    private int rating;
+    private Integer rating;
 
     private String comment;
 
@@ -49,4 +50,21 @@ public class RatingDto implements Serializable {
         this.creationDateTime = creationDateTime;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RatingDto ratingDto = (RatingDto) o;
+        return rating == ratingDto.rating &&
+                Objects.equals(id, ratingDto.id) &&
+                Objects.equals(comment, ratingDto.comment) &&
+                Objects.equals(creationDateTime, ratingDto.creationDateTime);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, rating, comment, creationDateTime);
+    }
 }
