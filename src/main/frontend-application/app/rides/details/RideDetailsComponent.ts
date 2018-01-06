@@ -6,6 +6,10 @@ import {RideService} from "../../services/RideService";
 import {Ride} from "../model/Ride";
 import {RideJoin} from "../model/RideJoin";
 import {MessageService} from "../../message_service/MessageService";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Rating} from "../../ratings/Rating";
+import {RatingService} from "../../services/RatingService";
+import {RideJoinRating} from "../model/RideJoinRating";
 
 @Component({
     selector: 'ride-details',
@@ -19,10 +23,18 @@ export class RideDetailsComponent implements OnInit {
     rideJoins: RideJoin[];
     joined: boolean;
     rideFull: boolean;
+    rideJoin: RideJoin;
+    ratingForm: FormGroup;
+    submitted: boolean;
+    submitDisabled: boolean;
+    rating: Rating;
+    rated: boolean;
 
     constructor(private rideService: RideService,
+                private ratingService: RatingService,
                 private route: ActivatedRoute,
                 private router: Router,
+                private formBuilder: FormBuilder,
                 private location: Location,
                 private securityStatus: SecurityStatus,
                 private messageService: MessageService) {
@@ -33,10 +45,20 @@ export class RideDetailsComponent implements OnInit {
             .subscribe((data: { ride: Ride, rideJoins: RideJoin[] }) => {
                 this.ride = data.ride;
                 this.rideJoins = data.rideJoins;
-                let rideJoin = this.rideJoins.find(rideJoin => rideJoin.userProfileDto.username === this.securityStatus.username);
-                this.joined = rideJoin !== undefined;
+                this.rideJoin = this.rideJoins.find(rideJoin => rideJoin.userProfileDto.username === this.securityStatus.username);
+                this.joined = this.rideJoin !== undefined;
                 this.rideFull = (this.ride.maxPassengers - this.rideJoins.length) === 0;
+
             });
+        if (this.rideJoin !== undefined) {
+            this.rating = this.rideJoin.ratingDto;
+            this.rated = this.rating !== undefined
+        }
+        this.ratingForm = this.formBuilder.group({ //TODO validation
+            ratingValue: [5, [Validators.required,]],
+            ratingComment: ['test', [Validators.required,]]
+
+        });
     }
 
     goToUpdate() {
@@ -80,5 +102,37 @@ export class RideDetailsComponent implements OnInit {
 
     isMyRide(): boolean {
         return this.securityStatus.username === this.ride.providerUsername;
+    }
+
+    public rate() {
+        this.submitted = true;
+        if (this.ratingForm.valid && this.rated === false && this.joined !== false) {
+            console.info("rating...");
+            this.submitDisabled = true;
+
+            let ratingValue = <number> this.ratingForm.get("ratingValue").value;
+            let ratingComment = <string> this.ratingForm.get("ratingComment").value;
+
+            let rating: Rating = <Rating>{
+                rating: ratingValue,
+                comment: ratingComment,
+                creationDateTime: new Date()
+            };
+
+            console.info(this.rideJoin)
+
+            this.ratingService.createRatingForRideJoin(rating, this.rideJoin).then(rating => {
+                this.messageService.setMessage("Bewertung abgegeben.", "success");
+                this.rating = rating;
+                this.rated = true;
+            }).catch(reason => {
+                this.submitDisabled = false;
+                this.messageService.setMessage("Bewertung konnte nicht abgegeben werden.", "failure");
+                console.info(reason.toString());
+            });
+        }
+        else {
+            this.messageService.setMessage("Bewertung ungültig.", "failure");
+        }
     }
 }

@@ -159,4 +159,19 @@ public class RideDto implements Serializable {
     public void setRoute(RideRouteDto route) {
         this.route = route;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RideDto rideDto = (RideDto) o;
+
+        return id.equals(rideDto.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }
