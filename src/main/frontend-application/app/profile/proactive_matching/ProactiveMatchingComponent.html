@@ -30,7 +30,7 @@
             </div>
             <br/>
             <div class="row" >
-                <form [formGroup]="placeForm" (ngSubmit)="add()">
+                <form [formGroup]="placeForm">
                     <label class="col-12 col-t-12 col-m-12">Orte hinzufügen</label>
                     <maps-autocomplete-place class="autoMapsSize col-12 col-t-12 col-m-12" [formGroup]="placeForm" [name]="'poiMapsInput'"
                                              [onPlaceChange]="onPlaceChange"></maps-autocomplete-place>
