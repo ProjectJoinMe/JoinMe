@@ -11,7 +11,7 @@ import {MapsAutocompletePlaceComponent} from "../../maps/autocomplete/MapsAutoco
 import {PointOfInterest} from "./PointOfInterest";
 
 /**
- * Created by Alexander on 18.08.2017.
+ * Created by Nicole on 18.08.2017.
  */
 @Component({
     selector: 'edit',
@@ -37,7 +37,7 @@ export class ProactiveMatchingComponent implements OnInit {
                 private userProfileService: UserProfileService) {
         this.onPlaceChange = (place: any, isFullPlace: boolean) => {
             if (isFullPlace) {
-                this.add();
+                this.add(place);
             } else {
 
             }
@@ -68,15 +68,18 @@ export class ProactiveMatchingComponent implements OnInit {
         return (inputControl && inputControl.value) ? Validators.required(control) : null;
     }
 
-    public add() {
+    public add(place: any) {
         this.submitted = true;
         if (this.placeForm.valid) {
             let poi = new PointOfInterest();
             poi.name = <string> this.placeForm.get("poiMapsInput").value;
             poi.placeId = <string> this.placeForm.get("poiMapsInputPlaceId").value;
+            let location = place.geometry.location;
+            poi.location = this.mapsLatLngToJoinMeLatLng(location);
             this.pois.push(poi);
             this.placeComponent.clear();
             this.update();
+            this.submitted = false;
         }
     }
 
