@@ -46,13 +46,18 @@ export class RideDetailsComponent implements OnInit {
                 this.ride = data.ride;
                 this.rideJoins = data.rideJoins;
                 this.rideJoin = this.rideJoins.find(rideJoin => rideJoin.userProfileDto.username === this.securityStatus.username);
-                this.joined = this.rideJoin !== undefined;
+                if (this.rideJoin) {
+                    this.joined = true; //Truthy check
+                }
                 this.rideFull = (this.ride.maxPassengers - this.rideJoins.length) === 0;
 
             });
+        this.rated = false;
         if (this.rideJoin !== undefined) {
             this.rating = this.rideJoin.ratingDto;
-            this.rated = this.rating !== undefined
+            if (this.rating) {
+                this.rated = true; //Truthy check
+            }
         }
         this.ratingForm = this.formBuilder.group({ //TODO validation
             ratingValue: [5, [Validators.required,]],
