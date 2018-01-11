@@ -137,7 +137,12 @@ div.main {
 
 div.infobox {
   position: absolute;
-  background-color: pink;
+  background-color: #dddddd;
+  color: white;
+  z-index: 10;
+  right: 0;
+  height: 30%;
+  overflow-y: scroll
 }
 
 div.inner {
@@ -149,6 +154,8 @@ div.inner {
   /*padding-right: 2%;-*/
   margin: auto;
   position: relative;
+  color: white;
+  text-align: center;
 }
 
 td.first {
@@ -361,3 +368,10 @@ div.days {
   font-size: 20px;
 }
 
+/* Separators */
+hr {
+  border-color: white;
+  background-color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
