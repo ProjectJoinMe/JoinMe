@@ -41,34 +41,34 @@
 
 
 
-    <!-- wird gerade bearbeitet -->
-    <div class="row">
-        <div class="col-8 col-t-8"></div>
-        <div #notificationsElementContainer class="infobox col-4 col-t-4 col-m-12">
-            <notifications *ngIf="notificationsShown" class="col-12 col-t-12 col-m-12"></notifications>
-        </div>
-    </div>
-
     <div class="content " (click)="hideMenu()">
 
-    <br/><br/><br> <!-- pls make not behindert, thx -->
+        <div class="row">
+            <div #notificationsElementContainer *ngIf="notificationsShown" class="infobox col-3 col-t-6 col-m-12">
+                <br>
+                <div *ngIf="notificationsShown" class="inner">Benachrichtigungen</div>
+                <br>
+                <notifications *ngIf="notificationsShown" ></notifications>
+            </div>
+        </div>
 
 
-    <div class="row">
-        <div class="col-12 col-m-12 col-t-12"><h1 class="joinme">JoinMe</h1></div>
-    </div>
+
+        <div class="row">
+            <div class="col-12 col-m-12 col-t-12"><h1 class="joinme">JoinMe</h1></div>
+        </div>
 
         <div class="row">
             <div class="col-12 col-m-12 col-t-12"><message></message></div>
         </div>
 
-    <main>
-        <router-outlet ></router-outlet>
-    </main>
+        <main>
+            <router-outlet ></router-outlet>
+        </main>
 
-    <footer>
-        <img class="flogo" src="assets/img/joinme/FooterLogo.png" width="50px" height="50px">
-    </footer>
+        <footer>
+            <img class="flogo" src="assets/img/joinme/FooterLogo.png" width="50px" height="50px">
+        </footer>
     </div>
 </div>
 
