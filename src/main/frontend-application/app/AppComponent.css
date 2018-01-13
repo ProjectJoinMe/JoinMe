@@ -137,12 +137,37 @@ div.main {
 
 div.infobox {
   position: absolute;
-  background-color: #dddddd;
+  background-color: #555555;
   color: white;
   z-index: 10;
   right: 0;
   height: 30%;
   overflow-y: scroll
+}
+
+div.chatbox {
+  position: fixed;
+  background-color: white;
+  color: black;
+  z-index: 9;
+  right: 0;
+  bottom: 0;
+  height: 93%;
+  overflow-y: scroll
+}
+
+/* ToDo: Alternative für Position:fixed -> menu nicht sichtbar */
+div.chatOpener {
+  text-align: center;
+  horiz-align: center;
+  font-size: 20px;
+  position: fixed;
+  background-color: #333333;
+  color: white;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+  height: 4%;
 }
 
 div.inner {
@@ -196,7 +221,9 @@ input.date {
 }
 
 .second{
-  align: left;
+  text-align: left;
+  padding-top: 1%;
+  padding-left: 1%;
 }
 
 
@@ -312,8 +339,6 @@ input.date {
 table{
   width: 100%;
 }
-
-
 
 
 .row::after {

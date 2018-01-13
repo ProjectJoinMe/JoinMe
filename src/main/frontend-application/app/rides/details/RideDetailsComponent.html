@@ -80,10 +80,10 @@
                 <table>
                     <tr class="row">
                         <!-- TODO make something else when there are no notes-->
-                        <td class="col-4 col-t-4 col-m-6">
-                            <label class="description">Bemerkungen:</label>
+                        <td class="col-4 col-t-4 col-m-6 first">
+                            <label>Bemerkungen:</label>
                         </td>
-                        <td class="col-4 col-t-4 col-m-6">
+                        <td class="col-4 col-t-8 col-m-6">
                             <div *ngIf="ride.notes">{{ ride.notes }}</div>
                         </td>
                     </tr>
@@ -92,8 +92,8 @@
                 <br>
 
                 <div class="row">
-                    <div *ngIf="ride.startPlaceId && ride.destinationPlaceId" class="col-8 col-t-8 col-m-6">
-                        <maps-display-embedded-route
+                    <div *ngIf="ride.startPlaceId && ride.destinationPlaceId" class="col-12 col-t-12 col-m-12">
+                        <maps-display-embedded-route class="col-12 col-t-12 col-m-12 "
                                 [originPlaceId]="ride.startPlaceId"
                                 [destinationPlaceId]="ride.destinationPlaceId">
                         </maps-display-embedded-route>
@@ -116,41 +116,65 @@
 
 
                     <div *ngIf="isMyRide()" class="row">
-                        <div class="col-4 col-t-4"></div>
-                        <div class="col-2 col-t-2 col-m-6">
+                        <div class="col-4 col-t-4 col-m-2"></div>
+                        <div class="col-2 col-t-2 col-m-4">
                             <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Bearbeiten"
                                    (click)="goToUpdate()">
                         </div>
-                        <div class="col-2 col-t-2 col-m-6">
+                        <div class="col-2 col-t-2 col-m-4">
                             <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Löschen"
                                    (click)="deleteRide()">
                         </div>
-                        <div class="col-4 col-t-4"></div>
+                        <div class="col-4 col-t-4 col-m-2"></div>
                     </div>
 
 
                     <div *ngIf="!isMyRide() && !joined" class="col-12 col-t-12 col-m-12">
-                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnehmen"
+                        <div class="col-4 col-t-4 col-m-2"></div>
+                        <div class="col-4 col-t-4 col-m-8">
+                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnehmen"
                                (click)="joinRide()" [disabled]="rideFull">
+                        </div>
+                        <div class="col-4 col-t-6 col-m-2"></div>
                     </div>
 
                     <div *ngIf="!isMyRide() && joined" class="col-12 col-t-12 col-m-12">
-                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnahme zurückziehen"
+                        <div class="col-4 col-t-4 col-m-3"></div>
+                        <div class="col-4 col-t-4 col-m-6">
+                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnahme zurückziehen"
                                (click)="unjoinRide()">
+                        </div>
+                        <div class="col-4 col-t-4 col-m-3"></div>
                     </div>
 
-                    <div *ngIf="joined && !rated && !isMyRide()">
-                        <h2>Fahrt bewerten</h2>
-                        <form [formGroup]="ratingForm" (ngSubmit)="rate()">
-                            <select formControlName="ratingValue">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5" selected>5</option>
-                            </select>
-                            <textarea formGroupName="ratingComment">Diese Fahrt war supiii</textarea>
-                            <button type="submit" class="button" [disabled]="submitDisabled">Bewerten</button>
+                    <div *ngIf="joined && !rated && !isMyRide()" class="row">
+                        <h2 class="col-12 col-m-12 col-t-12">Fahrt bewerten</h2>
+
+                        <form [formGroup]="ratingForm" (ngSubmit)="rate()" class="row">
+                            <div class="col-12 col-t-12 col-m-12">
+                                <select formControlName="ratingValue">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5" selected>5</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-t-4 col-m-3"></div>
+                                <div class="col-4 col-t-4 col-m-6">
+                                    <textarea formGroupName="ratingComment" class="col-7 col-t-7 col-m-7">Diese Fahrt war supiii</textarea>
+                                </div>
+                                <div class="col-4 col-t-4 col-m-3"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4 col-t-4 col-m-3"></div>
+                                <div class="col-4 col-t-4 col-m-6">
+                                    <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="submitDisabled">Bewerten</button>
+                                </div>
+                                <div class="col-4 col-t-4 col-m-3"></div>
+                            </div>
                         </form>
                     </div>
 
@@ -169,4 +193,5 @@
             <br>
         </div>
     </div>
+    <br>
 </div>

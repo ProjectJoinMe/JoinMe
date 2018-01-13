@@ -1,11 +1,13 @@
 <div>
-    <div class="map-wrapper">
+    <div class="map-wrapper row">
+
         <!-- https://developers.google.com/maps/documentation/embed/guide#directions_mode -->
         <!-- https://angular.io/guide/security#xss originPlaceId and destinationPlaceId are safe as they are used -->
-        <iframe class="map-route-iframe"
+        <iframe class="map-route-iframe col-m-12 col-t-12 col-12"
                 frameborder="0"
                 [src]="embeddedRouteMapUrl"
                 allowfullscreen>
         </iframe>
+
     </div>
 </div>
