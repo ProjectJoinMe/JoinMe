@@ -12,11 +12,11 @@
                 <div>
                 <table>
                     <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class="first col-4 col-t-4 col-m-6 ">
                             <label>Abfahrtsort:</label>
                         </td>
 
-                        <td class="col-4 col-t-4 col-m-6 inputField tdsizeMobile">
+                        <td class="col-4 col-t-4 col-m-6 ">
                             <maps-autocomplete-place class="col-12 col-t-12 col-m-12" [formGroup]="rideForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
                         </td>
 
@@ -29,10 +29,10 @@
                     </tr>
 
                     <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class="first col-4 col-t-4 col-m-6 ">
                             <label>Ankunftsort:</label>
                         </td>
-                        <td class="col-4 col-t-4 col-m-6 inputField tdsizeMobile">
+                        <td class="col-4 col-t-4 col-m-6 inputField ">
                             <maps-autocomplete-place class="col-12 col-t-12 col-m-12" [formGroup]="rideForm"
                                                      [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
                         </td>
@@ -51,19 +51,20 @@
                 <div>
                 <table>
                     <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
-                            <label class="heading col-12 col-t-12 col-m-12"><b>Hinfahrt</b></label>
+                        <td class="first col-4 col-t-4 col-m-6">
+                            <label class="heading"><b>Hinfahrt</b></label>
                         </td>
-                        <td class="col-8 col-t-8 col-m-6 inputField tdsizeMobile">
-                            <input class="col-12 col-t-12 col-m-12" type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
+                        <td class="col-8 col-t-8 col-m-6 second">
+                            <input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
                         </td>
                     </tr>
 
+
                     <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class="first col-4 col-t-4 col-m-6 ">
                             <label class="col-12 col-t-12 col-m-12">Abfahrtsdatum:</label>
                         </td>
-                        <td class="col-4 col-t-8 col-m-6 inputField tdsizeMobile">
+                        <td class="col-4 col-t-8 col-m-6">
                             <div class="col-2 col-t-2"></div>
                             <input class="col-12 col-t-12 col-m-12" formControlName="departureDate" type="date"
                                                   min="{{currentDate | date:'yyyy-MM-dd'}}">
@@ -77,7 +78,7 @@
                     </tr>
 
                     <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                        <td class="first col-4 col-t-4 col-m-6 ">
                             <label>Uhrzeit:</label>
                         </td>
                         <td class="col-4 col-t-8 col-m-6 inputField">
@@ -101,15 +102,15 @@
                 <div *ngIf="getReturnRide()">
                     <table>
                         <tr class="returnFormRow row">
-                            <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <td class="first col-4 col-t-4 col-m-6 ">
                                 <label class="heading col-12 col-t-12 col-m-12"><b>Rückfahrt</b></label>
                             </td>
                         </tr>
                         <tr class="returnFormRow row">
-                            <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <td class="first col-4 col-t-4 col-m-6 ">
                                 <label class="col-12 col-t-12 col-m-12">Abfahrtsdatum:</label>
                             </td>
-                            <td class="col-4 col-t-8 col-m-6 inputField tdsizeMobile">
+                            <td class="col-4 col-t-8 col-m-6 inputField ">
                                 <div class="col-2 col-t-3"></div>
                                 <input class="col-12 col-t-12 col-m-12" formControlName="returnDepartureDate" type="date"
                                        min="{{currentDate | date:'yyyy-MM-dd'}}">
@@ -122,7 +123,7 @@
                             </td>
                         </tr>
                         <tr class="row">
-                            <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">
+                            <td class="first col-4 col-t-4 col-m-6 ">
                                 <label class="col-12 col-t-12 col-m-12">Uhrzeit:</label>
                             </td>
                             <td class="col-4 col-t-8 col-m-6 inputField">
@@ -146,16 +147,16 @@
                 <div>
                     <table>
                         <tr class="row">
-                            <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">Freie Plätze</td>
-                            <td class="col-4 col-t-8 col-m-6 inputField tdsizeMobile">
+                            <td class="first col-4 col-t-4 col-m-6 ">Freie Plätze</td>
+                            <td class="col-4 col-t-8 col-m-6  ">
                                 <div class="col-2 col-t-2"></div>
                                 <input class="col-2 col-t-2 col-m-3" formControlName="maxPassengers" type="number" min="1" max="10">
                             </td>
                             <td class="col-4 col-t-4 col-m-12"></td>
                         </tr>
                         <tr>
-                            <td class="first col-4 col-t-4 col-m-6 tdsizeMobile">Preis pro Teilnehmer in €</td>
-                            <td class="col-4 col-t-8 col-m-6 inputField tdsizeMobile">
+                            <td class="first col-4 col-t-4 col-m-6 ">Preis pro Teilnehmer in €</td>
+                            <td class="col-4 col-t-8 col-m-6  ">
                                 <div class="col-2 col-t-2"></div>
                                 <input class="col-2 col-t-2 col-m-3" formControlName="pricePerPassenger" type="number" min="0" max="100">
                             </td>
@@ -173,7 +174,7 @@
                 <div class="row">
                     <div class="col-4 col-t-4 col-m-3"></div>
                     <div class="col-4 col-t-4 col-m-6">
-                        <input class="col-12 col-t-12 col-m-12" type="checkbox" id="periodicRideCheckBox" formControlName="periodic"> regelmäßige Fahrt
+                        <input type="checkbox" id="periodicRideCheckBox" formControlName="periodic"> regelmäßige Fahrt
                     </div>
                     <div class="col-4 col-t-4 col-m-3"></div>
                 </div>
@@ -271,7 +272,6 @@
                 </div>
 
 
-                <!-- ToDo: MapSize -->
                 <div *ngIf="rideForm.controls.startPlaceId.value && rideForm.controls.destinationPlaceId.value">
                     <div class="col-12 col-t-12 col-m-12"><h3>Route</h3></div>
                     <div class="col-12 col-t-12 col-m-12 mapSize">

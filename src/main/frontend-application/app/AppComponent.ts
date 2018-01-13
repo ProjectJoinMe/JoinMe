@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
     name = 'JoinMe';
     url = 'https://joinme.io';
     notificationsShown: boolean = false;
+    chatBoxShown : boolean = false;
     @ViewChild('notificationsElementContainer') notificationsElementContainer: ElementRef;
 
     constructor(public appState: AppState,
@@ -74,6 +75,10 @@ export class AppComponent implements OnInit {
         if(!this.notificationsShown){
             this.notificationsService.markNotificationsAsRead();
         }
+    }
+
+    toggleChatbox() {
+        this.chatBoxShown = !this.chatBoxShown;
     }
 
     onClick(event) {
