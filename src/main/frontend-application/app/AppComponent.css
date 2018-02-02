@@ -137,8 +137,10 @@ div.main {
 
 div.infobox {
   position: absolute;
-  background-color: #555555;
-  color: white;
+  background-color: white;
+  border-color: lightgray;
+  border-width: 2px;
+  color: black;
   z-index: 10;
   right: 0;
   height: 30%;
