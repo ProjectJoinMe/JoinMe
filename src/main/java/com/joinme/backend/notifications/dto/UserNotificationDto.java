@@ -11,6 +11,11 @@ public class UserNotificationDto {
     private boolean read;
     private TypeSpecificUserNotificationData typeSpecificData;
 
+    public UserNotificationDto() {
+    }
+
+
+
     public long getId() {
         return id;
     }

@@ -1,9 +1,14 @@
 package com.joinme.frontend.api.controller.ratings;
 
+import com.joinme.backend.notifications.NotificationManagerBean;
+import com.joinme.backend.notifications.dto.RideReferenceUserNotificationData;
+import com.joinme.backend.notifications.dto.UserNotificationDto;
+import com.joinme.backend.notifications.dto.UserNotificationType;
 import com.joinme.backend.ratings.RatingManager;
 import com.joinme.backend.ratings.dto.RatingDto;
 import com.joinme.backend.rides.RideJoinManager;
 import com.joinme.backend.rides.RideRetrieval;
+import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.dto.RideJoinDto;
 import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +31,9 @@ public class RatingController {
     @Autowired
     private RideRetrieval rideRetrieval;
 
+    @Autowired
+    private NotificationManagerBean notificationManagerBean;
+
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/ratings/create/{rideJoinId}", method = RequestMethod.POST)
     @ResponseBody
@@ -42,8 +50,20 @@ public class RatingController {
 
         RatingDto ratingDto = ratingManager.createRatingForRideJoin(rating);
         rideJoinManager.setRating(rideJoinDto, ratingDto);
+
+        //createNotification(UserNotificationType.gotRating, rideRetrieval.getRideById(rideJoinDto.getRideId()),
+        //        "Du hast eine neue Bewertung erhalten!", null); //TODO data
+
         return ratingDto;
     }
 
+    private void createNotification(UserNotificationType type, RideDto ride, String message, RideReferenceUserNotificationData typeSpecificData) {
+        UserNotificationDto notification = new UserNotificationDto();
+        notification.setType(type);
+        notification.setMessage(message);
+        notification.setTypeSpecificData(typeSpecificData);
+        notification.setUsername(ride.getProviderUsername());
+        notificationManagerBean.create(notification);
+    }
 
 }

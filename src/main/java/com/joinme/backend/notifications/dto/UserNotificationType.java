@@ -5,5 +5,6 @@ public enum UserNotificationType {
     rideWasUnjoined,
     rideWasUpdated,
     joinedRideWasDeleted,
-    chatMessageReceived
+    chatMessageReceived,
+    gotRating
 }
