@@ -141,7 +141,7 @@ export class RideDetailsComponent implements OnInit {
     }
 
     getWeekDayNames(): string {
-        const allWeekDayNames: string[] = ["Montag", "Dienstag", "Mittwoch", "Eulentag", "Freitag", "Samstag", "Sonntag"];
+        const allWeekDayNames: string[] = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
         return this.ride.periodicWeekDays.map(value => allWeekDayNames[value - 1])
             .join(", ");
     }

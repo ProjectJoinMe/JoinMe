@@ -46,11 +46,11 @@ export class CreateRideComponent implements OnInit {
             returnDepartureDate: [""],
             returnDepartureHour: [""],
             returnDepartureMinute: [""],
-            periodic: [""],
             maxPassengers: ["", Validators.required],
             notes: [""],
+            pricePerPassenger: ["", Validators.required],
+            periodic: [""],
             periodicDays: this.formBuilder.array([false, false, false, false, false, false, false], this.periodicDaysValidator),
-            pricePerPassenger: ["", Validators.required]
         });
     }
 

@@ -147,6 +147,87 @@
                 <hr noshade>
 
                 <div class="row">
+                    <div class="col-4 col-t-4 col-m-3"></div>
+                    <div class="col-4 col-t-4 col-m-6">
+                        <input type="checkbox" id="periodicRideCheckBox" formControlName="periodic"> regelmäßige Fahrt
+                    </div>
+                    <div class="col-4 col-t-4 col-m-3"></div>
+                </div>
+                <br/>
+                <!-- TODO: automatically select the departure day  -->
+
+                <div *ngIf="getPeriodic()">
+                    <br/>
+                    <div class="days">
+                        <table>
+                            <tr class="row">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
+                                           [formControl]="rideForm.controls['periodicDays'].controls[0]">Montag
+                                </td>
+                                <td class="col-3 col-t-3"> </td>
+                            </tr>
+                            <tr class="row">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
+                                           [formControl]="rideForm.controls['periodicDays'].controls[1]">Dienstag
+                                </td>
+                                <td class="col-3 col-t-3"> </td>
+                            </tr>
+                            <tr class="row">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
+                                           [formControl]="rideForm.controls['periodicDays'].controls[2]">Mittwoch
+                                </td>
+                                <td class="col-3 col-t-3"> </td>
+                            </tr>
+                            <tr class="row">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
+                                           [formControl]="rideForm.controls['periodicDays'].controls[3]">Donnerstag
+                                </td>
+                                <td class="col-3 col-t-3"> </td>
+                            </tr>
+                            <tr class="row">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
+                                    <input  class="col-12 col-t-12 col-m-12"type="checkbox"
+                                           [formControl]="rideForm.controls['periodicDays'].controls[4]">Freitag
+                                </td>
+                                <td class="col-3 col-t-3"> </td>
+                            </tr>
+                            <tr class="row">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
+                                    <input  class="col-12 col-t-12 col-m-12"type="checkbox"
+                                           [formControl]="rideForm.controls['periodicDays'].controls[5]">Samstag
+                                </td>
+                                <td class="col-3 col-t-3"> </td>
+                            </tr>
+                            <tr class="row">
+                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-6 col-t-6 col-m-12">
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
+                                           [formControl]="rideForm.controls['periodicDays'].controls[6]">Sonntag
+                                </td>
+                                <td class="col-3 col-t-3 "> </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <small class="error-message"
+                           [hidden]="rideForm.controls.periodicDays.valid || (rideForm.controls.periodicDays.pristine && !submitted)">
+                        Bitte Wochentage wählen.
+                    </small>
+                </div>
+
+                <hr noshade>
+
+
+                <div class="row">
                     <div class="col-12 col-t-12 col-m-12">
                         <label>Bemerkung (max 400 Zeichen)</label>
                     </div>
