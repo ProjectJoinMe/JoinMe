@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nicole on 10.07.2017.
@@ -90,6 +91,9 @@ public class Ride implements Serializable {
     @Column(nullable = false)
     @Lob
     private String encodedPathLocations;
+
+    @Column
+    private String periodicWeekDays;
 
     public Long getId() {
         return id;
@@ -241,5 +245,13 @@ public class Ride implements Serializable {
 
     public void setEncodedPathLocations(String encodedPathLocations) {
         this.encodedPathLocations = encodedPathLocations;
+    }
+
+    public String getPeriodicWeekDays() {
+        return periodicWeekDays;
+    }
+
+    public void setPeriodicWeekDays(String periodicWeekDays) {
+        this.periodicWeekDays = periodicWeekDays;
     }
 }

@@ -135,9 +135,14 @@ export class RideDetailsComponent implements OnInit {
                 this.messageService.setMessage("Bewertung konnte nicht abgegeben werden.", "failure");
                 console.info(reason.toString());
             });
-        }
-        else {
+        } else {
             this.messageService.setMessage("Bewertung ungültig.", "failure");
         }
+    }
+
+    getWeekDayNames(): string {
+        const allWeekDayNames: string[] = ["Montag", "Dienstag", "Mittwoch", "Eulentag", "Freitag", "Samstag", "Sonntag"];
+        return this.ride.periodicWeekDays.map(value => allWeekDayNames[value - 1])
+            .join(", ");
     }
 }

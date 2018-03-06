@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {WeekDay} from "../WeekDay";
 import {Router} from "@angular/router";
 import {RideService} from "../../services/RideService";
@@ -49,9 +49,27 @@ export class CreateRideComponent implements OnInit {
             periodic: [""],
             maxPassengers: ["", Validators.required],
             notes: [""],
-            periodicDays: this.formBuilder.array([false, false, false, false, false, false, false]),
+            periodicDays: this.formBuilder.array([false, false, false, false, false, false, false], this.periodicDaysValidator),
             pricePerPassenger: ["", Validators.required]
         });
+    }
+
+    private periodicDaysValidator(control: AbstractControl): any {
+        let periodicControl = control.root.get("periodic");
+        if (periodicControl && (!periodicControl.value)) {
+            return null;
+        } else {
+            for (let i = 0; i < control.value.length; i++){
+                if(control.value[i]){
+                    return null;
+                }
+            }
+            return {
+                periodicDaysInvalid: {
+                    valid: false
+                }
+            };
+        }
     }
 
     private updateRouteInfo(){
@@ -71,13 +89,13 @@ export class CreateRideComponent implements OnInit {
         if (this.rideForm.valid) {
             console.info("creating ride");
             this.submitDisabled = true;
-            let periodicWeekDays: WeekDay[] = [];
+            let periodicWeekDays: number[] = [];
             if (<boolean> this.rideForm.get("periodic").value) {
                 let periodicDaysControl = <FormArray> this.rideForm.get("periodicDays");
                 let weekDayControls: FormControl[] = <FormControl[]> periodicDaysControl.controls;
                 periodicWeekDays = weekDayControls.map((weekDayControl, index) => {
                     if (weekDayControl.value) {
-                        return <WeekDay>(index + 1);
+                        return index + 1;
                     } else {
                         return null;
                     }
@@ -89,6 +107,7 @@ export class CreateRideComponent implements OnInit {
             let returnDepartureDate = new Date(this.rideForm.get("returnDepartureDate").value);
             let returnDepartureHour = <number> this.rideForm.get("returnDepartureHour").value;
             let returnDepartureMinute = <number> this.rideForm.get("returnDepartureMinute").value;
+
             let rideData: Ride = {
                 start: <string> this.rideForm.get("start").value,
                 startPlaceId: <string> this.rideForm.get("startPlaceId").value,
@@ -98,7 +117,9 @@ export class CreateRideComponent implements OnInit {
                 returnDepartureDateTime: this.getReturnRide() ? new Date(returnDepartureDate.getFullYear(), returnDepartureDate.getMonth(), returnDepartureDate.getDate(), returnDepartureHour, returnDepartureMinute, 0, 0) : null,
                 maxPassengers: <number> this.rideForm.get("maxPassengers").value,
                 notes: this.rideForm.get("notes").value,
-                pricePerPassenger: this.rideForm.get("pricePerPassenger").value
+                pricePerPassenger: this.rideForm.get("pricePerPassenger").value,
+                periodic: <boolean> this.rideForm.get("periodic").value,
+                periodicWeekDays: periodicWeekDays
             };
             console.info(rideData);
             this.rideService.createRide(rideData).then(createdRide => {

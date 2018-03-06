@@ -14,5 +14,7 @@ export interface Ride {
     notes?: string;
     providerUsername?: string;
     pricePerPassenger?: number;
+    periodic?: boolean;
+    periodicWeekDays?: number[];
     route?: RideRoute;
 }
