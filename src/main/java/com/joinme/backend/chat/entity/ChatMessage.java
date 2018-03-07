@@ -19,12 +19,10 @@ public class ChatMessage implements Serializable {
     @Column(nullable = false)
     private String message;
 
-    @Column(nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private UserAccount fromUser;
 
-    @Column(nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private UserAccount toUser;
 
     @Column(nullable = false)
