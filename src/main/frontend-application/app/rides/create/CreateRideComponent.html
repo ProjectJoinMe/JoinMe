@@ -243,6 +243,10 @@
                             </tr>
                         </table>
                     </div>
+                    <small class="error-message"
+                           [hidden]="rideForm.controls.periodicDays.valid || (rideForm.controls.periodicDays.pristine && !submitted)">
+                        Bitte Wochentage wählen.
+                    </small>
                 </div>
 
                 <hr noshade>

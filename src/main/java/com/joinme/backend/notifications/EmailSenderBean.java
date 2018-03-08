@@ -15,8 +15,6 @@ import javax.annotation.PostConstruct;
 @Component
 public class EmailSenderBean {
 
-    private static final String DOMAIN = "joinme.io";
-
     @Autowired
     private MailSender mailSender;
 
@@ -25,7 +23,7 @@ public class EmailSenderBean {
     @PostConstruct
     public void setupMailTemplate() {
         templateMessage = new SimpleMailMessage();
-        templateMessage.setFrom("notifications@" + DOMAIN);
+        templateMessage.setFrom("projectjoinme@gmail.com");
     }
 
     private Logger logger = LoggerFactory.getLogger(getClass());

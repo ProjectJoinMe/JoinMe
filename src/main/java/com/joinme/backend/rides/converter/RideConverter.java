@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,6 +54,7 @@ public class RideConverter {
         rideDto.setProviderUsername(entity.getProvider().getUsername());
         rideDto.setFreeSeats(entity.getMaxPassengers() - rideJoinRepository.countByRide(entity));
         rideDto.setPricePerPassenger(entity.getPricePerPassenger());
+        rideDto.setPeriodicWeekDays(getPeriodicWeekDays(entity));
         RideRouteDto rideRouteDto = new RideRouteDto();
         rideRouteDto.setEncodedPathLocations(entity.getEncodedPathLocations());
         rideRouteDto.setBorderBox(new BorderBox(
@@ -61,6 +62,17 @@ public class RideConverter {
                 new LatLng(entity.getBorderBoxNorthEastLat(), entity.getBorderBoxNorthEastLng())
         ));
         rideDto.setRoute(rideRouteDto);
+    }
+
+    private List<Integer> getPeriodicWeekDays(Ride entity) {
+        if (entity.getPeriodicWeekDays() == null) {
+            return Collections.emptyList();
+        }
+        return entity.getPeriodicWeekDays().chars()
+                .filter(value -> value != ',')
+                .map(operand -> operand - '0')
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     public Ride toEntity(RideDto rideDto) {
@@ -86,8 +98,18 @@ public class RideConverter {
         rideEntity.setProvider(userAccountRepository.findByUsername(rideDto.getProviderUsername()));
         rideEntity.setEncodedPathLocations(rideDto.getRoute().getEncodedPathLocations());
         rideEntity.setBorderBoxSouthWestLat(rideDto.getRoute().getBorderBox().getSouthWest().lat);
+        rideEntity.setPeriodicWeekDays(rideDto.getPeriodicWeekDays() == null || rideDto.getPeriodicWeekDays().isEmpty() ? null : serializePeriodicWeekDays(rideDto.getPeriodicWeekDays()));
         rideEntity.setBorderBoxSouthWestLng(rideDto.getRoute().getBorderBox().getSouthWest().lng);
         rideEntity.setBorderBoxNorthEastLat(rideDto.getRoute().getBorderBox().getNorthEast().lat);
         rideEntity.setBorderBoxNorthEastLng(rideDto.getRoute().getBorderBox().getNorthEast().lng);
+    }
+
+    private String serializePeriodicWeekDays(List<Integer> periodicWeekDays) {
+        if (periodicWeekDays == null || periodicWeekDays.isEmpty()) {
+            return null;
+        }
+        return periodicWeekDays.stream()
+                .map(integer -> Integer.toString(integer))
+                .collect(Collectors.joining(","));
     }
 }

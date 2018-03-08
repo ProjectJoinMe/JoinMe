@@ -78,6 +78,14 @@
                 </div>
 
                 <table>
+                    <tr class="row" *ngIf="ride.periodic">
+                        <td class=" first col-4 col-t-4 col-m-6">
+                            <label class="description">Wöchentlich an:</label>
+                        </td>
+                        <td class=" second col-4 col-t-4 col-m-6 ">
+                            <label class="content">{{ getWeekDayNames()}}</label>
+                        </td>
+                    </tr>
                     <tr class="row">
                         <!-- TODO make something else when there are no notes-->
                         <td class="col-4 col-t-4 col-m-6 first">

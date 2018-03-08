@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Nicole on 23.07.2017.
@@ -47,6 +49,8 @@ public class RideDto implements Serializable {
     private Double pricePerPassenger;
 
     private RideRouteDto route;
+
+    private List<Integer> periodicWeekDays;
 
     public Long getId() {
         return id;
@@ -160,6 +164,18 @@ public class RideDto implements Serializable {
         this.route = route;
     }
 
+    public boolean isPeriodic() {
+        return !getPeriodicWeekDays().isEmpty();
+    }
+
+    public List<Integer> getPeriodicWeekDays() {
+        return periodicWeekDays;
+    }
+
+    public void setPeriodicWeekDays(List<Integer> periodicWeekDays) {
+        this.periodicWeekDays = periodicWeekDays;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -167,11 +183,14 @@ public class RideDto implements Serializable {
 
         RideDto rideDto = (RideDto) o;
 
+        if (id == null || rideDto.id == null) {
+            return false;
+        }
         return id.equals(rideDto.id);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hashCode(id);
     }
 }

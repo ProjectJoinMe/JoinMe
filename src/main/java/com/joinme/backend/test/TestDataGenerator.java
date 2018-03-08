@@ -53,6 +53,7 @@ public class TestDataGenerator {
     private RideDto createdRide1;
     private RideDto createdRide2;
     private RideDto createdRide3;
+    private RideDto createdRide4;
 
     @PostConstruct
     public void generateTestData() {
@@ -102,8 +103,34 @@ public class TestDataGenerator {
                     "\n \nLG, Nicki");
             ride2.setCreationDateTime(LocalDateTime.now());
 
+            RideDto ride3 = new RideDto();
+            ride3.setProviderUsername(username);
+            ride3.setStart("Groß Sankt Florian");
+            ride3.setStartPlaceId("ChIJe2nUKqC4b0cRwGfmLVeXAAQ");
+            ride3.setDestination("Graz");
+            ride3.setDestinationPlaceId("ChIJu2UwF4c1bkcRm93f0tGKjv4");
+            ride3.setDepartureDateTime(LocalDateTime.now().plus(3, ChronoUnit.DAYS));
+            ride3.setMaxPassengers(4);
+            ride3.setReturnDepartureDateTime(null);
+            ride3.setNotes("Das ist eine testfahrt");
+            ride3.setCreationDateTime(LocalDateTime.now());
+
+            RideDto ride4 = new RideDto();
+            ride4.setProviderUsername(username);
+            ride4.setStart("Wien");
+            ride4.setStartPlaceId("ChIJn8o2UZ4HbUcRRluiUYrlwv0");
+            ride4.setDestination("HTBLA Kaindorf");
+            ride4.setDestinationPlaceId("ChIJ1wvjNMCkb0cR3kRkVkLEB7Y");
+            ride4.setDepartureDateTime(LocalDateTime.now().plus(3, ChronoUnit.DAYS));
+            ride4.setMaxPassengers(4);
+            ride4.setReturnDepartureDateTime(null);
+            ride4.setNotes("Das ist eine testfahrt");
+            ride4.setCreationDateTime(LocalDateTime.now());
+
             createdRide1 = rideCreation.createRide(ride);
             createdRide2 = rideCreation.createRide(ride2);
+            createdRide3 = rideCreation.createRide(ride3);
+            createdRide4 = rideCreation.createRide(ride4);
         } else {
             logger.info("Skipping generation of test data as user \"" + username + "\" already exists");
         }
