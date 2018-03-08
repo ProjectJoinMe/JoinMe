@@ -55,7 +55,7 @@ public class UserProfileManagerBean implements UserProfileManager {
     public List<PointOfInterestDto> getPointsOfInterest(String username) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
         ArrayList<PointOfInterestDto> pointsOfInterest = userAccount.getPointsOfInterest();
-        if(pointsOfInterest == null){
+        if (pointsOfInterest == null) {
             pointsOfInterest = new ArrayList<>();
         }
         return pointsOfInterest;
@@ -76,8 +76,6 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Override
     public UserProfileDto setProfilePicture(String username, MultipartFile profilePicture) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
-        //TODO make image size smaller
-
         try {
             userAccount.setProfilePicture(profilePicture.getBytes());
         } catch (IOException e) {
@@ -91,8 +89,6 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Override
     public UserProfileDto setCarPicture(String username, MultipartFile carPicture) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
-        //TODO make image size smaller
-
         try {
             userAccount.setCarPicture(carPicture.getBytes());
         } catch (IOException e) {

@@ -75,8 +75,7 @@ public class UserProfileController {
     @ResponseBody
     public UserProfileDto uploadUserProfilePicture(@PathVariable String username, @RequestParam("profilePicture") MultipartFile profilePicture) {
         Assert.isTrue(username.equals(SecurityUtil.getCurrentUsername()));
-        System.out.println(profilePicture.getOriginalFilename());
-        //TODO check if file really is an image
+        Assert.isTrue(isImage(profilePicture));
         return userProfileManager.setProfilePicture(username, profilePicture);
     }
 
@@ -85,8 +84,12 @@ public class UserProfileController {
     @ResponseBody
     public UserProfileDto uploadUserCarPicture(@PathVariable String username, @RequestParam("carPicture") MultipartFile carPicture) {
         Assert.isTrue(username.equals(SecurityUtil.getCurrentUsername()));
-        //TODO check if file really is an image
+        Assert.isTrue(isImage(carPicture));
         return userProfileManager.setCarPicture(username, carPicture);
+    }
+
+    private boolean isImage(MultipartFile multipartFile) {
+        return multipartFile.getContentType().split("/")[0].equals("image");
     }
 
     @Bean

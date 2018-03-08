@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-3 col-t-1 "></div>
-        <div class="inner col-6 col-t-10 col-m-12" >
+        <div class="inner col-6 col-t-10 col-m-12">
 
             <div class="row">
                 <div class="col-12 col-t-12 col-m-12">
@@ -31,8 +31,10 @@
                             <td class="col-12 col-t-12 col-m-12">
                                 <form enctype="multipart/form-data" method="">
                                     <div class="col-12 col-t-12 col-m-12">
-                                        <input #profilePictureFileInput type="file" [multiple]="false" name="profilePicture"
-                                           class="profilePicture" accept="image/*" (change)="uploadProfilePicture()" class="col-12 col-t-12 col-m-12 bzn">
+                                        <input #profilePictureFileInput type="file" [multiple]="false"
+                                               name="profilePicture"
+                                               class="profilePicture" accept="image/*" (change)="uploadProfilePicture()"
+                                               class="col-12 col-t-12 col-m-12 bzn">
                                     </div>
                                 </form>
                             </td>
@@ -116,8 +118,9 @@
                             <td class="col-12 col-t-12 col-m-12">
                                 <form enctype="multipart/form-data" method="">
                                     <div class="col-12 col-t-12 col-m-12">
-                                    <input #carPictureFileInput type="file" [multiple]="false" name="carPicture"
-                                           class="carPicture" accept="image/*" (change)="uploadCarPicture()" class="col-12 col-t-12 col-m-12">
+                                        <input #carPictureFileInput type="file" [multiple]="false" name="carPicture"
+                                               class="carPicture" accept="image/*" (change)="uploadCarPicture()"
+                                               class="col-12 col-t-12 col-m-12">
                                     </div>
                                 </form>
                             </td>
@@ -154,7 +157,7 @@
                                 <td class="col-4 col-t-4 col-m-6 ">
                                     <input class="col-12 col-t-12 col-m-12" formControlName="carModel" type="text">
                                 </td>
-                                <td  class="col-4 col-t-4 col-m-12">
+                                <td class="col-4 col-t-4 col-m-12">
                                     <small class="error-message"
                                            [hidden]="editForm.controls.carModel.valid || (editForm.controls.carModel.pristine && !profileSubmitted)">
                                     </small>
@@ -165,7 +168,8 @@
                                     <label>Baujahr:</label>
                                 </td>
                                 <td class="col-4 col-t-4 col-m-6  ">
-                                    <input class="col-12 col-t-12 col-m-12" formControlName="carManufacturingYear" type="number" min="1900"
+                                    <input class="col-12 col-t-12 col-m-12" formControlName="carManufacturingYear"
+                                           type="number" min="1900"
                                            max="{{date | date:'yyyy'}}" step="1">
                                 </td>
                                 <td class="col-4 col-t-4 col-m-12">
@@ -188,15 +192,18 @@
                                 </td>
                             </tr>
                         </table>
-                    </form>
-                </div>
 
-                <div class="row buttonRow">
-                    <div class="col-4 col-t-4"></div>
-                    <div class="col-4 col-t-4 col-m-12">
-                        <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="profileSubmitDisabled">Speichern</button>
-                    </div>
-                    <div class="col-4 col-t-4"></div>
+
+                        <div class="row buttonRow">
+                            <div class="col-4 col-t-4"></div>
+                            <div class="col-4 col-t-4 col-m-12">
+                                <button type="submit" class="col-12 col-t-12 col-m-12 btn"
+                                        [disabled]="profileSubmitDisabled">Speichern
+                                </button>
+                            </div>
+                            <div class="col-4 col-t-4"></div>
+                        </div>
+                    </form>
                 </div>
             </div>
 
