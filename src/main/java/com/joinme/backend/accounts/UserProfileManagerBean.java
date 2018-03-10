@@ -7,11 +7,13 @@ import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.entity.UserAccount;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,9 +66,7 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Override
     public UserProfileDto updateUserPassword(UserPasswordDto userPasswordDto) {
         String rawPassword = userPasswordDto.getPassword();
-        System.out.println(rawPassword);
         String encodedPassword = passwordEncoder.encode(rawPassword);
-
         UserAccount userAccount = userAccountRepository.findByUsername(userPasswordDto.getUsername());
         userAccount.setPassword(encodedPassword);
 

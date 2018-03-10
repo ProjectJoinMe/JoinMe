@@ -99,7 +99,6 @@ export class ProfileEditComponent implements OnInit {
         if (fileCount === 1) { // a file was selected
             formData.append('profilePicture', inputEl.files.item(0));
             this.userProfileService.setProfilePicture(formData, this.userProfile.username).then(updatedUserProfile => {
-                // this.router.navigate(['/profile', this.userProfile.username]);
             }).catch(reason => {
                 console.error("failed to update profile picture, TODO message");
             });
@@ -115,7 +114,6 @@ export class ProfileEditComponent implements OnInit {
         if (fileCount === 1) { // a file was selected
             formData.append('carPicture', inputEl.files.item(0));
             this.userProfileService.setCarPicture(formData, this.userProfile.username).then(updatedUserProfile => {
-                // this.router.navigate(['/profile', this.userProfile.username]);
             }).catch(reason => {
                 console.error("failed to update car picture, TODO message");
             });

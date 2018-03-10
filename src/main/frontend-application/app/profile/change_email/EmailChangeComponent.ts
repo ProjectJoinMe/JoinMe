@@ -39,8 +39,7 @@ export class EmailChangeComponent implements OnInit {
 
     ngOnInit(): void {
         this.emailForm = this.formBuilder.group({
-            email: [this.userProfile.email, [Validators.required, MailValidator.mailValidator()]],
-            // email: ["", [Validators.required, MailValidator.mailValidator()], this.validateUniqueEmailPromise],
+            email: [this.userProfile.email, [Validators.required, MailValidator.mailValidator()]]
         });
     }
 

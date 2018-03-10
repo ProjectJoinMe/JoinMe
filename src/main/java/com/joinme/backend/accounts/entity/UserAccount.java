@@ -3,6 +3,7 @@ package com.joinme.backend.accounts.entity;
 import com.joinme.backend.accounts.dto.Gender;
 import com.joinme.backend.accounts.dto.PointOfInterestDto;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class UserAccount implements Serializable {
     @Column(nullable = false)
     private String username;
     @Column(unique = true, length = 4000)
+    @Email
     private String email;
     @Column(nullable = false)
     private LocalDate dateOfBirth;
