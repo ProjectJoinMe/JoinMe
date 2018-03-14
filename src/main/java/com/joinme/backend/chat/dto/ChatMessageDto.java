@@ -1,5 +1,6 @@
 package com.joinme.backend.chat.dto;
 
+import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.entity.UserAccount;
 
 import javax.validation.constraints.NotNull;
@@ -18,13 +19,17 @@ public class ChatMessageDto implements Serializable {
     private String message;
 
     @NotNull
-    private UserAccount fromUser;
+    private UserProfileDto fromUser;
 
     @NotNull
-    private UserAccount toUser;
+    private UserProfileDto toUser;
 
     @NotNull
     private LocalDateTime creationDateTime;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Long getId() {
         return id;
@@ -42,19 +47,19 @@ public class ChatMessageDto implements Serializable {
         this.message = message;
     }
 
-    public UserAccount getFromUser() {
+    public UserProfileDto getFromUser() {
         return fromUser;
     }
 
-    public void setFromUser(UserAccount fromUser) {
+    public void setFromUser(UserProfileDto fromUser) {
         this.fromUser = fromUser;
     }
 
-    public UserAccount getToUser() {
+    public UserProfileDto getToUser() {
         return toUser;
     }
 
-    public void setToUser(UserAccount toUser) {
+    public void setToUser(UserProfileDto toUser) {
         this.toUser = toUser;
     }
 

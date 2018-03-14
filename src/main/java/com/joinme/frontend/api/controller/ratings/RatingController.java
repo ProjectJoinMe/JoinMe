@@ -38,13 +38,11 @@ public class RatingController {
     @RequestMapping(value = "/api/ratings/create/{rideJoinId}", method = RequestMethod.POST)
     @ResponseBody
     public RatingDto createRatingForRideJoin(@PathVariable long rideJoinId, @Valid @RequestBody RatingDto rating) {
-        //TODO check if all checks are valid
-        System.out.println(rideJoinId);
         RideJoinDto rideJoinDto = rideJoinManager.getRideJoinById(rideJoinId);
 
         Assert.isTrue(rideJoinDto.getUserProfileDto().getUsername().equals(SecurityUtil.getCurrentUsername()));
         Assert.isTrue(rideJoinManager.getJoinedRidesOf(SecurityUtil.getCurrentUsername()).contains(
-                rideRetrieval.getRideById(rideJoinDto.getRideId()))); //checks if user is joined, TODO check if equals is needed
+                rideRetrieval.getRideById(rideJoinDto.getRideId()))); //checks if user is joined
         Assert.isTrue(rideJoinManager.getRideJoinById(rideJoinDto.getId()).getRatingDto() == null);
 
 
