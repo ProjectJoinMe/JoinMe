@@ -1,7 +1,6 @@
 package com.joinme.frontend.api.controller.ratings;
 
 import com.joinme.backend.notifications.NotificationManagerBean;
-import com.joinme.backend.notifications.dto.RideReferenceUserNotificationData;
 import com.joinme.backend.notifications.dto.UserNotificationDto;
 import com.joinme.backend.notifications.dto.UserNotificationType;
 import com.joinme.backend.ratings.RatingManager;
@@ -18,6 +17,8 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 
 @Controller
 public class RatingController {
@@ -30,6 +31,7 @@ public class RatingController {
 
     @Autowired
     private RideRetrieval rideRetrieval;
+
 
     @Autowired
     private NotificationManagerBean notificationManagerBean;
@@ -45,21 +47,23 @@ public class RatingController {
                 rideRetrieval.getRideById(rideJoinDto.getRideId()))); //checks if user is joined
         Assert.isTrue(rideJoinManager.getRideJoinById(rideJoinDto.getId()).getRatingDto() == null);
 
+        Assert.isTrue(rideJoinManager.getRideOfRideJoin(rideJoinId).getDepartureDateTime().
+                isBefore(ChronoLocalDateTime.from(LocalDateTime.now())));
 
         RatingDto ratingDto = ratingManager.createRatingForRideJoin(rating);
         rideJoinManager.setRating(rideJoinDto, ratingDto);
 
-        //createNotification(UserNotificationType.gotRating, rideRetrieval.getRideById(rideJoinDto.getRideId()),
-        //        "Du hast eine neue Bewertung erhalten!", null); //TODO data
+        createNotification(UserNotificationType.receivedRating, rideRetrieval.getRideById(rideJoinDto.getRideId()),
+                "Du hast eine neue Bewertung erhalten!"); //TODO data
 
         return ratingDto;
     }
 
-    private void createNotification(UserNotificationType type, RideDto ride, String message, RideReferenceUserNotificationData typeSpecificData) {
+    private void createNotification(UserNotificationType type, RideDto ride, String message) {
         UserNotificationDto notification = new UserNotificationDto();
         notification.setType(type);
         notification.setMessage(message);
-        notification.setTypeSpecificData(typeSpecificData);
+        notification.setTypeSpecificData(null);
         notification.setUsername(ride.getProviderUsername());
         notificationManagerBean.create(notification);
     }

@@ -3,6 +3,9 @@ package com.joinme.frontend.api.controller.chat;
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.chat.ChatManager;
 import com.joinme.backend.chat.dto.ChatMessageDto;
+import com.joinme.backend.notifications.NotificationManagerBean;
+import com.joinme.backend.notifications.dto.UserNotificationDto;
+import com.joinme.backend.notifications.dto.UserNotificationType;
 import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +25,9 @@ public class ChatController {
     @Autowired
     private ChatManager chatManager;
 
+    @Autowired
+    private NotificationManagerBean notificationManagerBean;
+
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/chat/create", method = RequestMethod.POST)
     @ResponseBody
@@ -29,8 +35,21 @@ public class ChatController {
         Assert.isTrue(chatMessageDto.getFromUser().getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
                 || chatMessageDto.getToUser().getUsername().equals(SecurityUtil.getCurrentUsername()));
 
+        createNotification(UserNotificationType.chatMessageReceived, chatMessageDto,
+                "Du hast eine neue Nachricht von " + chatMessageDto.getFromUser().getUsername() + " erhalten.");
+
         return chatManager.createChatMessage(chatMessageDto);
     }
+
+    private void createNotification(UserNotificationType type, ChatMessageDto chatMessageDto, String message) {
+        UserNotificationDto notification = new UserNotificationDto();
+        notification.setType(type);
+        notification.setMessage(message);
+        notification.setTypeSpecificData(null);
+        notification.setUsername(chatMessageDto.getToUser().getUsername());
+        notificationManagerBean.create(notification);
+    }
+
 
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/chat/getMessages", method = RequestMethod.GET)

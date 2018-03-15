@@ -29,6 +29,8 @@ export class RideDetailsComponent implements OnInit {
     submitDisabled: boolean;
     rating: Rating;
     rated: boolean;
+    today: Date = new Date();
+    rideDepDate: Date;
 
     constructor(private rideService: RideService,
                 private ratingService: RatingService,
@@ -61,9 +63,9 @@ export class RideDetailsComponent implements OnInit {
         }
         this.ratingForm = this.formBuilder.group({ //TODO validation
             ratingValue: [5, [Validators.required,]],
-            ratingComment: ['test', [Validators.required,]]
-
+            ratingComment: ["",[Validators.required,]]
         });
+        this.rideDepDate = new Date(this.ride.departureDateTime);
     }
 
     goToUpdate() {
@@ -109,7 +111,7 @@ export class RideDetailsComponent implements OnInit {
         return this.securityStatus.username === this.ride.providerUsername;
     }
 
-    public rate() {
+    rate() {
         this.submitted = true;
         if (this.ratingForm.valid && this.rated === false && this.joined !== false) {
             console.info("rating...");
@@ -144,5 +146,9 @@ export class RideDetailsComponent implements OnInit {
         const allWeekDayNames: string[] = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
         return this.ride.periodicWeekDays.map(value => allWeekDayNames[value - 1])
             .join(", ");
+    }
+
+    goToProviderProfile() {
+        this.router.navigate(['/profile', this.ride.providerUsername]);
     }
 }
