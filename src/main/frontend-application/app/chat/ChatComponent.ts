@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Pipe} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MessageService} from "../message_service/MessageService";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -17,7 +17,6 @@ import {ChatMessage} from "./ChatMessage";
     styleUrls: ['./ChatComponent.css'],
     templateUrl: './ChatComponent.html'
 })
-
 export class ChatComponent implements OnInit {
 
     userProfileChatTo: UserProfile;
@@ -25,6 +24,7 @@ export class ChatComponent implements OnInit {
     chatMessages: ChatMessages;
     chatForm: FormGroup;
     submitDisabled: boolean = false;
+    messagesArray : ChatMessage [] = [];
 
     constructor(private http: Http,
                 private securityService: SecurityService,
@@ -46,6 +46,7 @@ export class ChatComponent implements OnInit {
                 this.userProfileChatFrom = userProfile;
                 this.chatService.getChatMessages(this.userProfileChatFrom, this.userProfileChatTo).then(chatMessages => {
                         this.chatMessages = chatMessages;
+                        this.setChatMessages();
                     }
                 ).catch(reason => {
                     this.messageService.setMessage("Fehler beim Laden des Chats.", "failure");
@@ -55,9 +56,15 @@ export class ChatComponent implements OnInit {
             this.messageService.setMessage("Fehler beim Laden des Chats.", "failure");
         });
 
+
         this.chatForm = this.formBuilder.group({
             chatMessage: ["", [Validators.required]]
         });
+    }
+
+    setChatMessages()
+    {
+        this.messagesArray = this.chatMessages.list;
     }
 
     sendChatMessage() {
@@ -76,6 +83,7 @@ export class ChatComponent implements OnInit {
 
             this.chatService.createChatMessage(chatMessage).then(chatMessage => {
                 this.submitDisabled = false;
+                this.chatForm.get("chatMessage").setValue("");
             }).catch(reason => {
                 console.info(reason.toString())
                 this.submitDisabled = false;

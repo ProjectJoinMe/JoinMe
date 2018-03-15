@@ -32,8 +32,7 @@ public class ChatController {
     @RequestMapping(value = "/api/chat/create", method = RequestMethod.POST)
     @ResponseBody
     public ChatMessageDto createChatMessage(@Valid @RequestBody ChatMessageDto chatMessageDto) {
-        Assert.isTrue(chatMessageDto.getFromUser().getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
-                || chatMessageDto.getToUser().getUsername().equals(SecurityUtil.getCurrentUsername()));
+        Assert.isTrue(chatMessageDto.getFromUser().getUsername().equals(SecurityUtil.getCurrentUsername())); //checks that fromUser is current user
 
         createNotification(UserNotificationType.chatMessageReceived, chatMessageDto,
                 "Du hast eine neue Nachricht von " + chatMessageDto.getFromUser().getUsername() + " erhalten.");

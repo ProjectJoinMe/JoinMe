@@ -3,7 +3,24 @@
     <h1 class="component">Chat</h1>
     <br/>
 
+        <div *ngFor="let chatMessage of messagesArray">
+            <div style="text-align: left" *ngIf="chatMessage.toUser.username === userProfileChatFrom.username">
+                {{chatMessage.message}}
+            </div>
+            <div style="text-align: left" *ngIf="chatMessage.toUser.username === userProfileChatTo.username">
+                {{chatMessage.message}}
+            </div>
+        </div>
+        <form [formGroup]="chatForm" (ngSubmit)="sendChatMessage()">
+            <table>
+                <tr class="row">
+                    <td><input formControlName="chatMessage" type="text"/></td>
+                    <td>
+                        <button type="submit" [disabled]="submitDisabled">Senden</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
 
-
-    <br>
 </div>

@@ -1,5 +1,5 @@
-import {UserNotification} from "../notifications/UserNotification";
+import {ChatMessage} from "./ChatMessage";
 
-export class ChatMessages{
-    public list: UserNotification[] = [];
+export class ChatMessages {
+    public list: ChatMessage[] = [];
 }

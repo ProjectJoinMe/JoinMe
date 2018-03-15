@@ -12,7 +12,7 @@ public class ChatMessageDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull
+
     private Long id;
 
     @NotNull

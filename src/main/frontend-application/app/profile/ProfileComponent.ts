@@ -30,6 +30,6 @@ export class ProfileComponent {
     }
 
     toUserChat() {
-        this.router.navigate(['/chat', this.userProfile.username]);
+        this.router.navigate(['/chat', this.userProfile.username], {queryParams: {fromUserName: this.securityStatus.username, toUserName: this.userProfile.username}});
     }
 }
