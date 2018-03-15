@@ -39,7 +39,7 @@ public class ChatManagerBean implements ChatManager {
     @Override
     public List<ChatMessageDto> getChatMessagesByFromUserAndToUser(UserProfileDto fromUser, UserProfileDto toUser) {
         List<ChatMessage> chatMessageList = chatRepository.
-                findByFromUserAndToUserOrderByCreationDateTimeDesc(
+                findTop50ByFromUserAndToUserOrderByCreationDateTimeDesc(
                         userAccountConverter.toEntity(fromUser), userAccountConverter.toEntity(toUser));
 
         return chatMessageList.stream().map(chatMessageConverter::toDto).collect(Collectors.toList());

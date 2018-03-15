@@ -48,7 +48,7 @@ public class UserNotificationConverter {
                 dto.setTypeSpecificData(typeSpecificData);
                 break;
             case joinedRideWasDeleted:
-            case receivedRating:
+            case gotRating:
             case chatMessageReceived: break;
             default:
                 throw new IllegalArgumentException("Error in UserNotificationConverter.setPropertiesOnDto");
@@ -76,7 +76,7 @@ public class UserNotificationConverter {
                 entity.setRide(rideRepository.findById(typeSpecificData.getRideId()));
                 break;
             case joinedRideWasDeleted:
-            case receivedRating:
+            case gotRating:
             case chatMessageReceived: break;
             default:
                 throw new IllegalArgumentException("Error in UserNotificationConverter.setPropertiesOnEntity");

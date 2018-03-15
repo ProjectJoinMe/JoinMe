@@ -6,5 +6,5 @@ public enum UserNotificationType {
     rideWasUpdated,
     joinedRideWasDeleted,
     chatMessageReceived,
-    receivedRating
+    gotRating
 }

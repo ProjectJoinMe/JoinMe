@@ -53,7 +53,7 @@ public class RatingController {
         RatingDto ratingDto = ratingManager.createRatingForRideJoin(rating);
         rideJoinManager.setRating(rideJoinDto, ratingDto);
 
-        createNotification(UserNotificationType.receivedRating, rideRetrieval.getRideById(rideJoinDto.getRideId()),
+        createNotification(UserNotificationType.gotRating, rideRetrieval.getRideById(rideJoinDto.getRideId()),
                 "Du hast eine neue Bewertung erhalten!"); //TODO data
 
         return ratingDto;

@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {UserProfile} from "./UserProfile";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SecurityStatus} from "../security/SecurityStatus";
 
 @Component({
@@ -16,7 +16,8 @@ export class ProfileComponent {
     public userCarPicturePath: string = "";
 
     constructor(private route: ActivatedRoute,
-                public securityStatus: SecurityStatus) {
+                public securityStatus: SecurityStatus,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -26,5 +27,9 @@ export class ProfileComponent {
             });
         this.userProfilePicturePath = "/api/profile/" + this.userProfile.username + "/profilePicture";
         this.userCarPicturePath = "/api/profile/" + this.userProfile.username + "/carPicture";
+    }
+
+    toUserChat() {
+        this.router.navigate(['/chat', this.userProfile.username]);
     }
 }

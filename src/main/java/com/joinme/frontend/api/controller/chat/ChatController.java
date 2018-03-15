@@ -52,12 +52,43 @@ public class ChatController {
 
 
     @PreAuthorize("fullyAuthenticated")
-    @RequestMapping(value = "/api/chat/getMessages", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/chat/getMessages", method = RequestMethod.POST)
     @ResponseBody
-    public List<ChatMessageDto> getChatMessagesFromUsers(@Valid @RequestBody UserProfileDto fromUser, UserProfileDto toUser) {
-        Assert.isTrue(fromUser.getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
-                || toUser.getUsername().equals(SecurityUtil.getCurrentUsername()));
+    public List<ChatMessageDto> getChatMessagesFromUsers(@Valid @RequestBody ChatUserProfileReceiver chatUserProfileReceiver) {
+        Assert.isTrue(chatUserProfileReceiver.getFromUser().getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
+                || chatUserProfileReceiver.getToUser().getUsername().equals(SecurityUtil.getCurrentUsername()));
 
-        return chatManager.getChatMessagesByFromUserAndToUser(fromUser, toUser);
+        return chatManager.getChatMessagesByFromUserAndToUser(chatUserProfileReceiver.getFromUser(), chatUserProfileReceiver.getToUser());
+    }
+
+
+}
+
+class ChatUserProfileReceiver {
+    private UserProfileDto fromUser;
+    private UserProfileDto toUser;
+
+    public ChatUserProfileReceiver(UserProfileDto fromUser, UserProfileDto toUser) {
+        this.fromUser = fromUser;
+        this.toUser = toUser;
+    }
+
+    public ChatUserProfileReceiver() {
+    }
+
+    public UserProfileDto getFromUser() {
+        return fromUser;
+    }
+
+    public void setFromUser(UserProfileDto fromUser) {
+        this.fromUser = fromUser;
+    }
+
+    public UserProfileDto getToUser() {
+        return toUser;
+    }
+
+    public void setToUser(UserProfileDto toUser) {
+        this.toUser = toUser;
     }
 }

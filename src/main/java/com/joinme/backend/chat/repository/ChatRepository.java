@@ -12,5 +12,5 @@ public interface ChatRepository extends CrudRepository<ChatMessage, Long> {
 
     ChatMessage findById(long id);
 
-    List<ChatMessage> findByFromUserAndToUserOrderByCreationDateTimeDesc(UserAccount fromUser, UserAccount toUser);
+    List<ChatMessage> findTop50ByFromUserAndToUserOrderByCreationDateTimeDesc(UserAccount fromUser, UserAccount toUser);
 }

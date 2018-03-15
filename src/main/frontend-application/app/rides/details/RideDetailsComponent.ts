@@ -61,7 +61,7 @@ export class RideDetailsComponent implements OnInit {
                 this.rated = true; //Truthy check
             }
         }
-        this.ratingForm = this.formBuilder.group({ //TODO validation
+        this.ratingForm = this.formBuilder.group({
             ratingValue: [5, [Validators.required,]],
             ratingComment: ["",[Validators.required,]]
         });
