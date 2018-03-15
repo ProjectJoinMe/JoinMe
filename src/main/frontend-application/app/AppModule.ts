@@ -56,6 +56,7 @@ import {RatingService} from "./services/RatingService";
 import {PointsOfInterestResolver} from "./resolvers/PointsOfInterestResolver";
 import {ChatComponent} from "./chat";
 import {ChatService} from "./services/ChatService";
+import {ChatResolver} from "./resolvers/ChatResolver";
 
 export class MobileDetector {
     // http://detectmobilebrowsers.com/
@@ -142,7 +143,9 @@ type StoreType = {
         JoinedRidesByUserResolver,
         NotificationsService,
         NotificationService,
-        RatingService
+        RatingService,
+        ChatService,
+        ChatResolver
     ]
 })
 export class AppModule {

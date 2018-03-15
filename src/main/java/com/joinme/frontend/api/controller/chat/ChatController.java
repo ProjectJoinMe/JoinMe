@@ -1,5 +1,6 @@
 package com.joinme.frontend.api.controller.chat;
 
+import com.joinme.backend.accounts.UserProfileManager;
 import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.chat.ChatManager;
 import com.joinme.backend.chat.dto.ChatMessageDto;
@@ -24,6 +25,9 @@ public class ChatController {
 
     @Autowired
     private ChatManager chatManager;
+
+    @Autowired
+    private UserProfileManager userProfileManager;
 
     @Autowired
     private NotificationManagerBean notificationManagerBean;
@@ -54,40 +58,43 @@ public class ChatController {
     @RequestMapping(value = "/api/chat/getMessages", method = RequestMethod.POST)
     @ResponseBody
     public List<ChatMessageDto> getChatMessagesFromUsers(@Valid @RequestBody ChatUserProfileReceiver chatUserProfileReceiver) {
-        Assert.isTrue(chatUserProfileReceiver.getFromUser().getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
-                || chatUserProfileReceiver.getToUser().getUsername().equals(SecurityUtil.getCurrentUsername()));
 
-        return chatManager.getChatMessagesByFromUserAndToUser(chatUserProfileReceiver.getFromUser(), chatUserProfileReceiver.getToUser());
+        UserProfileDto fromUser = userProfileManager.getProfile(chatUserProfileReceiver.getFromUserName());
+        UserProfileDto toUser = userProfileManager.getProfile(chatUserProfileReceiver.getToUserName());
+        Assert.isTrue(fromUser.getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
+                || toUser.getUsername().equals(SecurityUtil.getCurrentUsername()));
+
+        return chatManager.getChatMessagesByFromUserAndToUser(fromUser, toUser);
     }
 
 
 }
 
 class ChatUserProfileReceiver {
-    private UserProfileDto fromUser;
-    private UserProfileDto toUser;
-
-    public ChatUserProfileReceiver(UserProfileDto fromUser, UserProfileDto toUser) {
-        this.fromUser = fromUser;
-        this.toUser = toUser;
-    }
+   private String fromUserName;
+   private String toUserName;
 
     public ChatUserProfileReceiver() {
     }
 
-    public UserProfileDto getFromUser() {
-        return fromUser;
+    public ChatUserProfileReceiver(String fromUserName, String toUserName) {
+        this.fromUserName = fromUserName;
+        this.toUserName = toUserName;
     }
 
-    public void setFromUser(UserProfileDto fromUser) {
-        this.fromUser = fromUser;
+    public String getFromUserName() {
+        return fromUserName;
     }
 
-    public UserProfileDto getToUser() {
-        return toUser;
+    public void setFromUserName(String fromUserName) {
+        this.fromUserName = fromUserName;
     }
 
-    public void setToUser(UserProfileDto toUser) {
-        this.toUser = toUser;
+    public String getToUserName() {
+        return toUserName;
+    }
+
+    public void setToUserName(String toUserName) {
+        this.toUserName = toUserName;
     }
 }

@@ -21,10 +21,9 @@ export class ChatComponent implements OnInit {
 
     userProfileChatTo: UserProfile;
     userProfileChatFrom: UserProfile;
-    chatMessages: ChatMessages;
     chatForm: FormGroup;
     submitDisabled: boolean = false;
-    messagesArray : ChatMessage [] = [];
+    chatMessagesArray: ChatMessage[];
 
     constructor(private http: Http,
                 private securityService: SecurityService,
@@ -39,33 +38,18 @@ export class ChatComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.data
-            .subscribe((data: { userProfile: UserProfile }) => {
-                this.userProfileChatTo = data.userProfile;
+            .subscribe((data: { chatMessages: ChatMessages }) => {
+                this.chatMessagesArray = data.chatMessages.list;
             });
-        this.userProfileService.getProfile(this.securityStatus.username).then(userProfile => {
-                this.userProfileChatFrom = userProfile;
-                this.chatService.getChatMessages(this.userProfileChatFrom, this.userProfileChatTo).then(chatMessages => {
-                        this.chatMessages = chatMessages;
-                        this.setChatMessages();
-                    }
-                ).catch(reason => {
-                    this.messageService.setMessage("Fehler beim Laden des Chats.", "failure");
-                });
-            }
-        ).catch(reason => {
-            this.messageService.setMessage("Fehler beim Laden des Chats.", "failure");
-        });
 
 
         this.chatForm = this.formBuilder.group({
             chatMessage: ["", [Validators.required]]
         });
+
+        alert("asdfasdf"); //never gets called
     }
 
-    setChatMessages()
-    {
-        this.messagesArray = this.chatMessages.list;
-    }
 
     sendChatMessage() {
         this.submitDisabled = true;

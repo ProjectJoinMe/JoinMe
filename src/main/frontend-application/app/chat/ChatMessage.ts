@@ -1,8 +1,8 @@
 import {UserProfile} from "../profile/UserProfile";
 
-export class ChatMessage {
-    public message: string;
-    public toUser: UserProfile;
-    public fromUser: UserProfile;
-    public creationDateTime: Date;
+export interface ChatMessage {
+    message: string;
+    toUser: UserProfile;
+    fromUser: UserProfile;
+    creationDateTime: Date;
 }

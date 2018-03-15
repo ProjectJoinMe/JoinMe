@@ -22,9 +22,10 @@ export class ChatService extends AbstractApiService {
             .catch(this.handleError);
     }
 
-    getChatMessages(fromUser: UserProfile, toUser: UserProfile): Promise<ChatMessages> {
+
+    getChatMessages(fromUserName: string, toUserName: string): Promise<ChatMessages> {
         return this.http
-            .post(`${this.ratingApiUrl}/getMessages`, {fromUser, toUser}, {headers: this.headers})
+            .post(`${this.ratingApiUrl}/getMessages`, {fromUserName, toUserName}, {headers: this.headers})
             .toPromise()
             .then(res => res.json() as ChatMessages)
             .catch(this.handleError);

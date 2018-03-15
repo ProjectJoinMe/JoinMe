@@ -22,6 +22,8 @@ import {EmailChangeComponent} from "./profile/change_email/EmailChangeComponent"
 import {ProactiveMatchingComponent} from "./profile/proactive_matching/ProactiveMatchingComponent";
 import {PointsOfInterestResolver} from "./resolvers/PointsOfInterestResolver";
 import {ChatComponent} from "./chat";
+import {ChatService} from "./services/ChatService";
+import {ChatResolver} from "./resolvers/ChatResolver";
 
 
 export const ROUTES: Routes = [
@@ -98,7 +100,7 @@ export const ROUTES: Routes = [
     {
         path: 'chat/:username',
         component: ChatComponent,
-        resolve: {userProfile: UserProfileByUsernameResolver}
+        resolve: {chatMessages: ChatResolver}
     },
     {
         path: 'about',

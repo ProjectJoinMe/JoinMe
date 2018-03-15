@@ -3,7 +3,7 @@
     <h1 class="component">Chat</h1>
     <br/>
 
-        <div *ngFor="let chatMessage of messagesArray">
+        <div *ngFor="let chatMessage of chatMessagesArray" class="chatmessage">
             <div style="text-align: left" *ngIf="chatMessage.toUser.username === userProfileChatFrom.username">
                 {{chatMessage.message}}
             </div>
