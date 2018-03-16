@@ -4,6 +4,7 @@ import com.joinme.backend.ratings.converter.RatingConverter;
 import com.joinme.backend.ratings.dto.RatingDto;
 import com.joinme.backend.ratings.entity.Rating;
 import com.joinme.backend.ratings.repository.RatingRepository;
+import com.joinme.backend.rides.repository.RideJoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,9 @@ public class RatingManagerBean implements RatingManager {
     @Autowired
     private RatingRepository ratingRepository;
 
+    @Autowired
+    private RideJoinRepository rideJoinRepository;
+
     @Override
     public RatingDto createRatingForRideJoin(RatingDto rating) {
         rating.setCreationDateTime(LocalDateTime.now());
@@ -35,5 +39,10 @@ public class RatingManagerBean implements RatingManager {
         Rating rating = ratingRepository.findById(id);
         if (rating == null) return null;
         return ratingConverter.toDto(rating);
+    }
+
+    @Override
+    public Double getAvgRatingForUser(String username) {
+        return rideJoinRepository.getAvgRatingForUser(username);
     }
 }
