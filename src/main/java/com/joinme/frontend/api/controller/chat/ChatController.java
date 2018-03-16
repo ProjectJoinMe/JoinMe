@@ -66,7 +66,6 @@ public class ChatController {
 
         List<ChatMessageDto> chatMessages = chatManager.getChatMessagesByFromUserAndToUser(fromUser, toUser);
 
-        System.out.println(chatMessages.size());
 
         return chatMessages;
     }

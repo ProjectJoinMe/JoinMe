@@ -85,6 +85,7 @@ export class ChatComponent implements OnInit {
             this.chatService.createChatMessage(chatMessage).then(chatMessage => {
                 this.submitDisabled = false;
                 this.chatForm.get("chatMessage").setValue("");
+                location.reload(); //reloads page
             }).catch(reason => {
                 console.info(reason.toString())
                 this.submitDisabled = false;

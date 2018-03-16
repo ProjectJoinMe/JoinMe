@@ -6,7 +6,6 @@ import com.joinme.backend.chat.converter.ChatMessageConverter;
 import com.joinme.backend.chat.dto.ChatMessageDto;
 import com.joinme.backend.chat.entity.ChatMessage;
 import com.joinme.backend.chat.repository.ChatRepository;
-import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,10 +38,13 @@ public class ChatManagerBean implements ChatManager {
 
     @Override
     public List<ChatMessageDto> getChatMessagesByFromUserAndToUser(UserProfileDto fromUser, UserProfileDto toUser) {
-        System.out.println(toUser.getUsername() + " "+ fromUser.getUsername());
+
+        System.out.println(fromUser.getUsername() + toUser.getUsername());
         List<ChatMessage> chatMessageList = chatRepository.
-                findTop50ByFromUserAndToUserOrderByCreationDateTimeDesc(
+                findChatMessagesWithUsers(
                         userAccountConverter.toEntity(fromUser), userAccountConverter.toEntity(toUser));
+
+        System.out.println(chatMessageList.size());
 
         return chatMessageList.stream().map(chatMessageConverter::toDto).collect(Collectors.toList());
     }
