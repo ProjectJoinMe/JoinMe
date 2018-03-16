@@ -64,15 +64,19 @@ public class ChatController {
         Assert.isTrue(fromUser.getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
                 || toUser.getUsername().equals(SecurityUtil.getCurrentUsername()));
 
-        return chatManager.getChatMessagesByFromUserAndToUser(fromUser, toUser);
+        List<ChatMessageDto> chatMessages = chatManager.getChatMessagesByFromUserAndToUser(fromUser, toUser);
+
+        System.out.println(chatMessages.size());
+
+        return chatMessages;
     }
 
 
 }
 
 class ChatUserProfileReceiver {
-   private String fromUserName;
-   private String toUserName;
+    private String fromUserName;
+    private String toUserName;
 
     public ChatUserProfileReceiver() {
     }

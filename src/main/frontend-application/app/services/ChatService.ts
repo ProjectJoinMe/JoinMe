@@ -23,11 +23,11 @@ export class ChatService extends AbstractApiService {
     }
 
 
-    getChatMessages(fromUserName: string, toUserName: string): Promise<ChatMessages> {
+    getChatMessages(fromUserName: string, toUserName: string): Promise<ChatMessage []> {
         return this.http
             .post(`${this.ratingApiUrl}/getMessages`, {fromUserName, toUserName}, {headers: this.headers})
             .toPromise()
-            .then(res => res.json() as ChatMessages)
+            .then(res => res.json() as ChatMessage [])
             .catch(this.handleError);
     }
 }

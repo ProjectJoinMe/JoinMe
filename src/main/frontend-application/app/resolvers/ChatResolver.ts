@@ -3,18 +3,19 @@ import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@ang
 import {Injectable} from "@angular/core";
 import {ChatMessages} from "../chat/ChatMessages";
 import {ChatService} from "../services/ChatService";
+import {ChatMessage} from "../chat/ChatMessage";
 
 @Injectable()
-export class ChatResolver implements Resolve<ChatMessages> {
+export class ChatResolver implements Resolve<ChatMessage> {
     constructor(private chatService: ChatService, private router: Router) {
     }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<ChatMessages> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<ChatMessage []> {
         let fromUserName: string = route.queryParams["fromUserName"];
         let toUserName: string = route.queryParams["toUserName"];
 
-        return this.chatService.getChatMessages(fromUserName, toUserName).then(chatMessages => {
-            return chatMessages;
+        return this.chatService.getChatMessages(fromUserName, toUserName).then(chatMessage => {
+            return chatMessage;
         }).catch(reason => {
             return null;
         })

@@ -1,5 +1,5 @@
 import {Component, OnInit, Pipe} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MessageService} from "../message_service/MessageService";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SecurityService} from "../security/SecurityService";
@@ -8,7 +8,6 @@ import {SecurityStatus} from "../security/SecurityStatus";
 import {UserProfile} from "../profile/UserProfile";
 import {UserProfileService} from "../services/UserProfileService";
 import {ChatService} from "../services/ChatService";
-import {ChatMessages} from "./ChatMessages";
 import {ChatMessage} from "./ChatMessage";
 
 @Component({
@@ -19,11 +18,12 @@ import {ChatMessage} from "./ChatMessage";
 })
 export class ChatComponent implements OnInit {
 
-    userProfileChatTo: UserProfile;
-    userProfileChatFrom: UserProfile;
-    chatForm: FormGroup;
-    submitDisabled: boolean = false;
-    chatMessagesArray: ChatMessage[];
+    public userProfileChatTo: UserProfile;
+    public userProfileChatFrom: UserProfile;
+    public chatForm: FormGroup;
+    public submitDisabled: boolean = false;
+    public chatMessages: ChatMessage [];
+
 
     constructor(private http: Http,
                 private securityService: SecurityService,
@@ -38,16 +38,33 @@ export class ChatComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.data
-            .subscribe((data: { chatMessages: ChatMessages }) => {
-                this.chatMessagesArray = data.chatMessages.list;
+            .subscribe((data: { chatMessages: ChatMessage [] }) => {
+                this.chatMessages = data.chatMessages
             });
 
+        let fromUserName;
+        let toUserName;
+
+        this.route.queryParams.subscribe((params: Params) => {
+            fromUserName = params['fromUserName'];
+            toUserName = params['toUserName'];
+        });
+
+        this.userProfileService.getProfile(fromUserName).then(userProfile => {
+            this.userProfileChatFrom = userProfile;
+        }).catch(reason => {
+           console.log(reason);
+        });
+
+        this.userProfileService.getProfile(toUserName).then(userProfile => {
+            this.userProfileChatTo = userProfile;
+        }).catch(reason => {
+            console.log(reason);
+        });
 
         this.chatForm = this.formBuilder.group({
             chatMessage: ["", [Validators.required]]
         });
-
-        alert("asdfasdf"); //never gets called
     }
 
 

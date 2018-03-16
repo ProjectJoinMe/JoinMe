@@ -2,25 +2,18 @@
     <br>
     <h1 class="component">Chat</h1>
     <br/>
-
-        <div *ngFor="let chatMessage of chatMessagesArray" class="chatmessage">
-            <div style="text-align: left" *ngIf="chatMessage.toUser.username === userProfileChatFrom.username">
-                {{chatMessage.message}}
-            </div>
-            <div style="text-align: left" *ngIf="chatMessage.toUser.username === userProfileChatTo.username">
-                {{chatMessage.message}}
-            </div>
-        </div>
-        <form [formGroup]="chatForm" (ngSubmit)="sendChatMessage()">
-            <table>
-                <tr class="row">
-                    <td><input formControlName="chatMessage" type="text"/></td>
-                    <td>
-                        <button type="submit" [disabled]="submitDisabled">Senden</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <br>
+    <div style="color: black" *ngFor="let chatMessage of chatMessages" class="chatmessage">
+        <span>{{chatMessage.fromUser.username + ": " + chatMessage.message}}</span>
+    </div>
+    <form [formGroup]="chatForm" (ngSubmit)="sendChatMessage()">
+        <table>
+            <tr class="row">
+                <td><input formControlName="chatMessage" type="text"/></td>
+                <td>
+                    <button type="submit" [disabled]="submitDisabled">Senden</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 
 </div>
