@@ -30,7 +30,7 @@
                         <td class=" first col-4 col-t-4 col-m-6 ">
                             <label class="description">Freie Plätze:</label>
                         </td>
-                        <td class=" second col-4 col-t-4 col-m-6 ">
+                        <td class="second col-4 col-t-4 col-m-6 ">
                             <label class="content">{{ ride.freeSeats }}</label>
                         </td>
                     </tr>
@@ -43,11 +43,11 @@
                         <td class=" first col-4 col-t-4 col-m-6">
                             <label class="description">Abfahrt:</label>
                         </td>
-                        <td class="col-4 col-t-4 col-m-3">
+                        <td class="second col-2 col-t-2 col-m-3">
                             <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'dd.MM.yyyy'
                                 }}</label>
                         </td>
-                        <td class="col-4 col-t-4 col-m-3">
+                        <td class="second col-2 col-t-2 col-m-3">
                             <label class="content">{{ ride.departureDateTime | timezonifyDate | date:'HH:mm' }}</label>
                         </td>
                     </tr>
@@ -63,13 +63,13 @@
                             <td class=" first col-4 col-t-4 col-m-6">
                                 <label class="description">Abfahrt:</label>
                             </td>
-                            <td class="col-4 col-t-4 col-m-3">
-                                <label class="content">{{ ride.returnDepartureDateTime | timezonifyDate |
+                            <td class="second col-2 col-t-2 col-m-3">
+                                <label class="putLeft content">{{ ride.returnDepartureDateTime | timezonifyDate |
                                     date:'dd.MM.yyyy'
                                     }}</label>
                             </td>
-                            <td class="col-4 col-t-4 col-m-3">
-                                <label class="content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'HH:mm'
+                            <td class="second col-2 col-t-2 col-m-3">
+                                <label class="putLeft content">{{ ride.returnDepartureDateTime | timezonifyDate | date:'HH:mm'
                                     }}</label>
                             </td>
                         </tr>
@@ -88,10 +88,10 @@
                     </tr>
                     <tr class="row">
                         <!-- TODO make something else when there are no notes-->
-                        <td class="col-4 col-t-4 col-m-6 first">
+                        <td class=" col-4 col-t-4 col-m-6 first">
                             <label>Bemerkungen:</label>
                         </td>
-                        <td class="col-4 col-t-8 col-m-6">
+                        <td class="second col-4 col-t-8 col-m-6">
                             <div *ngIf="ride.notes">{{ ride.notes }}</div>
                         </td>
                     </tr>
@@ -112,7 +112,7 @@
                 <div class="row">
 
                     <div *ngIf="rideJoins.length !== 0" class="col-12 col-t-12 col-m-12">
-                        Mitfahrer auf dieser Fahrt
+                        Mitfahrer auf dieser Fahrt:
                         <div *ngFor="let rideJoin of rideJoins">
                             <span>{{ rideJoin.userProfileDto.username }}</span>
                         </div>
@@ -138,9 +138,9 @@
 
                     <div *ngIf="!isMyRide()" class="row">
                         <div class="col-4 col-t-4 col-m-2"></div>
-                        <div class="col-2 col-t-2 col-m-4">
+                        <div class="col-4 col-t-4 col-m-8">
                             <input type="button" class="col-12 col-t-12 col-m-12 btn" value="zum Anbieter"
-                                   (click)="goToProviderProfile()"><!-- TODO center button-->
+                                   (click)="goToProviderProfile()">
                         </div>
                     </div>
 
