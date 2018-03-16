@@ -28,17 +28,19 @@ public class UserAccountConverter {
     }
 
     public void setPropertiesOnDto(UserProfileDto userProfileDto, UserAccount entity) {
-        userProfileDto.setUsername(entity.getUsername());
-        userProfileDto.setEmail(entity.getEmail());
-        userProfileDto.setDateOfBirth(entity.getDateOfBirth());
-        userProfileDto.setGender(entity.getGender());
-        userProfileDto.setFirstName(entity.getFirstName());
-        userProfileDto.setLastName(entity.getLastName());
-        userProfileDto.setDescription(entity.getDescription());
-        userProfileDto.setCarMake(entity.getCarMake());
-        userProfileDto.setCarModel(entity.getCarModel());
-        userProfileDto.setCarManufacturingYear(entity.getCarManufacturingYear());
-        userProfileDto.setCarDescription(entity.getCarDescription());
+        if (entity != null) {
+            userProfileDto.setUsername(entity.getUsername());
+            userProfileDto.setEmail(entity.getEmail());
+            userProfileDto.setDateOfBirth(entity.getDateOfBirth());
+            userProfileDto.setGender(entity.getGender());
+            userProfileDto.setFirstName(entity.getFirstName());
+            userProfileDto.setLastName(entity.getLastName());
+            userProfileDto.setDescription(entity.getDescription());
+            userProfileDto.setCarMake(entity.getCarMake());
+            userProfileDto.setCarModel(entity.getCarModel());
+            userProfileDto.setCarManufacturingYear(entity.getCarManufacturingYear());
+            userProfileDto.setCarDescription(entity.getCarDescription());
+        }
     }
 
     public UserAccount toEntity(UserProfileDto userProfileDto) {

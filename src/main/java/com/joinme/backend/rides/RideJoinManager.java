@@ -19,4 +19,6 @@ public interface RideJoinManager {
 
     RideJoinDto setRating(RideJoinDto rideJoinDto, RatingDto ratingDto);
 
+    RideDto getRideOfRideJoin(long rideJoinId);
+
 }

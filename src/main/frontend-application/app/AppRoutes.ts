@@ -21,6 +21,9 @@ import {PasswordChangeComponent} from "./profile/change_password/PasswordChangeC
 import {EmailChangeComponent} from "./profile/change_email/EmailChangeComponent";
 import {ProactiveMatchingComponent} from "./profile/proactive_matching/ProactiveMatchingComponent";
 import {PointsOfInterestResolver} from "./resolvers/PointsOfInterestResolver";
+import {ChatComponent} from "./chat";
+import {ChatService} from "./services/ChatService";
+import {ChatResolver} from "./resolvers/ChatResolver";
 
 
 export const ROUTES: Routes = [
@@ -86,11 +89,18 @@ export const ROUTES: Routes = [
     {
         path: 'rides/:id',
         component: RideDetailsComponent,
-        resolve: {ride: RideByIdResolver, rideJoins: RideJoinsByRideIdResolver}
+        resolve: {ride: RideByIdResolver,
+            rideJoins: RideJoinsByRideIdResolver}
     },
     {
         path: 'rides/:id/update',
-        component: RideUpdateComponent, resolve: {ride: RideByIdResolver}
+        component: RideUpdateComponent,
+        resolve: {ride: RideByIdResolver}
+    },
+    {
+        path: 'chat/:username',
+        component: ChatComponent,
+        resolve: {chatMessages: ChatResolver}
     },
     {
         path: 'about',

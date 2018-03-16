@@ -47,9 +47,11 @@ public class UserNotificationConverter {
                 typeSpecificData.setRideId(entity.getRide().getId());
                 dto.setTypeSpecificData(typeSpecificData);
                 break;
-            case joinedRideWasDeleted: break;
+            case joinedRideWasDeleted:
+            case gotRating:
+            case chatMessageReceived: break;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Error in UserNotificationConverter.setPropertiesOnDto");
         }
     }
 
@@ -73,9 +75,11 @@ public class UserNotificationConverter {
                 RideReferenceUserNotificationData typeSpecificData = (RideReferenceUserNotificationData) dto.getTypeSpecificData();
                 entity.setRide(rideRepository.findById(typeSpecificData.getRideId()));
                 break;
-            case joinedRideWasDeleted: break;
+            case joinedRideWasDeleted:
+            case gotRating:
+            case chatMessageReceived: break;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Error in UserNotificationConverter.setPropertiesOnEntity");
         }
     }
 }

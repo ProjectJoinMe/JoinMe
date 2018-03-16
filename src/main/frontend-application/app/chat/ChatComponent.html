@@ -1,0 +1,19 @@
+<div id="content" class="main">
+    <br>
+    <h1 class="component">Chat</h1>
+    <br/>
+    <div style="color: black" *ngFor="let chatMessage of chatMessages" class="chatmessage">
+        <span>{{chatMessage.fromUser.username + ": " + chatMessage.message}}</span>
+    </div>
+    <form [formGroup]="chatForm" (ngSubmit)="sendChatMessage()">
+        <table>
+            <tr class="row">
+                <td><input formControlName="chatMessage" type="text"/></td>
+                <td>
+                    <button type="submit" [disabled]="submitDisabled">Senden</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>

@@ -16,7 +16,7 @@ public class ChatMessage implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5000)
     private String message;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

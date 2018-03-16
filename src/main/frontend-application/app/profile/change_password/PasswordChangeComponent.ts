@@ -42,13 +42,12 @@ export class PasswordChangeComponent implements OnInit {
 
     ngOnInit() {
         this.passwordForm = this.formBuilder.group({
-            newPassword: ["", [Validators.required, Validators.minLength(6)]],
-            newPasswordCheck: ["", [Validators.required, this.passwordsMatchValidator]],
+            newPassword: ["", [Validators.required, Validators.minLength(6)]], //first password field
+            newPasswordCheck: ["", [Validators.required, this.passwordsMatchValidator]], //second password field
         });
     }
 
     private passwordsMatchValidator(control: AbstractControl): any {
-        // partially from https://scotch.io/tutorials/how-to-implement-a-custom-validator-directive-confirm-password-in-angular-2
         var passwordControl = control.root.get("newPassword");
         return passwordControl && (passwordControl.value === control.value)
             ? null : {

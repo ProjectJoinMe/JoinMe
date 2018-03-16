@@ -35,6 +35,16 @@
                         </tr>
                     </table>
         </div>
+        <div *ngIf="securityStatus.loggedIn && userProfile.username !== securityStatus.username" class="inner col-8 col-t-12 col-m-12">
+
+            <table>
+                <tr class="row">
+                    <td class="col-2 col-t-4 col-m-12 top">
+                        <input type="button" value="Chat mit diesem User" class="col-12 col-t-12 col-m-12 btn" (click)="toUserChat()">
+                    </td>
+                </tr>
+            </table>
+        </div>
         <div class="col-2"></div>
     </div>
 

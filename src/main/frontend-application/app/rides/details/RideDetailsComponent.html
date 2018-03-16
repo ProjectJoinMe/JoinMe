@@ -102,8 +102,8 @@
                 <div class="row">
                     <div *ngIf="ride.startPlaceId && ride.destinationPlaceId" class="col-12 col-t-12 col-m-12">
                         <maps-display-embedded-route class="col-12 col-t-12 col-m-12 "
-                                [originPlaceId]="ride.startPlaceId"
-                                [destinationPlaceId]="ride.destinationPlaceId">
+                                                     [originPlaceId]="ride.startPlaceId"
+                                                     [destinationPlaceId]="ride.destinationPlaceId">
                         </maps-display-embedded-route>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
 
                 <div class="row">
 
-                    <div *ngIf="rideJoins.length != 0" class="col-12 col-t-12 col-m-12">
+                    <div *ngIf="rideJoins.length !== 0" class="col-12 col-t-12 col-m-12">
                         Mitfahrer auf dieser Fahrt
                         <div *ngFor="let rideJoin of rideJoins">
                             <span>{{ rideJoin.userProfileDto.username }}</span>
@@ -136,26 +136,37 @@
                         <div class="col-4 col-t-4 col-m-2"></div>
                     </div>
 
-
-                    <div *ngIf="!isMyRide() && !joined" class="col-12 col-t-12 col-m-12">
+                    <div *ngIf="!isMyRide()" class="row">
                         <div class="col-4 col-t-4 col-m-2"></div>
-                        <div class="col-4 col-t-4 col-m-8">
-                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnehmen"
-                               (click)="joinRide()" [disabled]="rideFull">
+                        <div class="col-2 col-t-2 col-m-4">
+                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="zum Anbieter"
+                                   (click)="goToProviderProfile()"><!-- TODO center button-->
                         </div>
-                        <div class="col-4 col-t-6 col-m-2"></div>
                     </div>
 
-                    <div *ngIf="!isMyRide() && joined" class="col-12 col-t-12 col-m-12">
-                        <div class="col-4 col-t-4 col-m-3"></div>
-                        <div class="col-4 col-t-4 col-m-6">
-                            <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnahme zurückziehen"
-                               (click)="unjoinRide()">
+                    <div *ngIf="rideDepDate > today">
+
+                        <div *ngIf="!isMyRide() && !joined" class="col-12 col-t-12 col-m-12">
+                            <div class="col-4 col-t-4 col-m-2"></div>
+                            <div class="col-4 col-t-4 col-m-8">
+                                <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnehmen"
+                                       (click)="joinRide()" [disabled]="rideFull">
+                            </div>
+                            <div class="col-4 col-t-6 col-m-2"></div>
                         </div>
-                        <div class="col-4 col-t-4 col-m-3"></div>
+
+                        <div *ngIf="!isMyRide() && joined" class="col-12 col-t-12 col-m-12">
+                            <div class="col-4 col-t-4 col-m-3"></div>
+                            <div class="col-4 col-t-4 col-m-6">
+                                <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Teilnahme zurückziehen"
+                                       (click)="unjoinRide()">
+                            </div>
+                            <div class="col-4 col-t-4 col-m-3"></div>
+                        </div>
+
                     </div>
 
-                    <div *ngIf="joined && !rated && !isMyRide()" class="row">
+                    <div *ngIf="joined && !rated && !isMyRide() && rideDepDate < today" class="row">
                         <h2 class="col-12 col-m-12 col-t-12">Fahrt bewerten</h2>
 
                         <form [formGroup]="ratingForm" (ngSubmit)="rate()" class="row">
@@ -171,15 +182,17 @@
                             <div class="row">
                                 <div class="col-4 col-t-4 col-m-3"></div>
                                 <div class="col-4 col-t-4 col-m-6">
-                                    <textarea formGroupName="ratingComment" class="col-7 col-t-7 col-m-7">Diese Fahrt war supiii</textarea>
+                                    <textarea formControlName="ratingComment" class="col-7 col-t-7 col-m-7"></textarea>
                                 </div>
                                 <div class="col-4 col-t-4 col-m-3"></div>
                             </div>
 
                             <div class="row">
-                                <div class="col-4 col-t-4 col-m-3"></div>
+                            F    <div class="col-4 col-t-4 col-m-3"></div>
                                 <div class="col-4 col-t-4 col-m-6">
-                                    <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="submitDisabled">Bewerten</button>
+                                    <button type="submit" class="col-12 col-t-12 col-m-12 btn"
+                                            [disabled]="submitDisabled">Bewerten
+                                    </button>
                                 </div>
                                 <div class="col-4 col-t-4 col-m-3"></div>
                             </div>

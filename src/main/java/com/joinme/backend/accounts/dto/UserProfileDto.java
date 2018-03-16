@@ -1,5 +1,7 @@
 package com.joinme.backend.accounts.dto;
 
+import org.hibernate.validator.constraints.Email;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
 public class UserProfileDto {
     private String username;
 
+    @Email
     private String email;
 
     private LocalDate dateOfBirth;

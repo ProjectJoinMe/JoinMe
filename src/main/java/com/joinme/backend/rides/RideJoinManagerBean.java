@@ -120,6 +120,12 @@ public class RideJoinManagerBean implements RideJoinManager {
         return rideJoinConverter.toDto(existingJoin);
     }
 
+    @Override
+    public RideDto getRideOfRideJoin(long rideJoinId) {
+        Ride ride = rideRepository.findById(getRideJoinById(rideJoinId).getRideId());
+        return rideConverter.toDto(ride);
+    }
+
     private void checkIfDuplicate(long rideId, String username) {
         RideJoin existingJoin = getJoin(rideId, username);
         if (existingJoin != null) {

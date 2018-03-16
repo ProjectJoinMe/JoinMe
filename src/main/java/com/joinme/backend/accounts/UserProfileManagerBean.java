@@ -7,11 +7,13 @@ import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.accounts.entity.UserAccount;
 import com.joinme.backend.accounts.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +57,7 @@ public class UserProfileManagerBean implements UserProfileManager {
     public List<PointOfInterestDto> getPointsOfInterest(String username) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
         ArrayList<PointOfInterestDto> pointsOfInterest = userAccount.getPointsOfInterest();
-        if(pointsOfInterest == null){
+        if (pointsOfInterest == null) {
             pointsOfInterest = new ArrayList<>();
         }
         return pointsOfInterest;
@@ -64,9 +66,7 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Override
     public UserProfileDto updateUserPassword(UserPasswordDto userPasswordDto) {
         String rawPassword = userPasswordDto.getPassword();
-        System.out.println(rawPassword);
         String encodedPassword = passwordEncoder.encode(rawPassword);
-
         UserAccount userAccount = userAccountRepository.findByUsername(userPasswordDto.getUsername());
         userAccount.setPassword(encodedPassword);
 
@@ -76,8 +76,6 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Override
     public UserProfileDto setProfilePicture(String username, MultipartFile profilePicture) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
-        //TODO make image size smaller
-
         try {
             userAccount.setProfilePicture(profilePicture.getBytes());
         } catch (IOException e) {
@@ -91,8 +89,6 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Override
     public UserProfileDto setCarPicture(String username, MultipartFile carPicture) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
-        //TODO make image size smaller
-
         try {
             userAccount.setCarPicture(carPicture.getBytes());
         } catch (IOException e) {

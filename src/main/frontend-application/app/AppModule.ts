@@ -54,6 +54,9 @@ import {NotificationService} from "./services/NotificationService";
 import {ProactiveMatchingComponent} from "./profile/proactive_matching/ProactiveMatchingComponent";
 import {RatingService} from "./services/RatingService";
 import {PointsOfInterestResolver} from "./resolvers/PointsOfInterestResolver";
+import {ChatComponent} from "./chat";
+import {ChatService} from "./services/ChatService";
+import {ChatResolver} from "./resolvers/ChatResolver";
 
 export class MobileDetector {
     // http://detectmobilebrowsers.com/
@@ -69,7 +72,8 @@ const APP_PROVIDERS = [
     SecurityService,
     SecurityStatus,
     Message,
-    MessageService
+    MessageService,
+    ChatService
 ];
 
 type StoreType = {
@@ -107,7 +111,9 @@ type StoreType = {
         EmailChangeComponent,
         MessageComponent,
         NotificationsComponent,
-        ProactiveMatchingComponent
+        ProactiveMatchingComponent,
+        AboutComponent,
+        ChatComponent
     ],
     imports: [
         // Angular
@@ -137,7 +143,9 @@ type StoreType = {
         JoinedRidesByUserResolver,
         NotificationsService,
         NotificationService,
-        RatingService
+        RatingService,
+        ChatService,
+        ChatResolver
     ]
 })
 export class AppModule {
