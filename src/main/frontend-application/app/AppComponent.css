@@ -84,16 +84,27 @@ span.active {
   text-decoration: none;
 }
 
+input, textarea {
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+
+  padding-left: 2px;
+}
+input {
+  line-height: 100%;
+}
+
 /* Checkbox */
-input[type=checkbox]:checked {
+input[type=checkbox]:checked, input[type=radio]:checked {
   background-color: green;
 }
 
-input[type=checkbox]:hover {
+input[type=checkbox]:hover, input[type=radio]:hover {
   background-color: #6C9137;
 }
 
-input[type=checkbox]{
+input[type=checkbox], input[type=radio]{
   width: 15px;
   height: 15px;
   -webkit-appearance: none;

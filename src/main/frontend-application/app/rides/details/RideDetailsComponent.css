@@ -1,0 +1,13 @@
+textarea {
+    width: 100%;
+    height: 5em;
+    border-radius: 5px;
+}
+
+select {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    padding-bottom: 4px;
+}
