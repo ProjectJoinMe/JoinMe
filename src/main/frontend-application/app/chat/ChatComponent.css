@@ -8,3 +8,6 @@
     text-align: left;
     padding-left: 3px;
 }
+.chatmessage{
+    line-height: 30px;
+}
