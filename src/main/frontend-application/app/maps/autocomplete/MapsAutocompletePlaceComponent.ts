@@ -45,6 +45,12 @@ export class MapsAutocompletePlaceComponent {
         }
     }
 
+    public clear() {
+        this.inputFieldElement.value = "";
+        this.setTextFormValue("");
+        this.setPlaceId(null);
+    }
+
     private selectedPlaceWasChanged() {
         let place = this.autocomplete.getPlace();
         let placeId = place.place_id;
@@ -77,11 +83,5 @@ export class MapsAutocompletePlaceComponent {
 
     private getPlaceIdFormControlName() {
         return this.name + "PlaceId";
-    }
-
-    public clear(){
-        this.inputFieldElement.value = "";
-        this.setTextFormValue("");
-        this.setPlaceId(null);
     }
 }

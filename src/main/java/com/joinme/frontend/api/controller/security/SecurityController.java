@@ -1,19 +1,14 @@
 package com.joinme.frontend.api.controller.security;
 
-import com.joinme.backend.accounts.UserAccountCreation;
-import com.joinme.backend.accounts.dto.AccountRegistrationData;
-import com.joinme.backend.accounts.entity.UserAccount;
-import com.joinme.backend.accounts.repository.UserAccountRepository;
 import com.joinme.frontend.api.data.security.SecurityStatus;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by Nicole on 01.05.2017.

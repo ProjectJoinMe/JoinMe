@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {SecurityStatus} from "./SecurityStatus";
 import {Http} from "@angular/http";
 import {NotificationsService} from "../notifications/NotificationsService";
@@ -30,11 +30,6 @@ export class SecurityService {
                 });
     }
 
-    private updateNotificationService() {
-        this.notificationsService.clear();
-        this.notificationsService.setEnabled(this.securityStatus.loggedIn);
-    }
-
     logout() {
         this.http.post("api/logout", null)
             .subscribe(
@@ -44,5 +39,10 @@ export class SecurityService {
                 error => {
                     this.updateSecurityStatus();
                 });
+    }
+
+    private updateNotificationService() {
+        this.notificationsService.clear();
+        this.notificationsService.setEnabled(this.securityStatus.loggedIn);
     }
 }

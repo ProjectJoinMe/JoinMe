@@ -67,7 +67,7 @@ public class RideJoinManagerBean implements RideJoinManager {
         createNotification(UserNotificationType.rideWasJoined,
                 ride,
                 passenger,
-                " ist deiner Fahrt (von "+ride.getStart()+" nach "+ ride.getDestination() +" am "+ride.getDepartureDate()+") beigetreten.");
+                " ist deiner Fahrt (von " + ride.getStart() + " nach " + ride.getDestination() + " am " + ride.getDepartureDate() + ") beigetreten.");
         return rideJoinConverter.toDto(rideJoin);
     }
 
@@ -79,7 +79,7 @@ public class RideJoinManagerBean implements RideJoinManager {
         createNotification(UserNotificationType.rideWasUnjoined,
                 rideRepository.findById(rideId),
                 userAccountRepository.findByUsername(username),
-                " hat die Teilnahme an deiner Fahrt (von "+ride.getStart()+" nach "+ ride.getDestination() +" am "+ride.getDepartureDate()+") zurückgezogen.");
+                " hat die Teilnahme an deiner Fahrt (von " + ride.getStart() + " nach " + ride.getDestination() + " am " + ride.getDepartureDate() + ") zurückgezogen.");
     }
 
     //// TODO: 06.01.2018 Profilbild 

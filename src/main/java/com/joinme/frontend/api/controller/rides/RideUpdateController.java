@@ -1,9 +1,7 @@
 package com.joinme.frontend.api.controller.rides;
 
-import com.joinme.backend.rides.RideCreation;
 import com.joinme.backend.rides.RideUpdate;
 import com.joinme.backend.rides.dto.RideDto;
-import com.joinme.frontend.api.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

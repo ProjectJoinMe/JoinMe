@@ -23,16 +23,17 @@
                     <tr *ngFor="let poi of pois">
                         <td class="col-11 col-t-11 col-m-11"><label>{{ poi.name }}</label></td>
                         <td class="col-1 col-t-1 col-m-1">
-                            <button class="deleteBtn"(click)="deletePoi(poi)"> x </button>
+                            <button class="deleteBtn" (click)="deletePoi(poi)"> x</button>
                         </td>
                     </tr>
                 </table>
             </div>
             <br/>
-            <div class="row" >
+            <div class="row">
                 <form [formGroup]="placeForm">
                     <label class="col-12 col-t-12 col-m-12">Orte hinzufügen</label>
-                    <maps-autocomplete-place class="autoMapsSize col-12 col-t-12 col-m-12" [formGroup]="placeForm" [name]="'poiMapsInput'"
+                    <maps-autocomplete-place class="autoMapsSize col-12 col-t-12 col-m-12" [formGroup]="placeForm"
+                                             [name]="'poiMapsInput'"
                                              [onPlaceChange]="onPlaceChange"></maps-autocomplete-place>
                     <small class="error-message col-12 col-t-12 col-m-12"
                            [hidden]="(placeForm.controls.poiMapsInputPlaceId.valid || placeForm.controls.poiMapsInputPlaceId.pristine) || !submitted">

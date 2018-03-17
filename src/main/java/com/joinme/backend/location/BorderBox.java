@@ -14,7 +14,7 @@ public class BorderBox implements Serializable {
         this.northEast = northEast;
     }
 
-    public boolean contains(LatLng location){
+    public boolean contains(LatLng location) {
         return LatLngUtils.contains(this, location);
     }
 

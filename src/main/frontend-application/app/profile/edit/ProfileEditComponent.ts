@@ -99,6 +99,8 @@ export class ProfileEditComponent implements OnInit {
         if (fileCount === 1) { // a file was selected
             formData.append('profilePicture', inputEl.files.item(0));
             this.userProfileService.setProfilePicture(formData, this.userProfile.username).then(updatedUserProfile => {
+                this.userProfilePicturePath = "/api/profile/" + this.userProfile.username + "/profilePicture"
+                    + "?random+\=" + Math.random(); //This is needed to update the picture because angular needs a new url
             }).catch(reason => {
                 console.error("failed to update profile picture, TODO message");
             });
@@ -114,6 +116,8 @@ export class ProfileEditComponent implements OnInit {
         if (fileCount === 1) { // a file was selected
             formData.append('carPicture', inputEl.files.item(0));
             this.userProfileService.setCarPicture(formData, this.userProfile.username).then(updatedUserProfile => {
+                this.userCarPicturePath = "/api/profile/" + this.userProfile.username + "/carPicture"
+                    + "?random+\=" + Math.random(); //This is needed to update the picture because angular needs a new url
             }).catch(reason => {
                 console.error("failed to update car picture, TODO message");
             });

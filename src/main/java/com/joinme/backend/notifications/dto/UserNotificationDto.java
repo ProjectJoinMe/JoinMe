@@ -15,7 +15,6 @@ public class UserNotificationDto {
     }
 
 
-
     public long getId() {
         return id;
     }

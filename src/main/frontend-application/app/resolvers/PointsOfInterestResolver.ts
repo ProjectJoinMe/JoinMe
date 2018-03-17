@@ -1,8 +1,6 @@
 import {Crisis, CrisisService} from "./crisis.service";
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
 import {Injectable} from "@angular/core";
-import {RideService} from "../services/RideService";
-import {Ride} from "../rides/model/Ride";
 import {PointOfInterest} from "../profile/proactive_matching/PointOfInterest";
 import {UserProfileService} from "../services/UserProfileService";
 

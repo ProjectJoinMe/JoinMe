@@ -11,7 +11,7 @@ export class JoinedRidesByUserResolver implements Resolve<Ride> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<Ride[]> {
         let username = route.params['username'];
-        route.queryParams
+        route.queryParams;
         return this.rideService.getJoinedRidesOf(username).then(rides => {
             return rides;
         });

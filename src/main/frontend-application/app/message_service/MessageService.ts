@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Message} from "./Message";
 import {Http} from "@angular/http";
 
@@ -9,7 +9,7 @@ export class MessageService {
                 private http: Http) {
     }
 
-    setMessage(text :string, type :string): void {
+    setMessage(text: string, type: string): void {
         this.currentMessage.text = text;
         this.currentMessage.type = type;
     }

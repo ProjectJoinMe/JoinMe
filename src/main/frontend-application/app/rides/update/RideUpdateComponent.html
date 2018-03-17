@@ -18,7 +18,8 @@
                         <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsort:</label></td>
 
                         <td class="col-4 col-t-4 col-m-6 ">
-                            <maps-autocomplete-place [formGroup]="rideForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
+                            <maps-autocomplete-place [formGroup]="rideForm" [name]="'start'"
+                                                     [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
                         </td>
 
                         <td class="col-4 col-t-4 col-m-12">
@@ -33,7 +34,8 @@
                         <td class="first col-4 col-t-4 col-m-6"><label>Ankunftsort:</label></td>
                         <td class="col-4 col-t-4 col-m-6 ">
                             <maps-autocomplete-place [formGroup]="rideForm"
-                                                     [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
+                                                     [name]="'destination'"
+                                                     [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
                         </td>
                         <td class="col-4 col-t-4 col-m-12">
                             <small class="error-message"
@@ -50,7 +52,8 @@
                     <tr class="row">
                         <td class="first col-4 col-t-4 col-m-6"><label class="heading"><b>Hinfahrt</b></label></td>
                         <td class="col-8 col-t-8 col-m-6 second">
-                            <input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
+                            <input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und
+                            Rückfahrt
                         </td>
                     </tr>
 
@@ -58,7 +61,7 @@
                         <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsdatum:</label></td>
                         <td class="col-4 col-t-8 col-m-6 ">
                             <input class="date" formControlName="departureDate" type="date"
-                                                                            min="{{currentDate | date:'yyyy-MM-dd'}}">
+                                   min="{{currentDate | date:'yyyy-MM-dd'}}">
                         </td>
                         <td class="col-4 col-t-4 col-m-12">
                             <small class="error-message"
@@ -94,8 +97,8 @@
                             <td class="first col-4 col-t-4 col-m-6"><label>Abfahrtsdatum:</label></td>
                             <td class="col-4 col-t-8 col-m-6 ">
                                 <input formControlName="returnDepartureDate" type="date"
-                                                                                min="{{currentDate | date:'yyyy-MM-dd'}}"
-                                                                                class="date">
+                                       min="{{currentDate | date:'yyyy-MM-dd'}}"
+                                       class="date">
                             </td>
                             <td class="col-4 col-t-4 col-m-12">
                                 <small class="error-message"
@@ -108,7 +111,8 @@
                             <td class="first col-4 col-t-4 col-m-6"><label>Uhrzeit:</label></td>
                             <td class="col-4 col-t-8 col-m-6 ">
                                 <input formControlName="returnDepartureHour" type="number" min="0" max="23">&nbsp;:
-                                <input formControlName="returnDepartureMinute" type="number" min="0" max="55" step="5"></td>
+                                <input formControlName="returnDepartureMinute" type="number" min="0" max="55" step="5">
+                            </td>
                             <td class="col-4 col-t-4 col-m-12">
                                 <small class="error-message" [hidden]="rideForm.controls.returnDepartureHour.valid || (rideForm.controls.returnDepartureHour.pristine && !submitted)
                                                            && rideForm.controls.returnDepartureMinute.valid || (rideForm.controls.returnDepartureMinute.pristine && !submitted)">
@@ -136,7 +140,8 @@
                                 <input formControlName="pricePerPassenger" type="number" min="0" max="100">
                             </td>
                             <td class="col-4 col-t-4 col-m-12">
-                                <small class="error-message" [hidden]="rideForm.controls.pricePerPassenger.valid || (rideForm.controls.pricePerPassenger.pristine && !submitted)">
+                                <small class="error-message"
+                                       [hidden]="rideForm.controls.pricePerPassenger.valid || (rideForm.controls.pricePerPassenger.pristine && !submitted)">
                                     ungültiger Preis
                                 </small>
                             </td>
@@ -161,60 +166,60 @@
                     <div class="days">
                         <table>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[0]">Montag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[1]">Dienstag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[2]">Mittwoch
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[3]">Donnerstag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
-                                    <input  class="col-12 col-t-12 col-m-12"type="checkbox"
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[4]">Freitag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
-                                    <input  class="col-12 col-t-12 col-m-12"type="checkbox"
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[5]">Samstag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[6]">Sonntag
                                 </td>
-                                <td class="col-3 col-t-3 "> </td>
+                                <td class="col-3 col-t-3 "></td>
                             </tr>
                         </table>
                     </div>
@@ -242,10 +247,13 @@
                 <div class="row">
                     <div class="col-4 col-t-4 col-m-2"></div>
                     <div class="col-2 col-t-2 col-m-4">
-                        <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="submitDisabled">Speichern</button>
+                        <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="submitDisabled">
+                            Speichern
+                        </button>
                     </div>
                     <div class="col-2 col-t-2 col-m-4">
-                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Abbrechen" (click)="goToDetails(ride)">
+                        <input type="button" class="col-12 col-t-12 col-m-12 btn" value="Abbrechen"
+                               (click)="goToDetails(ride)">
                     </div>
                     <div class="col-4 col-t-4 col-m-2"></div>
                 </div>

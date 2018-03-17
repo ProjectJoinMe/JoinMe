@@ -24,7 +24,9 @@
                     <table>
                         <tr class="row">
                             <td class="col-12 col-t-12 col-m-12">
-                                <img src="{{userProfilePicturePath}}"  alt="Profilbild" width="125px" height="125px">
+                                <img [src]="userProfilePicturePath"
+                                     onerror="this.src='/assets/img/profile/profilePicPlace.png'" alt="Profilbild"
+                                     width="125px" height="125px">
                             </td>
                         </tr>
                         <tr class="row">
@@ -111,7 +113,9 @@
                     <table>
                         <tr class="row">
                             <td class="col-12 col-t-12 col-m-12">
-                                <img src="{{userCarPicturePath}}"  alt="Autobild" width="125px" height="125px">
+                                <img [src]="userCarPicturePath"
+                                     onerror="this.src='/assets/img/profile/profilePicPlace.png'" alt="Autobild"
+                                     width="125px" height="125px">
                             </td>
                         </tr>
                         <tr class="row">

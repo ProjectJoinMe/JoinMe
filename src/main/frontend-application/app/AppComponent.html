@@ -22,14 +22,16 @@
             <a *ngIf="!securityStatus.loggedIn" [routerLink]="['./login'] " class="col-1-2 col-t-1-2 ">
                 Login
             </a>
-            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./profile/' + securityStatus.username]" class="col-1-2 col-t-1-2 ">
+            <a *ngIf="securityStatus.loggedIn" [routerLink]="['./profile/' + securityStatus.username]"
+               class="col-1-2 col-t-1-2 ">
                 Mein Profil
             </a>
             <a *ngIf="securityStatus.loggedIn" (click)="logout()" [routerLink]="['./home']" class="col-1-2 col-t-1-2 ">
                 Logout
             </a>
-            <a id="toggleNotificationsButton" *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()" class="float-right col-2 col-t-3">
-                <div class="clear" ></div>
+            <a id="toggleNotificationsButton" *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()"
+               class="float-right col-2 col-t-3">
+                <div class="clear"></div>
                 Benachrichtigungen
                 <span *ngIf="notificationsService.notifications.unreadNotificationCount != 0">({{ notificationsService.notifications.unreadNotificationCount }})</span>
 
@@ -40,14 +42,13 @@
     </header>
 
 
-
     <div class="content " (click)="hideMenu()">
 
         <div class="row">
             <div #notificationsElementContainer *ngIf="notificationsShown" class="infobox col-3 col-t-6 col-m-12">
 
                 <br>
-                <notifications *ngIf="notificationsShown" ></notifications>
+                <notifications *ngIf="notificationsShown"></notifications>
             </div>
         </div>
 
@@ -57,11 +58,13 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-m-12 col-t-12"><message></message></div>
+            <div class="col-12 col-m-12 col-t-12">
+                <message></message>
+            </div>
         </div>
 
         <main>
-            <router-outlet ></router-outlet>
+            <router-outlet></router-outlet>
         </main>
 
         <footer>
@@ -69,7 +72,6 @@
         </footer>
     </div>
 </div>
-
 
 
 <!--<footer>-->

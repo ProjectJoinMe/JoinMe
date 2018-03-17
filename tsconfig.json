@@ -7,12 +7,10 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-//    "noEmitHelpers": true,
+    //    "noEmitHelpers": true,
     "strictNullChecks": false,
-
     "baseUrl": "./src/main/frontend-application",
     "outDir": "target/ide-tmp/typescript",
-
     "paths": {
     },
     "lib": [
@@ -45,5 +43,7 @@
   },
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }

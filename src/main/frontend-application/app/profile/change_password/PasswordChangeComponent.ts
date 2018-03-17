@@ -23,8 +23,8 @@ export class PasswordChangeComponent implements OnInit {
     public passwordForm: FormGroup;
     public submitted: boolean = false;
     public submitDisabled: boolean = false;
-    private userPassword: UserPassword;
     public userProfile: UserProfile;
+    private userPassword: UserPassword;
 
     constructor(private http: Http,
                 private route: ActivatedRoute,
@@ -45,16 +45,6 @@ export class PasswordChangeComponent implements OnInit {
             newPassword: ["", [Validators.required, Validators.minLength(6)]], //first password field
             newPasswordCheck: ["", [Validators.required, this.passwordsMatchValidator]], //second password field
         });
-    }
-
-    private passwordsMatchValidator(control: AbstractControl): any {
-        var passwordControl = control.root.get("newPassword");
-        return passwordControl && (passwordControl.value === control.value)
-            ? null : {
-                passwordsMatch: {
-                    valid: false
-                }
-            };
     }
 
     public changePassword() {
@@ -78,5 +68,15 @@ export class PasswordChangeComponent implements OnInit {
                 this.messageService.setMessage("Passwort konnte nicht geändert werden.", "failure");
             });
         }
+    }
+
+    private passwordsMatchValidator(control: AbstractControl): any {
+        var passwordControl = control.root.get("newPassword");
+        return passwordControl && (passwordControl.value === control.value)
+            ? null : {
+                passwordsMatch: {
+                    valid: false
+                }
+            };
     }
 }

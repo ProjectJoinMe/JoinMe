@@ -31,6 +31,7 @@ export class RideDetailsComponent implements OnInit {
     rated: boolean;
     today: Date = new Date();
     rideDepDate: Date;
+    public ratings: Rating [];
 
     constructor(private rideService: RideService,
                 private ratingService: RatingService,
@@ -63,9 +64,18 @@ export class RideDetailsComponent implements OnInit {
         }
         this.ratingForm = this.formBuilder.group({
             ratingValue: [5, [Validators.required,]],
-            ratingComment: ["",[Validators.required,]]
+            ratingComment: ["", []]
         });
         this.rideDepDate = new Date(this.ride.departureDateTime);
+
+        if (this.rideDepDate < this.today) {
+
+            this.ratingService.getRatingsForRide(this.ride).then(ratings => {
+                this.ratings = ratings;
+            }).catch(reason => {
+                this.messageService.setMessage("Fehler beim Laden der Bewertungen", "failure");
+            });
+        }
     }
 
     goToUpdate() {
@@ -126,12 +136,13 @@ export class RideDetailsComponent implements OnInit {
                 creationDateTime: new Date()
             };
 
-            console.info(this.rideJoin)
+            console.info(this.rideJoin);
 
             this.ratingService.createRatingForRideJoin(rating, this.rideJoin).then(rating => {
-                this.messageService.setMessage("Bewertung abgegeben.", "success");
+                this.messageService.setMessage("Bewertung erfolgreich abgegeben.", "success");
                 this.rating = rating;
                 this.rated = true;
+                location.reload(); // to reload the page after rating
             }).catch(reason => {
                 this.submitDisabled = false;
                 this.messageService.setMessage("Bewertung konnte nicht abgegeben werden.", "failure");

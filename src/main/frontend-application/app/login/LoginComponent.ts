@@ -4,7 +4,6 @@ import {Http, URLSearchParams} from "@angular/http";
 import {LoginData} from "./LoginData";
 import {SecurityService} from "../security/SecurityService";
 import {Router} from "@angular/router";
-import cloneWith = require("lodash/cloneWith");
 import {MessageService} from "../message_service/MessageService";
 
 @Component({

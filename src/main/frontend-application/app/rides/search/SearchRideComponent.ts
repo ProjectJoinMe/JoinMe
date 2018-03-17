@@ -58,13 +58,6 @@ export class SearchRideComponent {
         });
     }
 
-    private mapsLatLngToJoinMeLatLng(location: any): LatLng {
-        return {
-            lat: location.lat(),
-            lng: location.lng()
-        };
-    }
-
     public search() {
         this.submitted = true;
         if (this.searchForm.valid) {
@@ -83,6 +76,17 @@ export class SearchRideComponent {
         }
     }
 
+    goToDetails(ride: Ride) {
+        this.router.navigate(['/rides', ride.id]);
+    }
+
+    private mapsLatLngToJoinMeLatLng(location: any): LatLng {
+        return {
+            lat: location.lat(),
+            lng: location.lng()
+        };
+    }
+
     private requiredWhenStartSearchTextNotEmpty(control: AbstractControl): any {
         let startControl = control.root.get("start");
         return (startControl && startControl.value) ? Validators.required(control) : null;
@@ -91,10 +95,6 @@ export class SearchRideComponent {
     private requiredWhenDestinationSearchTextNotEmpty(control: AbstractControl): any {
         let destinationControl = control.root.get("destination");
         return (destinationControl && destinationControl.value) ? Validators.required(control) : null;
-    }
-
-    goToDetails(ride: Ride) {
-        this.router.navigate(['/rides', ride.id]);
     }
 
 }

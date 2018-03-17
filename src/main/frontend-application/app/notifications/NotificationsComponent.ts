@@ -1,9 +1,8 @@
-import {Component, ElementRef} from "@angular/core";
+import {Component} from "@angular/core";
 import {FormBuilder} from "@angular/forms";
 import {Http} from "@angular/http";
 import {SecurityService} from "../security/SecurityService";
 import {Router} from "@angular/router";
-import {MessageService} from "../message_service/MessageService";
 import {NotificationsService} from "./NotificationsService";
 
 @Component({

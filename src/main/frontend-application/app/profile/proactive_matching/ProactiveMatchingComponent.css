@@ -1,21 +1,23 @@
 .deleteBtn {
-    background-color:#e4685d;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    border-radius:3px;
-    border:1px solid transparent;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:9px;
-    padding:2px 4px;
-    text-decoration:none;
+    background-color: #e4685d;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 9px;
+    padding: 2px 4px;
+    text-decoration: none;
 }
+
 .deleteBtn:hover {
-    background-color:#eb675e;
+    background-color: #eb675e;
 }
+
 .deleteBtn:active {
-    position:relative;
-    top:1px;
+    position: relative;
+    top: 1px;
 }

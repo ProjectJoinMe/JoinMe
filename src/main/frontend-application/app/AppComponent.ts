@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component, ViewEncapsulation, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {AppState} from './AppService';
 import {SecurityService} from "./security/SecurityService";
 import {SecurityStatus} from "./security/SecurityStatus";
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     name = 'JoinMe';
     url = 'https://joinme.io';
     notificationsShown: boolean = false;
-    chatBoxShown : boolean = false;
+    chatBoxShown: boolean = false;
     @ViewChild('notificationsElementContainer') notificationsElementContainer: ElementRef;
 
     constructor(public appState: AppState,
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
 
     toggleNotifications() {
         this.notificationsShown = !this.notificationsShown;
-        if(!this.notificationsShown){
+        if (!this.notificationsShown) {
             this.notificationsService.markNotificationsAsRead();
         }
     }

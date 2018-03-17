@@ -61,14 +61,16 @@ export class UserProfileService extends AbstractApiService {
     }
 
     getPointsOfInterest(): Promise<PointOfInterest[]> {
-        return this.http.get(`${this.profileApiUrl}/getPointsOfInterest`)
+        return this.http
+            .get(`${this.profileApiUrl}/getPointsOfInterest`)
             .toPromise()
             .then(response => response.json() as PointOfInterest[])
             .catch(this.handleError);
     }
 
-    getAvgRatingOfUser(userName : String): Promise<number>{
-        return this.http.get(`api/ratings/avgRating/${userName}`)
+    getAvgRatingOfUser(userName: String): Promise<number> {
+        return this.http
+            .get(`api/ratings/avgRating/${userName}`)
             .toPromise()
             .then(response => response.json() as number)
             .catch(this.handleError);

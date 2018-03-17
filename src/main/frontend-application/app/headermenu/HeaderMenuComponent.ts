@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-
-import {AppState} from '../AppService';
 import {Router} from "@angular/router";
 import {SecurityStatus} from "../security/SecurityStatus";
 import {SecurityService} from "../security/SecurityService";
@@ -17,7 +15,7 @@ export class HeaderMenuComponent implements OnInit {
                 public securityService: SecurityService) {
     }
 
-    logout(){
+    logout() {
         this.securityService.logout();
     }
 

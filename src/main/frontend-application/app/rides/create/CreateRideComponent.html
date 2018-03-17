@@ -10,92 +10,98 @@
         <div class="inner col-6 col-t-10 col-m-12">
             <form [formGroup]="rideForm" (ngSubmit)="createRide()">
                 <div>
-                <table>
-                    <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 ">
-                            <label>Abfahrtsort:</label>
-                        </td>
+                    <table>
+                        <tr class="row">
+                            <td class="first col-4 col-t-4 col-m-6 ">
+                                <label>Abfahrtsort:</label>
+                            </td>
 
-                        <td class="col-4 col-t-4 col-m-6 ">
-                            <maps-autocomplete-place class="col-12 col-t-12 col-m-12" [formGroup]="rideForm" [name]="'start'" [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
-                        </td>
+                            <td class="col-4 col-t-4 col-m-6 ">
+                                <maps-autocomplete-place class="col-12 col-t-12 col-m-12" [formGroup]="rideForm"
+                                                         [name]="'start'"
+                                                         [onPlaceChange]="onStartPlaceChange"></maps-autocomplete-place>
+                            </td>
 
-                        <td class="col-4 col-t-4 col-m-12">
-                            <small class="error-message col-12 col-t-12 col-m-12"
-                                   [hidden]="(rideForm.controls.start.valid && rideForm.controls.startPlaceId.valid) || (rideForm.controls.start.pristine && !submitted)">
-                                Bitte einen Abfahrtsort auswählen.
-                            </small>
-                        </td>
-                    </tr>
+                            <td class="col-4 col-t-4 col-m-12">
+                                <small class="error-message col-12 col-t-12 col-m-12"
+                                       [hidden]="(rideForm.controls.start.valid && rideForm.controls.startPlaceId.valid) || (rideForm.controls.start.pristine && !submitted)">
+                                    Bitte einen Abfahrtsort auswählen.
+                                </small>
+                            </td>
+                        </tr>
 
-                    <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 ">
-                            <label>Ankunftsort:</label>
-                        </td>
-                        <td class="col-4 col-t-4 col-m-6 inputField ">
-                            <maps-autocomplete-place class="col-12 col-t-12 col-m-12" [formGroup]="rideForm"
-                                                     [name]="'destination'" [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
-                        </td>
-                        <td class="col-4 col-t-4 col-m-12">
-                            <small class="error-message col-12 col-t-12 col-m-12"
-                                   [hidden]="(rideForm.controls.destination.valid && rideForm.controls.destinationPlaceId.valid) || (rideForm.controls.destination.pristine && !submitted)">
-                                Bitte einen Ankunftsort auswählen.
-                            </small>
-                        </td>
-                    </tr>
-                </table>
+                        <tr class="row">
+                            <td class="first col-4 col-t-4 col-m-6 ">
+                                <label>Ankunftsort:</label>
+                            </td>
+                            <td class="col-4 col-t-4 col-m-6 inputField ">
+                                <maps-autocomplete-place class="col-12 col-t-12 col-m-12" [formGroup]="rideForm"
+                                                         [name]="'destination'"
+                                                         [onPlaceChange]="onDestinationPlaceChange"></maps-autocomplete-place>
+                            </td>
+                            <td class="col-4 col-t-4 col-m-12">
+                                <small class="error-message col-12 col-t-12 col-m-12"
+                                       [hidden]="(rideForm.controls.destination.valid && rideForm.controls.destinationPlaceId.valid) || (rideForm.controls.destination.pristine && !submitted)">
+                                    Bitte einen Ankunftsort auswählen.
+                                </small>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
                 <hr noshade>
 
                 <div>
-                <table>
-                    <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6">
-                            <label class="heading"><b>Hinfahrt</b></label>
-                        </td>
-                        <td class="col-8 col-t-8 col-m-6 second">
-                            <input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und Rückfahrt
-                        </td>
-                    </tr>
+                    <table>
+                        <tr class="row">
+                            <td class="first col-4 col-t-4 col-m-6">
+                                <label class="heading"><b>Hinfahrt</b></label>
+                            </td>
+                            <td class="col-8 col-t-8 col-m-6 second">
+                                <input type="checkbox" id="toAndReturnCheckBox" formControlName="returnRide"> Hin- und
+                                Rückfahrt
+                            </td>
+                        </tr>
 
 
-                    <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 ">
-                            <label class="col-12 col-t-12 col-m-12">Abfahrtsdatum:</label>
-                        </td>
-                        <td class="col-4 col-t-8 col-m-6">
-                            <div class="col-2 col-t-2"></div>
-                            <input class="col-12 col-t-12 col-m-12" formControlName="departureDate" type="date"
-                                                  min="{{currentDate | date:'yyyy-MM-dd'}}">
-                        </td>
-                        <td class="col-4 col-t-4 col-m-12">
-                            <small class="error-message col-12 col-t-12 col-m-12"
-                                   [hidden]="rideForm.controls.departureDate.valid || (rideForm.controls.departureDate.pristine && !submitted)">
-                                ungültiges Abfahrtsdatum
-                            </small>
-                        </td>
-                    </tr>
+                        <tr class="row">
+                            <td class="first col-4 col-t-4 col-m-6 ">
+                                <label class="col-12 col-t-12 col-m-12">Abfahrtsdatum:</label>
+                            </td>
+                            <td class="col-4 col-t-8 col-m-6">
+                                <div class="col-2 col-t-2"></div>
+                                <input class="col-12 col-t-12 col-m-12" formControlName="departureDate" type="date"
+                                       min="{{currentDate | date:'yyyy-MM-dd'}}">
+                            </td>
+                            <td class="col-4 col-t-4 col-m-12">
+                                <small class="error-message col-12 col-t-12 col-m-12"
+                                       [hidden]="rideForm.controls.departureDate.valid || (rideForm.controls.departureDate.pristine && !submitted)">
+                                    ungültiges Abfahrtsdatum
+                                </small>
+                            </td>
+                        </tr>
 
-                    <tr class="row">
-                        <td class="first col-4 col-t-4 col-m-6 ">
-                            <label>Uhrzeit:</label>
-                        </td>
-                        <td class="col-4 col-t-8 col-m-6 inputField">
-                            <div class="col-2 col-t-2 col-m-3"></div>
-                            <input class="col-2 col-t-2 col-m-2" formControlName="departureHour" type="number" min="0" max="23">
-                            <div class="col-1 col-t-1 col-m-1">&nbsp;:</div>
-                            <input class="col-2 col-t-2 col-m-2" formControlName="departureMinute" type="number" min="0" max="59" step="5">
-                            <div class="col-2 col-t-2 col-m-2"></div>
-                        </td>
-                        <td class="col-4 col-t-4 col-m-12 ">
-                            <small class="error-message col-12 col-t-12 col-m-12" [hidden]="rideForm.controls.departureHour.valid || (rideForm.controls.departureHour.pristine && !submitted)
+                        <tr class="row">
+                            <td class="first col-4 col-t-4 col-m-6 ">
+                                <label>Uhrzeit:</label>
+                            </td>
+                            <td class="col-4 col-t-8 col-m-6 inputField">
+                                <div class="col-2 col-t-2 col-m-3"></div>
+                                <input class="col-2 col-t-2 col-m-2" formControlName="departureHour" type="number"
+                                       min="0" max="23">
+                                <div class="col-1 col-t-1 col-m-1">&nbsp;:</div>
+                                <input class="col-2 col-t-2 col-m-2" formControlName="departureMinute" type="number"
+                                       min="0" max="59" step="5">
+                                <div class="col-2 col-t-2 col-m-2"></div>
+                            </td>
+                            <td class="col-4 col-t-4 col-m-12 ">
+                                <small class="error-message col-12 col-t-12 col-m-12" [hidden]="rideForm.controls.departureHour.valid || (rideForm.controls.departureHour.pristine && !submitted)
                                                            && rideForm.controls.departureMinute.valid || (rideForm.controls.departureMinute.pristine && !submitted)">
-                                ungültige Uhrzeit
-                            </small>
-                        </td>
-                    </tr>
-                </table>
+                                    ungültige Uhrzeit
+                                </small>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
                 <br>
@@ -112,7 +118,8 @@
                             </td>
                             <td class="col-4 col-t-8 col-m-6 inputField ">
                                 <div class="col-2 col-t-3"></div>
-                                <input class="col-12 col-t-12 col-m-12" formControlName="returnDepartureDate" type="date"
+                                <input class="col-12 col-t-12 col-m-12" formControlName="returnDepartureDate"
+                                       type="date"
                                        min="{{currentDate | date:'yyyy-MM-dd'}}">
                             </td>
                             <td class="col-4 col-t-4 col-m-12">
@@ -128,10 +135,12 @@
                             </td>
                             <td class="col-4 col-t-8 col-m-6 inputField">
                                 <div class="col-2 col-t-3 col-m-3"></div>
-                                <input class="col-2 col-t-2 col-m-2" formControlName="returnDepartureHour" type="number" min="0" max="23">
+                                <input class="col-2 col-t-2 col-m-2" formControlName="returnDepartureHour" type="number"
+                                       min="0" max="23">
                                 <div class="col-1 col-t-1 col-m-1">&nbsp;:</div>
-                                <input class="col-2 col-t-2 col-m-2" formControlName="returnDepartureMinute" type="number" min="0" max="55" step="5"></td>
-                                <div class="col-2 col-t-2 col-m-2"></div>
+                                <input class="col-2 col-t-2 col-m-2" formControlName="returnDepartureMinute"
+                                       type="number" min="0" max="55" step="5"></td>
+                            <div class="col-2 col-t-2 col-m-2"></div>
                             <td class="col-4 col-t-4 col-m-12">
                                 <small class="error-message col-12 col-t-12 col-m-12" [hidden]="rideForm.controls.returnDepartureHour.valid || (rideForm.controls.returnDepartureHour.pristine && !submitted)
                                                            && rideForm.controls.returnDepartureMinute.valid || (rideForm.controls.returnDepartureMinute.pristine && !submitted)">
@@ -150,7 +159,8 @@
                             <td class="first col-4 col-t-4 col-m-6 ">Freie Plätze</td>
                             <td class="col-4 col-t-8 col-m-6  ">
                                 <div class="col-2 col-t-2"></div>
-                                <input class="col-2 col-t-2 col-m-3" formControlName="maxPassengers" type="number" min="1" max="10">
+                                <input class="col-2 col-t-2 col-m-3" formControlName="maxPassengers" type="number"
+                                       min="1" max="10">
                             </td>
                             <td class="col-4 col-t-4 col-m-12"></td>
                         </tr>
@@ -158,10 +168,12 @@
                             <td class="first col-4 col-t-4 col-m-6 ">Preis pro Teilnehmer in €</td>
                             <td class="col-4 col-t-8 col-m-6  ">
                                 <div class="col-2 col-t-2"></div>
-                                <input class="col-2 col-t-2 col-m-3" formControlName="pricePerPassenger" type="number" min="0" max="100">
+                                <input class="col-2 col-t-2 col-m-3" formControlName="pricePerPassenger" type="number"
+                                       min="0" max="100">
                             </td>
                             <td class="col-4 col-t-4 col-m-12">
-                                <small class="error-message col-12 col-t-12 col-m-12" [hidden]="rideForm.controls.pricePerPassenger.valid || (rideForm.controls.pricePerPassenger.pristine && !submitted)">
+                                <small class="error-message col-12 col-t-12 col-m-12"
+                                       [hidden]="rideForm.controls.pricePerPassenger.valid || (rideForm.controls.pricePerPassenger.pristine && !submitted)">
                                     ungültiger Preis
                                 </small>
                             </td>
@@ -186,60 +198,60 @@
                     <div class="days">
                         <table>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[0]">Montag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[1]">Dienstag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[2]">Mittwoch
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[3]">Donnerstag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
-                                    <input  class="col-12 col-t-12 col-m-12"type="checkbox"
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[4]">Freitag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
-                                    <input  class="col-12 col-t-12 col-m-12"type="checkbox"
+                                    <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[5]">Samstag
                                 </td>
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                             </tr>
                             <tr class="row">
-                                <td class="col-3 col-t-3"> </td>
+                                <td class="col-3 col-t-3"></td>
                                 <td class="col-6 col-t-6 col-m-12">
                                     <input class="col-12 col-t-12 col-m-12" type="checkbox"
                                            [formControl]="rideForm.controls['periodicDays'].controls[6]">Sonntag
                                 </td>
-                                <td class="col-3 col-t-3 "> </td>
+                                <td class="col-3 col-t-3 "></td>
                             </tr>
                         </table>
                     </div>
@@ -260,7 +272,8 @@
                     <br>
                     <div class="col-12 col-t-12 col-m-12">
                         <div class="col-4 col-t-4"></div>
-                        <textarea class="col-4 col-t-4 col-m-12" formControlName="notes" rows="6" maxlength="400"></textarea>
+                        <textarea class="col-4 col-t-4 col-m-12" formControlName="notes" rows="6"
+                                  maxlength="400"></textarea>
                         <div class="col-4 col-t-4"></div>
                     </div>
                 </div>
@@ -270,7 +283,8 @@
                 <div class="row">
                     <div class="col-12 col-t-12 col-m-12">
                         <div class="col-4 col-t-4"></div>
-                        <input class="col-4 col-t-4 col-m-12 btn" type="submit" [disabled]="submitDisabled" value="Fahrt erstellen">
+                        <input class="col-4 col-t-4 col-m-12 btn" type="submit" [disabled]="submitDisabled"
+                               value="Fahrt erstellen">
                         <div class="col-4 col-t-4"></div>
                     </div>
                 </div>
@@ -280,8 +294,8 @@
                     <div class="col-12 col-t-12 col-m-12"><h3>Route</h3></div>
                     <div class="col-12 col-t-12 col-m-12 mapSize">
                         <maps-display-embedded-route class=" col-12 col-t-12 col-m-12"
-                                [originPlaceId]="rideForm.controls.startPlaceId.value"
-                                [destinationPlaceId]="rideForm.controls.destinationPlaceId.value">
+                                                     [originPlaceId]="rideForm.controls.startPlaceId.value"
+                                                     [destinationPlaceId]="rideForm.controls.destinationPlaceId.value">
                         </maps-display-embedded-route>
                     </div>
                 </div>
@@ -292,8 +306,7 @@
     </div>
 
 
-
     <br><br>
 
 
-    </div>
+</div>

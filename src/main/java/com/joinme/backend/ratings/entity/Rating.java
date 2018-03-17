@@ -1,7 +1,5 @@
 package com.joinme.backend.ratings.entity;
 
-import org.hibernate.annotations.Check;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;

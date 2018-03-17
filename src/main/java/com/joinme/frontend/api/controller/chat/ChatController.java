@@ -57,10 +57,10 @@ public class ChatController {
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/chat/getMessages", method = RequestMethod.POST)
     @ResponseBody
-    public List<ChatMessageDto> getChatMessagesFromUsers(@Valid @RequestBody ChatUserProfileReceiver chatUserProfileReceiver) {
+    public List<ChatMessageDto> getChatMessagesFromUsers(@Valid @RequestBody ChatUserNameReceiver chatUserNameReceiver) {
 
-        UserProfileDto fromUser = userProfileManager.getProfile(chatUserProfileReceiver.getFromUserName());
-        UserProfileDto toUser = userProfileManager.getProfile(chatUserProfileReceiver.getToUserName());
+        UserProfileDto fromUser = userProfileManager.getProfile(chatUserNameReceiver.getFromUserName());
+        UserProfileDto toUser = userProfileManager.getProfile(chatUserNameReceiver.getToUserName());
         Assert.isTrue(fromUser.getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
                 || toUser.getUsername().equals(SecurityUtil.getCurrentUsername()));
 
@@ -73,14 +73,14 @@ public class ChatController {
 
 }
 
-class ChatUserProfileReceiver {
+class ChatUserNameReceiver {
     private String fromUserName;
     private String toUserName;
 
-    public ChatUserProfileReceiver() {
+    public ChatUserNameReceiver() {
     }
 
-    public ChatUserProfileReceiver(String fromUserName, String toUserName) {
+    public ChatUserNameReceiver(String fromUserName, String toUserName) {
         this.fromUserName = fromUserName;
         this.toUserName = toUserName;
     }

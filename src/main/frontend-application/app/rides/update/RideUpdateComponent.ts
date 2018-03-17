@@ -77,40 +77,6 @@ export class RideUpdateComponent implements OnInit {
             });
     }
 
-    private periodicDaysListToFormBooleanList() {
-        if (!this.ride.periodicWeekDays) {
-            return [false, false, false, false, false, false, false];
-        } else {
-            return [
-                this.ride.periodicWeekDays.find(value => value === 1) !== undefined,
-                this.ride.periodicWeekDays.find(value => value === 2) !== undefined,
-                this.ride.periodicWeekDays.find(value => value === 3) !== undefined,
-                this.ride.periodicWeekDays.find(value => value === 4) !== undefined,
-                this.ride.periodicWeekDays.find(value => value === 5) !== undefined,
-                this.ride.periodicWeekDays.find(value => value === 6) !== undefined,
-                this.ride.periodicWeekDays.find(value => value === 7) !== undefined
-            ];
-        }
-    }
-
-    private periodicDaysValidator(control: AbstractControl): any {
-        let periodicControl = control.root.get("periodic");
-        if (periodicControl && (!periodicControl.value)) {
-            return null;
-        } else {
-            for (let i = 0; i < control.value.length; i++) {
-                if (control.value[i]) {
-                    return null;
-                }
-            }
-            return {
-                periodicDaysInvalid: {
-                    valid: false
-                }
-            };
-        }
-    }
-
     public updateRide() {
         this.submitted = true;
         if (this.rideForm.valid) {
@@ -169,14 +135,48 @@ export class RideUpdateComponent implements OnInit {
         return this.rideForm.get("returnRide").value;
     }
 
+    goToDetails(ride: Ride) {
+        this.router.navigate(['/rides', ride.id]);
+    }
+
+    private periodicDaysListToFormBooleanList() {
+        if (!this.ride.periodicWeekDays) {
+            return [false, false, false, false, false, false, false];
+        } else {
+            return [
+                this.ride.periodicWeekDays.find(value => value === 1) !== undefined,
+                this.ride.periodicWeekDays.find(value => value === 2) !== undefined,
+                this.ride.periodicWeekDays.find(value => value === 3) !== undefined,
+                this.ride.periodicWeekDays.find(value => value === 4) !== undefined,
+                this.ride.periodicWeekDays.find(value => value === 5) !== undefined,
+                this.ride.periodicWeekDays.find(value => value === 6) !== undefined,
+                this.ride.periodicWeekDays.find(value => value === 7) !== undefined
+            ];
+        }
+    }
+
+    private periodicDaysValidator(control: AbstractControl): any {
+        let periodicControl = control.root.get("periodic");
+        if (periodicControl && (!periodicControl.value)) {
+            return null;
+        } else {
+            for (let i = 0; i < control.value.length; i++) {
+                if (control.value[i]) {
+                    return null;
+                }
+            }
+            return {
+                periodicDaysInvalid: {
+                    valid: false
+                }
+            };
+        }
+    }
+
     private getDateComponent(date: Date, format: string) {
         return date !== null
             ? this.datePipe.transform(date, format)
             : null;
-    }
-
-    goToDetails(ride: Ride) {
-        this.router.navigate(['/rides', ride.id]);
     }
 
 }

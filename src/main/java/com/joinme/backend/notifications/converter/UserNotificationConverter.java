@@ -49,7 +49,8 @@ public class UserNotificationConverter {
                 break;
             case joinedRideWasDeleted:
             case gotRating:
-            case chatMessageReceived: break;
+            case chatMessageReceived:
+                break;
             default:
                 throw new IllegalArgumentException("Error in UserNotificationConverter.setPropertiesOnDto");
         }
@@ -68,6 +69,7 @@ public class UserNotificationConverter {
         entity.setType(dto.getType());
         entity.setUser(userAccountRepository.findByUsername(dto.getUsername()));
         entity.setCreationDateTime(dto.getCreationDateTime());
+
         switch (dto.getType()) {
             case rideWasJoined:
             case rideWasUnjoined:
@@ -77,7 +79,8 @@ public class UserNotificationConverter {
                 break;
             case joinedRideWasDeleted:
             case gotRating:
-            case chatMessageReceived: break;
+            case chatMessageReceived:
+                break;
             default:
                 throw new IllegalArgumentException("Error in UserNotificationConverter.setPropertiesOnEntity");
         }

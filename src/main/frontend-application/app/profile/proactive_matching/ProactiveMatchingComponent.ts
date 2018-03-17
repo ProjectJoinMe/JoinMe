@@ -1,11 +1,9 @@
 import {ActivatedRoute, Router} from "@angular/router";
 import {Http} from "@angular/http";
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
-import {UserProfile} from "../UserProfile";
 import {SecurityService} from ".../security/SecurityService";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserProfileService} from "../../services/UserProfileService";
-import {MessageService} from "../../message_service/MessageService";
 import {LatLng} from "../../rides/model/LatLng";
 import {MapsAutocompletePlaceComponent} from "../../maps/autocomplete/MapsAutocompletePlaceComponent";
 import {PointOfInterest} from "./PointOfInterest";
@@ -23,11 +21,10 @@ export class ProactiveMatchingComponent implements OnInit {
     @ViewChild('profilePictureFileInput') profilePictureEl: ElementRef;
     @ViewChild('carPictureFileInput') carPictureEl: ElementRef;
     @ViewChild(MapsAutocompletePlaceComponent) placeComponent: MapsAutocompletePlaceComponent;
-
+    public submitted: boolean = false;
     private startLocation: LatLng = null;
     private onPlaceChange: (place: any, isFullPlace: boolean) => void;
     private placeForm: FormGroup;
-    public submitted: boolean = false;
     private pois: PointOfInterest[] = [];
 
     constructor(private http: Http,
@@ -46,26 +43,13 @@ export class ProactiveMatchingComponent implements OnInit {
 
     ngOnInit() {
         this.route.data
-            .subscribe((data: {pois: PointOfInterest[] }) => {
+            .subscribe((data: { pois: PointOfInterest[] }) => {
                 this.pois = data.pois;
             });
         this.placeForm = this.formBuilder.group({
             poiMapsInput: ["",],
             poiMapsInputPlaceId: ["", [this.requiredWhenFieldNotEmpty]],
         });
-    }
-
-
-    private mapsLatLngToJoinMeLatLng(location: any): LatLng {
-        return {
-            lat: location.lat(),
-            lng: location.lng()
-        };
-    }
-
-    private requiredWhenFieldNotEmpty(control: AbstractControl): any {
-        let inputControl = control.root.get("poiMapsInput");
-        return (inputControl && inputControl.value) ? Validators.required(control) : null;
     }
 
     public add(place: any) {
@@ -88,7 +72,19 @@ export class ProactiveMatchingComponent implements OnInit {
         console.log(this.pois);
     }
 
-    private deletePoi(poi: PointOfInterest){
+    private mapsLatLngToJoinMeLatLng(location: any): LatLng {
+        return {
+            lat: location.lat(),
+            lng: location.lng()
+        };
+    }
+
+    private requiredWhenFieldNotEmpty(control: AbstractControl): any {
+        let inputControl = control.root.get("poiMapsInput");
+        return (inputControl && inputControl.value) ? Validators.required(control) : null;
+    }
+
+    private deletePoi(poi: PointOfInterest) {
         let index = this.pois.findIndex(value => value.placeId === poi.placeId);
         this.pois.splice(index, 1);
         this.update();

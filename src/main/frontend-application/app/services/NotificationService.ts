@@ -1,9 +1,6 @@
 import {Injectable} from "@angular/core";
-import {Http, URLSearchParams} from "@angular/http";
+import {Http} from "@angular/http";
 import {AbstractApiService} from "./AbstractApiService";
-import {Ride} from "../rides/model/Ride";
-import {RideJoin} from "../rides/model/RideJoin";
-import {LatLng} from "../rides/model/LatLng";
 import {UserNotifications} from "../notifications/UserNotifications";
 import {UserNotification} from "../notifications/UserNotification";
 

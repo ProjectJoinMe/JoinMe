@@ -5,7 +5,7 @@ import * as moment from 'moment-timezone';
     name: 'timezonifyDate'
 })
 export class TimezonifyDatePipe implements PipeTransform {
-    transform(value: string|Date): Date|null {
+    transform(value: string | Date): Date | null {
         if (value === undefined) {
             return undefined;
         }

@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {AbstractApiService} from "./AbstractApiService";
 import {Http} from "@angular/http";
 import {ChatMessage} from "../chat/ChatMessage";
-import {UserProfile} from "../profile/UserProfile";
 import {ChatMessages} from "../chat/ChatMessages";
 
 @Injectable()

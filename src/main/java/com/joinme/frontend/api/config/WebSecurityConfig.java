@@ -1,6 +1,5 @@
 package com.joinme.frontend.api.config;
 
-import com.joinme.frontend.api.authentication.UserAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,40 +27,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/assets/**", "/",
-                            "/index.html",
-                            "/polyfills.bundle.js", "/vendor.bundle.js", "/main.bundle.js",
-                            "/polyfills.map", "/vendor.map", "/main.map"
-                    ).permitAll()
-                    .and()
+                .antMatchers("/assets/**", "/",
+                        "/index.html",
+                        "/polyfills.bundle.js", "/vendor.bundle.js", "/main.bundle.js",
+                        "/polyfills.map", "/vendor.map", "/main.map"
+                ).permitAll()
+                .and()
                 .formLogin()
-                    .successHandler(authenticationSuccessHandler())
-                    .failureHandler(authenticationFailureHandler())
-                    .loginPage("/api/login")
-                    .permitAll()
-                    .and()
+                .successHandler(authenticationSuccessHandler())
+                .failureHandler(authenticationFailureHandler())
+                .loginPage("/api/login")
+                .permitAll()
+                .and()
                 .logout()
-                    .logoutUrl("/api/logout")
-                    .permitAll()
-                    .and()
+                .logoutUrl("/api/logout")
+                .permitAll()
+                .and()
                 .exceptionHandling()
-                    .authenticationEntryPoint(authenticationEntryPoint)
-                    .and()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .and()
                 .csrf().disable();
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider);
     }
 
     @Bean
-    public AuthenticationSuccessHandler authenticationSuccessHandler(){
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return new SimpleUrlAuthenticationSuccessHandler();
     }
 
     @Bean
-    public SimpleUrlAuthenticationFailureHandler authenticationFailureHandler(){
+    public SimpleUrlAuthenticationFailureHandler authenticationFailureHandler() {
         return new SimpleUrlAuthenticationFailureHandler();
     }
 }

@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {WeekDay} from "../WeekDay";
 import {Router} from "@angular/router";
 import {RideService} from "../../services/RideService";
 import {Ride} from "../model/Ride";
@@ -52,36 +51,6 @@ export class CreateRideComponent implements OnInit {
             periodic: [""],
             periodicDays: this.formBuilder.array([false, false, false, false, false, false, false], this.periodicDaysValidator),
         });
-    }
-
-    private periodicDaysValidator(control: AbstractControl): any {
-        let periodicControl = control.root.get("periodic");
-        if (periodicControl && (!periodicControl.value)) {
-            return null;
-        } else {
-            for (let i = 0; i < control.value.length; i++){
-                if(control.value[i]){
-                    return null;
-                }
-            }
-            return {
-                periodicDaysInvalid: {
-                    valid: false
-                }
-            };
-        }
-    }
-
-    private updateRouteInfo(){
-        let startPlaceId = <string> this.rideForm.get("startPlaceId").value;
-        let destinationPlaceId = <string> this.rideForm.get("destinationPlaceId").value;
-        if(startPlaceId && destinationPlaceId){
-            this.rideService.getRouteInfo({startPlaceId: startPlaceId, destinationPlaceId: destinationPlaceId}).then(rideWithRouteInformation => {
-                rideWithRouteInformation.route.suggestedPricePerPassenger;
-            }).catch(reason => {
-                console.error("failed to get ride information, TODO");
-            });
-        }
     }
 
     public createRide() {
@@ -138,5 +107,38 @@ export class CreateRideComponent implements OnInit {
 
     public getReturnRide(): boolean {
         return this.rideForm.get("returnRide").value;
+    }
+
+    private periodicDaysValidator(control: AbstractControl): any {
+        let periodicControl = control.root.get("periodic");
+        if (periodicControl && (!periodicControl.value)) {
+            return null;
+        } else {
+            for (let i = 0; i < control.value.length; i++) {
+                if (control.value[i]) {
+                    return null;
+                }
+            }
+            return {
+                periodicDaysInvalid: {
+                    valid: false
+                }
+            };
+        }
+    }
+
+    private updateRouteInfo() {
+        let startPlaceId = <string> this.rideForm.get("startPlaceId").value;
+        let destinationPlaceId = <string> this.rideForm.get("destinationPlaceId").value;
+        if (startPlaceId && destinationPlaceId) {
+            this.rideService.getRouteInfo({
+                startPlaceId: startPlaceId,
+                destinationPlaceId: destinationPlaceId
+            }).then(rideWithRouteInformation => {
+                rideWithRouteInformation.route.suggestedPricePerPassenger;
+            }).catch(reason => {
+                console.error("failed to get ride information, TODO");
+            });
+        }
     }
 }

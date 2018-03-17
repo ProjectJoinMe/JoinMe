@@ -13,16 +13,16 @@
     content: '✖'; /* UTF-8 symbol */
 }
 
-.message{
+.message {
     color: black;
     border-radius: 5px;
     position: relative;
 }
 
-.success{
+.success {
     background: #CBE195;
 }
 
-.failure{
+.failure {
     background: #F46C68;
 }

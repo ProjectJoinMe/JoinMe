@@ -76,7 +76,8 @@
                             <label>Geburtsdatum:</label>
                         </td>
                         <td class="col-4 col-t-4 col-m-6 ">
-                            <input class="col-12 col-t-12 col-m-10" formControlName="dateOfBirth" type="date" max="{{maxDateOfBirth | date:'yyyy-MM-dd'}}">
+                            <input class="col-12 col-t-12 col-m-10" formControlName="dateOfBirth" type="date"
+                                   max="{{maxDateOfBirth | date:'yyyy-MM-dd'}}">
                         </td>
                         <td class="col-4 col-t-4 col-m-12">
                             <small class="error-message"
@@ -120,7 +121,8 @@
                         <td class="first col-4 col-t-4 col-m-6 ">
                             <label>Passwort wiederholen: </label>
                         </td>
-                        <td class="col-4 col-t-4 col-m-6 "><input class="col-12 col-t-12 col-m-10" formControlName="passwordCheck" type="password"></td>
+                        <td class="col-4 col-t-4 col-m-6 "><input class="col-12 col-t-12 col-m-10"
+                                                                  formControlName="passwordCheck" type="password"></td>
                         <td class="col-4 col-t-4 col-m-12">
                             <small class="error-message"
                                    [hidden]="registrationForm.controls.passwordCheck.valid || (registrationForm.controls.passwordCheck.pristine && !submitted)">
@@ -131,7 +133,9 @@
                     <tr class="row ">
                         <td class="col-4 col-t-4"></td>
                         <td class="col-4 col-t-4 col-m-12">
-                            <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="submitDisabled">Registrieren</button>
+                            <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="submitDisabled">
+                                Registrieren
+                            </button>
                         </td>
                         <td class="col-4 col-t-4"></td>
                     </tr>

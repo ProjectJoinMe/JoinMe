@@ -6,7 +6,6 @@ import {MailValidator} from "../../validators/MailValidator";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {UserRegistrationService} from "../services/UserRegistrationService";
-import cloneWith = require("lodash/cloneWith");
 import {MessageService} from "../message_service/MessageService";
 
 @Component({

@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "UserAccount")
@@ -66,6 +65,10 @@ public class UserAccount implements Serializable {
     @Lob
     @Column
     private byte[] carPicture;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public String getUsername() {
         return username;
@@ -143,15 +146,10 @@ public class UserAccount implements Serializable {
         return profilePicture;
     }
 
-    public void setProfilePicture(byte[] profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
     //Car getters and setters
 
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public String getCarMake() {

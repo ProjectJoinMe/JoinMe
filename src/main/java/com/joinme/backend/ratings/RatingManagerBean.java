@@ -4,12 +4,16 @@ import com.joinme.backend.ratings.converter.RatingConverter;
 import com.joinme.backend.ratings.dto.RatingDto;
 import com.joinme.backend.ratings.entity.Rating;
 import com.joinme.backend.ratings.repository.RatingRepository;
-import com.joinme.backend.rides.repository.RideJoinRepository;
+import com.joinme.backend.rides.converter.RideConverter;
+import com.joinme.backend.rides.dto.RideDto;
+import com.joinme.backend.rides.entity.Ride;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -23,7 +27,7 @@ public class RatingManagerBean implements RatingManager {
     private RatingRepository ratingRepository;
 
     @Autowired
-    private RideJoinRepository rideJoinRepository;
+    private RideConverter rideConverter;
 
     @Override
     public RatingDto createRatingForRideJoin(RatingDto rating) {
@@ -43,6 +47,13 @@ public class RatingManagerBean implements RatingManager {
 
     @Override
     public Double getAvgRatingForUser(String username) {
-        return rideJoinRepository.getAvgRatingForUser(username);
+        return ratingRepository.getAvgRatingForUser(username);
+    }
+
+    @Override
+    public List<RatingDto> getRatingsForRide(RideDto rideDto) {
+        Ride ride = rideConverter.toEntity(rideDto);
+        List<Rating> ratingList = ratingRepository.getRatingsForRide(ride);
+        return ratingList.stream().map(ratingConverter::toDto).collect(Collectors.toList());
     }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit, Pipe} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MessageService} from "../message_service/MessageService";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -53,7 +53,7 @@ export class ChatComponent implements OnInit {
         this.userProfileService.getProfile(fromUserName).then(userProfile => {
             this.userProfileChatFrom = userProfile;
         }).catch(reason => {
-           console.log(reason);
+            console.log(reason);
         });
 
         this.userProfileService.getProfile(toUserName).then(userProfile => {
@@ -87,7 +87,7 @@ export class ChatComponent implements OnInit {
                 this.chatForm.get("chatMessage").setValue("");
                 location.reload(); //reloads page
             }).catch(reason => {
-                console.info(reason.toString())
+                console.info(reason.toString());
                 this.submitDisabled = false;
                 this.messageService.setMessage("Senden fehlgeschlagen!", "failure")
             });

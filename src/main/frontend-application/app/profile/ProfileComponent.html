@@ -10,38 +10,47 @@
 
     <div class="row">
         <div class="col-2"></div>
-        <div *ngIf="securityStatus.loggedIn && userProfile.username == securityStatus.username" class="inner col-8 col-t-12 col-m-12">
+        <div *ngIf="securityStatus.loggedIn && userProfile.username == securityStatus.username"
+             class="inner col-8 col-t-12 col-m-12">
 
-                    <table>
-                        <tr class="row">
-                            <td class="col-2 col-t-4 col-m-12 top">
-                                <input type="button" value="Meine Fahrten" class="col-12 col-t-12 col-m-12 btn" [routerLink]=" ['rides'] ">
-                            </td>
-                            <td class="col-2 col-t-4 col-m-12 top">
-                                <input type="button" value="Gebuchte Fahrten" class="col-12 col-t-12 col-m-12 btn" [routerLink]=" ['joinedRides'] ">
-                            </td>
-                            <td class="col-2 col-t-4 col-m-12 top">
-                                <input type="button" value="Profil bearbeiten" class="col-12 col-t-12 col-m-12 btn"  [routerLink]="['edit']">
-                            </td>
-                            <td class="col-2 col-t-4 col-m-12 top">
-                                <input type="button" value="Passwort ändern" class="col-12 col-t-12 col-m-12 btn" [routerLink]="['changePassword']">
-                            </td>
-                            <td class="col-2 col-t-4 col-m-12 top">
-                                <input type="button" value="E-Mail ändern" class="col-12 col-t-12 col-m-12 btn"  [routerLink]="['changeEmail']">
-                            </td>
-                            <td class="col-2 col-t-4 col-m-12 top ">
-                                <input type="button" value="proaktives Matchen" class="col-12 col-t-12 col-m-12 btn" [routerLink]="['proactiveMatchingConfiguration']">
-                            </td>
-                        </tr>
-                    </table>
+            <table>
+                <tr class="row">
+                    <td class="col-2 col-t-4 col-m-12 top">
+                        <input type="button" value="Meine Fahrten" class="col-12 col-t-12 col-m-12 btn"
+                               [routerLink]=" ['rides'] ">
+                    </td>
+                    <td class="col-2 col-t-4 col-m-12 top">
+                        <input type="button" value="Gebuchte Fahrten" class="col-12 col-t-12 col-m-12 btn"
+                               [routerLink]=" ['joinedRides'] ">
+                    </td>
+                    <td class="col-2 col-t-4 col-m-12 top">
+                        <input type="button" value="Profil bearbeiten" class="col-12 col-t-12 col-m-12 btn"
+                               [routerLink]="['edit']">
+                    </td>
+                    <td class="col-2 col-t-4 col-m-12 top">
+                        <input type="button" value="Passwort ändern" class="col-12 col-t-12 col-m-12 btn"
+                               [routerLink]="['changePassword']">
+                    </td>
+                    <td class="col-2 col-t-4 col-m-12 top">
+                        <input type="button" value="E-Mail ändern" class="col-12 col-t-12 col-m-12 btn"
+                               [routerLink]="['changeEmail']">
+                    </td>
+                    <td class="col-2 col-t-4 col-m-12 top ">
+                        <input type="button" value="proaktives Matchen" class="col-12 col-t-12 col-m-12 btn"
+                               [routerLink]="['proactiveMatchingConfiguration']">
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div *ngIf="securityStatus.loggedIn && userProfile.username !== securityStatus.username" class="inner col-8 col-t-12 col-m-12">
+        <div *ngIf="securityStatus.loggedIn && userProfile.username !== securityStatus.username"
+             class="inner col-8 col-t-12 col-m-12">
 
             <table>
                 <tr class="row">
                     <td class="col-4 col-t-4 top"></td>
                     <td class="col-4 col-t-4 col-m-12 top">
-                        <input type="button" value="Chat mit diesem User" class="col-12 col-t-12 col-m-12 btn" (click)="toUserChat()">
+                        <input type="button" value="Chat mit diesem User" class="col-12 col-t-12 col-m-12 btn"
+                               (click)="toUserChat()">
                     </td>
                     <td class="col-4 col-t-4 top"></td>
                 </tr>
@@ -59,7 +68,8 @@
             <div class="row">
                 <div class="col-4 col-t-4"></div>
                 <div class="col-4 col-t-4 col-m-12 ">
-                    <img src="{{userProfilePicturePath}}"  alt="Profilbild" width="125px" height="125px">
+                    <img [src]="userProfilePicturePath" onerror="this.src='/assets/img/profile/profilePicPlace.png'"
+                         alt="Profilbild" width="125px" height="125px">
                 </div>
                 <div class="col-4 col-t-4"></div>
             </div>
@@ -139,7 +149,8 @@
 
             <div class="row">
                 <div class="col-12 col-t-12 col-m-12">
-                    <img src="{{userCarPicturePath}}"  alt="Autobild" width="125px" height="125px">
+                    <img [src]="userCarPicturePath" onerror="this.src='/assets/img/profile/carPicPlace.png'"
+                         alt="Autobild" width="125px" height="125px">
                 </div>
             </div>
 
@@ -191,8 +202,8 @@
                 <div class="col-6 col-t-6 col-m-12">
                     <table>
                         <tr class="row">
-                            <td class="first col-6 col-t-6 col-m-6">Durchschnittliche Bewertung: </td>
-                            <td class="second col-6 col-t-6 col-m-6">{{avgRatingForUser}}</td>
+                            <td class="first col-6 col-t-6 col-m-6">Durchschnittliche Bewertung:</td>
+                            <td class="second col-6 col-t-6 col-m-6">{{avgRatingForUser | number:'1.1-2'}}</td>
                         </tr>
                     </table>
                 </div>

@@ -1,7 +1,6 @@
 package com.joinme.backend.chat.dto;
 
 import com.joinme.backend.accounts.dto.UserProfileDto;
-import com.joinme.backend.accounts.entity.UserAccount;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

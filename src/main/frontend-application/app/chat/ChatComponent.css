@@ -1,13 +1,15 @@
-.userNameChat{
+.userNameChat {
     color: white;
     font-weight: bold;
     text-align: right;
 }
-.messageChat{
+
+.messageChat {
     color: white;
     text-align: left;
     padding-left: 3px;
 }
-.chatmessage{
+
+.chatmessage {
     line-height: 30px;
 }

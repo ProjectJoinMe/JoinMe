@@ -4,7 +4,7 @@ import com.joinme.backend.location.LatLng;
 
 import java.io.Serializable;
 
-public class PointOfInterestDto implements Serializable{
+public class PointOfInterestDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -16,12 +16,12 @@ public class PointOfInterestDto implements Serializable{
         return name;
     }
 
-    public String getPlaceId() {
-        return placeId;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPlaceId() {
+        return placeId;
     }
 
     public void setPlaceId(String placeId) {

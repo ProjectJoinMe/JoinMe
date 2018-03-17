@@ -19,14 +19,13 @@ public class EmailSenderBean {
     private MailSender mailSender;
 
     private SimpleMailMessage templateMessage;
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @PostConstruct
     public void setupMailTemplate() {
         templateMessage = new SimpleMailMessage();
         templateMessage.setFrom("projectjoinme@gmail.com");
     }
-
-    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Async
     public void sendMailForNotificationAsync(UserNotification notification) {

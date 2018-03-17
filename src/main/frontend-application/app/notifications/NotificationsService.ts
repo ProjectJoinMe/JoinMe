@@ -1,6 +1,5 @@
-import {Injectable, OnInit} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Message} from "./Message";
-import {Http} from "@angular/http";
 import {UserNotifications} from "./UserNotifications";
 import {Observable} from "rxjs/Observable";
 import {NotificationService} from "../services/NotificationService";
@@ -27,12 +26,18 @@ export class NotificationsService {
         this.enabled = enabled;
     }
 
-    private updateNow() {
-        this.retrieveNotificationsOn(Observable.of(0));
-    }
-
     public clear() {
         this.notifications = new UserNotifications();
+    }
+
+    markNotificationsAsRead() {
+        this.notifications.list.forEach(value => value.read = true);
+        this.notifications.unreadNotificationCount = 0;
+        this.notificationService.markNotificationsAsRead();
+    }
+
+    private updateNow() {
+        this.retrieveNotificationsOn(Observable.of(0));
     }
 
     private retrieveNotificationsOn(observable: Observable<number>) {
@@ -41,11 +46,5 @@ export class NotificationsService {
             .subscribe((notifications: UserNotifications) => {
                 this.notifications = notifications;
             });
-    }
-
-    markNotificationsAsRead() {
-        this.notifications.list.forEach(value => value.read = true);
-        this.notifications.unreadNotificationCount = 0;
-        this.notificationService.markNotificationsAsRead();
     }
 }
