@@ -11,26 +11,26 @@
             <div>
                 <table>
                     <tr class="row">
-                        <td class=" first col-4 col-t-4 col-m-6">
-                            <label class="description">Abfahrtsort:</label>
+                        <td class=" first col-6 col-t-6 col-m-6">
+                            <label class="description col-12 col-t-12 col-m-12">Abfahrtsort:</label>
                         </td>
-                        <td class=" second col-4 col-t-4 col-m-6 ">
-                            <label class="content">{{ ride.start }}</label>
+                        <td class=" second col-6 col-t-6 col-m-6 ">
+                            <label class="content col-12 col-t-12 col-m-12">{{ ride.start }}</label>
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class=" first col-4 col-t-4 col-m-6 ">
+                        <td class=" first col-6 col-t-6 col-m-6 ">
                             <label class="description">Zielort:</label>
                         </td>
-                        <td class=" second col-4 col-t-4 col-m-6 ">
+                        <td class=" second col-6 col-t-6 col-m-6 ">
                             <label class="content"> {{ ride.destination }}</label>
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class=" first col-4 col-t-4 col-m-6 ">
+                        <td class=" first col-6 col-t-6 col-m-6 ">
                             <label class="description">Freie Plätze:</label>
                         </td>
-                        <td class="second col-4 col-t-4 col-m-6 ">
+                        <td class="second col-6 col-t-6 col-m-6 ">
                             <label class="content">{{ ride.freeSeats }}</label>
                         </td>
                     </tr>
@@ -40,7 +40,7 @@
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class=" first col-4 col-t-4 col-m-6">
+                        <td class=" first col-6 col-t-6 col-m-6">
                             <label class="description">Abfahrt:</label>
                         </td>
                         <td class="second col-2 col-t-2 col-m-3">
@@ -60,7 +60,7 @@
                             <td class="col-12 col-t-12 col-m-12"><h3>Rückfahrt</h3></td>
                         </tr>
                         <tr class="row">
-                            <td class=" first col-4 col-t-4 col-m-6">
+                            <td class=" first col-6 col-t-4 col-m-6">
                                 <label class="description">Abfahrt:</label>
                             </td>
                             <td class="second col-2 col-t-2 col-m-3">
@@ -79,19 +79,19 @@
 
                 <table>
                     <tr class="row" *ngIf="ride.periodic">
-                        <td class=" first col-4 col-t-4 col-m-6">
+                        <td class=" first col-6 col-t-6 col-m-6">
                             <label class="description">Wöchentlich an:</label>
                         </td>
-                        <td class=" second col-4 col-t-4 col-m-6 ">
+                        <td class=" second col-6 col-t-6 col-m-6 ">
                             <label class="content">{{ getWeekDayNames()}}</label>
                         </td>
                     </tr>
                     <tr class="row">
                         <!-- TODO make something else when there are no notes-->
-                        <td class=" col-4 col-t-4 col-m-6 first">
+                        <td class=" col-6 col-t-6 col-m-6 first">
                             <label>Bemerkungen:</label>
                         </td>
-                        <td class="second col-4 col-t-8 col-m-6">
+                        <td class="second col-6 col-t-6 col-m-6">
                             <div *ngIf="ride.notes">{{ ride.notes }}</div>
                         </td>
                     </tr>

@@ -39,9 +39,11 @@
 
             <table>
                 <tr class="row">
-                    <td class="col-2 col-t-4 col-m-12 top">
+                    <td class="col-4 col-t-4 top"></td>
+                    <td class="col-4 col-t-4 col-m-12 top">
                         <input type="button" value="Chat mit diesem User" class="col-12 col-t-12 col-m-12 btn" (click)="toUserChat()">
                     </td>
+                    <td class="col-4 col-t-4 top"></td>
                 </tr>
             </table>
         </div>
@@ -185,14 +187,16 @@
             <hr noshade>
 
             <div class="row">
-                <div class="col-12 col-t-12 col-m-12">
+                <div class="col-3 col-t-3"></div>
+                <div class="col-6 col-t-6 col-m-12">
                     <table>
-                        <tr>
-                            <td>Durchschnittliche Bewertung: </td>
-                            <td>{{avgRatingForUser}}</td>
+                        <tr class="row">
+                            <td class="first col-6 col-t-6 col-m-6">Durchschnittliche Bewertung: </td>
+                            <td class="second col-6 col-t-6 col-m-6">{{avgRatingForUser}}</td>
                         </tr>
                     </table>
                 </div>
+                <div class="col-3 col-t-3"></div>
             </div>
         </div>
 
