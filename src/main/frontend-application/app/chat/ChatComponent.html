@@ -1,19 +1,39 @@
 <div id="content" class="main">
     <br>
-    <h1 class="component">Chat</h1>
+    <h1 class="component col-12 col-t-12 col-m-12">Chat</h1>
     <br/>
-    <div style="color: black" *ngFor="let chatMessage of chatMessages" class="chatmessage">
-        <span>{{chatMessage.fromUser.username + ": " + chatMessage.message}}</span>
+
+    <div class="row">
+        <div class="col-3 col-t-2"></div>
+        <div class="inner col-6 col-t-8 col-m-12">
+
+            <div *ngFor="let chatMessage of chatMessages" class="chatmessage row">
+                <span class="col-3 col-t-3 col-m-3 first userNameChat">{{chatMessage.fromUser.username + ": "}}</span>
+                <span class="col-9 col-t-9 col-m-9 messageChat">{{chatMessage.message}}</span>
+            </div>
+
+            <br>
+
+            <form [formGroup]="chatForm" (ngSubmit)="sendChatMessage()">
+                <table>
+                    <tr class="row">
+                        <td class="col-3 col-t-1 col-m-1"></td>
+                        <td class="col-6 col-t-8 col-m-7">
+                            <input class="col-12 col-t-12 col-m-12" formControlName="chatMessage" type="text"/>
+                        </td>
+                        <td class="col-2 col-t-2 col-m-3">
+                            <button type="submit" class="col-12 col-t-12 col-m-12 btn" [disabled]="submitDisabled">Senden</button>
+                        </td>
+                        <td class="col-1 col-m-1 col-t-1"></td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+
+        </div>
+        <div class="col-3 col-t-2"></div>
     </div>
-    <form [formGroup]="chatForm" (ngSubmit)="sendChatMessage()">
-        <table>
-            <tr class="row">
-                <td><input formControlName="chatMessage" type="text"/></td>
-                <td>
-                    <button type="submit" [disabled]="submitDisabled">Senden</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+
+    <br>
 
 </div>

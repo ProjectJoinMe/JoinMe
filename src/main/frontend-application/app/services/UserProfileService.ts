@@ -66,4 +66,11 @@ export class UserProfileService extends AbstractApiService {
             .then(response => response.json() as PointOfInterest[])
             .catch(this.handleError);
     }
+
+    getAvgRatingOfUser(userName : String): Promise<number>{
+        return this.http.get(`api/ratings/avgRating/${userName}`)
+            .toPromise()
+            .then(response => response.json() as number)
+            .catch(this.handleError);
+    }
 }

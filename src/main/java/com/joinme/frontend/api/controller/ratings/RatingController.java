@@ -50,6 +50,8 @@ public class RatingController {
         Assert.isTrue(rideJoinManager.getRideOfRideJoin(rideJoinId).getDepartureDateTime().
                 isBefore(ChronoLocalDateTime.from(LocalDateTime.now())));
 
+        Assert.isTrue(rating.getRating() >= 1 && rating.getRating() <= 5); //assures that the rating is valid
+
         RatingDto ratingDto = ratingManager.createRatingForRideJoin(rating);
         rideJoinManager.setRating(rideJoinDto, ratingDto);
 
@@ -57,6 +59,16 @@ public class RatingController {
                 "Du hast eine neue Bewertung erhalten!"); //TODO data
 
         return ratingDto;
+    }
+
+    @PreAuthorize("fullyAuthenticated")
+    @RequestMapping(value = "/api/ratings/avgRating/{username}", method = RequestMethod.GET)
+    @ResponseBody
+    public Double getAvgRatingForUser(@PathVariable String username) {
+
+        Double rating = ratingManager.getAvgRatingForUser(username);
+        if (rating == null) rating = new Double(0); //if there is no rating the avg is set to zero
+        return rating;
     }
 
     private void createNotification(UserNotificationType type, RideDto ride, String message) {

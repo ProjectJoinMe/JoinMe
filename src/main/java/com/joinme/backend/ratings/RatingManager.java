@@ -6,4 +6,6 @@ public interface RatingManager {
     RatingDto createRatingForRideJoin(RatingDto rating);
 
     RatingDto getRatingById(long id);
+
+    Double getAvgRatingForUser(String username);
 }
