@@ -59,7 +59,7 @@ public class Ride implements Serializable {
 
     @Column(nullable = false)
     @NotNull
-    private int maxPassengers;
+    private Integer maxPassengers;
 
     @Column
     private LocalDateTime returnDepartureDateTime;

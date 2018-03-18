@@ -105,7 +105,6 @@ public class UserProfileManagerBean implements UserProfileManager {
         if (profilePicture != null && profilePicture.length != 0) {
             return profilePicture;
         } else {
-            //TODO what if there is no profile pic
             return new byte[1];
         }
     }
@@ -118,7 +117,6 @@ public class UserProfileManagerBean implements UserProfileManager {
         if (carPicture != null && carPicture.length != 0) {
             return carPicture;
         } else {
-            //TODO what if there is no car pic
             return new byte[1];
         }
     }
