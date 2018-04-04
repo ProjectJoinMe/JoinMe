@@ -170,6 +170,7 @@
                                 <div class="col-2 col-t-2"></div>
                                 <input class="col-2 col-t-2 col-m-3" formControlName="pricePerPassenger" type="number"
                                        min="0" max="100">
+                                <span *ngIf="recommendedPrice !== null">Empfohlener Preis: {{recommendedPrice}}</span>
                             </td>
                             <td class="col-4 col-t-4 col-m-12">
                                 <small class="error-message col-12 col-t-12 col-m-12"

@@ -96,7 +96,7 @@ export class RideService extends AbstractApiService {
     }
 
     getRouteInfo(ride: Ride): Promise<Ride> {
-        return this.http.get(`${this.ridesApiUrl}/routeInformation`)
+        return this.http.post(`${this.ridesApiUrl}/routeInformation`, ride)
             .toPromise()
             .then(response => response.json() as Ride)
             .catch(this.handleError);

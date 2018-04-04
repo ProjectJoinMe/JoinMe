@@ -19,6 +19,7 @@ export class CreateRideComponent implements OnInit {
     public submitDisabled: boolean = false;
     private onStartPlaceChange: (place: any, isFullPlace: boolean) => void;
     private onDestinationPlaceChange: (place: any, isFullPlace: boolean) => void;
+    private recommendedPrice: number|null = null;
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,
@@ -134,7 +135,7 @@ export class CreateRideComponent implements OnInit {
                 startPlaceId: startPlaceId,
                 destinationPlaceId: destinationPlaceId
             }).then(rideWithRouteInformation => {
-                rideWithRouteInformation.route.suggestedPricePerPassenger;
+                this.recommendedPrice = rideWithRouteInformation.route.suggestedPricePerPassenger;
             }).catch(reason => {
                 console.error("failed to get ride information, TODO");
             });

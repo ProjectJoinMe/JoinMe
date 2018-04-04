@@ -165,7 +165,8 @@ public class RideDto implements Serializable {
     }
 
     public boolean isPeriodic() {
-        return !getPeriodicWeekDays().isEmpty();
+        return getPeriodicWeekDays() != null
+                && !getPeriodicWeekDays().isEmpty();
     }
 
     public List<Integer> getPeriodicWeekDays() {

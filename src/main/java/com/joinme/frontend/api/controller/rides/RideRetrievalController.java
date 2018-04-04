@@ -57,7 +57,7 @@ public class RideRetrievalController {
         return rideRetrieval.searchRides(rideSearchFilter);
     }
 
-    @RequestMapping(value = "/api/rides/routeInformation", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/rides/routeInformation", method = RequestMethod.POST)
     @ResponseBody
     public RideDto getRouteInformation(@RequestBody RideDto ride) {
         rideGoogleMapsRouteProcessing.fillGoogleMapsRouteInformation(ride);
