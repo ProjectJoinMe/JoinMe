@@ -90,9 +90,8 @@ export class CreateRideComponent implements OnInit {
                 periodic: <boolean> this.rideForm.get("periodic").value,
                 periodicWeekDays: periodicWeekDays
             };
-            console.info(rideData);
             this.rideService.createRide(rideData).then(createdRide => {
-                this.messageService.setMessage("Ihre Fahrt wurde erfolgreich erstellt.", "succes");
+                this.messageService.setMessage("Ihre Fahrt wurde erfolgreich erstellt.", "success");
                 this.router.navigate(['/rides', createdRide.id]);
             }).catch(reason => {
                 this.submitDisabled = false;

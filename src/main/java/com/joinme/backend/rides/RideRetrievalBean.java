@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,6 +65,9 @@ public class RideRetrievalBean implements RideRetrieval {
                 .collect(Collectors.toList());
 
         potentialRides = filterRidesQuicklyByBorderBox(potentialRides, rideSearchFilter);
+        if (rideSearchFilter.getDate() != null) {
+            potentialRides = filterPeriodicRidesForDate(potentialRides, rideSearchFilter.getDate());
+        }
 
         potentialRides = potentialRides.stream()
                 .filter(rideDto -> areSearchedLocationsOnRideRoute(rideDto, rideSearchFilter))
@@ -70,6 +76,24 @@ public class RideRetrievalBean implements RideRetrieval {
         // TODO sort by distance ascending for best match
 
         return potentialRides;
+    }
+
+    private List<RideDto> filterPeriodicRidesForDate(List<RideDto> potentialRides, LocalDate date) {
+        return potentialRides.stream()
+                .filter(rideDto -> {
+                    if (!rideDto.isPeriodic()) {
+                        return true;
+                    }
+                    LocalDateTime departureDateTime = rideDto.getDepartureDateTime();
+                    LocalDate departureDate = departureDateTime.toLocalDate();
+                    if (departureDate.isAfter(date)) {
+                        return false;
+                    }
+                    List<Integer> periodicWeekDays = rideDto.getPeriodicWeekDays();
+                    DayOfWeek dayOfWeek = date.getDayOfWeek();
+                    return periodicWeekDays.contains(dayOfWeek.getValue());
+                })
+                .collect(Collectors.toList());
     }
 
     /**

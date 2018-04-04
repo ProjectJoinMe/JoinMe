@@ -108,7 +108,6 @@ export class RideDetailsComponent implements OnInit {
     }
 
     deleteRide() {
-        //TODO send information message to all users that joined that ride
         this.rideService.deleteRide(this.ride).then(nothing => {
             this.router.navigate(['/profile', this.securityStatus.username, 'rides']);
             this.messageService.setMessage("Ihre Fahrt wurde erfolgreich gelöscht.", "success");

@@ -19,6 +19,7 @@ public interface RideRepository extends CrudRepository<Ride, Long> {
     Ride findById(long id);
 
     @Query("SELECT ride FROM Ride ride WHERE" +
-            " ((:date IS NULL AND ride.departureDateTime > current_date) OR ride.departureDate = :date)")
+            " ((:date IS NULL AND ride.departureDateTime > current_date) OR ride.departureDate = :date)" +
+            " OR ride.periodicWeekDays IS NOT NULL")
     List<Ride> getRidesInFutureOrAtDate(@Param("date") LocalDate date);
 }
