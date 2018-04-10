@@ -13,12 +13,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 
+/**
+ * Created by Nicole August 2018.
+ */
 @Controller
 public class RideCreationController {
 
     @Autowired
     private RideCreation rideCreation;
 
+    /**
+     * Accepts the request for creating a ride. Actual creation done in RideCreation.
+     *
+     * @param ride the ride that should be created as RideDto
+     * @return RideDto of the created ride.
+     */
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/rides/createRide", method = RequestMethod.POST)
     @ResponseBody

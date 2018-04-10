@@ -13,12 +13,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+/**
+ * Created by Nicole August 2018.
+ */
 @Controller
 public class RideJoinController {
 
     @Autowired
     private RideJoinManager rideJoinManager;
 
+    /**
+     * Receives the request to join a ride by the current user.
+     *
+     * @param rideId the id of the ride to be joined
+     * @return RideJoinDto created by joining.
+     */
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/rides/{rideId}/join", method = RequestMethod.POST)
     @ResponseBody
@@ -27,6 +36,11 @@ public class RideJoinController {
         return rideJoinManager.joinRide(rideId, currentUsername);
     }
 
+    /**
+     * Unjoins current user from the ride provided in the request.
+     *
+     * @param rideId the ride to unjoin.
+     */
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/rides/{rideId}/unjoin", method = RequestMethod.POST)
     @ResponseBody
@@ -35,6 +49,12 @@ public class RideJoinController {
         rideJoinManager.unjoinRide(rideId, currentUsername);
     }
 
+    /**
+     * Returns all the RideJoins for a specific ride.
+     *
+     * @param id the id of the ride
+     * @return List of RideJoinDto with RideJoins for the ride
+     */
     @RequestMapping(value = "/api/rides/{id}/joins", method = RequestMethod.GET)
     @ResponseBody
     public List<RideJoinDto> getRideJoinsForRide(@PathVariable long id) {

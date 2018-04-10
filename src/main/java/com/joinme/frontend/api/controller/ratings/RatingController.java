@@ -21,6 +21,9 @@ import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
+/**
+ * Created by Alexander September 2018.
+ */
 @Controller
 public class RatingController {
 
@@ -37,6 +40,15 @@ public class RatingController {
     @Autowired
     private NotificationManagerBean notificationManagerBean;
 
+    /**
+     * Request for the creation of a Rating is received here. First, checks described below are performed to
+     * ensure new, valid rating. Notification is created.
+     * Actual creation in RideJoinManager.
+     *
+     * @param rideJoinId The id of the RideJoin the rating is supposed to belong to.
+     * @param rating     The actual rating.
+     * @return The newly created rating
+     */
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/ratings/create/{rideJoinId}", method = RequestMethod.POST)
     @ResponseBody
@@ -62,7 +74,13 @@ public class RatingController {
         return ratingDto;
     }
 
-
+    /**
+     * Helper method for the creation of the notification. Forwards to the NotificationManagerBean
+     *
+     * @param type    Type of notification.
+     * @param ride    The ride it belongs to.
+     * @param message String containing the message.
+     */
     private void createNotification(UserNotificationType type, RideDto ride, String message) {
         UserNotificationDto notification = new UserNotificationDto();
         notification.setType(type);
@@ -72,16 +90,27 @@ public class RatingController {
         notificationManagerBean.create(notification);
     }
 
+    /**
+     * Returns average rating for user with username provided in the request.
+     *
+     * @param username the average rating should be calculated for.
+     * @return the calculated avg rating as Double
+     */
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/ratings/avgRating/{username}", method = RequestMethod.GET)
     @ResponseBody
     public Double getAvgRatingForUser(@PathVariable String username) {
-
         Double rating = ratingManager.getAvgRatingForUser(username);
         if (rating == null) rating = new Double(0); //if there is no rating the avg is set to zero
         return rating;
     }
 
+    /**
+     * Returns all the ratings for a specific ride.
+     *
+     * @param rideId of the ratings belong to.
+     * @return the Ratings for the ride.
+     */
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/ratings/ride/{rideId}", method = RequestMethod.GET)
     @ResponseBody

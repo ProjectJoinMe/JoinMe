@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Created by Alexander January 2018.
+ */
 @Controller
 public class ChatController {
 
@@ -32,18 +35,33 @@ public class ChatController {
     @Autowired
     private NotificationManagerBean notificationManagerBean;
 
+    /**
+     * Receives the request to create a new chat message and creates the notification for the user receiving.
+     * Forwards request to the ChatManager
+     *
+     * @param chatMessageDto The newly sent chat message received in the request
+     * @return ChatMessageDto of the created message
+     */
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/chat/create", method = RequestMethod.POST)
     @ResponseBody
     public ChatMessageDto createChatMessage(@Valid @RequestBody ChatMessageDto chatMessageDto) {
         Assert.isTrue(chatMessageDto.getFromUser().getUsername().equals(SecurityUtil.getCurrentUsername())); //checks that fromUser is current user
 
-        createNotification(UserNotificationType.chatMessageReceived, chatMessageDto,
+        createNotification(UserNotificationType.chatMessageReceived, chatMessageDto, //created chatmessage
                 "Du hast eine neue Nachricht von " + chatMessageDto.getFromUser().getUsername() + " erhalten.");
 
         return chatManager.createChatMessage(chatMessageDto);
     }
 
+    /**
+     * Method to help create the notification for the user receiving a chat message.
+     * uses NotificationManager for actual creation
+     *
+     * @param type           of UserNotification
+     * @param chatMessageDto the notification is for
+     * @param message        in form of a String to be sent
+     */
     private void createNotification(UserNotificationType type, ChatMessageDto chatMessageDto, String message) {
         UserNotificationDto notification = new UserNotificationDto();
         notification.setType(type);
@@ -53,7 +71,13 @@ public class ChatController {
         notificationManagerBean.create(notification);
     }
 
-
+    /**
+     * Returns the messages exchanged by two users. Data gotten from the ChatManager
+     * First gets the UserProfileDtos from the users in question from the UserProfileManager
+     *
+     * @param chatUserNameReceiver the usernames of the users to look for
+     * @return the chat messages between the users
+     */
     @PreAuthorize("fullyAuthenticated")
     @RequestMapping(value = "/api/chat/getMessages", method = RequestMethod.POST)
     @ResponseBody
@@ -61,18 +85,21 @@ public class ChatController {
 
         UserProfileDto fromUser = userProfileManager.getProfile(chatUserNameReceiver.getFromUserName());
         UserProfileDto toUser = userProfileManager.getProfile(chatUserNameReceiver.getToUserName());
-        Assert.isTrue(fromUser.getUsername().equals(SecurityUtil.getCurrentUsername()) // checks that one of the users is the current user
-                || toUser.getUsername().equals(SecurityUtil.getCurrentUsername()));
+        Assert.isTrue(fromUser.getUsername().equals(SecurityUtil.getCurrentUsername())
+                || toUser.getUsername().equals(SecurityUtil.getCurrentUsername()));// checks that one of the users is the current user
 
         List<ChatMessageDto> chatMessages = chatManager.getChatMessagesByFromUserAndToUser(fromUser, toUser);
-
-
         return chatMessages;
     }
 
 
 }
 
+/**
+ * Created by Alexander January 2018.
+ * <p>
+ * This class is used to receive the usernames for getChatMessagesFromUsers within one request body. See above.
+ */
 class ChatUserNameReceiver {
     private String fromUserName;
     private String toUserName;
