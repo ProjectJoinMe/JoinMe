@@ -1,3 +1,6 @@
+/**
+ * Created by Nicole August 2017.
+ */
 import {Component} from "@angular/core";
 import {UserProfile} from "./UserProfile";
 import {ActivatedRoute, Router} from "@angular/router";

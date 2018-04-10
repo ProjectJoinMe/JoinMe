@@ -2,6 +2,10 @@ import {Injectable} from "@angular/core";
 import {Message} from "./Message";
 import {Http} from "@angular/http";
 
+/**
+ * Created by Nicole August 2017.
+ */
+
 @Injectable()
 export class MessageService {
 

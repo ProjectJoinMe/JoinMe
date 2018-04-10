@@ -1,3 +1,6 @@
+/**
+ * Created by Nicole August 2017.
+ */
 import {Injectable} from "@angular/core";
 import {LoginData} from "./LoginData";
 import {SecurityService} from "../security/SecurityService";

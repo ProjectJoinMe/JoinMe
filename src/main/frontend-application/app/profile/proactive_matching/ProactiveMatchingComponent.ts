@@ -9,8 +9,9 @@ import {MapsAutocompletePlaceComponent} from "../../maps/autocomplete/MapsAutoco
 import {PointOfInterest} from "./PointOfInterest";
 
 /**
- * Created by Nicole on 18.08.2017.
+ * Created by Nicole August 2017.
  */
+
 @Component({
     selector: 'edit',
     providers: [],

@@ -1,3 +1,11 @@
+/**
+ * Created by Stefanie August 2017.
+ */
+
+/**
+ * This displayes the text of the profile components
+ * on the left side with a verticale space of 25px and limits the width to 40%
+ */
 .second {
     text-align: left;
     margin-left: 25px;

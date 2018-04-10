@@ -3,6 +3,10 @@ import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {MessageService} from "../message_service/MessageService";
 
+/**
+ * Created by Nicole August 2017.
+ */
+
 @Component({
     selector: 'message',
     providers: [],

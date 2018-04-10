@@ -3,6 +3,10 @@ import {Http} from "@angular/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Ride} from "../../rides/model/Ride";
 
+/**
+ * Created by Nicole August 2017.
+ */
+
 @Component({
     selector: 'joinedRides',
     providers: [],

@@ -1,3 +1,6 @@
+/**
+ * Created by Alexander January 2018.
+ */
 import {UserProfile} from "../profile/UserProfile";
 
 export interface ChatMessage {

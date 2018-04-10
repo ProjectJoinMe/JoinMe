@@ -1,3 +1,6 @@
+/**
+ * Created by Nicole August 2017.
+ */
 import {Component, ElementRef, Input, NgZone} from "@angular/core";
 import {LoginData} from "./LoginData";
 import {SecurityService} from "../security/SecurityService";
@@ -5,7 +8,9 @@ import {SecurityService} from "../security/SecurityService";
 declare let google: any;
 
 /**
- * @unused Currently unused as it used the quota of the Maps Directions API. Embedded maps/routes have unlimited quota but arent that customizable which isnt necessary in our case.
+ * @unused Currently unused as it used the quota of the Maps Directions API.
+ * Embedded maps/routes have unlimited quota but arent that customizable
+ * which isnt necessary in our case.
  */
 @Component({
     selector: 'maps-display-customizable-route',

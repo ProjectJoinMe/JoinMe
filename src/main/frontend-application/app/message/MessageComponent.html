@@ -1,3 +1,7 @@
+<!--
+* Created by Nicole August 2017.
+-->
+<!-- A message that is diplayed for example when a ride was successfully created -->
 <div>
     <div [ngClass]="{'message': true, 'success': messageService.currentMessage.type === 'success', 'failure': messageService.currentMessage.type === 'failure'}"
          *ngIf="messageService.currentMessage.text">

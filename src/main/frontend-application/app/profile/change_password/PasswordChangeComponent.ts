@@ -9,7 +9,7 @@ import {UserProfileService} from "../../services/UserProfileService";
 import {MessageService} from "../../message_service/MessageService";
 
 /**
- * Created by Alexander on 22.08.2017.
+ * Created by Alexander August 2017.
  */
 
 @Component({

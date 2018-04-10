@@ -1,9 +1,15 @@
+/**
+ * Created by Marco August 2017.
+ */
 textarea {
     width: 100%;
     height: 5em;
     border-radius: 5px;
 }
 
+/**
+ * Design of the checkboxes
+ */
 select {
     width: 100%;
     border-radius: 5px;

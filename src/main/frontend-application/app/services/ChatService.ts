@@ -4,6 +4,12 @@ import {Http} from "@angular/http";
 import {ChatMessage} from "../chat/ChatMessage";
 import {ChatMessages} from "../chat/ChatMessages";
 
+/**
+ * Created by Alexander August 2017.
+ *  * dazu da um
+ * create: http an die api zu senden
+ */
+
 @Injectable()
 export class ChatService extends AbstractApiService {
 

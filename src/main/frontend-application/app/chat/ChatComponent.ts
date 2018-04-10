@@ -10,6 +10,10 @@ import {UserProfileService} from "../services/UserProfileService";
 import {ChatService} from "../services/ChatService";
 import {ChatMessage} from "./ChatMessage";
 
+/**
+ * Created by Alexander January 2018.
+ */
+
 @Component({
     selector: 'chat',
     providers: [],

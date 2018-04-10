@@ -1,15 +1,30 @@
+/**
+ * Created by Stefanie January 2018.
+ */
+
+/**
+ the userNameChat-class makes the username appear in a white color
+ on the right side with a bold font
+ */
 .userNameChat {
     color: white;
     font-weight: bold;
     text-align: right;
 }
 
+/**
+ the messageChat-class formats the incoming chatmessage in a white color
+ on the left side with a vertical spacing of 3px to the name of the chat-partner
+ */
 .messageChat {
     color: white;
     text-align: left;
     padding-left: 3px;
 }
 
+/**
+ the chatmessage-class ensures that each message-row has a height of 30px
+ */
 .chatmessage {
     line-height: 30px;
 }

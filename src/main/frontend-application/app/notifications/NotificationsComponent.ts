@@ -5,6 +5,10 @@ import {SecurityService} from "../security/SecurityService";
 import {Router} from "@angular/router";
 import {NotificationsService} from "./NotificationsService";
 
+/**
+ * Created by Nicole August 2017.
+ */
+
 @Component({
     selector: 'notifications',
     providers: [],

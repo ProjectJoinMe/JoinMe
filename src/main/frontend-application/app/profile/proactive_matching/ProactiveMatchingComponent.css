@@ -1,3 +1,11 @@
+/**
+ * Created by Stefanie August 2017.
+ */
+
+/**
+    The design for the button that removes an entry.
+    These classes make the button look like a small, red rectangle with an 'X'
+ */
 .deleteBtn {
     background-color: #e4685d;
     -moz-border-radius: 3px;

@@ -7,6 +7,10 @@ import {RideService} from "../../services/RideService";
 import {Ride} from "../model/Ride";
 import {MessageService} from "../../message_service/MessageService";
 
+/**
+ * Created by Nicole August 2017.
+ */
+
 @Component({
     selector: 'myRidesUpdate',
     providers: [],

@@ -1,3 +1,6 @@
+/**
+ * Created by Nicole August 2017.
+ */
 import {Component, Input} from "@angular/core";
 import {LoginData} from "./LoginData";
 import {SecurityService} from "../security/SecurityService";

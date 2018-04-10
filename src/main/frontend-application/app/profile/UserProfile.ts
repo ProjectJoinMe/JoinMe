@@ -1,3 +1,6 @@
+/**
+ * Created by Nicole August 2017.
+ */
 export interface UserProfile {
     username: string;
     email: string;

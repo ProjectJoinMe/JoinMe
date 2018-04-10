@@ -1,3 +1,6 @@
+<!--
+ * Created by Alexander and Stefanie January 2018.
+ -->
 <div id="content" class="main">
     <br>
     <h1 class="component col-12 col-t-12 col-m-12">Chat</h1>
@@ -7,6 +10,7 @@
         <div class="col-3 col-t-2"></div>
         <div class="inner col-6 col-t-8 col-m-12">
 
+            <!-- This div displays the previous sent and received chat-messages -->
             <div *ngFor="let chatMessage of chatMessages" class="chatmessage row">
                 <span class="col-3 col-t-3 col-m-3 first userNameChat">{{chatMessage.fromUser.username + ": "}}</span>
                 <span class="col-9 col-t-9 col-m-9 messageChat">{{chatMessage.message}}</span>
@@ -14,6 +18,7 @@
 
             <br>
 
+            <!-- This table provides an input field and a send-button to send new chat-messages -->
             <form [formGroup]="chatForm" (ngSubmit)="sendChatMessage()">
                 <table>
                     <tr class="row">

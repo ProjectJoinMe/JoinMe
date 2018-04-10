@@ -1,4 +1,10 @@
+/**
+ * Created by Stefanie August 2017.
+ */
 
+/**
+ * setting a fixed-height for the displayed google-maps-preview
+ */
 .map {
     height: 400px;
 }

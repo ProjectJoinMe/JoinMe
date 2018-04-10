@@ -1,5 +1,5 @@
 /**
- * Created by Nicole on 10.07.2017.
+ * Created by Nicole August 2017.
  */
 export enum WeekDay {
     Monday = 1,

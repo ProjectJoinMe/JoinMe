@@ -5,6 +5,10 @@ import {Observable} from "rxjs/Observable";
 import {NotificationService} from "../services/NotificationService";
 import {Subscription} from "rxjs/Subscription";
 
+/**
+ * Created by Nicole August 2017.
+ */
+
 @Injectable()
 export class NotificationsService {
 

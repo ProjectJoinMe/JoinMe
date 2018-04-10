@@ -7,6 +7,10 @@ import {Ride} from "../model/Ride";
 import {LatLng} from "../model/LatLng";
 import {MessageService} from "../../message_service/MessageService";
 
+/**
+ * Created by Nicole August 2017.
+ */
+
 @Component({
     selector: 'searchRide',
     providers: [],
