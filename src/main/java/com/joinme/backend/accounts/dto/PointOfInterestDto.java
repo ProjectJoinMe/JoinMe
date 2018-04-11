@@ -3,7 +3,9 @@ package com.joinme.backend.accounts.dto;
 import com.joinme.backend.location.LatLng;
 
 import java.io.Serializable;
-
+/**
+ * Created by Nicole, January 2018.
+ */
 public class PointOfInterestDto implements Serializable {
 
     private static final long serialVersionUID = 1L;

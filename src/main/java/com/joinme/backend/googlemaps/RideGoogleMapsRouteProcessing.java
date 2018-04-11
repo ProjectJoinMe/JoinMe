@@ -18,7 +18,9 @@ import org.springframework.util.Assert;
 
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Component
 public class RideGoogleMapsRouteProcessing {
 
@@ -29,6 +31,10 @@ public class RideGoogleMapsRouteProcessing {
     @Autowired
     private GeoApiContext geoApiContext;
 
+    /**
+     * Sets route information on the ride
+     * @param ride
+     */
     public void fillGoogleMapsRouteInformation(RideDto ride) {
         DirectionsResult directions = getDirections(ride);
 
@@ -41,6 +47,12 @@ public class RideGoogleMapsRouteProcessing {
         ride.setRoute(createRideRouteInfo(route, routeLeg));
     }
 
+    /**
+     * Creates all RideRoute information
+     * @param route
+     * @param routeLeg
+     * @return
+     */
     private RideRouteDto createRideRouteInfo(DirectionsRoute route, DirectionsLeg routeLeg) {
         RideRouteDto rideRouteDto = new RideRouteDto();
 
@@ -52,6 +64,11 @@ public class RideGoogleMapsRouteProcessing {
         return rideRouteDto;
     }
 
+    /**
+     * Check if the place id changed (Google Maps is changing placeids over time)
+     * @param ride
+     * @param directions
+     */
     private void checkPlaceIdChange(RideDto ride, DirectionsResult directions) {
         // update place IDs as they can change over very long times // TODO periodically regenerate them as stated in https://developers.google.com/places/place-id#save-id
         if (!ride.getStartPlaceId().equals(directions.geocodedWaypoints[0].placeId)
@@ -62,6 +79,11 @@ public class RideGoogleMapsRouteProcessing {
         }
     }
 
+    /**
+     * Calculate suggested price for ride route based on ride duration
+     * @param routeLeg
+     * @return
+     */
     private double determineSuggestedPrice(DirectionsLeg routeLeg) {
         long minutes = routeLeg.duration.inSeconds / 60;
         int suggestedPrice = (int) Math.round(minutes * SUGGESTED_PRICE_PER_MINUTE);
@@ -71,6 +93,11 @@ public class RideGoogleMapsRouteProcessing {
         return (double) suggestedPrice;
     }
 
+    /**
+     * Get Google Maps directions from ride
+     * @param ride
+     * @return
+     */
     private DirectionsResult getDirections(RideDto ride) {
         try {
             return DirectionsApi.newRequest(geoApiContext)

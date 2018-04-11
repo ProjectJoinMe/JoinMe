@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Configuration
 public class DatabasePropertySourceConfiguration {
     // see http://stackoverflow.com/questions/12691812/can-propertysources-be-chosen-by-spring-profile

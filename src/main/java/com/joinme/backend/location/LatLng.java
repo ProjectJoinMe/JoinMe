@@ -5,7 +5,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.io.Serializable;
 import java.util.Locale;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 public class LatLng implements Serializable {
     /**
      * SOUTH to NORTH

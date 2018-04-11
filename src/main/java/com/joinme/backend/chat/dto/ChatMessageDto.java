@@ -6,7 +6,9 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
+/**
+ * Created by Alexander, January 2018.
+ */
 public class ChatMessageDto implements Serializable {
 
     private static final long serialVersionUID = 1L;

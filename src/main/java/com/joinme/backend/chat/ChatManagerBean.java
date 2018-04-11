@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Created by Alexander, January 2018.
+ */
 @Component
 @Transactional
 public class ChatManagerBean implements ChatManager {
@@ -26,6 +28,11 @@ public class ChatManagerBean implements ChatManager {
     @Autowired
     private ChatRepository chatRepository;
 
+    /**
+     * Creates ChatMessageEntity from dto
+     * @param chatMessageDto
+     * @return
+     */
     @Override
     public ChatMessageDto createChatMessage(ChatMessageDto chatMessageDto) {
         ChatMessage chatMessageEntity = chatMessageConverter.toEntity(chatMessageDto);
@@ -36,6 +43,12 @@ public class ChatManagerBean implements ChatManager {
 
     }
 
+    /**
+     * Returns ChatMessages for two users
+     * @param fromUser sender
+     * @param toUser message reciepient
+     * @return
+     */
     @Override
     public List<ChatMessageDto> getChatMessagesByFromUserAndToUser(UserProfileDto fromUser, UserProfileDto toUser) {
 

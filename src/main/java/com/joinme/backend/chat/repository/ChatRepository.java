@@ -8,7 +8,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+/**
+ * Created by Alexander, January 2018.
+ */
 @Repository
 public interface ChatRepository extends CrudRepository<ChatMessage, Long> {
 

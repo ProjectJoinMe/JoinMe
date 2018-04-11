@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
+/**
+ * Created by Alexander, January 2018.
+ */
 @Entity
 public class ChatMessage implements Serializable {
 

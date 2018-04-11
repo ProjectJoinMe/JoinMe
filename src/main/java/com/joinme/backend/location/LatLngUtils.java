@@ -3,11 +3,19 @@ package com.joinme.backend.location;
 import org.springframework.util.Assert;
 
 import java.util.List;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 public class LatLngUtils {
 
     private static final int EARTH_RADIUS_IN_KM = 6373;
 
+    /**
+     * Determines the distance in meters between two locations
+     * @param p1
+     * @param p2
+     * @return
+     */
     public static double distanceInMetersBetween(LatLng p1, LatLng p2) {
         // https://stackoverflow.com/questions/120283/how-can-i-measure-distance-and-create-a-bounding-box-based-on-two-latitudelongi
 
@@ -24,6 +32,13 @@ public class LatLngUtils {
         return EARTH_RADIUS_IN_KM * c * 1000;
     }
 
+    /**
+     * Adds meters to a locations
+     * @param location
+     * @param dxMeters
+     * @param dyMeters
+     * @return
+     */
     public static LatLng addMeters(LatLng location, double dxMeters, double dyMeters) {
         // https://stackoverflow.com/questions/7477003/calculating-new-longtitude-latitude-from-old-n-meters
         double dxKm = dxMeters / 1000;
@@ -33,19 +48,31 @@ public class LatLngUtils {
         return new LatLng(lat, lng);
     }
 
+    /**
+     * Checks if location in between two other locations
+     * @param p1
+     * @param p2
+     * @param test location to determine condition
+     * @return
+     */
     public static boolean isBetween(LatLng p1, LatLng p2, LatLng test) {
         return isBetweenOrEqual(test.lat, Math.min(p1.lat, p2.lat), Math.max(p1.lat, p2.lat))
                 && isBetweenOrEqual(test.lng, Math.min(p1.lng, p2.lng), Math.max(p1.lng, p2.lng));
     }
 
+    /**
+     * Determine if locaiton is in Border Box
+     * @param borderBox
+     * @param test
+     * @return
+     */
     public static boolean contains(BorderBox borderBox, LatLng test) {
         return isBetweenOrEqual(test.lat, borderBox.getSouthWest().lat, borderBox.getNorthEast().lat)
                 && isBetweenOrEqual(test.lng, borderBox.getSouthWest().lng, borderBox.getNorthEast().lng);
     }
 
     /**
-     * Creates a border box around the given locations consisting of the most south-west location and most north-west location.
-     *
+     * Creates a border box around the given locations consisting of the most south-west location and most north-west location
      * @param locations
      * @return
      */

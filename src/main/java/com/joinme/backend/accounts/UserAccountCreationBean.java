@@ -14,7 +14,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Component
 @Transactional
 public class UserAccountCreationBean implements UserAccountCreation {
@@ -25,12 +27,21 @@ public class UserAccountCreationBean implements UserAccountCreation {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Creates and saves UserAccount to database
+     * @param accountRegistrationData
+     */
     @Override
     public void createUser(AccountRegistrationData accountRegistrationData) {
         UserAccount userAccount = convertRegistrationDataToAccount(accountRegistrationData);
         userAccountRepository.save(userAccount);
     }
 
+    /**
+     * Creates UserAccount
+     * @param accountRegistrationData
+     * @return
+     */
     private UserAccount convertRegistrationDataToAccount(AccountRegistrationData accountRegistrationData) {
         UserAccount userAccount = new UserAccount();
         userAccount.setEmail(accountRegistrationData.getEmail());
@@ -47,6 +58,11 @@ public class UserAccountCreationBean implements UserAccountCreation {
         return userAccount;
     }
 
+    /**
+     * Removes time from Date
+     * @param date
+     * @return
+     */
     private Date truncateTime(Date date) {
         return DateUtils.truncate(date, Calendar.DATE);
     }

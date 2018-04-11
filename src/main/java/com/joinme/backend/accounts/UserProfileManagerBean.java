@@ -32,12 +32,22 @@ public class UserProfileManagerBean implements UserProfileManager {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Returns the UserProfileDto with the username
+     * @param username
+     * @return
+     */
     @Override
     public UserProfileDto getProfile(String username) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
         return userAccountConverter.toDto(userAccount);
     }
 
+    /**
+     * Updates properties of UserProfile
+     * @param userProfile
+     * @return
+     */
     @Override
     public UserProfileDto updateUserProfile(UserProfileDto userProfile) {
         UserAccount userAccount = userAccountRepository.findByUsername(userProfile.getUsername());
@@ -45,12 +55,22 @@ public class UserProfileManagerBean implements UserProfileManager {
         return userAccountConverter.toDto(userAccount);
     }
 
+    /**
+     * Updates PointsOfInterest
+     * @param username
+     * @param pointsOfInterest
+     */
     @Override
     public void updatePointsOfInterest(String username, List<PointOfInterestDto> pointsOfInterest) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
         userAccount.setPointsOfInterest(new ArrayList<>(pointsOfInterest));
     }
 
+    /**
+     * Returns PointsOfInterset of User with username
+     * @param username
+     * @return
+     */
     @Override
     public List<PointOfInterestDto> getPointsOfInterest(String username) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
@@ -61,6 +81,11 @@ public class UserProfileManagerBean implements UserProfileManager {
         return pointsOfInterest;
     }
 
+    /**
+     * Updates user password
+     * @param userPasswordDto new password
+     * @return
+     */
     @Override
     public UserProfileDto updateUserPassword(UserPasswordDto userPasswordDto) {
         String rawPassword = userPasswordDto.getPassword();
@@ -71,6 +96,12 @@ public class UserProfileManagerBean implements UserProfileManager {
         return userAccountConverter.toDto(userAccount);
     }
 
+    /**
+     * Sets Profile Picuture for user
+     * @param username
+     * @param profilePicture
+     * @return
+     */
     @Override
     public UserProfileDto setProfilePicture(String username, MultipartFile profilePicture) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
@@ -84,6 +115,12 @@ public class UserProfileManagerBean implements UserProfileManager {
 
     }
 
+    /**
+     * Sets profile car picture for user
+     * @param username
+     * @param carPicture
+     * @return
+     */
     @Override
     public UserProfileDto setCarPicture(String username, MultipartFile carPicture) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
@@ -97,6 +134,11 @@ public class UserProfileManagerBean implements UserProfileManager {
 
     }
 
+    /**
+     * Returns profile picture of user
+     * @param username
+     * @return
+     */
     @Override
     public byte[] getProfilePicture(String username) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);
@@ -109,6 +151,11 @@ public class UserProfileManagerBean implements UserProfileManager {
         }
     }
 
+    /**
+     * Returns car picture of user
+     * @param username
+     * @return
+     */
     @Override
     public byte[] getCarPicture(String username) {
         UserAccount userAccount = userAccountRepository.findByUsername(username);

@@ -9,7 +9,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Entity
 @Table(name = "UserAccount")
 public class UserAccount implements Serializable {

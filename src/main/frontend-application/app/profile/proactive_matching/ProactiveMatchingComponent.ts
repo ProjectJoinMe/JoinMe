@@ -71,6 +71,7 @@ export class ProactiveMatchingComponent implements OnInit {
     public update() {
         this.userProfileService.updatePointsOfInterest(this.pois);
         console.log(this.pois);
+        (<any>window).Android.saveProActiveMatchingSettings(JSON.stringify({pointsOfInterest: this.pois}));
     }
 
     private mapsLatLngToJoinMeLatLng(location: any): LatLng {

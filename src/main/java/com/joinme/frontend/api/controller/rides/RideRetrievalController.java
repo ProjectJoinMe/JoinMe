@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -84,6 +85,12 @@ public class RideRetrievalController {
             rideSearchFilter.setBasicAllowedDistanceFromRouteInMeters(3000d);
         }
         return rideRetrieval.searchRides(rideSearchFilter);
+    }
+
+    @RequestMapping(value = "/api/rides/searchWithStringBody", method = RequestMethod.POST)
+    @ResponseBody
+    public List<RideDto> searchRides(@RequestBody String lul) {
+        return new ArrayList<>();
     }
 
     /**

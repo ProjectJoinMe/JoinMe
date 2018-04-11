@@ -15,18 +15,33 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserAccountConverter {
 
+    /**
+     * Converts UserAccountEntities to DTO
+     * @param entities
+     * @return
+     */
     public List<UserProfileDto> toDto(List<UserAccount> entities) {
         return entities.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Converts UserProfile Entities to DTOs
+     * @param entity
+     * @return
+     */
     public UserProfileDto toDto(UserAccount entity) {
         UserProfileDto userProfileDto = new UserProfileDto();
         setPropertiesOnDto(userProfileDto, entity);
         return userProfileDto;
     }
 
+    /**
+     * Set entity properties on UserProfileDto
+     * @param userProfileDto
+     * @param entity
+     */
     public void setPropertiesOnDto(UserProfileDto userProfileDto, UserAccount entity) {
         if (entity != null) {
             userProfileDto.setUsername(entity.getUsername());
@@ -43,12 +58,22 @@ public class UserAccountConverter {
         }
     }
 
+    /**
+     * Converts UserAccount DTO to entity
+     * @param userProfileDto
+     * @return
+     */
     public UserAccount toEntity(UserProfileDto userProfileDto) {
         UserAccount userAccountEntity = new UserAccount();
         setPropertiesOnEntity(userAccountEntity, userProfileDto);
         return userAccountEntity;
     }
 
+    /**
+     * Set DTO properties on UserAccount entity
+     * @param userAccountEntity
+     * @param userProfileDto
+     */
     public void setPropertiesOnEntity(UserAccount userAccountEntity, UserProfileDto userProfileDto) {
         userAccountEntity.setUsername(userProfileDto.getUsername());
         userAccountEntity.setEmail(userProfileDto.getEmail());

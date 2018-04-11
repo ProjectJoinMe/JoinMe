@@ -2,6 +2,9 @@ package com.joinme.backend.location;
 
 import java.io.Serializable;
 
+/**
+ * Created by Nicole, August 2017.
+ */
 public class BorderBox implements Serializable {
     private LatLng southWest;
     private LatLng northEast;
@@ -14,6 +17,11 @@ public class BorderBox implements Serializable {
         this.northEast = northEast;
     }
 
+    /**
+     * Check if location is in Border Box
+     * @param location
+     * @return
+     */
     public boolean contains(LatLng location) {
         return LatLngUtils.contains(this, location);
     }
