@@ -14,7 +14,7 @@
 
 /**
  the messageChat-class formats the incoming chatmessage in a white color
- on the left side with a vertical spacing of 3px to the name of the chat-partner
+ on the left side with a horizontal spacing of 3px on the left to the name of the chat-partner
  */
 .messageChat {
     color: white;

@@ -1,3 +1,6 @@
+/**
+ * Modified by Nicole August 2017
+ */
 import {ApplicationRef, LOCALE_ID, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";

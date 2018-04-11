@@ -4,7 +4,7 @@
 
 /**
  * This displayes the text of the profile components
- * on the left side with a verticale space of 25px and limits the width to 40%
+ * on the left side with a horizontal space of 25px and limits the width to 40%
  */
 .second {
     text-align: left;

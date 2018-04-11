@@ -1,3 +1,6 @@
+/**
+ * Modified by Nicole and Stefanie August 2017
+ */
 import {Routes} from "@angular/router";
 import {HomeComponent} from "./home";
 import {CreateRideComponent} from "./rides/create";

@@ -1,3 +1,7 @@
+/**
+ Modified by Stefanie and Marco August 2017
+ */
+
 /*
   !! NOTICE !!
   The CSS in this file can be used in each component because of the "encapsulation: ViewEncapsulation.None" in the component definition.
@@ -13,8 +17,9 @@
     box-sizing: border-box;
 }
 
-/*Alte Farbe: #2980b9, lime
-neue: #A0D751*/
+/**
+ The main body has a green background-color
+ */
 body {
     background: #A0D751;
     margin: 0;
@@ -25,7 +30,6 @@ body {
 }
 
 .container {
-    /*padding: 80px;*/
     width: 100%;
     margin: 0;
     padding: 0;
@@ -47,11 +51,14 @@ span.active {
     background-color: gray;
 }
 
+/**
+ The font-color of an error is red
+ */
 .error-message {
     color: red;
 }
 
-/*
+/**
   Button-Design
   http://css3buttongenerator.com/
 */
@@ -86,7 +93,6 @@ input, textarea {
     border: none;
     border-radius: 5px;
     width: 100%;
-
     padding-left: 2px;
 }
 
@@ -94,7 +100,9 @@ input {
     line-height: 100%;
 }
 
-/* Checkbox */
+/**
+ Design for the Checkboxes (Days of the week for periodic ride)
+ */
 input[type=checkbox]:checked, input[type=radio]:checked {
     background-color: green;
 }
@@ -117,21 +125,26 @@ input[type=checkbox], input[type=radio] {
     background-color: white;
 }
 
+/**
+ Design of the footer
+ */
 footer {
     right: 10px;
     bottom: 10px;
     position: fixed;
 }
 
+/**
+ Setting a border-radius for the logo in the footer
+ */
 img.flogo {
     border-radius: 30%;
 
 }
 
-.strechtInputField {
-    width: 100%;
-}
-
+/**
+ The white div of each page, it surrounds the inner div
+ */
 div.main {
     text-align: center;
     width: 100%;
@@ -145,6 +158,9 @@ div.main {
     position: relative;
 }
 
+/**
+ Design for the box, where all notifications are shown
+ */
 div.infobox {
     position: absolute;
     background-color: white;
@@ -157,31 +173,9 @@ div.infobox {
     overflow-y: scroll
 }
 
-div.chatbox {
-    position: fixed;
-    background-color: white;
-    color: black;
-    z-index: 9;
-    right: 0;
-    bottom: 0;
-    height: 93%;
-    overflow-y: scroll
-}
-
-/* ToDo: Alternative für Position:fixed -> menu nicht sichtbar */
-div.chatOpener {
-    text-align: center;
-    horiz-align: center;
-    font-size: 20px;
-    position: fixed;
-    background-color: #333333;
-    color: white;
-    z-index: 10;
-    right: 0;
-    bottom: 0;
-    height: 4%;
-}
-
+/**
+ The green div on each site, where the page-content is displayed
+ */
 div.inner {
     background-color: #A0D751;
     border: none;
@@ -195,15 +189,35 @@ div.inner {
     text-align: center;
 }
 
+/**
+ Used for tables, to set the text-content of the first column to the right side
+ */
 td.first {
     text-align: right;
 }
 
+/**
+ For tables, so the second column is left-sided
+ */
+.second {
+    text-align: left;
+    padding-top: 1%;
+    padding-left: 1%;
+}
+
+/**
+ Used for Error Messages
+ Error messages are displayed in a smaller font than the regular text
+ */
 small {
     font-size: x-small;
     width: auto;
 }
 
+/**
+ Design for displaying a ride before going on the ride details page
+ (search ride, my rides, joined rides)
+ */
 div.ride {
     margin-bottom: 8px;
     border: black 1px solid;
@@ -213,6 +227,9 @@ div.ride {
     cursor: pointer;
 }
 
+/**
+ A title-font for the profile page (car and personal information)
+ */
 h2 {
     color: white;
     text-align: center;
@@ -228,19 +245,17 @@ label.heading {
     font-size: 28px;
 }
 
-/* vielleicht weg */
 input.date {
     width: 100%;
 }
 
-.second {
-    text-align: left;
-    padding-top: 1%;
-    padding-left: 1%;
-}
-
-/* RWD - Hilfe von W3Schools */
-
+/**
+ Widths for the Responsive Web Design, which get assigned to the html components
+ */
+/**
+ Widths for the Mobile Devices, a max-width is set to 480px.
+ If the width of the Device is higher than that, it "jumps" to the design of the tablets
+ */
 @media only screen and (max-width: 480px) {
     /* For mobile phones: */
     .col-m-1 {
@@ -290,7 +305,9 @@ input.date {
     .col-m-12 {
         width: 100%;
     }
-
+    /**
+     For the mobile design a smaller title font was required
+     */
     h1.joinme {
         font-size: 20vw;
         text-align: center;
@@ -307,21 +324,13 @@ input.date {
         margin: auto;
         position: relative;
     }
-
-    /*Tablesize of the first Table -> mobile version width = 50%*/
-    td.tdsizeMobile {
-        line-height: 200%;
-        width: 50%;
-        align-content: center;
-    }
-
-    div.colMarginTop {
-        margin-top: 25px;
-    }
 }
 
+/**
+ Widths for the tablets, the min-width is set to 600px.
+ If the width of the Device is lower than that, the mobile design is used
+ */
 @media only screen and (min-width: 600px) {
-    /* For tablets  */
     .col-t-1 {
         width: 8.33%;
     }
@@ -373,7 +382,9 @@ input.date {
     .col-t-12 {
         width: 100%;
     }
-
+    /**
+     Again, a smaller title font was required
+     */
     h1.joinme {
         font-size: 5vw;
         text-align: center;
@@ -381,15 +392,13 @@ input.date {
         margin-top: 15px;
         margin-bottom: 15px;
     }
-
-    div.colMarginTop {
-        margin-top: 35px;
-    }
-
 }
-
+/**
+ Widths for PCs, a min-width of 980px is set.
+ If the width of the device is lower than that, it uses the design for tablets
+ or of the mobile device, depending on the width
+ */
 @media only screen and (min-width: 980px) and (orientation: landscape) {
-    /* For desktop: */
     .col-1 {
         width: 8.33%;
     }
@@ -443,6 +452,10 @@ input.date {
     }
 }
 
+/**
+ Setting a transparent border to each component with a "col-" class
+ For using "empty divs"
+ */
 [class*="col-"] {
     float: left;
     border: 1px solid transparent;
@@ -468,11 +481,6 @@ table {
     padding: 0px;
 }
 
-.buttonRow {
-    text-align: center;
-    width: 100%;
-}
-
 .float-right {
     float: right !important;
 }
@@ -482,6 +490,9 @@ table {
     clear: both;
 }
 
+/**
+ Design for the div that contains the days of the week
+ */
 div.days {
     padding: 10px;
     width: 66.66%;
@@ -502,12 +513,17 @@ div.days {
     padding: 0;
 }
 
+/**
+ A font for the ride title
+ */
 .ridetitle {
     color: #A0D751;
     font-size: 20px;
 }
 
-/* Separators */
+/**
+ horizontal Separators in the ride details and create ride form
+ */
 hr {
     border-color: white;
     background-color: white;

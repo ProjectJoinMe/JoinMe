@@ -1,7 +1,9 @@
+<!--
+    Modified by Nicole and Stefanie August 2017
+-->
 <div class="container">
-    <!--<header-menu></header-menu>
-    <div>-->
     <header>
+        <!-- To navigate to different pages -->
         <div class="topnav row" id="myTopnav">
             <span class="spaceholder row">&nbsp;</span>
             <a [routerLink]=" ['./home'] " class="col-1-2 col-t-1-2 ">
@@ -29,6 +31,7 @@
             <a *ngIf="securityStatus.loggedIn" (click)="logout()" [routerLink]="['./home']" class="col-1-2 col-t-1-2 ">
                 Logout
             </a>
+            <!-- The notification box opener-->
             <a id="toggleNotificationsButton" *ngIf="securityStatus.loggedIn" (click)="toggleNotifications()"
                class="float-right col-2 col-t-3">
                 <div class="clear"></div>
@@ -41,7 +44,7 @@
         </div>
     </header>
 
-
+    <!-- The notification box-->
     <div class="content " (click)="hideMenu()">
 
         <div class="row">
@@ -63,17 +66,14 @@
             </div>
         </div>
 
+        <!-- The page content gets loaded in here-->
         <main>
             <router-outlet></router-outlet>
         </main>
 
+        <!-- The Footer-->
         <footer>
             <img class="flogo" src="assets/img/joinme/FooterLogo.png" width="50px" height="50px">
         </footer>
     </div>
 </div>
-
-
-<!--<footer>-->
-<!--<span>JoinMe</span>-->
-<!--</footer>-->
