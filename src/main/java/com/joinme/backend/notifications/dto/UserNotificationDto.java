@@ -1,7 +1,9 @@
 package com.joinme.backend.notifications.dto;
 
 import java.time.LocalDateTime;
-
+/**
+ * Created by Nicole, January 2018.
+ */
 public class UserNotificationDto {
     private long id;
     private String username;

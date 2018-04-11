@@ -3,7 +3,9 @@ package com.joinme.backend.ratings.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+/**
+ * Created by Alexander, January 2018.
+ */
 @Entity
 public class Rating implements Serializable {
 

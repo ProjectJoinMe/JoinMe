@@ -8,7 +8,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+/**
+ * Created by Nicole, January 2018.
+ */
 @Repository
 public interface UserNotificationRepository extends CrudRepository<UserNotification, Long> {
 

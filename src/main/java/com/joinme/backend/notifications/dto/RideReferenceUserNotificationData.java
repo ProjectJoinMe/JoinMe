@@ -1,5 +1,7 @@
 package com.joinme.backend.notifications.dto;
-
+/**
+ * Created by Nicole, January 2018.
+ */
 public class RideReferenceUserNotificationData extends TypeSpecificUserNotificationData {
     private Long rideId;
 

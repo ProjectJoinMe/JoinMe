@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Created by Nicole, January 2018.
+ */
 @Component
 public class UserNotificationConverter {
 
@@ -20,18 +22,33 @@ public class UserNotificationConverter {
     @Autowired
     private RideRepository rideRepository;
 
+    /**
+     * Converts UserNotification entities to DTOs
+     * @param entities
+     * @return
+     */
     public List<UserNotificationDto> toDto(List<UserNotification> entities) {
         return entities.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Converts UserNotification entity to DTO
+     * @param entity
+     * @return
+     */
     public UserNotificationDto toDto(UserNotification entity) {
         UserNotificationDto dto = new UserNotificationDto();
         setPropertiesOnDto(dto, entity);
         return dto;
     }
 
+    /**
+     * Set properties of entity on DTO
+     * @param dto
+     * @param entity
+     */
     public void setPropertiesOnDto(UserNotificationDto dto, UserNotification entity) {
         dto.setId(entity.getId());
         dto.setMessage(entity.getMessage());
@@ -56,12 +73,22 @@ public class UserNotificationConverter {
         }
     }
 
+    /**
+     * Converts UserNotification DTO to entity
+     * @param dto
+     * @return
+     */
     public UserNotification toEntity(UserNotificationDto dto) {
         UserNotification entity = new UserNotification();
         setPropertiesOnEntity(entity, dto);
         return entity;
     }
 
+    /**
+     * Sets properties of DTO on entity
+     * @param entity
+     * @param dto
+     */
     public void setPropertiesOnEntity(UserNotification entity, UserNotificationDto dto) {
         entity.setId(dto.getId());
         entity.setMessage(dto.getMessage());

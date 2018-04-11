@@ -5,10 +5,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
-
+/**
+ * Created by Nicole, January 2018.
+ */
 @Configuration
 public class MailConfiguration {
 
+    /**
+     * Set mail configuration for sending mails
+     * @return
+     */
     @Bean
     public JavaMailSenderImpl mailSender() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();

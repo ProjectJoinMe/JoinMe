@@ -11,7 +11,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-
+/**
+ * Created by Nicole, January 2018.
+ */
 @Component
 public class EmailSenderBean {
 
@@ -21,12 +23,19 @@ public class EmailSenderBean {
     private SimpleMailMessage templateMessage;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    /**
+     * Setup of mail template, sets the email and creates a new MailMessage
+     */
     @PostConstruct
     public void setupMailTemplate() {
         templateMessage = new SimpleMailMessage();
         templateMessage.setFrom("projectjoinme@gmail.com");
     }
 
+    /**
+     * Sends mail with notification text to user from UserNotification
+     * @param notification
+     */
     @Async
     public void sendMailForNotificationAsync(UserNotification notification) {
         String email = notification.getUser().getEmail();

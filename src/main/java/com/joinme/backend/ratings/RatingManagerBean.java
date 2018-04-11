@@ -15,7 +15,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * Created by Alexander, January 2018.
+ */
 @Component
 @Transactional
 public class RatingManagerBean implements RatingManager {
@@ -29,6 +31,11 @@ public class RatingManagerBean implements RatingManager {
     @Autowired
     private RideConverter rideConverter;
 
+    /**
+     * Creates a new Rating for the RideJoin and saves it to the database
+     * @param rating
+     * @return
+     */
     @Override
     public RatingDto createRatingForRideJoin(RatingDto rating) {
         rating.setCreationDateTime(LocalDateTime.now());
@@ -38,6 +45,11 @@ public class RatingManagerBean implements RatingManager {
         return ratingConverter.toDto(ratingEntity);
     }
 
+    /**
+     * Returns the rating by id
+     * @param id
+     * @return
+     */
     @Override
     public RatingDto getRatingById(long id) {
         Rating rating = ratingRepository.findById(id);
@@ -45,11 +57,21 @@ public class RatingManagerBean implements RatingManager {
         return ratingConverter.toDto(rating);
     }
 
+    /**
+     * Returns the average rating of all rides from a user
+     * @param username
+     * @return
+     */
     @Override
     public Double getAvgRatingForUser(String username) {
         return ratingRepository.getAvgRatingForUser(username);
     }
 
+    /**
+     * Returns the rating for the ride
+     * @param rideDto
+     * @return
+     */
     @Override
     public List<RatingDto> getRatingsForRide(RideDto rideDto) {
         Ride ride = rideConverter.toEntity(rideDto);

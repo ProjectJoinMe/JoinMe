@@ -7,7 +7,9 @@ import com.joinme.backend.rides.entity.Ride;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+/**
+ * Created by Nicole, January 2018.
+ */
 @Entity
 @Table(name = "user_notification")
 public class UserNotification implements Serializable {
