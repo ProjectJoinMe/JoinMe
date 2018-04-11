@@ -1,6 +1,3 @@
-/**
- * Created by Nicole August 2017.
- */
 import {Crisis, CrisisService} from "./crisis.service";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {Injectable} from "@angular/core";
@@ -8,7 +5,7 @@ import {RideService} from "../services/RideService";
 import {Ride} from "../rides/model/Ride";
 
 /**
- * Created by Nicole August 2018.
+ * Created by Nicole August 2017.
  */
 @Injectable()
 export class JoinedRidesByUserResolver implements Resolve<Ride> {

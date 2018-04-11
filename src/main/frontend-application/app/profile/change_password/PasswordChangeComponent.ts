@@ -47,6 +47,9 @@ export class PasswordChangeComponent implements OnInit {
         });
     }
 
+    /**
+     * submits the password change request
+     */
     public changePassword() {
         this.submitted = true;
         if (this.passwordForm.valid) {
@@ -70,6 +73,11 @@ export class PasswordChangeComponent implements OnInit {
         }
     }
 
+    /**
+     * checks that the new passwords match
+     * @param {AbstractControl} control that contains the password
+     * @returns {any} indication whether or not the passwords match
+     */
     private passwordsMatchValidator(control: AbstractControl): any {
         var passwordControl = control.root.get("newPassword");
         return passwordControl && (passwordControl.value === control.value)

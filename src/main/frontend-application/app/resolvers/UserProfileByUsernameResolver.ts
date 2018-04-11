@@ -1,6 +1,4 @@
-/**
- * Created by Nicole August 2017.
- */
+
 import {Crisis, CrisisService} from "./crisis.service";
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
 import {Injectable} from "@angular/core";
