@@ -22,7 +22,7 @@ import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
 /**
- * Created by Alexander September 2018.
+ * Created by Alexander September 2017.
  */
 @Controller
 public class RatingController {

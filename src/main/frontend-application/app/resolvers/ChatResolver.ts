@@ -12,11 +12,21 @@ import {ChatMessages} from "../chat/ChatMessages";
 import {ChatService} from "../services/ChatService";
 import {ChatMessage} from "../chat/ChatMessage";
 
+/**
+ * Created by Alexander January 2018.
+ */
 @Injectable()
 export class ChatResolver implements Resolve<ChatMessage> {
     constructor(private chatService: ChatService, private router: Router) {
     }
 
+    /**
+     * Resolves the chat messages of two users specified in the queryParams.
+     * Uses ChatService to send requests.
+     * @param {ActivatedRouteSnapshot} route the current route used
+     * @param {RouterStateSnapshot} state the current RouteState
+     * @returns {Promise<ChatMessage[]>} Promise for the ChatMessage[] containing the messages.
+     */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<ChatMessage []> {
         let fromUserName: string = route.queryParams["fromUserName"];
         let toUserName: string = route.queryParams["toUserName"];

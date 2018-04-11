@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.validation.Valid;
 
 /**
- * Created by Nicole August 2018.
+ * Created by Nicole August 2017.
  */
 @Controller
 public class RideCreationController {

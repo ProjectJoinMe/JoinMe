@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.Objects;
 
 /**
- * Created by Nicole August 2018.
+ * Created by Nicole August 2017.
  */
 @Controller
 public class RideUpdateController {
