@@ -4,6 +4,9 @@ import {AbstractApiService} from "./AbstractApiService";
 import {UserNotifications} from "../notifications/UserNotifications";
 import {UserNotification} from "../notifications/UserNotification";
 
+/**
+ * Created by Nicole August 2017.
+ */
 @Injectable()
 export class NotificationService extends AbstractApiService {
 
@@ -11,6 +14,10 @@ export class NotificationService extends AbstractApiService {
         super();
     }
 
+    /**
+     * Creates a new Notification by sending an http-request to the api
+     * @returns {Promise<UserNotifications>} Promise for the UserNotifications containing the notification
+     */
     getNotifications(): Promise<UserNotifications> {
         return this.http.get('/api/notifications')
             .toPromise()
@@ -24,6 +31,9 @@ export class NotificationService extends AbstractApiService {
             .catch(this.handleError);
     }
 
+    /**
+     * Marking a Notification as read
+     */
     markNotificationsAsRead(): void {
         this.http.post('/api/notifications/markAsRead', null)
             .toPromise()
