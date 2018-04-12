@@ -23,7 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Component
 @Transactional
 public class RideJoinManagerBean implements RideJoinManager {
@@ -49,7 +51,12 @@ public class RideJoinManagerBean implements RideJoinManager {
     @Autowired
     private NotificationManagerBean notificationManagerBean;
 
-
+    /**
+     * Creates a new RideJoin and creates a Notification for the ride provider
+     * @param rideId Ride to join
+     * @param username  user that wants to join
+     * @return
+     */
     @Override
     public RideJoinDto joinRide(long rideId, String username) {
         checkIfDuplicate(rideId, username);
@@ -71,6 +78,11 @@ public class RideJoinManagerBean implements RideJoinManager {
         return rideJoinConverter.toDto(rideJoin);
     }
 
+    /**
+     * Deletes the RideJoin and creates a Notification for the ride provider
+     * @param rideId ride to leave
+     * @param username user that wants to leave the ride
+     */
     @Override
     public void unjoinRide(long rideId, String username) {
         RideJoin join = getJoin(rideId, username);
@@ -82,7 +94,13 @@ public class RideJoinManagerBean implements RideJoinManager {
                 " hat die Teilnahme an deiner Fahrt (von " + ride.getStart() + " nach " + ride.getDestination() + " am " + ride.getDepartureDate() + ") zurückgezogen.");
     }
 
-    //// TODO: 06.01.2018 Profilbild 
+    /**
+     * Creates a Notification for RideJoins
+     * @param type 'rideWasUnjoined' for leaving rides, 'rideWasJoined' for joining
+     * @param ride
+     * @param passenger
+     * @param messagePostfix Text to be displayed after the passenger's name
+     */
     private void createNotification(UserNotificationType type, Ride ride, UserAccount passenger, String messagePostfix) {
         UserNotificationDto notification = new UserNotificationDto();
         notification.setType(type);
@@ -92,12 +110,22 @@ public class RideJoinManagerBean implements RideJoinManager {
         notificationManagerBean.create(notification);
     }
 
+    /**
+     * Returns all RideJoins of a ride
+     * @param rideId
+     * @return
+     */
     @Override
     public List<RideJoinDto> getRideJoinsForRide(long rideId) {
         List<RideJoin> rideJoins = rideJoinRepository.findByRideOrderByCreationDateTime(rideRepository.findById(rideId));
         return rideJoinConverter.toDto(rideJoins);
     }
 
+    /**
+     * Returns all rides a user has joined
+     * @param username
+     * @return
+     */
     @Override
     public List<RideDto> getJoinedRidesOf(String username) {
         List<RideJoin> rideJoins = rideJoinRepository.findByPassengerUsernameOrderByCreationDateTime(username);
@@ -107,12 +135,23 @@ public class RideJoinManagerBean implements RideJoinManager {
         return rideConverter.toDto(joinedRides);
     }
 
+    /**
+     * Returns all ride joins from a ride
+     * @param rideId
+     * @return
+     */
     @Override
     public RideJoinDto getRideJoinById(long rideId) {
         RideJoin rideJoin = rideJoinRepository.findById(rideId);
         return rideJoinConverter.toDto(rideJoin);
     }
 
+    /**
+     * Sets Rating for RideJoin
+     * @param rideJoinDto
+     * @param ratingDto
+     * @return
+     */
     @Override
     public RideJoinDto setRating(RideJoinDto rideJoinDto, RatingDto ratingDto) {
         RideJoin existingJoin = rideJoinRepository.findById(rideJoinDto.getId());
@@ -120,12 +159,22 @@ public class RideJoinManagerBean implements RideJoinManager {
         return rideJoinConverter.toDto(existingJoin);
     }
 
+    /**
+     * Returns ride of RideJoin
+     * @param rideJoinId
+     * @return
+     */
     @Override
     public RideDto getRideOfRideJoin(long rideJoinId) {
         Ride ride = rideRepository.findById(getRideJoinById(rideJoinId).getRideId());
         return rideConverter.toDto(ride);
     }
 
+    /**
+     * Checks, if user already joined that ride
+     * @param rideId
+     * @param username
+     */
     private void checkIfDuplicate(long rideId, String username) {
         RideJoin existingJoin = getJoin(rideId, username);
         if (existingJoin != null) {
@@ -133,6 +182,12 @@ public class RideJoinManagerBean implements RideJoinManager {
         }
     }
 
+    /**
+     * Finds RideJoin for for ride and username
+     * @param rideId
+     * @param username
+     * @return
+     */
     private RideJoin getJoin(long rideId, String username) {
         return rideJoinRepository.findByPassengerUsernameAndRideOrderByCreationDateTime(username, rideRepository.findById(rideId));
     }

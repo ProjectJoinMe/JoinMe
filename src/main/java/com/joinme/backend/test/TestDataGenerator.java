@@ -23,6 +23,7 @@ import java.util.Date;
 
 /**
  * Created by Nicole on 23.07.2017.
+ * This class is for generating test data - for development only
  */
 @Component
 @Transactional

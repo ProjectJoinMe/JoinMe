@@ -6,7 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Repository
 public interface RideJoinRepository extends CrudRepository<RideJoin, Long> {
 

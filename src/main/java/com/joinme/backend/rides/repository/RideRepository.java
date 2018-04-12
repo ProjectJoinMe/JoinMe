@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Repository
 public interface RideRepository extends CrudRepository<Ride, Long> {
 

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Component
 @Transactional
 public class RideCreationBean implements RideCreation {
@@ -24,6 +26,11 @@ public class RideCreationBean implements RideCreation {
     @Autowired
     private RideGoogleMapsRouteProcessing rideGoogleMapsRouteProcessing;
 
+    /**
+     * Saves a Ride to the database
+     * @param ride
+     * @return
+     */
     @Override
     public RideDto createRide(RideDto ride) {
         ride.setCreationDateTime(LocalDateTime.now());

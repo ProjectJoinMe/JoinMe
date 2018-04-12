@@ -20,7 +20,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Component
 @Transactional
 public class RideRetrievalBean implements RideRetrieval {
@@ -43,6 +45,11 @@ public class RideRetrievalBean implements RideRetrieval {
         return rideConverter.toDto(rides);
     }
 
+    /**
+     * Returns ride by id
+     * @param id
+     * @return
+     */
     @Override
     public RideDto getRideById(long id) {
         Ride ride = rideRepository.findById(id);
@@ -52,6 +59,11 @@ public class RideRetrievalBean implements RideRetrieval {
         return rideConverter.toDto(ride);
     }
 
+    /**
+     * Searches rides based on the rideSearchFilter data
+     * @param rideSearchFilter
+     * @return
+     */
     @Override
     public List<RideDto> searchRides(RideSearchFilter rideSearchFilter) {
         if (rideSearchFilter.getStartLocation() == null
@@ -78,6 +90,12 @@ public class RideRetrievalBean implements RideRetrieval {
         return potentialRides;
     }
 
+    /**
+     * Returns all periodic rides which departure date is greater than the date given
+     * @param potentialRides
+     * @param date
+     * @return
+     */
     private List<RideDto> filterPeriodicRidesForDate(List<RideDto> potentialRides, LocalDate date) {
         return potentialRides.stream()
                 .filter(rideDto -> {
@@ -97,8 +115,7 @@ public class RideRetrievalBean implements RideRetrieval {
     }
 
     /**
-     * Searches locations on the path of the ride that are near enough to the searched locations.
-     *
+     * Searches locations on the path of the ride that are near enough to the searched locations
      * @param rideDto
      * @param rideSearchFilter
      * @return
@@ -161,6 +178,11 @@ public class RideRetrievalBean implements RideRetrieval {
         return foundStart && foundDestination;
     }
 
+    /**
+     * Determines the additional allowed deviation at the middle of the route
+     * @param pathLocations
+     * @return
+     */
     private double determineAdditionalAllowedDeviationAtMidOfRoute(List<LatLng> pathLocations) {
         LatLng startLocation = pathLocations.get(0);
         LatLng destinationLocation = pathLocations.get(pathLocations.size() - 1);
@@ -168,6 +190,12 @@ public class RideRetrievalBean implements RideRetrieval {
         return linearDistanceBetweenStartAndDestination / 10;
     }
 
+    /**
+     * Returns all rides that fit in the border box
+     * @param potentialRides
+     * @param rideSearchFilter
+     * @return
+     */
     private List<RideDto> filterRidesQuicklyByBorderBox(List<RideDto> potentialRides, RideSearchFilter rideSearchFilter) {
         if (rideSearchFilter.getStartLocation() != null) {
             LatLng location = rideSearchFilter.getStartLocation();
@@ -180,6 +208,13 @@ public class RideRetrievalBean implements RideRetrieval {
         return potentialRides;
     }
 
+    /**
+     * Filters all rides that are not in the border box
+     * @param potentialRides
+     * @param location
+     * @param allowedDistanceFromRouteInMeters
+     * @return
+     */
     private List<RideDto> filterRidesWhereLocationNotInBorderBox(List<RideDto> potentialRides, LatLng location, Double allowedDistanceFromRouteInMeters) {
         return potentialRides.stream()
                 .filter(rideDto -> {

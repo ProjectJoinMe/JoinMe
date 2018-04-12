@@ -4,7 +4,9 @@ import com.joinme.backend.location.LatLng;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-
+/**
+ * Created by Nicole on 23.07.2017.
+ */
 public class RideSearchFilter {
     private LatLng startLocation;
     private LatLng destinationLocation;

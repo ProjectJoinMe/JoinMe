@@ -4,7 +4,9 @@ import com.joinme.backend.accounts.dto.UserProfileDto;
 import com.joinme.backend.ratings.dto.RatingDto;
 
 import java.time.LocalDateTime;
-
+/**
+ * Created by Nicole on 23.07.2017.
+ */
 public class RideJoinDto {
 
     private long id;

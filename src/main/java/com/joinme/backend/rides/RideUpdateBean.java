@@ -20,7 +20,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Component
 @Transactional
 public class RideUpdateBean implements RideUpdate {
@@ -49,6 +51,11 @@ public class RideUpdateBean implements RideUpdate {
     @Autowired
     private UserNotificationRepository userNotificationRepository;
 
+    /**
+     * Updates ride and sends Notification to passengers
+     * @param ride
+     * @return
+     */
     @Override
     public RideDto updateRide(RideDto ride) {
         Ride rideToUpdate = rideRepository.findById(ride.getId());
@@ -66,6 +73,10 @@ public class RideUpdateBean implements RideUpdate {
         return ride;
     }
 
+    /**
+     * Delets ride and sends Notification to passengers
+     * @param rideId
+     */
     @Override
     public void deleteRide(long rideId) {
         Ride rideToDelete = rideRepository.findById(rideId);
@@ -82,6 +93,14 @@ public class RideUpdateBean implements RideUpdate {
         }
     }
 
+    /**
+     * Creates a Notification
+     * @param type
+     * @param ride
+     * @param passenger
+     * @param message
+     * @param typeSpecificData
+     */
     private void createNotification(UserNotificationType type, Ride ride, UserAccount passenger, String message, RideReferenceUserNotificationData typeSpecificData) {
         UserNotificationDto notification = new UserNotificationDto();
         notification.setType(type);

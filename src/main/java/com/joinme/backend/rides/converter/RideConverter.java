@@ -28,18 +28,33 @@ public class RideConverter {
     @Autowired
     private RideJoinRepository rideJoinRepository;
 
+    /**
+     * Converts Ride entities to DTOs
+     * @param entities
+     * @return
+     */
     public List<RideDto> toDto(List<Ride> entities) {
         return entities.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Converts Ride entity to DTO
+     * @param entity
+     * @return
+     */
     public RideDto toDto(Ride entity) {
         RideDto rideDto = new RideDto();
         setPropertiesOnDto(rideDto, entity);
         return rideDto;
     }
 
+    /**
+     * Sets properties of Ride entity on DTO
+     * @param rideDto
+     * @param entity
+     */
     public void setPropertiesOnDto(RideDto rideDto, Ride entity) {
         rideDto.setId(entity.getId());
         rideDto.setStart(entity.getStart());
@@ -64,6 +79,11 @@ public class RideConverter {
         rideDto.setRoute(rideRouteDto);
     }
 
+    /**
+     * Returns the periodic week days of a Ride
+     * @param entity
+     * @return
+     */
     private List<Integer> getPeriodicWeekDays(Ride entity) {
         if (entity.getPeriodicWeekDays() == null) {
             return Collections.emptyList();
@@ -75,12 +95,22 @@ public class RideConverter {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Converts Ride DTO to entity
+     * @param rideDto
+     * @return
+     */
     public Ride toEntity(RideDto rideDto) {
         Ride rideEntity = new Ride();
         setPropertiesOnEntity(rideEntity, rideDto);
         return rideEntity;
     }
 
+    /**
+     * Sets properties of DTO on Ride entity
+     * @param rideEntity
+     * @param rideDto
+     */
     public void setPropertiesOnEntity(Ride rideEntity, RideDto rideDto) {
         rideEntity.setId(rideDto.getId());
         rideEntity.setStart(rideDto.getStart());
@@ -104,6 +134,11 @@ public class RideConverter {
         rideEntity.setBorderBoxNorthEastLng(rideDto.getRoute().getBorderBox().getNorthEast().lng);
     }
 
+    /**
+     * Returns the periodicWeekDays as String separated by ','
+     * @param periodicWeekDays
+     * @return
+     */
     private String serializePeriodicWeekDays(List<Integer> periodicWeekDays) {
         if (periodicWeekDays == null || periodicWeekDays.isEmpty()) {
             return null;

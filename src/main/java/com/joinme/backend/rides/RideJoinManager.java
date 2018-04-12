@@ -5,7 +5,9 @@ import com.joinme.backend.rides.dto.RideDto;
 import com.joinme.backend.rides.dto.RideJoinDto;
 
 import java.util.List;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 public interface RideJoinManager {
     RideJoinDto joinRide(long rideId, String username);
 
