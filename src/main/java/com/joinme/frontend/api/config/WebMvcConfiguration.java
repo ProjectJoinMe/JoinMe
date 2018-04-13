@@ -11,7 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.concurrent.TimeUnit;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Component
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 

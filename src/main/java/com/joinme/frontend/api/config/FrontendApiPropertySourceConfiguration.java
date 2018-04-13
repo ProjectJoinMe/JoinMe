@@ -3,7 +3,9 @@ package com.joinme.frontend.api.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Configuration
 public class FrontendApiPropertySourceConfiguration {
 

@@ -3,7 +3,9 @@ package com.joinme.frontend.api.util;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-
+/**
+ * Created by Nicole, August 2017.
+ */
 public class SecurityUtil {
 
     public static String getCurrentUsername() {

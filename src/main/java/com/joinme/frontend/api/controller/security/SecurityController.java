@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SecurityController {
 
+    /**
+     * Returns the current security status
+     * The currently logged in user is determined with it
+     * @return
+     */
     @RequestMapping(value = "/api/security/status", method = RequestMethod.GET)
     @ResponseBody
     @PreAuthorize("permitAll()")

@@ -12,7 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-
+/**
+ * Created by Nicole, August 2017.
+ */
 @Component
 public class UserAuthenticationProvider implements AuthenticationProvider {
 
